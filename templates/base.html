@@ -22,55 +22,67 @@
         extend: {
           colors: {
             brand: {
-              50: '#fff5f0',
-              100: '#ffe8de',
-              200: '#ffd3bf',
-              300: '#ffb394',
-              400: '#ff8a5c',
-              500: '#ff6326', // Aniq logotipdagi elektro to'q-sariq rang
-              600: '#ff6326',
-              700: '#e54d12',
-              800: '#b83807',
-              900: '#7a240a',
-              charcoal: '#292929', // Aniq logotipdagi grafit qora
+              50: '#fafafa',
+              100: '#f4f4f5',
+              200: '#e4e4e7',
+              300: '#d4d4d8',
+              400: '#a1a1aa',
+              500: '#18181b',
+              600: '#09090b',
+              700: '#000000',
+              800: '#09090b',
+              900: '#000000',
+              charcoal: '#09090b',
             },
             orange: {
-              50: '#fff5f0',
-              100: '#ffe8de',
-              200: '#fed7aa',
-              300: '#fdba74',
-              400: '#ff8a5c',
-              500: '#ff6326', // Aniq logotipdagi elektro to'q-sariq rang
-              600: '#ff6326',
-              700: '#e54d12',
-              800: '#b83807',
-              900: '#7c2d12',
+              50: '#f4f4f5',
+              100: '#e4e4e7',
+              200: '#e4e4e7',
+              300: '#d4d4d8',
+              400: '#a1a1aa',
+              500: '#18181b',
+              600: '#09090b',
+              700: '#000000',
+              800: '#09090b',
+              900: '#000000',
             },
             indigo: {
-              50: '#fff5f0',
-              100: '#ffe8de',
-              200: '#ffd3bf',
-              300: '#ffb394',
-              400: '#ff8a5c',
-              500: '#ff6326',
-              600: '#ff6326',
-              700: '#e54d12',
-              800: '#292929',
-              900: '#1f1f1f',
-              950: '#18181b',
+              50: '#f4f4f5',
+              100: '#e4e4e7',
+              200: '#e4e4e7',
+              300: '#d4d4d8',
+              400: '#a1a1aa',
+              500: '#18181b',
+              600: '#09090b',
+              700: '#000000',
+              800: '#09090b',
+              900: '#000000',
+              950: '#000000',
+            },
+            purple: {
+              50: '#f4f4f5',
+              100: '#e4e4e7',
+              200: '#e4e4e7',
+              300: '#d4d4d8',
+              400: '#a1a1aa',
+              500: '#18181b',
+              600: '#09090b',
+              700: '#000000',
+              800: '#09090b',
+              900: '#000000',
             },
             violet: {
-              50: '#fff5f0',
-              100: '#ffe8de',
-              200: '#ffd3bf',
-              300: '#ffb394',
-              400: '#ff8a5c',
-              500: '#ff6326',
-              600: '#ff6326',
-              700: '#e54d12',
-              800: '#292929',
-              900: '#1f1f1f',
-              950: '#18181b',
+              50: '#f4f4f5',
+              100: '#e4e4e7',
+              200: '#e4e4e7',
+              300: '#d4d4d8',
+              400: '#a1a1aa',
+              500: '#18181b',
+              600: '#09090b',
+              700: '#000000',
+              800: '#09090b',
+              900: '#000000',
+              950: '#000000',
             }
           }
         }
@@ -78,188 +90,192 @@
     }
   </script>
   
-  <!-- Google Fonts: Caveat (handwriting) + Patrick Hand -->
+  <!-- Google Fonts: Plus Jakarta Sans (Headings & UI) + Syne (Display) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* =============================================
-       HAND-DRAWN STYLE — Global Design System
-       Accent: #ff6326  |  Ink: #292929
-       Paper: #fdf6e3   |  Card: #fffef9
-    ============================================= */
+    /* ============================================================
+       MINIMALIST MONOCHROME (Dark & White) Design System
+       Obsidian Black (#09090b / #000000), Crisp White (#ffffff),
+       Zinc Grays (#71717a, #e4e4e7, #f4f4f5, #fafafa)
+    ============================================================ */
 
     :root {
-      --hd-ink:    #292929;
-      --hd-orange: #ff6326;
-      --hd-paper:  #fdf6e3;
-      --hd-card:   #fffef9;
-      --hd-cream:  #fef9ee;
+      --mono-bg:            #ffffff;
+      --mono-card:          #ffffff;
+      --mono-dark:          #09090b;
+      --mono-darker:        #000000;
+      --mono-muted:         #71717a;
+      --mono-border:        #e4e4e7;
+      --mono-border-subtle: #f4f4f5;
     }
 
-    /* Base page background — warm paper */
-    html { background-color: var(--hd-paper) !important; }
-    body { background-color: var(--hd-paper) !important; font-family: 'Patrick Hand', cursive !important; }
-
-    /* Headings use Caveat handwritten font */
-    h1, h2, h3, h4, h5, h6,
-    .hd-heading { font-family: 'Caveat', cursive !important; letter-spacing: 0.01em; }
-
-    /* Override Tailwind slate/zinc backgrounds to paper */
-    .bg-slate-50, .bg-slate-100, html.h-full.bg-slate-50 { background-color: var(--hd-paper) !important; }
-
-    /* Exclude layout containers from card styling */
-    header, footer, aside, nav, body, html, #main-content, main, table, thead, tbody, tr, th, td, #chat-messages, .no-hd {
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      transform: none !important;
+    html {
+      background-color: var(--mono-bg) !important;
+      scroll-behavior: smooth;
     }
 
-    /* ---- HAND-DRAWN CARD ---- */
-    .hd-card,
-    .bg-white:not(header):not(footer):not(aside):not(nav):not(body):not(html):not(#main-content):not(main):not(#chat-messages):not(button):not(input):not(select):not(textarea):not(.no-hd) {
-      background-color: var(--hd-card) !important;
-      border: 2px solid var(--hd-ink) !important;
-      border-radius: 4px 14px 8px 12px / 10px 4px 14px 6px !important;
-      box-shadow: 3px 4px 0 var(--hd-ink) !important;
-      transition: box-shadow 0.15s ease, transform 0.15s ease !important;
-    }
-    .hd-card:hover,
-    .bg-white:not(header):not(footer):not(aside):not(nav):not(body):not(html):not(#main-content):not(main):not(#chat-messages):not(button):not(input):not(select):not(textarea):not(.no-hd):hover {
-      box-shadow: 5px 6px 0 var(--hd-ink) !important;
-      transform: translate(-1px, -1px) !important;
+    body {
+      background-color: var(--mono-bg) !important;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      color: var(--mono-dark);
+      letter-spacing: -0.015em;
     }
 
-    /* Header & Footer Hand-drawn ink styling */
+    /* Headings — dark obsidian, punchy, geometric */
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.035em !important;
+      color: var(--mono-dark);
+    }
+
+    .hero-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.04em !important;
+      line-height: 1.06 !important;
+      color: var(--mono-dark);
+    }
+
+    /* Stat / Metric Callout */
+    .stat-metric {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.04em !important;
+      color: var(--mono-dark);
+    }
+
+    /* Clean Floating Cards */
+    .ps-card,
+    .bg-white:not(header):not(footer):not(aside):not(nav):not(body):not(html):not(#main-content):not(main):not(#chat-messages):not(button):not(input):not(select):not(textarea):not(.no-ps) {
+      background-color: #ffffff !important;
+      border: 1px solid var(--mono-border) !important;
+      border-radius: 16px !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease !important;
+    }
+
+    .ps-card:hover,
+    .bg-white:not(header):not(footer):not(aside):not(nav):not(body):not(html):not(#main-content):not(main):not(#chat-messages):not(button):not(input):not(select):not(textarea):not(.no-ps):hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+      border-color: #d4d4d8 !important;
+    }
+
+    /* Header & Footer clean aesthetics */
     header {
-      background-color: var(--hd-cream) !important;
-      border-bottom: 2px solid var(--hd-ink) !important;
-      box-shadow: 0 3px 0 #e8dfc8 !important;
-    }
-    footer {
-      background-color: var(--hd-cream) !important;
-      border-top: 2px solid var(--hd-ink) !important;
-      box-shadow: 0 -3px 0 #e8dfc8 !important;
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(12px) !important;
+      border-bottom: 1px solid var(--mono-border) !important;
     }
 
-    /* ---- HAND-DRAWN BUTTON (primary) ---- */
-    .hd-btn,
+    footer {
+      background-color: #ffffff !important;
+      border-top: 1px solid var(--mono-border) !important;
+    }
+
+    /* Sidebar */
+    #desktop-sidebar {
+      background-color: #ffffff !important;
+      border-right: 1px solid var(--mono-border) !important;
+      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.02) !important;
+    }
+
+    /* Active Nav Item */
+    .border-l-4.border-zinc-950,
+    .sidebar-nav-active {
+      border-left: 2px solid var(--mono-dark) !important;
+      background-color: #f4f4f5 !important;
+      color: var(--mono-dark) !important;
+      font-weight: 700 !important;
+    }
+
+    /* Pill Badges */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      background: #f4f4f5;
+      color: var(--mono-dark);
+      border: 1px solid var(--mono-border);
+    }
+
+    /* Clean Monochrome Buttons */
+    .ps-btn,
     button[type="submit"],
     a.hd-btn {
-      font-family: 'Caveat', cursive !important;
-      font-size: 1.1rem !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
       font-weight: 700 !important;
-      background-color: var(--hd-orange) !important;
-      color: #fff !important;
-      border: 2.5px solid var(--hd-ink) !important;
-      border-radius: 3px 10px 5px 8px / 8px 4px 10px 3px !important;
-      box-shadow: 3px 3px 0 var(--hd-ink) !important;
-      letter-spacing: 0.02em !important;
-      transition: box-shadow 0.1s, transform 0.1s !important;
+      background-color: var(--mono-dark) !important;
+      color: #ffffff !important;
+      border: 1px solid var(--mono-dark) !important;
+      border-radius: 12px !important;
+      letter-spacing: -0.015em !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+      transition: all 0.15s ease !important;
     }
-    .hd-btn:hover,
+    .ps-btn:hover,
     button[type="submit"]:hover {
-      box-shadow: 1px 2px 0 var(--hd-ink) !important;
-      transform: translate(2px, 1px) !important;
-    }
-    .hd-btn:active,
-    button[type="submit"]:active {
-      box-shadow: 0 0 0 var(--hd-ink) !important;
-      transform: translate(3px, 3px) !important;
+      background-color: #27272a !important;
+      border-color: #27272a !important;
+      color: #ffffff !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
     }
 
-    /* ---- HAND-DRAWN BUTTON (outline/secondary) ---- */
-    .hd-btn-outline,
-    a.border.border-slate-200,
-    a.border.border-slate-300 {
-      font-family: 'Caveat', cursive !important;
-      font-size: 1rem !important;
-      background-color: var(--hd-card) !important;
-      color: var(--hd-ink) !important;
-      border: 2px solid var(--hd-ink) !important;
-      border-radius: 5px 8px 3px 10px / 6px 3px 9px 4px !important;
-      box-shadow: 2px 2px 0 var(--hd-ink) !important;
-      transition: box-shadow 0.1s, transform 0.1s !important;
-    }
-    .hd-btn-outline:hover {
-      box-shadow: 0 0 0 var(--hd-ink) !important;
-      transform: translate(2px, 2px) !important;
-    }
-
-    /* ---- HAND-DRAWN INPUT ---- */
+    /* Form Inputs */
     input:not([type="checkbox"]):not([type="radio"]):not([type="date"]),
     select, textarea, input[type="date"] {
-      font-family: 'Patrick Hand', cursive !important;
-      background-color: var(--hd-card) !important;
-      border: 2px solid var(--hd-ink) !important;
-      border-radius: 4px 10px 6px 8px / 8px 4px 10px 5px !important;
-      box-shadow: 2px 2px 0 #c8bfa8 !important;
-      transition: box-shadow 0.15s !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      background-color: #ffffff !important;
+      border: 1px solid #d4d4d8 !important;
+      border-radius: 10px !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+      transition: border-color 0.15s, box-shadow 0.15s !important;
+      color: var(--mono-dark) !important;
     }
     input:not([type="checkbox"]):not([type="radio"]):focus,
     select:focus, textarea:focus {
       outline: none !important;
-      box-shadow: 3px 3px 0 var(--hd-orange) !important;
-      border-color: var(--hd-orange) !important;
+      border-color: var(--mono-dark) !important;
+      box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.12) !important;
     }
 
-    /* ---- SIDEBAR (Desktop) ---- */
-    #desktop-sidebar {
-      background-color: var(--hd-cream) !important;
-      border-right: 2px solid var(--hd-ink) !important;
-      box-shadow: 3px 0 0 #e8dfc8 !important;
-    }
-
-    /* ---- BADGE / PILL ---- */
-    .rounded-full {
-      border: 1.5px solid var(--hd-ink) !important;
-      font-family: 'Caveat', cursive !important;
-    }
-
-    /* ---- ACTIVE NAV ITEM ---- */
-    .border-l-4.border-orange-600 {
-      border-left: 3px solid var(--hd-orange) !important;
-      background-color: #fff5eb !important;
-    }
-
-    /* ---- PROGRESS BAR ---- */
-    .bg-orange-600, [style*="background-color: #ff6326"],
-    .bg-orange-500 {
-      background-color: var(--hd-orange) !important;
-      /* Rough edge via clip-path */
-    }
-
-    /* Heatmap cells */
-    .bg-emerald-500 { border: 1.5px solid var(--hd-ink) !important; }
-
-    /* ---- MOBILE BOTTOM NAV ---- */
+    /* Mobile bottom navigation */
     nav.sm\:hidden.fixed {
-      background-color: var(--hd-cream) !important;
-      border-top: 2.5px solid var(--hd-ink) !important;
-      box-shadow: 0 -3px 0 #e8dfc8 !important;
+      background-color: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(16px) !important;
+      border-top: 1px solid var(--mono-border) !important;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.03) !important;
     }
 
-    /* ---- TOP PROGRESS BAR ---- */
+    /* Top progress bar */
     #top-progress-bar {
       position: fixed;
       top: 0; left: 0;
       width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--hd-orange), #ff8a5c, var(--hd-ink));
+      height: 2px;
+      background: var(--mono-dark);
       z-index: 99999;
       transition: width 0.2s ease, opacity 0.3s ease;
       opacity: 0;
     }
 
-    /* ---- PAGE TRANSITION ---- */
-    .page-transition { animation: fadeIn 0.22s ease-out; }
+    /* Page transition */
+    .page-transition { animation: fadeIn 0.2s ease-out; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
+      from { opacity: 0; transform: translateY(3px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---- MARQUEE ---- */
+    /* Marquee */
     @keyframes marqueeScroll {
       0%   { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -270,28 +286,11 @@
     }
     .animate-marquee-infinite:hover { animation-play-state: paused; }
 
-    /* ---- SCROLLBAR ---- */
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--hd-paper); }
-    ::-webkit-scrollbar-thumb { background: #c8bfa8; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #a09070; }
-
-    /* Decorative squiggle underline for accent text */
-    .hd-underline {
-      text-decoration: underline;
-      text-decoration-style: wavy;
-      text-decoration-color: var(--hd-orange);
-      text-underline-offset: 4px;
-    }
-
-    /* Card subtle hover (override) */
-    .card-subtle-hover { transition: all 0.15s ease-in-out; }
-
-    /* Dark sections keep dark, no override */
-    .bg-zinc-900, .bg-zinc-950, .bg-zinc-800,
-    [class*="from-zinc"], [class*="via-zinc"] {
-      /* keep as-is for dark hero banners */
-    }
+    ::-webkit-scrollbar-track { background: #fafafa; }
+    ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
   </style>
   {% block extra_head %}{% endblock %}
 </head>
@@ -304,17 +303,17 @@
       <!-- Top Section: Brand + Navigation -->
       <div class="flex flex-col flex-1 min-h-0">
         <!-- Brand Logo -->
-        <div class="h-16 flex items-center justify-between px-5 border-b border-slate-100 flex-shrink-0">
-          <a href="{% url 'dashboard:index' %}" class="flex items-center space-x-2.5 text-slate-900 hover:opacity-90 transition">
-            <div class="w-9 h-9 rounded-xl bg-white border border-slate-200 overflow-hidden shadow-xs flex items-center justify-center p-0.5">
+        <div class="h-16 flex items-center justify-between px-5 border-b border-zinc-200 flex-shrink-0">
+          <a href="{% url 'dashboard:index' %}" class="flex items-center space-x-2.5 text-zinc-950 hover:opacity-90 transition">
+            <div class="w-9 h-9 rounded-xl bg-white border border-zinc-200 overflow-hidden shadow-xs flex items-center justify-center p-0.5">
               <img src="{% static 'images/unimentor_logo.png' %}" alt="UniMentor" class="w-full h-full object-contain">
             </div>
             <div class="flex items-center space-x-1">
-              <span class="text-xl font-extrabold text-slate-900 tracking-tight">UniMentor</span>
-              <span class="text-[9px] font-black uppercase px-1 py-0.5 rounded bg-orange-500 text-white shadow-xs">AI</span>
+              <span class="text-xl font-extrabold text-zinc-950 tracking-tight">UniMentor</span>
+              <span class="text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-zinc-950 text-white shadow-xs">AI</span>
             </div>
           </a>
-          <button id="close-sidebar-btn" class="p-1.5 text-slate-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition" title="Menyuni yopish">
+          <button id="close-sidebar-btn" class="p-1.5 text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition" title="Menyuni yopish">
             <i data-lucide="chevron-left" class="w-5 h-5"></i>
           </button>
         </div>
@@ -323,64 +322,64 @@
         <nav class="p-3 space-y-1 flex-1 overflow-y-auto">
           <!-- 1. Bosh sahifa -->
           <a href="{% url 'dashboard:index' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if request.path == '/dashboard/' or request.path == '/dashboard/home/' %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="home" class="w-4 h-4 {% if request.path == '/dashboard/' or request.path == '/dashboard/home/' %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if request.path == '/dashboard/' or request.path == '/dashboard/home/' %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="home" class="w-4 h-4 {% if request.path == '/dashboard/' or request.path == '/dashboard/home/' %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>Bosh sahifa</span>
           </a>
 
           <!-- 2. Imtihon Tayyorgarligi (Track A) -->
           <a href="{% url 'tasks:exam_prep' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="headphones" class="w-4 h-4 {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="headphones" class="w-4 h-4 {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>Imtihon Tayyorgarligi</span>
           </a>
 
           <!-- 3. Universitet Arizasi (Track B) -->
           <a href="{% url 'tasks:application_prep' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/tasks/application-prep/' in request.path %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="clipboard-check" class="w-4 h-4 {% if '/tasks/application-prep/' in request.path %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/tasks/application-prep/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="clipboard-check" class="w-4 h-4 {% if '/tasks/application-prep/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>Universitet Arizasi</span>
           </a>
 
           <!-- 3. AI Mentor -->
           <a href="{% url 'mentor:chat' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/mentor/' in request.path %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="message-circle" class="w-4 h-4 {% if '/mentor/' in request.path %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/mentor/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="message-circle" class="w-4 h-4 {% if '/mentor/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>AI Mentor</span>
           </a>
 
-          <!-- 4. Dasturlar -->
+          <!-- 4. Tavsiya etilgan universitetlar -->
           <a href="{% url 'programs:catalog' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/programs/' in request.path %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="graduation-cap" class="w-4 h-4 {% if '/programs/' in request.path %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
-            <span>Dasturlar</span>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/programs/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="graduation-cap" class="w-4 h-4 {% if '/programs/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
+            <span>Tavsiya etilgan universitetlar</span>
           </a>
 
           <!-- 5. Hujjatlarim -->
           <a href="{% url 'documents:list' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/documents/' in request.path %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="file-text" class="w-4 h-4 {% if '/documents/' in request.path %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/documents/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="file-text" class="w-4 h-4 {% if '/documents/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>Hujjatlarim</span>
           </a>
 
           <!-- 6. Kalendar -->
           <a href="{% url 'dashboard:calendar' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/calendar/' in request.path %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="calendar" class="w-4 h-4 {% if '/calendar/' in request.path %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/calendar/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="calendar" class="w-4 h-4 {% if '/calendar/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>Kalendar</span>
           </a>
 
           <!-- 7. Statistika -->
           <a href="{% url 'dashboard:stats' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/stats/' in request.path %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="bar-chart-3" class="w-4 h-4 {% if '/stats/' in request.path %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/stats/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="bar-chart-3" class="w-4 h-4 {% if '/stats/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>Statistika</span>
           </a>
 
           <!-- 8. Resurslar -->
           <a href="{% url 'resources:list' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/resources/' in request.path %}bg-orange-50 text-orange-700 font-bold border-l-4 border-orange-600 rounded-r-xl{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-            <i data-lucide="book-open" class="w-4 h-4 {% if '/resources/' in request.path %}text-orange-600{% else %}text-slate-500{% endif %}"></i>
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/resources/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="book-open" class="w-4 h-4 {% if '/resources/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>Resurslar</span>
           </a>
         </nav>
@@ -388,43 +387,43 @@
 
       <!-- Bottom Section: Persistent Widget + Auth/User Info -->
       <div class="flex-shrink-0">
-        <div class="p-3.5 border-t border-slate-100 space-y-2.5 bg-slate-50/60">
+        <div class="p-3.5 border-t border-zinc-200 space-y-2.5 bg-zinc-50/60">
           <!-- Ready Score Widget -->
-          <div class="flex items-center justify-between p-2 bg-white rounded-xl border border-slate-200 shadow-xs text-xs">
-            <div class="flex items-center space-x-2 text-slate-700 font-medium">
-              <i data-lucide="target" class="w-3.5 h-3.5 text-orange-600"></i>
+          <div class="flex items-center justify-between p-2 bg-white rounded-xl border border-zinc-200 shadow-xs text-xs">
+            <div class="flex items-center space-x-2 text-zinc-700 font-medium">
+              <i data-lucide="target" class="w-3.5 h-3.5 text-zinc-900"></i>
               <span>Ready Score:</span>
             </div>
-            <span class="font-bold text-orange-600 text-xs">{{ request.user.student_profile.overall_ready_score|default:0|floatformat:0 }}%</span>
+            <span class="font-bold text-zinc-950 text-xs">{{ request.user.student_profile.overall_ready_score|default:0|floatformat:0 }}%</span>
           </div>
 
           <!-- Streak Widget -->
-          <div class="flex items-center justify-between p-2 bg-white rounded-xl border border-slate-200 shadow-xs text-xs">
-            <div class="flex items-center space-x-2 text-slate-700 font-medium">
-              <i data-lucide="flame" class="w-3.5 h-3.5 text-amber-500"></i>
+          <div class="flex items-center justify-between p-2 bg-white rounded-xl border border-zinc-200 shadow-xs text-xs">
+            <div class="flex items-center space-x-2 text-zinc-700 font-medium">
+              <i data-lucide="flame" class="w-3.5 h-3.5 text-zinc-900"></i>
               <span>Streak:</span>
             </div>
-            <span class="font-bold text-amber-600 text-xs">{{ request.user.student_profile.streak_days|default:0 }} kun</span>
+            <span class="font-bold text-zinc-950 text-xs">{{ request.user.student_profile.streak_days|default:0 }} kun</span>
           </div>
 
           <!-- User Profile & Settings / Logout -->
-          <div class="flex items-center justify-between pt-1 border-t border-slate-200/60">
+          <div class="flex items-center justify-between pt-1 border-t border-zinc-200">
             <a href="{% url 'accounts:profile' %}" class="flex items-center space-x-2 min-w-0 hover:opacity-80 transition" title="Profil sozlamalari">
-              <div class="w-7 h-7 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center text-xs font-bold flex-shrink-0">
+              <div class="w-7 h-7 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
                 {{ request.user.first_name|default:request.user.phone_number|slice:":1"|upper }}
               </div>
-              <span class="text-xs font-semibold text-slate-800 truncate max-w-[90px]" title="{{ request.user.first_name|default:request.user.phone_number }}">
+              <span class="text-xs font-semibold text-zinc-900 truncate max-w-[90px]" title="{{ request.user.first_name|default:request.user.phone_number }}">
                 {{ request.user.first_name|default:request.user.phone_number }}
               </span>
             </a>
             
             <div class="flex items-center space-x-0.5">
-              <a href="{% url 'accounts:profile' %}" class="p-1.5 text-slate-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition" title="Sozlamalar">
+              <a href="{% url 'accounts:profile' %}" class="p-1.5 text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition" title="Sozlamalar">
                 <i data-lucide="settings" class="w-4 h-4"></i>
               </a>
               <form method="post" action="{% url 'accounts:logout' %}" class="inline">
                 {% csrf_token %}
-                <button type="submit" class="text-xs text-slate-400 hover:text-red-600 p-1.5 rounded-lg hover:bg-red-50 transition" title="Chiqish">
+                <button type="submit" class="text-xs text-zinc-400 hover:text-red-600 p-1.5 rounded-lg hover:bg-red-50 transition" title="Chiqish">
                   <i data-lucide="log-out" class="w-4 h-4"></i>
                 </button>
               </form>
@@ -451,7 +450,7 @@
     
     <!-- Desktop Open Sidebar Button (Hidden initially) -->
     {% if request.user.is_authenticated and not hide_sidebar and not '/onboarding/' in request.path %}
-    <button id="open-sidebar-btn" class="hidden fixed top-4 left-4 z-40 p-2 bg-white rounded-xl shadow-md border border-slate-200 text-slate-600 hover:text-orange-600 hover:bg-orange-50 transition" title="Menyuni ochish">
+    <button id="open-sidebar-btn" class="hidden fixed top-4 left-4 z-40 p-2 bg-white rounded-xl shadow-md border border-zinc-200 text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100 transition" title="Menyuni ochish">
       <i data-lucide="menu" class="w-6 h-6"></i>
     </button>
     {% endif %}
@@ -480,7 +479,7 @@
             <img src="{% static 'images/unimentor_logo.png' %}" alt="UniMentor" class="w-full h-full object-contain">
           </div>
           <span class="font-bold text-slate-800 text-sm">UniMentor</span>
-          <span class="text-[9px] font-black uppercase px-1 py-0.5 rounded bg-orange-500 text-white shadow-xs">AI</span>
+          <span class="text-[9px] font-black uppercase px-1 py-0.5 rounded bg-zinc-950 text-white shadow-xs">AI</span>
           <span class="text-slate-400 pl-1">— O'zbekiston maktab o'quvchilari uchun AI ta'lim platformasi</span>
         </div>
         <div>

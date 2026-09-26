@@ -396,6 +396,15 @@ def dashboard_view(request):
         'match_score': match_score,
         'backup_programs': backup_programs,
         
+        # Tavsiya etilgan universitetlar va dasturlar (Recommended Universities)
+        'recommended_programs': list(
+            Program.objects.filter(
+                country__in=student.target_countries
+            ).select_related('university')[:4]
+            if student.target_countries and Program.objects.filter(country__in=student.target_countries).exists()
+            else Program.objects.all().select_related('university')[:4]
+        ),
+        
         # Dual-Track Study Plan Data
         'track_a_data': track_a_data,
         'track_b_data': track_b_data,

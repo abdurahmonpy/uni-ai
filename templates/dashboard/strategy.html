@@ -10,12 +10,12 @@
   <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-8 text-white shadow-xs">
     <div>
       <div class="inline-flex items-center space-x-2 px-3 py-1 bg-zinc-800/80 border border-zinc-700/80 rounded-full text-zinc-300 text-xs font-semibold mb-4">
-        <i data-lucide="compass" class="w-3.5 h-3.5 text-orange-400"></i>
+        <i data-lucide="compass" class="w-3.5 h-3.5 text-zinc-400"></i>
         <span>AI School Counselor</span>
       </div>
       <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">Shaxsiy Strategiya va Universitetlar</h1>
       <p class="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
-        Sizning barcha ko'rsatkichlaringiz ({{ student.english_level }}{% if student.grade %}, {{ student.grade }}-sinf{% endif %}, qiziqishlar) asosida AI tomonidan shakllantirilgan shaxsiy xarita va ehtimoliy universitetlar ro'yxati.
+        Sizning barcha ko'rsatkichlaringiz ({{ student.english_level }}{% if student.grade %}, {{ student.grade }}-sinf{% endif %}, qiziqishlar) asosida AI tomonidan shakllantirilgan shaxsiy tavsiyalar va ehtimoliy universitetlar ro'yxati.
       </p>
     </div>
   </div>
@@ -23,77 +23,77 @@
   <!-- College List (Reach, Match, Safety) -->
   <div>
     <h2 class="text-xl font-bold text-zinc-900 mb-6 flex items-center space-x-2">
-      <i data-lucide="building" class="w-5 h-5 text-orange-600"></i>
+      <i data-lucide="building" class="w-5 h-5 text-zinc-950"></i>
       <span>Universitetlar Ro'yxati (College List)</span>
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       
       <!-- Reach -->
-      <div class="bg-amber-50/70 rounded-2xl p-6 border border-amber-200/80 shadow-2xs flex flex-col">
+      <div class="bg-white rounded-2xl p-6 border border-zinc-200 shadow-2xs flex flex-col">
         <div class="flex items-center space-x-2 mb-3">
-          <i data-lucide="trending-up" class="w-5 h-5 text-amber-600"></i>
-          <h3 class="text-base font-bold text-amber-950">Reach (Yuqori marra)</h3>
+          <i data-lucide="trending-up" class="w-5 h-5 text-zinc-950"></i>
+          <h3 class="text-base font-bold text-zinc-950">Reach (Yuqori marra)</h3>
         </div>
-        <p class="text-xs text-amber-800/90 mb-4 flex-1">Kirish raqobati yuqori, ammo a'lo darajadagi insho va tayyorgarlik bilan urinib ko'rsa bo'ladi (Match &lt; 70%).</p>
+        <p class="text-xs text-zinc-600 mb-4 flex-1">Kirish raqobati yuqori, ammo a'lo darajadagi insho va tayyorgarlik bilan urinib ko'rsa bo'ladi (Match &lt; 70%).</p>
         <div class="space-y-3">
           {% for school in reach_schools %}
-            <div class="bg-white p-3 rounded-2xl border border-amber-100 shadow-xs">
+            <div class="bg-white p-3 rounded-2xl border border-zinc-200 shadow-xs">
               <h4 class="font-bold text-slate-900 text-sm">{{ school.program_name }}</h4>
               <p class="text-xs text-slate-500 mt-1">{{ school.country }} • {{ school.type_display }}</p>
-              <div class="mt-2 flex items-center justify-between text-xs font-bold text-amber-700">
+              <div class="mt-2 flex items-center justify-between text-xs font-bold text-zinc-900">
                 <span>Ehtimollik:</span>
                 <span>{{ school.match_percentage }}%</span>
               </div>
             </div>
           {% empty %}
-            <p class="text-xs text-amber-600 font-medium bg-amber-100 p-2 rounded-xl">Mos keluvchi Reach dastur topilmadi.</p>
+            <p class="text-xs text-zinc-950 font-medium bg-zinc-100 p-2 rounded-xl">Mos keluvchi Reach dastur topilmadi.</p>
           {% endfor %}
         </div>
       </div>
 
       <!-- Match -->
-      <div class="bg-blue-50/70 rounded-2xl p-6 border border-blue-200/80 shadow-2xs flex flex-col">
+      <div class="bg-white rounded-2xl p-6 border border-zinc-200 shadow-2xs flex flex-col">
         <div class="flex items-center space-x-2 mb-3">
-          <i data-lucide="target" class="w-5 h-5 text-blue-600"></i>
-          <h3 class="text-base font-bold text-blue-950">Match (Maqsadli)</h3>
+          <i data-lucide="target" class="w-5 h-5 text-zinc-950"></i>
+          <h3 class="text-base font-bold text-zinc-950">Match (Maqsadli)</h3>
         </div>
-        <p class="text-xs text-blue-800/90 mb-4 flex-1">Sizning baholaringiz va profillaringiz ushbu dasturlar talabiga to'la javob beradi (Match 70-84%).</p>
+        <p class="text-xs text-zinc-600 mb-4 flex-1">Sizning baholaringiz va profillaringiz ushbu dasturlar talabiga to'la javob beradi (Match 70-84%).</p>
         <div class="space-y-3">
           {% for school in match_schools %}
-            <div class="bg-white p-3.5 rounded-xl border border-blue-100 shadow-2xs">
+            <div class="bg-white p-3.5 rounded-xl border border-zinc-200 shadow-2xs">
               <h4 class="font-bold text-zinc-900 text-sm">{{ school.program_name }}</h4>
               <p class="text-xs text-zinc-500 mt-1">{{ school.country }} • {{ school.type_display }}</p>
-              <div class="mt-2 flex items-center justify-between text-xs font-semibold text-blue-700">
+              <div class="mt-2 flex items-center justify-between text-xs font-semibold text-zinc-900">
                 <span>Ehtimollik:</span>
                 <span class="font-bold">{{ school.match_percentage }}%</span>
               </div>
             </div>
           {% empty %}
-            <p class="text-xs text-blue-600 font-medium bg-blue-100/70 p-2.5 rounded-xl">Mos keluvchi Match dastur topilmadi.</p>
+            <p class="text-xs text-zinc-950 font-medium bg-zinc-100 p-2.5 rounded-xl">Mos keluvchi Match dastur topilmadi.</p>
           {% endfor %}
         </div>
       </div>
 
       <!-- Safety -->
-      <div class="bg-emerald-50/70 rounded-2xl p-6 border border-emerald-200/80 shadow-2xs flex flex-col">
+      <div class="bg-white rounded-2xl p-6 border border-zinc-200 shadow-2xs flex flex-col">
         <div class="flex items-center space-x-2 mb-3">
-          <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
-          <h3 class="text-base font-bold text-emerald-950">Safety (Kafolatlangan)</h3>
+          <i data-lucide="shield-check" class="w-5 h-5 text-zinc-950"></i>
+          <h3 class="text-base font-bold text-zinc-950">Safety (Kafolatlangan)</h3>
         </div>
-        <p class="text-xs text-emerald-800/90 mb-4 flex-1">Sizning hozirgi ko'rsatkichingiz bu dasturlar uchun juda baland. Kirish imkoniyati yuqori (Match &gt;= 85%).</p>
+        <p class="text-xs text-zinc-600 mb-4 flex-1">Sizning hozirgi ko'rsatkichingiz bu dasturlar uchun juda baland. Kirish imkoniyati yuqori (Match &gt;= 85%).</p>
         <div class="space-y-3">
           {% for school in safety_schools %}
-            <div class="bg-white p-3.5 rounded-xl border border-emerald-100 shadow-2xs">
+            <div class="bg-white p-3.5 rounded-xl border border-zinc-200 shadow-2xs">
               <h4 class="font-bold text-zinc-900 text-sm">{{ school.program_name }}</h4>
               <p class="text-xs text-zinc-500 mt-1">{{ school.country }} • {{ school.type_display }}</p>
-              <div class="mt-2 flex items-center justify-between text-xs font-semibold text-emerald-700">
+              <div class="mt-2 flex items-center justify-between text-xs font-semibold text-zinc-900">
                 <span>Ehtimollik:</span>
                 <span class="font-bold">{{ school.match_percentage }}%</span>
               </div>
             </div>
           {% empty %}
-            <p class="text-xs text-emerald-600 font-medium bg-emerald-100/70 p-2.5 rounded-xl">Mos keluvchi Safety dastur topilmadi.</p>
+            <p class="text-xs text-zinc-950 font-medium bg-zinc-100 p-2.5 rounded-xl">Mos keluvchi Safety dastur topilmadi.</p>
           {% endfor %}
         </div>
       </div>
@@ -101,15 +101,15 @@
     </div>
   </div>
 
-  <!-- Study Plan Roadmap -->
+  <!-- Study Plan Tavsiyalar Rejasi -->
   {% if plan_data %}
   <div class="pt-8 border-t border-zinc-200">
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-xl font-bold text-zinc-900 flex items-center space-x-2">
-        <i data-lucide="map" class="w-5 h-5 text-orange-600"></i>
-        <span>AI Yo'l Xaritasi (Roadmap)</span>
+        <i data-lucide="map" class="w-5 h-5 text-zinc-950"></i>
+        <span>Tavsiya etilgan qadamlar va reja</span>
       </h2>
-      <a href="{% url 'mentor:chat' %}" class="px-4 py-2 bg-orange-50 hover:bg-orange-100 text-orange-700 font-bold text-xs rounded-xl border border-orange-200/60 transition flex items-center space-x-2">
+      <a href="{% url 'mentor:chat' %}" class="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-bold text-xs rounded-xl border border-zinc-300 transition flex items-center space-x-2">
         <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
         <span>Rejani o'zgartirish</span>
       </a>
@@ -118,13 +118,13 @@
     <!-- Dual Track Summary -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
       <div class="bg-white rounded-2xl p-6 border border-zinc-200/90 shadow-2xs">
-        <div class="inline-flex items-center space-x-1 px-2 py-0.5 bg-orange-50 text-orange-700 text-[11px] font-bold rounded mb-2 border border-orange-200/50">Track A</div>
+        <div class="inline-flex items-center space-x-1 px-2 py-0.5 bg-zinc-100 text-zinc-900 text-[11px] font-bold rounded mb-2 border border-zinc-300">Track A</div>
         <h3 class="text-zinc-900 font-bold text-base mb-1">{{ track_a.title }}</h3>
         <p class="text-xs text-zinc-500 mb-4">Maksimal qaratilgan ko'nikma: <strong class="text-zinc-800">{{ track_a.weakest_skill }}</strong></p>
         <ul class="space-y-2 text-xs text-zinc-700">
           {% for milestone in track_a.milestones %}
             <li class="flex items-start space-x-2">
-              <i data-lucide="check-circle" class="w-4 h-4 text-orange-600 mt-0.5 shrink-0"></i>
+              <i data-lucide="check-circle" class="w-4 h-4 text-zinc-950 mt-0.5 shrink-0"></i>
               <span>{{ milestone }}</span>
             </li>
           {% endfor %}
@@ -132,13 +132,13 @@
       </div>
 
       <div class="bg-white rounded-2xl p-6 border border-zinc-200/90 shadow-2xs">
-        <div class="inline-flex items-center space-x-1 px-2 py-0.5 bg-emerald-50 text-emerald-700 text-[11px] font-bold rounded mb-2 border border-emerald-200/50">Track B</div>
+        <div class="inline-flex items-center space-x-1 px-2 py-0.5 bg-zinc-100 text-zinc-900 text-[11px] font-bold rounded mb-2 border border-zinc-300">Track B</div>
         <h3 class="text-zinc-900 font-bold text-base mb-1">{{ track_b.title }}</h3>
         <p class="text-xs text-zinc-500 mb-4">Haftalik yuklama: <strong class="text-zinc-800">{{ track_b.weekly_hours }} soat</strong></p>
         <ul class="space-y-2 text-xs text-zinc-700">
           {% for milestone in track_b.milestones %}
             <li class="flex items-start space-x-2">
-              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 mt-0.5 shrink-0"></i>
+              <i data-lucide="check-circle" class="w-4 h-4 text-zinc-950 mt-0.5 shrink-0"></i>
               <span>{{ milestone }}</span>
             </li>
           {% endfor %}
@@ -155,7 +155,7 @@
         {% for week in weekly_schedule %}
           <div class="p-4 sm:p-6 flex flex-col sm:flex-row gap-4 hover:bg-slate-50/50 transition">
             <div class="w-24 flex-shrink-0">
-              <div class="inline-flex items-center justify-center px-3 py-1 bg-orange-100 text-orange-700 font-bold text-xs rounded-lg">
+              <div class="inline-flex items-center justify-center px-3 py-1 bg-zinc-200 text-zinc-900 font-bold text-xs rounded-lg">
                 {{ week.week }}-hafta
               </div>
             </div>

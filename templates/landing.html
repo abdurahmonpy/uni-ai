@@ -6,68 +6,42 @@
 {% block content %}
 <div class="space-y-16 md:space-y-24 py-4 md:py-8">
 
-  <!-- ================= HERO SECTION (Hand-Drawn Sketch / Notion Style) ================= -->
-  <section class="relative pt-2 pb-6 md:py-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+  <!-- ================= HERO SECTION (Phenomenon Studio Style) ================= -->
+  <section class="relative pt-4 pb-8 md:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
       
       <!-- Left Column: Value Proposition & CTAs -->
       <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
         
-        <!-- Top Minimalist Pill Badge -->
-        <div class="inline-flex items-center space-x-2 px-3.5 py-1 bg-stone-100 text-stone-900 text-xs font-semibold"
-             style="border: 1.5px solid #292929; border-radius: 4px 10px 5px 8px; font-family: 'Caveat', cursive; font-size: 1.05rem;">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" style="border: 1px solid #292929;"></span>
-          <span>9–11 sinf o'quvchilari uchun maxsus</span>
+        <!-- Top Pill Badge -->
+        <div>
+          <div class="pill-badge">
+            <span class="w-2 h-2 rounded-full bg-zinc-950 inline-block mr-2"></span>
+            <span>9–11 sinf o'quvchilari uchun maxsus</span>
+          </div>
         </div>
 
         <!-- Main Headline -->
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-stone-900 tracking-tight leading-[1.08]"
-            style="font-family: 'Caveat', cursive;">
-          Xorijiy universitetlar va <span class="text-orange-600 hd-underline">katta grantlarga</span> shaxsiy AI tizimi bilan kiring
+        <h1 class="hero-heading text-4xl sm:text-6xl lg:text-[60px] font-extrabold text-zinc-950 tracking-tight leading-[1.1]">
+          O'zingizga mos universitetni toping
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-lg sm:text-xl text-stone-700 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal"
-           style="font-family: 'Patrick Hand', cursive;">
-          UniMentor — har kuni <strong>Dual-Track reja</strong> (IELTS/SAT test drilllari va universitet grant arizalari) tuzib beruvchi, insholaringizni xalqaro qabul komissiyasi mezonlarida tahrir qiluvchi shaxsiy AI mentor.
+        <p class="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
+          UniMentor — bu xorijiy universitetlarga kirishga yordam beradigan shaxsiy AI yordamchi.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-          <a href="{% url 'accounts:register' %}" class="hd-btn w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-white space-x-2 cursor-pointer">
-            <i data-lucide="compass" class="w-5 h-5"></i>
-            <span>Diagnostika va Reja Olish</span>
-            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
+          <a href="{% url 'accounts:register' %}" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold rounded-xl shadow-sm transition space-x-2 group">
+            <i data-lucide="compass" class="w-4 h-4"></i>
+            <span>Universitet tanlash</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5"></i>
           </a>
-          <a href="{% url 'programs:catalog' %}" class="hd-btn-outline w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-stone-800 space-x-2 cursor-pointer">
-            <i data-lucide="graduation-cap" class="w-5 h-5 text-stone-700"></i>
-            <span>225+ Grantlar Katalogi</span>
+          <a href="{% url 'programs:catalog' %}" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-white hover:bg-zinc-50 text-zinc-900 font-bold rounded-xl border border-zinc-200 shadow-xs transition space-x-2">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-zinc-700"></i>
+            <span>Universitetlar katalogi</span>
           </a>
-        </div>
-
-        <!-- Social Proof Stats Row -->
-        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-stone-300 text-left">
-          <div class="space-y-0.5">
-            <div class="flex items-center space-x-1.5 text-stone-900 font-bold text-base sm:text-lg" style="font-family: 'Caveat', cursive;">
-              <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
-              <span>100% Bepul</span>
-            </div>
-            <p class="text-xs text-stone-600" style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Boshlang'ich diagnostika</p>
-          </div>
-          <div class="space-y-0.5">
-            <div class="flex items-center space-x-1.5 text-stone-900 font-bold text-base sm:text-lg" style="font-family: 'Caveat', cursive;">
-              <i data-lucide="flame" class="w-4 h-4 text-orange-600 flex-shrink-0"></i>
-              <span>Duolingo Uslubi</span>
-            </div>
-            <p class="text-xs text-stone-600" style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Kunlik streak va intizom</p>
-          </div>
-          <div class="space-y-0.5">
-            <div class="flex items-center space-x-1.5 text-stone-900 font-bold text-base sm:text-lg" style="font-family: 'Caveat', cursive;">
-              <i data-lucide="bot" class="w-4 h-4 text-stone-700 flex-shrink-0"></i>
-              <span>24/7 AI Mentor</span>
-            </div>
-            <p class="text-xs text-stone-600" style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Insho va arizalar tahlili</p>
-          </div>
         </div>
 
       </div>
@@ -75,51 +49,13 @@
       <!-- Right Column: Hero Visual Showcase Image -->
       <div class="lg:col-span-6 relative flex justify-center items-center">
         <!-- Main Card Frame -->
-        <div class="relative w-full max-w-lg p-3 sm:p-4"
-             style="background: #fffef9; border: 2.5px solid #292929; border-radius: 8px 18px 10px 16px / 16px 8px 18px 10px; box-shadow: 6px 7px 0 #292929;">
-          <div class="relative overflow-hidden"
-               style="border: 2px solid #292929; border-radius: 6px 12px 8px 10px; background: #fdf6e3;">
+        <div class="relative w-full max-w-lg p-3 sm:p-4 bg-white rounded-2xl border border-zinc-200 shadow-xl">
+          <div class="relative rounded-xl overflow-hidden bg-white flex items-center justify-center p-2">
             <img 
-              src="{% static 'images/unimentor_hero_showcase.jpg' %}" 
-              alt="UniMentor AI Study Platform" 
-              class="w-full h-auto object-cover transform hover:scale-[1.02] transition duration-500"
+              src="{% static 'images/hero_graduation_cap.png' %}" 
+              alt="Akademik kepka va universitet diplomi" 
+              class="w-full h-auto max-h-[380px] object-contain transform hover:scale-[1.02] transition duration-500 rounded-xl"
             >
-            
-            <!-- Bottom badge overlay -->
-            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs px-3.5 py-2.5 bg-zinc-950/90"
-                 style="border: 1.5px solid #ff6326; border-radius: 4px 8px 5px 7px; font-family: 'Caveat', cursive; font-size: 1.05rem;">
-              <div class="flex items-center space-x-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping inline-block"></span>
-                <span class="font-bold">24/7 AI Mentor Faol</span>
-              </div>
-              <span class="text-orange-400 font-bold">Dual-Track Shaxsiy Reja</span>
-            </div>
-          </div>
-
-          <!-- Floating Badge Top Left: Streak -->
-          <div class="absolute -top-3 -left-3 sm:-left-4 px-3.5 py-2 flex items-center space-x-2.5"
-               style="background: #fffef9; border: 2px solid #292929; border-radius: 6px 12px 7px 10px; box-shadow: 3px 3px 0 #292929;">
-            <div class="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center p-1 text-orange-600"
-                 style="border: 1px solid #ff6326;">
-              <i data-lucide="flame" class="w-5 h-5 text-orange-600"></i>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold uppercase tracking-wider text-stone-500" style="font-family: 'Caveat', cursive;">Kunlik Intizom</p>
-              <p class="text-xs font-black text-stone-900" style="font-family: 'Caveat', cursive; font-size: 1.1rem;">14 Kunlik Streak</p>
-            </div>
-          </div>
-
-          <!-- Floating Badge Bottom Right: Ready Score -->
-          <div class="absolute -bottom-3 -right-3 sm:-right-4 px-3.5 py-2 flex items-center space-x-2.5"
-               style="background: #fffef9; border: 2px solid #292929; border-radius: 6px 12px 7px 10px; box-shadow: 3px 3px 0 #292929;">
-            <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center p-1 text-emerald-600"
-                 style="border: 1px solid #4ade80;">
-              <i data-lucide="award" class="w-5 h-5 text-emerald-600"></i>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold uppercase tracking-wider text-stone-500" style="font-family: 'Caveat', cursive;">Qabul Ehtimoli</p>
-              <p class="text-xs font-black text-stone-900" style="font-family: 'Caveat', cursive; font-size: 1.1rem;">84% Ready Score</p>
-            </div>
           </div>
         </div>
       </div>
@@ -133,7 +69,7 @@
       
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-zinc-200/80">
         <div class="flex items-center space-x-2 text-zinc-800">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span class="w-2 h-2 rounded-full bg-zinc-950"></span>
           <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-700">
             O'zbekiston o'quvchilari qabul qilinadigan nufuzli dasturlar va xalqaro universitetlar
           </h4>
@@ -162,7 +98,7 @@
             <img src="{% static 'images/logos/daad_logo.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="DAAD">
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">DAAD Scholarship</p>
-              <p class="text-[10px] text-emerald-700 font-semibold flex items-center gap-1 mt-0.5">
+              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1 mt-0.5">
                 <img src="{% static 'images/flags/de.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="DE">
                 100% To'liq Grant
               </p>
@@ -184,7 +120,7 @@
             <img src="{% static 'images/logos/ugrad_badge.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="UGRAD">
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Global UGRAD</p>
-              <p class="text-[10px] text-orange-600 font-semibold flex items-center gap-1 mt-0.5">
+              <p class="text-[10px] text-zinc-950 font-semibold flex items-center gap-1 mt-0.5">
                 <img src="{% static 'images/flags/us.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="US">
                 AQSh Davlat Departamenti
               </p>
@@ -206,7 +142,7 @@
             <img src="{% static 'images/logos/chevening_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="Chevening">
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Chevening Grant</p>
-              <p class="text-[10px] text-emerald-700 font-semibold flex items-center gap-1 mt-0.5">
+              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1 mt-0.5">
                 <img src="{% static 'images/flags/gb.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="UK">
                 100% Stipendiya
               </p>
@@ -272,7 +208,7 @@
             <img src="{% static 'images/logos/daad_logo.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="DAAD">
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">DAAD Scholarship</p>
-              <p class="text-[10px] text-emerald-700 font-semibold flex items-center gap-1 mt-0.5">
+              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1 mt-0.5">
                 <img src="{% static 'images/flags/de.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="DE">
                 100% To'liq Grant
               </p>
@@ -292,7 +228,7 @@
             <img src="{% static 'images/logos/ugrad_badge.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="UGRAD">
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Global UGRAD</p>
-              <p class="text-[10px] text-orange-600 font-semibold flex items-center gap-1 mt-0.5">
+              <p class="text-[10px] text-zinc-950 font-semibold flex items-center gap-1 mt-0.5">
                 <img src="{% static 'images/flags/us.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="US">
                 AQSh Davlat Departamenti
               </p>
@@ -335,9 +271,9 @@
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-800">
-              <i data-lucide="layers" class="w-5 h-5 text-orange-600"></i>
+              <i data-lucide="layers" class="w-5 h-5 text-zinc-950"></i>
             </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 border border-orange-200/60 px-2 py-0.5 rounded-md">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-950 bg-zinc-100 border border-zinc-300/60 px-2 py-0.5 rounded-md">
               Dual-Track
             </span>
           </div>
@@ -346,7 +282,7 @@
             IELTS/SAT testlariga tayyorlanish bilan birga grant arizalari, insholar va portfolio parallel boshqariladi.
           </p>
         </div>
-        <div class="pt-3 border-t border-zinc-100 flex items-center text-xs font-semibold text-orange-600">
+        <div class="pt-3 border-t border-zinc-100 flex items-center text-xs font-semibold text-zinc-950">
           <span>Test + Ariza bir vaqtda</span>
         </div>
       </div>
@@ -377,9 +313,9 @@
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-800">
-              <i data-lucide="flame" class="w-5 h-5 text-orange-600"></i>
+              <i data-lucide="flame" class="w-5 h-5 text-zinc-950"></i>
             </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 border border-orange-200/60 px-2 py-0.5 rounded-md">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-950 bg-zinc-100 border border-zinc-300/60 px-2 py-0.5 rounded-md">
               Duolingo Uslubi
             </span>
           </div>
@@ -388,7 +324,7 @@
             Har kuni faqat zaif ko'nikmalaringiz bo'yicha qisqa mashqlar, Ready Score ko'rsatkichi va uzluksiz intizom shakllantirish.
           </p>
         </div>
-        <div class="pt-3 border-t border-zinc-100 flex items-center text-xs font-semibold text-orange-600">
+        <div class="pt-3 border-t border-zinc-100 flex items-center text-xs font-semibold text-zinc-950">
           <span>Ready Score & Streak</span>
         </div>
       </div>
@@ -398,9 +334,9 @@
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-800">
-              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+              <i data-lucide="shield-check" class="w-5 h-5 text-zinc-950"></i>
             </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-900 bg-zinc-100 border border-zinc-300 px-2 py-0.5 rounded-md">
               100% Grantlar
             </span>
           </div>
@@ -409,7 +345,7 @@
             Global UGRAD, DAAD, Chevening, Türkiye Bursları va boshqa grantlarning aniq talablari, deadline va rasmiy manbalari.
           </p>
         </div>
-        <div class="pt-3 border-t border-zinc-100 flex items-center text-xs font-semibold text-emerald-700">
+        <div class="pt-3 border-t border-zinc-100 flex items-center text-xs font-semibold text-zinc-900">
           <span>Rasmiy qabul muddatlari</span>
         </div>
       </div>
@@ -445,23 +381,23 @@
           </div>
           <div class="absolute bottom-3 left-3 text-white">
             <h3 class="text-base font-bold leading-tight">Global UGRAD & Ivy League</h3>
-            <p class="text-xs text-orange-200">To'liq moliyalashtiriluvchi grantlar</p>
+            <p class="text-xs text-zinc-400">To'liq moliyalashtiriluvchi grantlar</p>
           </div>
         </div>
         <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
           <div class="text-xs text-zinc-600 space-y-1.5">
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>O'qish, yotoqxona va oylik stipendiya</span>
             </div>
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>SAT & TOEFL / IELTS sertifikatlari talabi</span>
             </div>
           </div>
           <div class="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs">
             <span class="font-semibold text-zinc-500">Muddat: Har yili dekabr</span>
-            <a href="{% url 'programs:catalog' %}?country=AQSh" class="font-semibold text-orange-600 hover:text-orange-700 flex items-center space-x-1">
+            <a href="{% url 'programs:catalog' %}?country=AQSh" class="font-semibold text-zinc-950 hover:text-orange-700 flex items-center space-x-1">
               <span>Grantlar</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </a>
@@ -480,23 +416,23 @@
           </div>
           <div class="absolute bottom-3 left-3 text-white">
             <h3 class="text-base font-bold leading-tight">Chevening & Russell Group</h3>
-            <p class="text-xs text-orange-200">Oxford, Cambridge va London OTMlari</p>
+            <p class="text-xs text-zinc-400">Oxford, Cambridge va London OTMlari</p>
           </div>
         </div>
         <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
           <div class="text-xs text-zinc-600 space-y-1.5">
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>100% O'qish to'lovi va viza xarajatlari</span>
             </div>
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>IELTS 7.0+ va kuchli liderlik inshosi</span>
             </div>
           </div>
           <div class="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs">
             <span class="font-semibold text-zinc-500">Muddat: Noyabr oyi</span>
-            <a href="{% url 'programs:catalog' %}?country=Buyuk+Britaniya" class="font-semibold text-orange-600 hover:text-orange-700 flex items-center space-x-1">
+            <a href="{% url 'programs:catalog' %}?country=Buyuk+Britaniya" class="font-semibold text-zinc-950 hover:text-orange-700 flex items-center space-x-1">
               <span>Grantlar</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </a>
@@ -515,23 +451,23 @@
           </div>
           <div class="absolute bottom-3 left-3 text-white">
             <h3 class="text-base font-bold leading-tight">DAAD & Davlat Universitetlari</h3>
-            <p class="text-xs text-orange-200">Kontrakt to'lovisiz bepul ta'lim</p>
+            <p class="text-xs text-zinc-400">Kontrakt to'lovisiz bepul ta'lim</p>
           </div>
         </div>
         <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
           <div class="text-xs text-zinc-600 space-y-1.5">
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>Davlat universitetlarida 0€ ta'lim to'lovi</span>
             </div>
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>Oylik 934€ stipendiya imkoniyati</span>
             </div>
           </div>
           <div class="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs">
             <span class="font-semibold text-zinc-500">Muddat: Oktyabr - Noyabr</span>
-            <a href="{% url 'programs:catalog' %}?country=Germaniya" class="font-semibold text-orange-600 hover:text-orange-700 flex items-center space-x-1">
+            <a href="{% url 'programs:catalog' %}?country=Germaniya" class="font-semibold text-zinc-950 hover:text-orange-700 flex items-center space-x-1">
               <span>Grantlar</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </a>
@@ -550,23 +486,23 @@
           </div>
           <div class="absolute bottom-3 left-3 text-white">
             <h3 class="text-base font-bold leading-tight">Türkiye Bursları</h3>
-            <p class="text-xs text-orange-200">Eng ommabop to'liq stipendiya</p>
+            <p class="text-xs text-zinc-400">Eng ommabop to'liq stipendiya</p>
           </div>
         </div>
         <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
           <div class="text-xs text-zinc-600 space-y-1.5">
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>O'qish, bepul yotoqxona, ovqatlanish va sug'urta</span>
             </div>
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>Turk tili kursi va bepul aviachipta</span>
             </div>
           </div>
           <div class="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs">
             <span class="font-semibold text-zinc-500">Muddat: 10-yanvar — 20-fevral</span>
-            <a href="{% url 'programs:catalog' %}?country=Turkiya" class="font-semibold text-orange-600 hover:text-orange-700 flex items-center space-x-1">
+            <a href="{% url 'programs:catalog' %}?country=Turkiya" class="font-semibold text-zinc-950 hover:text-orange-700 flex items-center space-x-1">
               <span>Grantlar</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </a>
@@ -585,23 +521,23 @@
           </div>
           <div class="absolute bottom-3 left-3 text-white">
             <h3 class="text-base font-bold leading-tight">GKS / KGSP Granti</h3>
-            <p class="text-xs text-orange-200">SKY Universitetlari (Seoul Nat, Korea, Yonsei)</p>
+            <p class="text-xs text-zinc-400">SKY Universitetlari (Seoul Nat, Korea, Yonsei)</p>
           </div>
         </div>
         <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
           <div class="text-xs text-zinc-600 space-y-1.5">
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>100% Kontrakt + 1,000,000 KRW oylik stipendiya</span>
             </div>
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>1 yillik bepul koreys tili tayyorlov kursi</span>
             </div>
           </div>
           <div class="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs">
             <span class="font-semibold text-zinc-500">Muddat: Sentyabr - Oktyabr</span>
-            <a href="{% url 'programs:catalog' %}?country=Janubiy+Koreya" class="font-semibold text-orange-600 hover:text-orange-700 flex items-center space-x-1">
+            <a href="{% url 'programs:catalog' %}?country=Janubiy+Koreya" class="font-semibold text-zinc-950 hover:text-orange-700 flex items-center space-x-1">
               <span>Grantlar</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </a>
@@ -620,23 +556,23 @@
           </div>
           <div class="absolute bottom-3 left-3 text-white">
             <h3 class="text-base font-bold leading-tight">MEXT Davlat Granti</h3>
-            <p class="text-xs text-orange-200">Tokyo, Kyoto va Osaka Universitetlari</p>
+            <p class="text-xs text-zinc-400">Tokyo, Kyoto va Osaka Universitetlari</p>
           </div>
         </div>
         <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
           <div class="text-xs text-zinc-600 space-y-1.5">
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>To'liq grant va oylik 120,000¥ stipendiya</span>
             </div>
             <div class="flex items-center space-x-2">
-              <i data-lucide="check" class="w-3.5 h-3.5 text-orange-600"></i>
+              <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-950"></i>
               <span>Elchixona orqali imtihon va intervyu</span>
             </div>
           </div>
           <div class="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs">
             <span class="font-semibold text-zinc-500">Muddat: May oyi</span>
-            <a href="{% url 'programs:catalog' %}?country=Yaponiya" class="font-semibold text-orange-600 hover:text-orange-700 flex items-center space-x-1">
+            <a href="{% url 'programs:catalog' %}?country=Yaponiya" class="font-semibold text-zinc-950 hover:text-orange-700 flex items-center space-x-1">
               <span>Grantlar</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </a>
@@ -668,10 +604,10 @@
       <a href="{% url 'accounts:register' %}" class="bg-white p-4 rounded-xl border border-zinc-200/90 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition duration-150 flex items-center justify-between group">
         <div class="flex items-center space-x-3 min-w-0">
           <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 p-2 flex items-center justify-center shrink-0">
-            <i data-lucide="bot" class="w-5 h-5 text-orange-600"></i>
+            <i data-lucide="bot" class="w-5 h-5 text-zinc-950"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">Shaxsiy AI Mentorlik</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">Shaxsiy AI Mentorlik</h4>
             <p class="text-[11px] text-zinc-500 truncate">24/7 qabul bo'yicha maslahat</p>
           </div>
         </div>
@@ -684,14 +620,14 @@
       <a href="{% url 'programs:catalog' %}" class="bg-white p-4 rounded-xl border border-zinc-200/90 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition duration-150 flex items-center justify-between group">
         <div class="flex items-center space-x-3 min-w-0">
           <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 p-2 flex items-center justify-center shrink-0">
-            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+            <i data-lucide="shield-check" class="w-5 h-5 text-zinc-950"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">Global UGRAD AQSh</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">Global UGRAD AQSh</h4>
             <p class="text-[11px] text-zinc-500 truncate">100% grantli almashinuv dasturi</p>
           </div>
         </div>
-        <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 shrink-0 ml-2">
+        <span class="text-[11px] font-semibold text-zinc-900 bg-zinc-100 px-2 py-0.5 rounded-md border border-zinc-300/60 shrink-0 ml-2">
           Grant
         </span>
       </a>
@@ -700,10 +636,10 @@
       <a href="{% url 'accounts:register' %}" class="bg-white p-4 rounded-xl border border-zinc-200/90 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition duration-150 flex items-center justify-between group">
         <div class="flex items-center space-x-3 min-w-0">
           <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 p-2 flex items-center justify-center shrink-0">
-            <i data-lucide="target" class="w-5 h-5 text-orange-600"></i>
+            <i data-lucide="target" class="w-5 h-5 text-zinc-950"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">IELTS 7.5+ Bootcamp</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">IELTS 7.5+ Bootcamp</h4>
             <p class="text-[11px] text-zinc-500 truncate">Listening, Reading, Writing, Speaking</p>
           </div>
         </div>
@@ -719,7 +655,7 @@
             <i data-lucide="zap" class="w-5 h-5 text-zinc-800"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">Digital SAT 1450+</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">Digital SAT 1450+</h4>
             <p class="text-[11px] text-zinc-500 truncate">Math & Reading-Writing strategiyasi</p>
           </div>
         </div>
@@ -732,14 +668,14 @@
       <a href="{% url 'programs:catalog' %}" class="bg-white p-4 rounded-xl border border-zinc-200/90 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition duration-150 flex items-center justify-between group">
         <div class="flex items-center space-x-3 min-w-0">
           <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 p-2 flex items-center justify-center shrink-0">
-            <i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-600"></i>
+            <i data-lucide="graduation-cap" class="w-5 h-5 text-zinc-950"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">DAAD Germaniya Grantlari</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">DAAD Germaniya Grantlari</h4>
             <p class="text-[11px] text-zinc-500 truncate">Bepul Yevropa davlat universitetlari</p>
           </div>
         </div>
-        <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 shrink-0 ml-2">
+        <span class="text-[11px] font-semibold text-zinc-900 bg-zinc-100 px-2 py-0.5 rounded-md border border-zinc-300/60 shrink-0 ml-2">
           Grant
         </span>
       </a>
@@ -748,10 +684,10 @@
       <a href="{% url 'accounts:register' %}" class="bg-white p-4 rounded-xl border border-zinc-200/90 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition duration-150 flex items-center justify-between group">
         <div class="flex items-center space-x-3 min-w-0">
           <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 p-2 flex items-center justify-center shrink-0">
-            <i data-lucide="file-edit" class="w-5 h-5 text-orange-600"></i>
+            <i data-lucide="file-edit" class="w-5 h-5 text-zinc-950"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">Insho & Motivation Letter</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">Insho & Motivation Letter</h4>
             <p class="text-[11px] text-zinc-500 truncate">STAR usulida professional esse</p>
           </div>
         </div>
@@ -767,7 +703,7 @@
             <i data-lucide="clipboard-check" class="w-5 h-5 text-zinc-800"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">Common App & Portfolio</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">Common App & Portfolio</h4>
             <p class="text-[11px] text-zinc-500 truncate">Hujjatlarni xatosiz topshirish</p>
           </div>
         </div>
@@ -780,14 +716,14 @@
       <a href="{% url 'programs:catalog' %}" class="bg-white p-4 rounded-xl border border-zinc-200/90 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition duration-150 flex items-center justify-between group">
         <div class="flex items-center space-x-3 min-w-0">
           <div class="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200 p-2 flex items-center justify-center shrink-0">
-            <i data-lucide="award" class="w-5 h-5 text-emerald-600"></i>
+            <i data-lucide="award" class="w-5 h-5 text-zinc-950"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">Türkiye Bursları Granti</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">Türkiye Bursları Granti</h4>
             <p class="text-[11px] text-zinc-500 truncate">To'liq moliyalashtiriluvchi ta'lim</p>
           </div>
         </div>
-        <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 shrink-0 ml-2">
+        <span class="text-[11px] font-semibold text-zinc-900 bg-zinc-100 px-2 py-0.5 rounded-md border border-zinc-300/60 shrink-0 ml-2">
           Grant
         </span>
       </a>
@@ -799,11 +735,11 @@
             <i data-lucide="book-open" class="w-5 h-5 text-zinc-800"></i>
           </div>
           <div class="min-w-0">
-            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-orange-600 transition">Chevening Grant (Buyuk Britaniya)</h4>
+            <h4 class="text-sm font-bold text-zinc-900 truncate group-hover:text-zinc-950 transition">Chevening Grant (Buyuk Britaniya)</h4>
             <p class="text-[11px] text-zinc-500 truncate">100% stipendiya va viza xarajati</p>
           </div>
         </div>
-        <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 shrink-0 ml-2">
+        <span class="text-[11px] font-semibold text-zinc-900 bg-zinc-100 px-2 py-0.5 rounded-md border border-zinc-300/60 shrink-0 ml-2">
           Grant
         </span>
       </a>
@@ -830,10 +766,10 @@
       <!-- Step 1 Card -->
       <div class="bg-white p-6 rounded-2xl border border-zinc-200/90 shadow-2xs space-y-3 hover:border-zinc-300 transition duration-150">
         <div class="w-11 h-11 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center">
-          <i data-lucide="compass" class="w-5 h-5 text-orange-600"></i>
+          <i data-lucide="compass" class="w-5 h-5 text-zinc-950"></i>
         </div>
         <div class="space-y-1">
-          <span class="text-xs font-bold text-orange-600 uppercase tracking-wider">1-Qadam</span>
+          <span class="text-xs font-bold text-zinc-950 uppercase tracking-wider">1-Qadam</span>
           <h3 class="text-base font-bold text-zinc-900">Diagnostika va Sertifikat Tahlili</h3>
         </div>
         <p class="text-xs text-zinc-600 leading-relaxed">
@@ -847,7 +783,7 @@
           <i data-lucide="layers" class="w-5 h-5 text-zinc-800"></i>
         </div>
         <div class="space-y-1">
-          <span class="text-xs font-bold text-orange-600 uppercase tracking-wider">2-Qadam</span>
+          <span class="text-xs font-bold text-zinc-950 uppercase tracking-wider">2-Qadam</span>
           <h3 class="text-base font-bold text-zinc-900">Dual-Track Shaxsiy O'quv Rejasi</h3>
         </div>
         <p class="text-xs text-zinc-600 leading-relaxed">
@@ -858,10 +794,10 @@
       <!-- Step 3 Card -->
       <div class="bg-white p-6 rounded-2xl border border-zinc-200/90 shadow-2xs space-y-3 hover:border-zinc-300 transition duration-150">
         <div class="w-11 h-11 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center">
-          <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600"></i>
+          <i data-lucide="check-circle" class="w-5 h-5 text-zinc-950"></i>
         </div>
         <div class="space-y-1">
-          <span class="text-xs font-bold text-orange-600 uppercase tracking-wider">3-Qadam</span>
+          <span class="text-xs font-bold text-zinc-950 uppercase tracking-wider">3-Qadam</span>
           <h3 class="text-base font-bold text-zinc-900">Kunlik Mashqlar va Mock Imtihonlar</h3>
         </div>
         <p class="text-xs text-zinc-600 leading-relaxed">
@@ -876,8 +812,8 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <!-- Left: Details -->
         <div class="lg:col-span-6 space-y-5">
-          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-orange-400 text-xs font-semibold">
-            <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-zinc-950"></span>
             <span>UniMentor Metodologiyasi</span>
           </div>
           
@@ -892,13 +828,13 @@
           <div class="space-y-3 pt-1">
             <!-- Track A Feature -->
             <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800 flex items-start space-x-3.5">
-              <div class="w-8 h-8 rounded-lg bg-orange-600/20 border border-orange-500/30 flex items-center justify-center shrink-0">
-                <span class="text-orange-400 font-bold text-xs">A</span>
+              <div class="w-8 h-8 rounded-lg bg-zinc-950/20 border border-zinc-700 flex items-center justify-center shrink-0">
+                <span class="text-zinc-300 font-bold text-xs">A</span>
               </div>
               <div class="space-y-0.5">
                 <div class="flex items-center space-x-2">
                   <h4 class="text-xs sm:text-sm font-semibold text-white">Track A — Imtihonlar (IELTS / SAT / CEFR)</h4>
-                  <span class="text-[10px] bg-orange-600 text-white px-2 py-0.5 rounded font-semibold">Har kuni</span>
+                  <span class="text-[10px] bg-zinc-950 text-white px-2 py-0.5 rounded font-semibold">Har kuni</span>
                 </div>
                 <p class="text-xs text-zinc-400">Har kungi 15 daqiqalik drilllar, zaif ko'nikmalarni kuchaytirish va Mock simulyatorlar.</p>
               </div>
@@ -920,28 +856,28 @@
           </div>
         </div>
 
-        <!-- Right: Authentic Interactive Dual-Track Roadmap UI Mockup -->
+        <!-- Right: Authentic Interactive Dual-Track Tavsiyalar UI Mockup -->
         <div class="lg:col-span-6 flex justify-center">
           <div class="w-full max-w-md bg-zinc-900 rounded-xl border border-zinc-800 p-4 space-y-3">
             <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
-              <span class="text-xs font-bold text-zinc-300">8 Oylik Roadmap Simulyatsiyasi</span>
-              <span class="text-[11px] font-mono text-orange-400">Avgust — Mart</span>
+              <span class="text-xs font-bold text-zinc-300">8 Oylik Shaxsiy Reja Simulyatsiyasi</span>
+              <span class="text-[11px] font-mono text-zinc-300">Avgust — Mart</span>
             </div>
             
             <!-- Milestone 1 -->
             <div class="p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 space-y-1.5">
               <div class="flex items-center justify-between text-xs">
                 <span class="font-bold text-white">1–2 Oylar: Diagnostika & Baza</span>
-                <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-950 px-1.5 py-0.5 rounded border border-emerald-800/50">Tugallangan</span>
+                <span class="text-[10px] font-semibold text-zinc-300 bg-zinc-900 px-1.5 py-0.5 rounded border border-emerald-800/50">Tugallangan</span>
               </div>
               <p class="text-[11px] text-zinc-400">IELTS 6.5 ball darajasi aniqlandi. 5 ta maqsadli universitet tanlandi.</p>
             </div>
 
             <!-- Milestone 2 -->
-            <div class="p-3 rounded-lg bg-zinc-950 border border-orange-500/30 space-y-1.5">
+            <div class="p-3 rounded-lg bg-zinc-950 border border-zinc-700 space-y-1.5">
               <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-orange-400">3–4 Oylar: Insho & SAT Testi</span>
-                <span class="text-[10px] font-semibold text-orange-300 bg-orange-950/80 px-1.5 py-0.5 rounded border border-orange-800/50">Hozirgi bosqich</span>
+                <span class="font-bold text-zinc-300">3–4 Oylar: Insho & SAT Testi</span>
+                <span class="text-[10px] font-semibold text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-orange-800/50">Hozirgi bosqich</span>
               </div>
               <p class="text-[11px] text-zinc-400">STAR uslubidagi 650 so'zli Common App inshosi 2-qoralamada tekshirilmoqda.</p>
             </div>
@@ -989,7 +925,7 @@
             <!-- Inspector Header -->
             <div class="px-4 py-2.5 bg-white border-b border-zinc-200 flex items-center justify-between">
               <div class="flex items-center space-x-2">
-                <i data-lucide="file-text" class="w-4 h-4 text-orange-600"></i>
+                <i data-lucide="file-text" class="w-4 h-4 text-zinc-950"></i>
                 <span class="text-xs font-bold text-zinc-800">Common App Essay (Personal Statement)</span>
               </div>
               <span class="text-[11px] font-mono text-zinc-500">650 so'z</span>
@@ -1006,17 +942,17 @@
             <div class="p-4 bg-zinc-50 border-t border-zinc-200 space-y-3">
               <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span class="w-2 h-2 rounded-full bg-zinc-950"></span>
                   <span class="text-xs font-bold text-zinc-900">Claude AI Tahlili: STAR Metodologiyasi</span>
                 </div>
-                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                <span class="text-[10px] font-bold text-zinc-900 bg-zinc-100 px-2 py-0.5 rounded border border-zinc-300">
                   92% Moslik
                 </span>
               </div>
 
               <!-- Recommendation Card -->
               <div class="p-3 bg-white rounded-lg border border-zinc-200 space-y-1.5 text-[11px]">
-                <div class="flex items-center space-x-1.5 text-orange-600 font-bold">
+                <div class="flex items-center space-x-1.5 text-zinc-950 font-bold">
                   <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
                   <span>Tavsiya qilingan yaxshilanish:</span>
                 </div>
@@ -1027,7 +963,7 @@
 
               <div class="flex items-center justify-between text-[11px] text-zinc-500 pt-1">
                 <span>Grammatika va uslub: <strong class="text-zinc-800">Xatosiz</strong></span>
-                <span>Plagiat: <strong class="text-emerald-600">0% (Toza)</strong></span>
+                <span>Plagiat: <strong class="text-zinc-950">0% (Toza)</strong></span>
               </div>
             </div>
           </div>
@@ -1036,7 +972,7 @@
         <!-- Right Column: Features Description -->
         <div class="lg:col-span-6 space-y-5 order-1 lg:order-2">
           <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-800 text-xs font-semibold">
-            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-zinc-950"></i>
             <span>Qabul Komissiyasi Standarti</span>
           </div>
 
@@ -1051,14 +987,14 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             <div class="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 space-y-1">
               <div class="flex items-center space-x-2 text-zinc-900 font-bold text-xs">
-                <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
+                <i data-lucide="check" class="w-4 h-4 text-zinc-950"></i>
                 <span>STAR Metodologiyasi</span>
               </div>
               <p class="text-xs text-zinc-500 leading-relaxed">Harakat va natijalaringizni aniq faktlar bilan ko'rsatib beradi.</p>
             </div>
             <div class="p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 space-y-1">
               <div class="flex items-center space-x-2 text-zinc-900 font-bold text-xs">
-                <i data-lucide="check" class="w-4 h-4 text-orange-600"></i>
+                <i data-lucide="check" class="w-4 h-4 text-zinc-950"></i>
                 <span>Ovoz va Autentiklik</span>
               </div>
               <p class="text-xs text-zinc-500 leading-relaxed">Shaxsiy ovozingizni saqlagan holda ifodani kuchaytiradi.</p>
@@ -1099,7 +1035,7 @@
           </div>
           <div class="p-2 bg-zinc-50 rounded-lg border border-zinc-100">
             <span class="text-[10px] text-zinc-500">Grammar</span>
-            <p class="font-bold text-orange-600">62/100 (Zaif)</p>
+            <p class="font-bold text-zinc-950">62/100 (Zaif)</p>
           </div>
           <div class="p-2 bg-zinc-50 rounded-lg border border-zinc-100">
             <span class="text-[10px] text-zinc-500">Writing</span>
@@ -1121,7 +1057,7 @@
             Universitet tanlash, stipendiya talablari, viza jarayoni va qabul mezonlari bo'yicha istalgan savolingizga tasdiqlangan manbalar asosida javob oling.
           </p>
         </div>
-        <div class="pt-3 border-t border-zinc-100 flex items-center space-x-2 text-xs text-orange-600 font-semibold">
+        <div class="pt-3 border-t border-zinc-100 flex items-center space-x-2 text-xs text-zinc-950 font-semibold">
           <i data-lucide="message-circle" class="w-4 h-4"></i>
           <span>Har bir burilishda yo'l-yo'riq</span>
         </div>
@@ -1152,7 +1088,7 @@
             Duolingo uslubida streak va Ready Score ko'rsatkichi har kuni ta'lim odatini mustahkamlaydi.
           </p>
         </div>
-        <span class="text-[11px] font-semibold text-orange-600 flex items-center space-x-1">
+        <span class="text-[11px] font-semibold text-zinc-950 flex items-center space-x-1">
           <i data-lucide="flame" class="w-3.5 h-3.5"></i>
           <span>Streak & Ready Score</span>
         </span>
@@ -1169,7 +1105,7 @@
             Tayyorgarlik natijalari qabul komissiyalari va grantlar uchun rasmiy sertifikatga aylanadi.
           </p>
         </div>
-        <span class="text-[11px] font-semibold text-emerald-700">100% Rasmiy Sertifikat</span>
+        <span class="text-[11px] font-semibold text-zinc-900">100% Rasmiy Sertifikat</span>
       </div>
 
     </div>
@@ -1200,7 +1136,7 @@
               <span class="px-2.5 py-0.5 bg-zinc-100 text-zinc-800 text-xs font-semibold rounded-md border border-zinc-200/60">
                 {{ prog.country }}
               </span>
-              <span class="text-xs font-bold {% if prog.type == 'grant' %}text-emerald-700 bg-emerald-50 border border-emerald-200/60{% else %}text-orange-700 bg-orange-50 border border-orange-200/60{% endif %} px-2 py-0.5 rounded-md uppercase">
+              <span class="text-xs font-bold {% if prog.type == 'grant' %}text-zinc-900 bg-zinc-100 border border-zinc-300/60{% else %}text-orange-700 bg-zinc-100 border border-zinc-300/60{% endif %} px-2 py-0.5 rounded-md uppercase">
                 {{ prog.get_type_display }}
               </span>
             </div>
@@ -1213,7 +1149,7 @@
                 <span>Muddati: <strong>{{ prog.deadline|date:"d-F, Y"|default:"Har yili" }}</strong></span>
               </div>
               <div class="flex items-center space-x-2">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-zinc-950"></i>
                 <span>Tasdiqlangan: {{ prog.last_verified_date|date:"d.m.Y" }}</span>
               </div>
             </div>
@@ -1224,7 +1160,7 @@
               <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
               <span>Rasmiy sayt</span>
             </a>
-            <a href="{% url 'programs:detail' prog.id %}" class="px-3.5 py-1.5 bg-orange-600 hover:bg-orange-700 text-white text-xs font-semibold rounded-lg shadow-2xs transition flex items-center space-x-1">
+            <a href="{% url 'programs:detail' prog.id %}" class="px-3.5 py-1.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-semibold rounded-lg shadow-2xs transition flex items-center space-x-1">
               <span>Batafsil</span>
               <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
@@ -1258,7 +1194,7 @@
       <!-- Testimonial 1 -->
       <div class="bg-white p-6 rounded-2xl border border-zinc-200/90 shadow-2xs flex flex-col justify-between space-y-4 hover:border-zinc-300 transition duration-150">
         <div class="space-y-3">
-          <div class="flex items-center space-x-1 text-amber-500">
+          <div class="flex items-center space-x-1 text-zinc-900">
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
@@ -1274,7 +1210,7 @@
           <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=120&auto=format&fit=crop" alt="Javohir" class="w-10 h-10 rounded-xl object-cover border border-zinc-200">
           <div>
             <h4 class="text-xs sm:text-sm font-bold text-zinc-900">Javohir Rustamov</h4>
-            <p class="text-[11px] text-orange-600 font-semibold">Global UGRAD Finalisti • AQSh</p>
+            <p class="text-[11px] text-zinc-950 font-semibold">Global UGRAD Finalisti • AQSh</p>
           </div>
         </div>
       </div>
@@ -1282,7 +1218,7 @@
       <!-- Testimonial 2 -->
       <div class="bg-white p-6 rounded-2xl border border-zinc-200/90 shadow-2xs flex flex-col justify-between space-y-4 hover:border-zinc-300 transition duration-150">
         <div class="space-y-3">
-          <div class="flex items-center space-x-1 text-amber-500">
+          <div class="flex items-center space-x-1 text-zinc-900">
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
@@ -1298,7 +1234,7 @@
           <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=120&auto=format&fit=crop" alt="Zuhra" class="w-10 h-10 rounded-xl object-cover border border-zinc-200">
           <div>
             <h4 class="text-xs sm:text-sm font-bold text-zinc-900">Zuhra Aliyeva</h4>
-            <p class="text-[11px] text-orange-600 font-semibold">IELTS 8.0 • DAAD Stipendiyasi</p>
+            <p class="text-[11px] text-zinc-950 font-semibold">IELTS 8.0 • DAAD Stipendiyasi</p>
           </div>
         </div>
       </div>
@@ -1306,7 +1242,7 @@
       <!-- Testimonial 3 -->
       <div class="bg-white p-6 rounded-2xl border border-zinc-200/90 shadow-2xs flex flex-col justify-between space-y-4 hover:border-zinc-300 transition duration-150">
         <div class="space-y-3">
-          <div class="flex items-center space-x-1 text-amber-500">
+          <div class="flex items-center space-x-1 text-zinc-900">
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
             <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
@@ -1322,7 +1258,7 @@
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=120&auto=format&fit=crop" alt="Bekzod" class="w-10 h-10 rounded-xl object-cover border border-zinc-200">
           <div>
             <h4 class="text-xs sm:text-sm font-bold text-zinc-900">Bekzod Toshmatov</h4>
-            <p class="text-[11px] text-orange-600 font-semibold">Türkiye Bursları G'olibi</p>
+            <p class="text-[11px] text-zinc-950 font-semibold">Türkiye Bursları G'olibi</p>
           </div>
         </div>
       </div>
@@ -1335,7 +1271,7 @@
   <section class="bg-zinc-950 border border-zinc-800 rounded-2xl p-8 sm:p-14 text-white shadow-md text-center space-y-6">
     <div class="max-w-2xl mx-auto space-y-4">
       <div class="inline-flex items-center space-x-2 px-3 py-1 bg-zinc-900 rounded-full text-zinc-300 text-xs font-semibold border border-zinc-800">
-        <i data-lucide="zap" class="w-3.5 h-3.5 text-orange-400"></i>
+        <i data-lucide="zap" class="w-3.5 h-3.5 text-zinc-300"></i>
         <span>Kelajagingiz sari ilk qadamni qo'ying</span>
       </div>
 
@@ -1346,7 +1282,7 @@
         3 daqiqalik bepul diagnostikadan o'ting, bilim darajangizni aniqlang va AI tuzgan shaxsiy Dual-Track rejangizga ega bo'ling.
       </p>
       <div class="pt-2">
-        <a href="{% url 'accounts:register' %}" class="inline-flex items-center justify-center px-8 py-3.5 bg-orange-600 text-white hover:bg-orange-700 active:scale-[0.99] text-sm font-semibold rounded-xl shadow-xs transition duration-150 space-x-2">
+        <a href="{% url 'accounts:register' %}" class="inline-flex items-center justify-center px-8 py-3.5 bg-zinc-950 text-white hover:bg-zinc-800 active:scale-[0.99] text-sm font-semibold rounded-xl shadow-xs transition duration-150 space-x-2">
           <span>Ro'yxatdan o'tish (100% Bepul)</span>
           <i data-lucide="arrow-right" class="w-4 h-4 text-white"></i>
         </a>

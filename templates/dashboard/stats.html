@@ -8,7 +8,7 @@
   <!-- Header -->
   <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
     <div>
-      <div class="flex items-center space-x-2 text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">
+      <div class="flex items-center space-x-2 text-xs font-bold text-zinc-950 uppercase tracking-wider mb-1">
         <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
         <span>Shaxsiy Natijalar Tahlili</span>
       </div>
@@ -17,16 +17,16 @@
     </div>
 
     <div class="flex items-center space-x-3 flex-wrap gap-2">
-      <a href="{% url 'mock_exams:intro' %}" class="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white text-xs font-bold rounded-2xl shadow-xs transition flex items-center space-x-1.5">
+      <a href="{% url 'mock_exams:intro' %}" class="px-4 py-2.5 bg-zinc-950 hover:bg-zinc-800 active:scale-[0.99] text-white text-xs font-bold rounded-2xl shadow-xs transition flex items-center space-x-1.5">
         <i data-lucide="stopwatch" class="w-4 h-4"></i>
         <span>Mock imtihon topshirish</span>
       </a>
-      <div class="px-4 py-2 bg-indigo-50 border border-indigo-100 rounded-2xl text-center">
-        <span class="text-[10px] uppercase tracking-wider font-bold text-indigo-600 block">Ready Score</span>
-        <span class="text-xl font-black text-indigo-700">{{ overall_ready_score|floatformat:0 }}%</span>
+      <div class="px-4 py-2 bg-zinc-100 border border-zinc-200 rounded-2xl text-center">
+        <span class="text-[10px] uppercase tracking-wider font-bold text-zinc-950 block">Ready Score</span>
+        <span class="text-xl font-black text-zinc-900">{{ overall_ready_score|floatformat:0 }}%</span>
       </div>
       <div class="px-4 py-2 bg-amber-50 border border-amber-100 rounded-2xl text-center">
-        <span class="text-[10px] uppercase tracking-wider font-bold text-amber-600 block">Streak</span>
+        <span class="text-[10px] uppercase tracking-wider font-bold text-zinc-900 block">Streak</span>
         <span class="text-xl font-black text-amber-700">{{ streak_count }} kun</span>
       </div>
     </div>
@@ -35,7 +35,7 @@
   <!-- 5 Skills Ring Charts -->
   <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
     <h2 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
-      <i data-lucide="target" class="w-4 h-4 text-orange-600"></i>
+      <i data-lucide="target" class="w-4 h-4 text-zinc-950"></i>
       <span>5 Asosiy Ko'nikma Balari (0–100)</span>
     </h2>
 
@@ -74,7 +74,7 @@
   <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
     <div class="flex items-center justify-between">
       <h2 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
-        <i data-lucide="trending-up" class="w-4 h-4 text-orange-600"></i>
+        <i data-lucide="trending-up" class="w-4 h-4 text-zinc-950"></i>
         <span>O'tgan 7 kunda Ready Score o'zgarishi</span>
       </h2>
       <span class="text-xs text-slate-400">Shu haftaning dinamikasi</span>
@@ -123,7 +123,7 @@
     <!-- Score labels row -->
     <div class="grid grid-cols-7 gap-1 text-center">
       {% for ws in weekly_scores %}
-      <div class="text-[10px] font-bold {% if forloop.last %}text-orange-600{% else %}text-slate-500{% endif %}">
+      <div class="text-[10px] font-bold {% if forloop.last %}text-zinc-950{% else %}text-slate-500{% endif %}">
         {{ ws.score }}%
       </div>
       {% endfor %}
@@ -135,7 +135,7 @@
   <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
       <h2 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
-        <i data-lucide="flame" class="w-4 h-4 text-amber-500"></i>
+        <i data-lucide="flame" class="w-4 h-4 text-zinc-900"></i>
         <span>Kunlik Mashqlar Faolligi (So'nggi 12 hafta)</span>
       </h2>
       <span class="text-xs text-slate-500 font-medium">Jami bajarilgan vazifalar: <strong>{{ total_completed_tasks }} ta</strong></span>
@@ -145,7 +145,7 @@
       <div class="inline-block min-w-[600px] space-y-1">
         <div class="grid grid-flow-col grid-rows-7 gap-1.5 w-max">
           {% for day in heatmap_days %}
-            <div class="w-4 h-4 rounded-md transition {% if day.is_done %}bg-emerald-500 ring-1 ring-emerald-600{% elif day.is_today %}bg-indigo-100 border border-indigo-400{% else %}bg-slate-100{% endif %}" title="{{ day.date|date:'d.m.Y' }}{% if day.is_done %} — Vazifalar bajarilgan{% endif %}"></div>
+            <div class="w-4 h-4 rounded-md transition {% if day.is_done %}bg-zinc-1000 ring-1 ring-emerald-600{% elif day.is_today %}bg-zinc-200 border border-indigo-400{% else %}bg-slate-100{% endif %}" title="{{ day.date|date:'d.m.Y' }}{% if day.is_done %} — Vazifalar bajarilgan{% endif %}"></div>
           {% endfor %}
         </div>
       </div>
@@ -156,7 +156,7 @@
       <div class="flex items-center space-x-2">
         <span>Kam</span>
         <div class="w-3 h-3 rounded bg-slate-100"></div>
-        <div class="w-3 h-3 rounded bg-emerald-500"></div>
+        <div class="w-3 h-3 rounded bg-zinc-1000"></div>
         <span>Ko'p</span>
       </div>
       <span>Bugun</span>
@@ -166,7 +166,7 @@
   <!-- Ready Score Timeline Log -->
   <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
     <h2 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
-      <i data-lucide="trending-up" class="w-4 h-4 text-indigo-600"></i>
+      <i data-lucide="trending-up" class="w-4 h-4 text-zinc-950"></i>
       <span>Ready Score Tarixi va O'zgarishlar</span>
     </h2>
 
@@ -178,9 +178,9 @@
             <span class="text-slate-500">{{ log.reason|default:"Kunlik topshiriqlar faolligi" }}</span>
           </div>
           <div class="flex items-center space-x-3">
-            <span class="font-bold text-indigo-600 text-sm">{{ log.overall_ready_score }}%</span>
+            <span class="font-bold text-zinc-950 text-sm">{{ log.overall_ready_score }}%</span>
             {% if log.delta > 0 %}
-              <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">+{{ log.delta }}%</span>
+              <span class="text-zinc-950 font-bold bg-zinc-100 px-2 py-0.5 rounded-full">+{{ log.delta }}%</span>
             {% elif log.delta < 0 %}
               <span class="text-rose-600 font-bold bg-rose-50 px-2 py-0.5 rounded-full">{{ log.delta }}%</span>
             {% endif %}

@@ -9,7 +9,7 @@
   <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 sm:p-10 text-white shadow-xs mb-8">
     <div>
       <div class="inline-flex items-center space-x-2 px-3 py-1 bg-zinc-800/80 border border-zinc-700/80 rounded-full text-zinc-300 text-xs font-semibold mb-4">
-        <i data-lucide="timer" class="w-3.5 h-3.5 text-orange-400"></i>
+        <i data-lucide="timer" class="w-3.5 h-3.5 text-zinc-400"></i>
         <span>To'liq formatli imtihon simulyatsiyasi</span>
       </div>
       <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
@@ -26,7 +26,7 @@
     <!-- Section 1 Card -->
     <div class="bg-white p-6 rounded-2xl border border-zinc-200/90 shadow-2xs flex flex-col justify-between">
       <div>
-        <div class="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center mb-4">
+        <div class="w-10 h-10 rounded-xl bg-zinc-100 text-zinc-950 flex items-center justify-center mb-4">
           <i data-lucide="headphones" class="w-5 h-5"></i>
         </div>
         <h3 class="text-base font-bold text-zinc-900">1. Listening</h3>
@@ -34,14 +34,14 @@
       </div>
       <div class="mt-4 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-semibold text-zinc-600">
         <span>Vaqt:</span>
-        <span class="text-orange-600 font-bold">30 daqiqa</span>
+        <span class="text-zinc-950 font-bold">30 daqiqa</span>
       </div>
     </div>
 
     <!-- Section 2 Card -->
     <div class="bg-white p-6 rounded-2xl border border-zinc-200/90 shadow-2xs flex flex-col justify-between">
       <div>
-        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+        <div class="w-10 h-10 rounded-xl bg-zinc-100 text-zinc-950 flex items-center justify-center mb-4">
           <i data-lucide="book-open" class="w-5 h-5"></i>
         </div>
         <h3 class="text-base font-bold text-zinc-900">2. Reading</h3>
@@ -49,7 +49,7 @@
       </div>
       <div class="mt-4 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-semibold text-zinc-600">
         <span>Vaqt:</span>
-        <span class="text-emerald-600 font-bold">60 daqiqa</span>
+        <span class="text-zinc-950 font-bold">60 daqiqa</span>
       </div>
     </div>
 
@@ -64,14 +64,14 @@
       </div>
       <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600">
         <span>Vaqt:</span>
-        <span class="text-amber-600">60 daqiqa</span>
+        <span class="text-zinc-900">60 daqiqa</span>
       </div>
     </div>
   </div>
 
   <!-- Real Exam Rules Warning -->
   <div class="bg-amber-50/80 border border-amber-200/80 rounded-2xl p-6 mb-8 text-amber-900 flex items-start space-x-4">
-    <i data-lucide="alert-circle" class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5"></i>
+    <i data-lucide="alert-circle" class="w-5 h-5 text-zinc-900 flex-shrink-0 mt-0.5"></i>
     <div class="space-y-1 text-xs sm:text-sm">
       <h4 class="font-bold text-amber-950">Muhim imtihon qoidalari:</h4>
       <ul class="list-disc list-inside space-y-0.5 text-amber-800">
@@ -96,13 +96,13 @@
               <h4 class="text-sm font-bold text-zinc-800">{{ section.get_section_type_display }}</h4>
               <p class="text-xs text-zinc-500">
                 Holat: 
-                <span class="font-semibold {% if section.status == 'completed' %}text-emerald-600{% elif section.status == 'in_progress' %}text-amber-600{% else %}text-zinc-600{% endif %}">
+                <span class="font-semibold {% if section.status == 'completed' %}text-zinc-950{% elif section.status == 'in_progress' %}text-zinc-900{% else %}text-zinc-600{% endif %}">
                   {{ section.get_status_display }}
                 </span>
               </p>
             </div>
             {% if section.status == 'completed' %}
-              <div class="px-4 py-2 bg-emerald-50 text-emerald-800 text-xs font-bold rounded-xl border border-emerald-200/60">Bajarildi</div>
+              <div class="px-4 py-2 bg-zinc-100 text-emerald-800 text-xs font-bold rounded-xl border border-emerald-200/60">Bajarildi</div>
             {% elif section.status == 'in_progress' %}
               <a href="{% url 'mock_exams:section' active_exam.id section.id %}" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl shadow-xs transition">Davom etish</a>
             {% elif section.status == 'pending' %}
@@ -120,7 +120,7 @@
       <div class="mt-4 pt-4 border-t border-zinc-200 text-right">
           <form method="post" action="{% url 'mock_exams:finish_exam' active_exam.id %}" style="display:inline;">
               {% csrf_token %}
-              <button type="submit" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs transition" onclick="return confirm('Imtihonni yakunlab, natijalarni hisoblaymizmi?');">
+              <button type="submit" class="px-4 py-2 bg-zinc-950 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs transition" onclick="return confirm('Imtihonni yakunlab, natijalarni hisoblaymizmi?');">
                 Imtihonni Yakunlash (AI Tahlil)
               </button>
           </form>
@@ -136,7 +136,7 @@
         
         <form method="post" action="{% url 'mock_exams:start' 'ielts' %}">
           {% csrf_token %}
-          <button type="submit" class="px-7 py-3.5 bg-orange-600 hover:bg-orange-700 active:scale-[0.99] text-white text-sm font-bold rounded-xl shadow-sm transition flex items-center space-x-2">
+          <button type="submit" class="px-7 py-3.5 bg-zinc-950 hover:bg-zinc-800 active:scale-[0.99] text-white text-sm font-bold rounded-xl shadow-sm transition flex items-center space-x-2">
             <i data-lucide="play" class="w-4 h-4 fill-current"></i>
             <span>Mock Imtihonni Yaratish</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -150,14 +150,14 @@
     <!-- Past Exam Results History -->
     <div class="mt-10">
       <h2 class="text-lg font-black text-slate-900 mb-4 flex items-center space-x-2">
-        <i data-lucide="history" class="w-5 h-5 text-indigo-600"></i>
+        <i data-lucide="history" class="w-5 h-5 text-zinc-950"></i>
         <span>Oldingi Mock Natijalaringiz</span>
       </h2>
       <div class="space-y-3">
         {% for past in past_exams %}
           <div class="bg-white p-4 rounded-2xl border border-slate-200 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center font-black text-sm">
+              <div class="w-10 h-10 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-black text-sm">
                 {{ past.overall_band_score|default:"—" }}
               </div>
               <div>
@@ -165,7 +165,7 @@
                 <p class="text-[11px] text-slate-400">{{ past.completed_at|date:"d-M, Y — H:i" }}</p>
               </div>
             </div>
-            <a href="{% url 'mock_exams:results' past.id %}" class="px-4 py-2 bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 text-slate-700 text-xs font-bold rounded-xl transition inline-flex items-center space-x-1">
+            <a href="{% url 'mock_exams:results' past.id %}" class="px-4 py-2 bg-slate-100 hover:bg-zinc-100 hover:text-zinc-950 text-slate-700 text-xs font-bold rounded-xl transition inline-flex items-center space-x-1">
               <span>Natijani ko'rish</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
             </a>

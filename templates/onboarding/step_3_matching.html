@@ -8,27 +8,27 @@
   <!-- 4-Step Progress Indicator Bar -->
   <div class="mb-8 bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200">
     <div class="flex items-center justify-between mb-3 text-xs sm:text-sm font-bold text-slate-700">
-      <span class="text-indigo-600 flex items-center gap-1.5">
-        <i data-lucide="target" class="w-4 h-4 text-indigo-600"></i>
+      <span class="text-zinc-950 flex items-center gap-1.5">
+        <i data-lucide="target" class="w-4 h-4 text-zinc-950"></i>
         Qadam 3/4: Universitet va Grant tanlash
       </span>
       <span class="text-slate-400 font-medium hidden sm:inline">Keyingi: Dual-Track O'quv rejasi</span>
     </div>
     <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-      <div class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 75%"></div>
+      <div class="bg-zinc-950 h-2.5 rounded-full transition-all duration-300" style="width: 75%"></div>
     </div>
     <div class="grid grid-cols-4 gap-2 mt-3 text-center text-xs">
-      <div class="text-indigo-700 font-medium flex items-center justify-center space-x-1"><span>1. Profil</span><i data-lucide="check" class="w-3.5 h-3.5 inline"></i></div>
-      <div class="text-indigo-700 font-medium flex items-center justify-center space-x-1"><span>2. Sertifikat</span><i data-lucide="check" class="w-3.5 h-3.5 inline"></i></div>
-      <div class="text-indigo-700 font-bold">3. Universitet</div>
+      <div class="text-zinc-900 font-medium flex items-center justify-center space-x-1"><span>1. Profil</span><i data-lucide="check" class="w-3.5 h-3.5 inline"></i></div>
+      <div class="text-zinc-900 font-medium flex items-center justify-center space-x-1"><span>2. Sertifikat</span><i data-lucide="check" class="w-3.5 h-3.5 inline"></i></div>
+      <div class="text-zinc-900 font-bold">3. Universitet</div>
       <div class="text-slate-400 font-medium">4. O'quv rejasi</div>
     </div>
   </div>
 
   <!-- Header Card -->
   <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 mb-6">
-    <div class="inline-flex items-center space-x-2 px-3 py-1 bg-indigo-50 border border-indigo-100 rounded-full text-indigo-700 text-xs font-bold mb-3">
-      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-600"></i>
+    <div class="inline-flex items-center space-x-2 px-3 py-1 bg-zinc-100 border border-zinc-200 rounded-full text-zinc-900 text-xs font-bold mb-3">
+      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-zinc-950"></i>
       <span>AI Moslashuv & Tavsiyalar</span>
     </div>
     <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -47,19 +47,19 @@
 
     <div class="space-y-4">
       {% for rec in recommendations %}
-        <div class="bg-white rounded-3xl p-5 md:p-7 shadow-sm border-2 transition-all duration-200 {% if forloop.first %}border-indigo-500 ring-2 ring-indigo-100{% else %}border-slate-200 hover:border-indigo-200{% endif %}">
+        <div class="bg-white rounded-3xl p-5 md:p-7 shadow-sm border-2 transition-all duration-200 {% if forloop.first %}border-zinc-950 ring-2 ring-zinc-200{% else %}border-slate-200 hover:border-zinc-300{% endif %}">
           
           <!-- Top Row: Program Name, Badges & Match % -->
           <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-slate-100">
             <div>
               <div class="flex items-center flex-wrap gap-2 mb-1.5">
-                <span class="px-3 py-1 rounded-full text-xs font-extrabold shadow-xs {{ rec.tier_badge|default:'bg-emerald-50 text-emerald-700 border border-emerald-200' }}">
+                <span class="px-3 py-1 rounded-full text-xs font-extrabold shadow-xs {{ rec.tier_badge|default:'bg-zinc-100 text-zinc-900 border border-zinc-300' }}">
                   {{ rec.match_percentage }}% Mos ({{ rec.match_tier_display }})
                 </span>
                 <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
                   {{ rec.country }}
                 </span>
-                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-zinc-100 text-zinc-900 border border-zinc-200">
                   {{ rec.type_display }}
                 </span>
               </div>
@@ -67,7 +67,7 @@
                 {{ rec.program_name }}
               </h3>
               {% if rec.university_name and rec.university_name != rec.program_name %}
-                <p class="text-sm font-semibold text-indigo-700 mt-0.5">
+                <p class="text-sm font-semibold text-zinc-900 mt-0.5">
                   {{ rec.university_name }} {% if rec.world_ranking %}<span class="text-slate-500 font-normal">(QS: #{{ rec.world_ranking }})</span>{% endif %}
                 </p>
               {% endif %}
@@ -75,13 +75,13 @@
 
             <!-- Selection Radios/Checkboxes on right/top -->
             <div class="flex flex-row sm:flex-col items-start sm:items-end gap-3 flex-shrink-0 pt-2 sm:pt-0">
-              <label class="cursor-pointer inline-flex items-center space-x-2 bg-indigo-50/70 hover:bg-indigo-100/70 px-3.5 py-2 rounded-xl border border-indigo-200 text-indigo-900 font-bold text-xs transition">
-                <input type="radio" name="primary_program_id" value="{{ rec.program_id }}" {% if forloop.first %}checked{% endif %} class="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-indigo-300">
+              <label class="cursor-pointer inline-flex items-center space-x-2 bg-zinc-100 hover:bg-zinc-200 px-3.5 py-2 rounded-xl border border-zinc-300 text-zinc-950 font-bold text-xs transition">
+                <input type="radio" name="primary_program_id" value="{{ rec.program_id }}" {% if forloop.first %}checked{% endif %} class="w-4 h-4 text-zinc-950 focus:ring-zinc-950 border-zinc-400">
                 <span>Asosiy maqsad (Primary)</span>
               </label>
 
               <label class="cursor-pointer inline-flex items-center space-x-2 bg-slate-50 hover:bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200 text-slate-700 font-medium text-xs transition">
-                <input type="checkbox" name="backup_program_ids" value="{{ rec.program_id }}" class="w-3.5 h-3.5 text-indigo-600 focus:ring-indigo-500 rounded border-slate-300">
+                <input type="checkbox" name="backup_program_ids" value="{{ rec.program_id }}" class="w-3.5 h-3.5 text-zinc-950 focus:ring-zinc-950 rounded border-slate-300">
                 <span>Zaxira variant (Backup)</span>
               </label>
             </div>
@@ -113,8 +113,8 @@
           <!-- Match Rationale in Uzbek -->
           {% if rec.match_rationale %}
             <div class="text-xs md:text-sm text-slate-700 leading-relaxed bg-white border border-slate-200 rounded-xl p-3.5">
-              <span class="font-bold text-indigo-800 block mb-1 flex items-center gap-1">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-indigo-600"></i>
+              <span class="font-bold text-zinc-900 block mb-1 flex items-center gap-1">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-zinc-950"></i>
                 Nima uchun sizga mos keladi?
               </span>
               {{ rec.match_rationale }}
@@ -125,10 +125,10 @@
           {% if rec.source_url %}
             <div class="mt-3 flex items-center justify-between text-xs text-slate-500 pt-2">
               <span class="flex items-center gap-1">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-zinc-950"></i>
                 Rasmiy manba orqali tekshirilgan
               </span>
-              <a href="{{ rec.source_url }}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-semibold inline-flex items-center gap-1">
+              <a href="{{ rec.source_url }}" target="_blank" rel="noopener noreferrer" class="text-zinc-950 hover:text-zinc-900 font-semibold inline-flex items-center gap-1">
                 <span>Dastur rasmiy sayti</span>
                 <i data-lucide="external-link" class="w-3 h-3"></i>
               </a>
@@ -154,7 +154,7 @@
         name="notes"
         rows="2"
         placeholder="Masalan: Asosiy e'tiborimni to'liq grantga qaratmoqchiman..."
-        class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 text-slate-800 text-sm"
+        class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-zinc-950 text-slate-800 text-sm"
       ></textarea>
     </div>
 
@@ -166,7 +166,7 @@
       </a>
       <button
         type="submit"
-        class="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-2xl shadow-lg transition-all duration-200 flex items-center justify-center space-x-2 text-base"
+        class="w-full sm:w-auto px-8 py-4 bg-zinc-950 hover:bg-zinc-800 text-white font-bold rounded-2xl shadow-lg transition-all duration-200 flex items-center justify-center space-x-2 text-base"
       >
         <span>Tanlovni tasdiqlash va O'quv rejasini tuzish</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>

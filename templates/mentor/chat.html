@@ -6,18 +6,16 @@
 <div class="max-w-4xl mx-auto space-y-4">
 
   <!-- Header -->
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between p-5 md:p-6 gap-4"
-       style="background: #fffef9; border: 2.5px solid #292929; border-radius: 8px 16px 10px 14px / 14px 8px 16px 10px; box-shadow: 4px 5px 0 #292929;">
-    <div class="flex items-center space-x-3">
-      <div class="h-12 w-12 flex items-center justify-center text-white text-2xl"
-           style="background: #ff6326; border: 2px solid #292929; border-radius: 4px 10px 6px 8px; box-shadow: 2px 2px 0 #292929;">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between p-5 md:p-6 gap-4 bg-white rounded-[28px] border border-zinc-200 shadow-xl shadow-zinc-900/5">
+    <div class="flex items-center space-x-3.5">
+      <div class="h-12 w-12 rounded-2xl bg-zinc-950 flex items-center justify-center text-white text-2xl shadow-lg shadow-zinc-900/10">
         <i data-lucide="graduation-cap" class="w-6 h-6"></i>
       </div>
       <div>
-        <h1 class="text-2xl md:text-3xl font-extrabold text-stone-900" style="font-family: 'Caveat', cursive;">
+        <h1 class="text-xl sm:text-2xl font-extrabold text-zinc-900 tracking-tight">
           AI Ta'lim Mentori
         </h1>
-        <p class="text-xs text-stone-600" style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">
+        <p class="text-xs sm:text-sm text-zinc-500 font-normal">
           Xalqaro grantlar va universitetlarga tayyorgarlik bo'yicha shaxsiy maslahatchi
         </p>
       </div>
@@ -26,8 +24,7 @@
     <div class="flex items-center space-x-2 self-end sm:self-auto">
       <form method="post" action="{% url 'mentor:clear' %}" onsubmit="return confirm('Suhbat tarixini tozalashni xohlaysizmi?');">
         {% csrf_token %}
-        <button type="submit" class="px-3.5 py-2 text-xs font-bold text-stone-700 hover:text-rose-600 transition inline-flex items-center space-x-1.5 cursor-pointer"
-                style="background: #fef9ee; border: 2px solid #292929; border-radius: 4px 8px 5px 7px; box-shadow: 2px 2px 0 #292929; font-family: 'Caveat', cursive; font-size: 1rem;">
+        <button type="submit" class="px-4 py-2 text-xs font-bold text-zinc-600 hover:text-rose-600 bg-zinc-100 hover:bg-rose-50 border border-zinc-200 rounded-xl transition inline-flex items-center space-x-1.5 cursor-pointer">
           <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
           <span>Tarixni tozalash</span>
         </button>
@@ -38,41 +35,36 @@
   <!-- Mandatory Trust & Safety Disclaimer -->
   {% include 'includes/disclaimer.html' %}
 
-  <!-- Chat Container (Sketchpad Style) -->
-  <div class="flex flex-col h-[600px] overflow-hidden"
-       style="background: #fffef9; border: 2.5px solid #292929; border-radius: 8px 18px 10px 16px / 16px 8px 18px 10px; box-shadow: 5px 6px 0 #292929;">
+  <!-- Chat Container (Phenomenon Studio Clean Card) -->
+  <div class="flex flex-col h-[600px] overflow-hidden bg-white rounded-[28px] border border-zinc-200 shadow-2xl shadow-zinc-900/5">
     
     <!-- Messages Scroll Area -->
-    <div id="chat-messages" class="flex-1 p-4 md:p-6 overflow-y-auto space-y-4" style="background: #fdf6e3;">
+    <div id="chat-messages" class="flex-1 p-4 md:p-6 overflow-y-auto space-y-4 bg-zinc-50">
       {% for msg in history %}
         {% if msg.role == 'student' %}
           <!-- Student Message -->
-          <div class="flex justify-end items-end space-x-2">
-            <div class="max-w-[80%] text-white px-4 py-3 leading-relaxed"
-                 style="background: #ff6326; border: 2px solid #292929; border-radius: 10px 14px 2px 12px; box-shadow: 3px 3px 0 #292929; font-family: 'Patrick Hand', cursive; font-size: 1.05rem;">
+          <div class="flex justify-end items-end space-x-2.5">
+            <div class="max-w-[80%] bg-zinc-950 text-white px-4 py-3 rounded-2xl rounded-br-xs text-sm font-medium shadow-sm leading-relaxed">
               <p>{{ msg.content }}</p>
-              <span class="block text-[11px] text-orange-100 text-right mt-1 font-sans">{{ msg.created_at|date:"H:i" }}</span>
+              <span class="block text-[10px] text-zinc-400 text-right mt-1 font-semibold">{{ msg.created_at|date:"H:i" }}</span>
             </div>
-            <div class="h-8 w-8 flex items-center justify-center text-xs font-bold text-stone-800 flex-shrink-0"
-                 style="background: #e8dfc8; border: 1.5px solid #292929; border-radius: 50%;">
+            <div class="h-8 w-8 rounded-full bg-stone-200 text-zinc-700 flex items-center justify-center text-xs font-bold flex-shrink-0">
               {{ student.user.first_name|default:"O"|slice:":1" }}
             </div>
           </div>
         {% else %}
           <!-- AI Mentor Message -->
-          <div class="flex justify-start items-end space-x-2">
-            <div class="h-8 w-8 flex items-center justify-center text-xs text-white flex-shrink-0"
-                 style="background: #ff6326; border: 1.5px solid #292929; border-radius: 50%; box-shadow: 1px 1px 0 #292929;">
+          <div class="flex justify-start items-end space-x-2.5">
+            <div class="h-8 w-8 rounded-full bg-stone-900 text-white flex items-center justify-center text-xs flex-shrink-0 shadow-xs">
               <i data-lucide="graduation-cap" class="w-4 h-4"></i>
             </div>
-            <div class="max-w-[85%] text-stone-900 px-4 py-3 leading-relaxed space-y-2"
-                 style="background: #fffef9; border: 2px solid #292929; border-radius: 14px 10px 12px 2px; box-shadow: 3px 3px 0 #292929; font-family: 'Patrick Hand', cursive; font-size: 1.05rem;">
-              <div class="font-bold text-xs text-orange-600 flex items-center space-x-1.5" style="font-family: 'Caveat', cursive; font-size: 1.1rem;">
-                <i data-lucide="bot" class="w-4 h-4 text-orange-600"></i>
+            <div class="max-w-[85%] bg-white border border-zinc-200 text-zinc-900 px-4 py-3.5 rounded-2xl rounded-bl-xs text-sm shadow-sm leading-relaxed space-y-2">
+              <div class="font-extrabold text-xs text-zinc-950 flex items-center space-x-1.5">
+                <i data-lucide="bot" class="w-4 h-4"></i>
                 <span>AI Mentor</span>
               </div>
-              <div class="text-stone-900 whitespace-pre-line">{{ msg.content }}</div>
-              <span class="block text-[11px] text-stone-400 mt-1 font-sans">{{ msg.created_at|date:"H:i" }}</span>
+              <div class="text-zinc-800 whitespace-pre-line font-normal">{{ msg.content }}</div>
+              <span class="block text-[10px] text-zinc-400 mt-1 font-medium">{{ msg.created_at|date:"H:i" }}</span>
             </div>
           </div>
         {% endif %}
@@ -80,11 +72,10 @@
     </div>
 
     <!-- Persistent Context Strip (R3 Requirement) -->
-    <div class="px-4 py-2 flex items-center justify-between text-xs"
-         style="background: #fff5eb; border-top: 2px solid #292929; border-bottom: 1.5px solid #e8dfc8; font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">
-      <div class="flex items-center space-x-2 font-medium truncate text-stone-900">
-        <i data-lucide="sparkles" class="w-4 h-4 text-orange-600 flex-shrink-0"></i>
-        <span class="font-bold" style="font-family: 'Caveat', cursive; font-size: 1.05rem;">Kontekst:</span>
+    <div class="px-4 py-2 bg-zinc-100 border-t border-b border-zinc-200 flex items-center justify-between text-xs text-zinc-950">
+      <div class="flex items-center space-x-2 font-medium truncate">
+        <i data-lucide="sparkles" class="w-4 h-4 text-zinc-950 flex-shrink-0"></i>
+        <span class="font-bold">Kontekst:</span>
         <span class="truncate">
           {% if context_strip.full_display %}
             {{ context_strip.full_display }}
@@ -97,60 +88,53 @@
           {% endif %}
         </span>
       </div>
-      <div class="hidden sm:flex items-center space-x-1 text-orange-700 font-bold flex-shrink-0" style="font-family: 'Caveat', cursive; font-size: 1.05rem;">
-        <i data-lucide="target" class="w-3.5 h-3.5 text-orange-600"></i>
+      <div class="hidden sm:flex items-center space-x-1 text-zinc-900 font-bold flex-shrink-0 text-[11px]">
+        <i data-lucide="target" class="w-3.5 h-3.5 text-zinc-950"></i>
         <span>Ready: {{ ready_score|default:0 }}%</span>
       </div>
     </div>
 
-    <!-- Suggested Quick Prompts -->
-    <div class="px-4 py-2.5 flex items-center space-x-2 overflow-x-auto text-xs whitespace-nowrap"
-         style="background: #fef9ee; border-top: 1.5px solid #e8dfc8;">
-      <span class="text-stone-500 font-bold flex items-center space-x-1 flex-shrink-0" style="font-family: 'Caveat', cursive; font-size: 1.05rem;">
-        <i data-lucide="message-circle" class="w-3.5 h-3.5 text-orange-500"></i>
+    <!-- Suggested Quick Prompts (Pill Chips) -->
+    <div class="px-4 py-2.5 bg-white border-t border-zinc-200 flex items-center space-x-2 overflow-x-auto text-xs whitespace-nowrap">
+      <span class="text-zinc-400 font-bold flex items-center space-x-1 flex-shrink-0">
+        <i data-lucide="message-circle" class="w-3.5 h-3.5 text-zinc-900"></i>
         <span>Tezkor:</span>
       </span>
       <button type="button" onclick="setPrompt('Global UGRAD dasturi talablari va bosqichlari qanday? Men uchun qanday tayyorgarlik tavsiya qilasiz?')"
-              class="px-3 py-1.5 text-stone-800 font-bold inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer transition hover:translate-x-0.5"
-              style="background: #fffef9; border: 1.5px solid #292929; border-radius: 4px 10px 5px 8px; box-shadow: 2px 2px 0 #292929; font-family: 'Caveat', cursive; font-size: 1.05rem;">
-        <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-orange-600"></i>
+              class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-100 hover:text-zinc-900 hover:border-zinc-300 border border-zinc-200 rounded-full text-zinc-700 font-bold transition inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer">
+        <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-zinc-950"></i>
         <span>Global UGRAD talablari</span>
       </button>
       <button type="button" onclick="setPrompt('DAAD stipendiyasi uchun inshoni (Motivation letter) qanday yozish kerak? Misol va maslahatlar bering.')"
-              class="px-3 py-1.5 text-stone-800 font-bold inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer transition hover:translate-x-0.5"
-              style="background: #fffef9; border: 1.5px solid #292929; border-radius: 4px 10px 5px 8px; box-shadow: 2px 2px 0 #292929; font-family: 'Caveat', cursive; font-size: 1.05rem;">
+              class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-100 hover:text-zinc-900 hover:border-zinc-300 border border-zinc-200 rounded-full text-zinc-700 font-bold transition inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer">
         <i data-lucide="file-text" class="w-3.5 h-3.5 text-amber-600"></i>
         <span>DAAD insho maslahatlari</span>
       </button>
       <button type="button" onclick="setPrompt('Chevening stipendiyasiga ariza topshirish uchun qanday tayyorlanish kerak? Asosiy talablar va tanlov mezonlari qanday?')"
-              class="px-3 py-1.5 text-stone-800 font-bold inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer transition hover:translate-x-0.5"
-              style="background: #fffef9; border: 1.5px solid #292929; border-radius: 4px 10px 5px 8px; box-shadow: 2px 2px 0 #292929; font-family: 'Caveat', cursive; font-size: 1.05rem;">
-        <i data-lucide="award" class="w-3.5 h-3.5 text-purple-600"></i>
+              class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-100 hover:text-zinc-900 hover:border-zinc-300 border border-zinc-200 rounded-full text-zinc-700 font-bold transition inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer">
+        <i data-lucide="award" class="w-3.5 h-3.5 text-zinc-900"></i>
         <span>Chevening yo'l xaritasi</span>
       </button>
       <button type="button" onclick="setPrompt('Turkiya Bursları stipendiyasi (YTB) haqida to\'liq ma\'lumot bering. Menga mos yo\'nalish va tayyorgarlik bosqichlari qanday?')"
-              class="px-3 py-1.5 text-stone-800 font-bold inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer transition hover:translate-x-0.5"
-              style="background: #fffef9; border: 1.5px solid #292929; border-radius: 4px 10px 5px 8px; box-shadow: 2px 2px 0 #292929; font-family: 'Caveat', cursive; font-size: 1.05rem;">
+              class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-100 hover:text-zinc-900 hover:border-zinc-300 border border-zinc-200 rounded-full text-zinc-700 font-bold transition inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer">
         <i data-lucide="globe" class="w-3.5 h-3.5 text-red-500"></i>
         <span>Turkiya Bursları</span>
       </button>
       <button type="button" onclick="setPrompt('SOP (Statement of Purpose) yozishda qanday xatolardan qochish kerak? Kuchli SOP qanday bo\'ladi?')"
-              class="px-3 py-1.5 text-stone-800 font-bold inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer transition hover:translate-x-0.5"
-              style="background: #fffef9; border: 1.5px solid #292929; border-radius: 4px 10px 5px 8px; box-shadow: 2px 2px 0 #292929; font-family: 'Caveat', cursive; font-size: 1.05rem;">
+              class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-100 hover:text-zinc-900 hover:border-zinc-300 border border-zinc-200 rounded-full text-zinc-700 font-bold transition inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer">
         <i data-lucide="pen-line" class="w-3.5 h-3.5 text-emerald-600"></i>
         <span>SOP yozish qoidalari</span>
       </button>
       <button type="button" onclick="setPrompt('Mening eng zaif ko\'nikmam bo\'yicha amaliy mashq va tavsiyalar bering.')"
-              class="px-3 py-1.5 text-stone-800 font-bold inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer transition hover:translate-x-0.5"
-              style="background: #fffef9; border: 1.5px solid #292929; border-radius: 4px 10px 5px 8px; box-shadow: 2px 2px 0 #292929; font-family: 'Caveat', cursive; font-size: 1.05rem;">
+              class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-100 hover:text-zinc-900 hover:border-zinc-300 border border-zinc-200 rounded-full text-zinc-700 font-bold transition inline-flex items-center space-x-1.5 flex-shrink-0 cursor-pointer">
         <i data-lucide="target" class="w-3.5 h-3.5 text-rose-600"></i>
         <span>Zaif ko'nikma mashqi</span>
       </button>
     </div>
 
     <!-- Message Input Bar -->
-    <div class="p-4" style="background: #fffef9; border-top: 2px solid #292929;">
-      <form id="chat-form" method="post" class="flex items-center space-x-2">
+    <div class="p-4 bg-white border-t border-zinc-200">
+      <form id="chat-form" method="post" class="flex items-center space-x-2.5">
         {% csrf_token %}
         <input
           type="text"
@@ -159,13 +143,12 @@
           required
           autocomplete="off"
           placeholder="AI mentorga savolingizni yozing..."
-          class="flex-1 text-sm px-4 py-3"
-          style="background: #fdf6e3; border: 2px solid #292929; border-radius: 4px 12px 6px 10px; box-shadow: 2px 2px 0 #c8bfa8; font-family: 'Patrick Hand', cursive; font-size: 1.05rem;"
+          class="flex-1 rounded-2xl border-zinc-200 focus:border-zinc-950 focus:ring-zinc-950 text-sm px-4 py-3 bg-stone-50 focus:bg-white"
         >
         <button
           type="submit"
           id="send-btn"
-          class="hd-btn px-6 py-3 text-white font-bold flex items-center space-x-1.5 cursor-pointer flex-shrink-0"
+          class="px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-sm rounded-2xl shadow-lg shadow-zinc-900/10 transition inline-flex items-center space-x-1.5 cursor-pointer flex-shrink-0"
         >
           <span>Yuborish</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>

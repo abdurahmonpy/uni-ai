@@ -8,18 +8,18 @@
   <!-- 4-Step Progress Indicator Bar -->
   <div class="mb-8 bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200">
     <div class="flex items-center justify-between mb-3 text-xs sm:text-sm font-bold text-slate-700">
-      <span class="text-indigo-600 flex items-center gap-1.5">
-        <i data-lucide="award" class="w-4 h-4 text-indigo-600"></i>
+      <span class="text-zinc-950 flex items-center gap-1.5">
+        <i data-lucide="award" class="w-4 h-4 text-zinc-950"></i>
         Qadam 2/4: Sertifikat va Diagnostika
       </span>
       <span class="text-slate-400 font-medium hidden sm:inline">Keyingi: Universitet va Grant tanlash</span>
     </div>
     <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-      <div class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 50%"></div>
+      <div class="bg-zinc-950 h-2.5 rounded-full transition-all duration-300" style="width: 50%"></div>
     </div>
     <div class="grid grid-cols-4 gap-2 mt-3 text-center text-xs">
-      <div class="text-indigo-700 font-medium flex items-center justify-center space-x-1"><span>1. Profil</span><i data-lucide="check" class="w-3.5 h-3.5 inline"></i></div>
-      <div class="text-indigo-700 font-bold">2. Sertifikat</div>
+      <div class="text-zinc-900 font-medium flex items-center justify-center space-x-1"><span>1. Profil</span><i data-lucide="check" class="w-3.5 h-3.5 inline"></i></div>
+      <div class="text-zinc-900 font-bold">2. Sertifikat</div>
       <div class="text-slate-400 font-medium">3. Universitet</div>
       <div class="text-slate-400 font-medium">4. O'quv rejasi</div>
     </div>
@@ -28,8 +28,8 @@
   <!-- Main Card -->
   <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
     <div class="mb-6">
-      <div class="inline-flex items-center space-x-2 px-3 py-1 bg-indigo-50 border border-indigo-100 rounded-full text-indigo-700 text-xs font-bold mb-3">
-        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-indigo-600"></i>
+      <div class="inline-flex items-center space-x-2 px-3 py-1 bg-zinc-100 border border-zinc-200 rounded-full text-zinc-900 text-xs font-bold mb-3">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-zinc-950"></i>
         <span>Sertifikat Tahlili & Diagnostika</span>
       </div>
       <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -69,10 +69,10 @@
           {% for radio in form.has_certificate %}
             <label class="cursor-pointer">
               {{ radio.tag }}
-              <div class="p-4 rounded-2xl border-2 transition-all duration-200 font-medium text-slate-700 bg-slate-50 border-slate-200 hover:border-indigo-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 peer-checked:text-indigo-900 shadow-sm flex items-center space-x-3">
+              <div class="p-4 rounded-2xl border-2 transition-all duration-200 font-medium text-slate-700 bg-slate-50 border-slate-200 hover:border-zinc-400 peer-checked:border-zinc-950 peer-checked:bg-zinc-100 peer-checked:text-zinc-950 shadow-sm flex items-center space-x-3">
                 {% if radio.data.value == 'yes' %}
-                  <div class="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="check-circle" class="w-5 h-5 text-indigo-600"></i>
+                  <div class="w-8 h-8 rounded-xl bg-indigo-100 text-zinc-900 flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-zinc-950"></i>
                   </div>
                 {% else %}
                   <div class="w-8 h-8 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center flex-shrink-0">
@@ -89,7 +89,7 @@
       <!-- Certificate Details Container (conditionally shown via JS/CSS) -->
       <div id="certDetailsSection" class="p-5 bg-slate-50/80 rounded-2xl border border-slate-200 space-y-6">
         <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
-          <i data-lucide="file-check" class="w-5 h-5 text-indigo-600"></i>
+          <i data-lucide="file-check" class="w-5 h-5 text-zinc-950"></i>
           Sertifikat ma'lumotlari va ballar
         </h3>
 
@@ -156,11 +156,11 @@
       </div>
 
       <!-- No Certificate Info Banner (shown when 'no' is selected) -->
-      <div id="noCertBanner" class="hidden p-5 bg-indigo-50/70 border border-indigo-200 rounded-2xl flex items-start space-x-3 text-indigo-900">
-        <i data-lucide="info" class="w-6 h-6 text-indigo-600 flex-shrink-0 mt-0.5"></i>
+      <div id="noCertBanner" class="hidden p-5 bg-zinc-100 border border-zinc-300 rounded-2xl flex items-start space-x-3 text-zinc-950">
+        <i data-lucide="info" class="w-6 h-6 text-zinc-950 flex-shrink-0 mt-0.5"></i>
         <div>
           <h4 class="font-bold text-sm text-indigo-950">Diagnostika testi haqida:</h4>
-          <p class="text-xs sm:text-sm text-indigo-800 mt-1 leading-relaxed">
+          <p class="text-xs sm:text-sm text-zinc-900 mt-1 leading-relaxed">
             Sertifikatingiz bo'lmasa yoki muddati o'tgan bo'lsa, keyingi bosqichda sizga 10-15 daqiqalik qisqa interaktiv test taqdim etiladi. Test natijasida 5 ta ko'nikmangiz 0-100 shkalada baholanadi va unga asoslanib mos grantlar tanlanadi.
           </p>
         </div>
@@ -172,7 +172,7 @@
           <i data-lucide="arrow-left" class="w-4 h-4"></i>
           <span>Oldingi qadam</span>
         </a>
-        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-2xl shadow-md transition-all duration-200 text-center flex items-center justify-center space-x-2">
+        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold rounded-2xl shadow-md transition-all duration-200 text-center flex items-center justify-center space-x-2">
           <span>Davom etish</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>

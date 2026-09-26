@@ -8,7 +8,7 @@
   <!-- Header & Actions -->
   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-slate-200 shadow-xs">
     <div>
-      <div class="flex items-center space-x-2 text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">
+      <div class="flex items-center space-x-2 text-xs font-bold text-zinc-950 uppercase tracking-wider mb-1">
         <i data-lucide="file-text" class="w-4 h-4"></i>
         <span>Hujjatlar Menejeri</span>
       </div>
@@ -17,7 +17,7 @@
     </div>
     
     <div class="flex items-center space-x-3 w-full sm:w-auto">
-      <a href="{% url 'documents:create' %}" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-xs font-bold rounded-xl shadow-xs transition space-x-2">
+      <a href="{% url 'documents:create' %}" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 active:bg-indigo-800 text-white text-xs font-bold rounded-xl shadow-xs transition space-x-2">
         <i data-lucide="plus" class="w-4 h-4"></i>
         <span>Yangi hujjat qo'shish</span>
       </a>
@@ -32,11 +32,11 @@
     </div>
     <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
       <span class="text-xs text-amber-700 font-medium">Qoralamalar (Draft)</span>
-      <div class="text-2xl font-black text-amber-600 mt-1">{{ drafts_count }}</div>
+      <div class="text-2xl font-black text-zinc-900 mt-1">{{ drafts_count }}</div>
     </div>
     <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
-      <span class="text-xs text-emerald-700 font-medium">Tayyor hujjatlar</span>
-      <div class="text-2xl font-black text-emerald-600 mt-1">{{ ready_count }}</div>
+      <span class="text-xs text-zinc-900 font-medium">Tayyor hujjatlar</span>
+      <div class="text-2xl font-black text-zinc-950 mt-1">{{ ready_count }}</div>
     </div>
   </div>
 
@@ -44,7 +44,7 @@
   {% if program_doc_stats %}
     <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
       <h2 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
-        <i data-lucide="check-circle" class="w-4 h-4 text-indigo-600"></i>
+        <i data-lucide="check-circle" class="w-4 h-4 text-zinc-950"></i>
         <span>Dasturlar bo'yicha hujjatlar tayyorgarligi</span>
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -55,7 +55,7 @@
               <p class="text-xs text-slate-500 mt-0.5">Muddati: {{ stat.program.deadline }}</p>
             </div>
             <div class="text-right">
-              <span class="px-3 py-1 bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold rounded-full">
+              <span class="px-3 py-1 bg-zinc-100 border border-zinc-200 text-zinc-900 text-xs font-bold rounded-full">
                 {{ stat.final }} ta tayyor
               </span>
             </div>
@@ -67,11 +67,11 @@
 
   <!-- Filters -->
   <div class="flex items-center space-x-2 overflow-x-auto pb-2">
-    <a href="{% url 'documents:list' %}" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition {% if not doc_type_filter %}bg-indigo-600 text-white shadow-xs{% else %}bg-white text-slate-600 border border-slate-200 hover:bg-slate-50{% endif %}">
+    <a href="{% url 'documents:list' %}" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition {% if not doc_type_filter %}bg-zinc-950 text-white shadow-xs{% else %}bg-white text-slate-600 border border-slate-200 hover:bg-slate-50{% endif %}">
       Hammasi ({{ total_count }})
     </a>
     {% for dt_key, dt_label in doc_types %}
-      <a href="{% url 'documents:list' %}?type={{ dt_key }}" class="px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition {% if doc_type_filter == dt_key %}bg-indigo-600 text-white shadow-xs{% else %}bg-white text-slate-600 border border-slate-200 hover:bg-slate-50{% endif %}">
+      <a href="{% url 'documents:list' %}?type={{ dt_key }}" class="px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition {% if doc_type_filter == dt_key %}bg-zinc-950 text-white shadow-xs{% else %}bg-white text-slate-600 border border-slate-200 hover:bg-slate-50{% endif %}">
         {{ dt_label }}
       </a>
     {% endfor %}
@@ -80,31 +80,31 @@
   <!-- Documents List -->
   <div class="space-y-3">
     {% for doc in documents %}
-      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-indigo-200 transition flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-zinc-300 transition flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         
         <div class="space-y-1.5 flex-1 min-w-0">
           <div class="flex items-center space-x-2">
-            <span class="px-2.5 py-0.5 text-[11px] font-bold rounded-md {% if doc.doc_type == 'essay' %}bg-indigo-50 text-indigo-700 border border-indigo-100{% elif doc.doc_type == 'motivation_letter' %}bg-violet-50 text-violet-700 border border-violet-100{% else %}bg-slate-100 text-slate-700{% endif %}">
+            <span class="px-2.5 py-0.5 text-[11px] font-bold rounded-md {% if doc.doc_type == 'essay' %}bg-zinc-100 text-zinc-900 border border-zinc-200{% elif doc.doc_type == 'motivation_letter' %}bg-violet-50 text-violet-700 border border-violet-100{% else %}bg-slate-100 text-slate-700{% endif %}">
               {{ doc.get_doc_type_display }}
             </span>
             <span class="text-xs text-slate-400">v{{ doc.version }}</span>
-            <span class="text-xs px-2 py-0.5 rounded-full font-semibold {% if doc.status == 'final' %}bg-emerald-50 text-emerald-700{% elif doc.status == 'under_review' %}bg-amber-50 text-amber-700{% else %}bg-slate-100 text-slate-600{% endif %}">
+            <span class="text-xs px-2 py-0.5 rounded-full font-semibold {% if doc.status == 'final' %}bg-zinc-100 text-zinc-900{% elif doc.status == 'under_review' %}bg-amber-50 text-amber-700{% else %}bg-slate-100 text-slate-600{% endif %}">
               {{ doc.get_status_display }}
             </span>
           </div>
 
-          <h3 class="text-base font-bold text-slate-900 hover:text-indigo-600 transition truncate">
+          <h3 class="text-base font-bold text-slate-900 hover:text-zinc-950 transition truncate">
             <a href="{% url 'documents:detail' doc.id %}">{{ doc.title }}</a>
           </h3>
 
           <div class="flex items-center space-x-4 text-xs text-slate-500 flex-wrap gap-y-1">
             {% if doc.linked_program %}
-              <span class="flex items-center space-x-1 text-indigo-600 font-medium">
+              <span class="flex items-center space-x-1 text-zinc-950 font-medium">
                 <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
                 <span>{{ doc.linked_program.name }}</span>
               </span>
               {% if doc.student_program %}
-                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold {% if doc.student_program.status == 'accepted' %}bg-emerald-100 text-emerald-800{% elif doc.student_program.status == 'submitted' %}bg-blue-100 text-blue-800{% elif doc.student_program.status == 'interview' %}bg-purple-100 text-purple-800{% elif doc.student_program.status == 'rejected' %}bg-rose-100 text-rose-800{% else %}bg-indigo-50 text-indigo-700{% endif %}">
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold {% if doc.student_program.status == 'accepted' %}bg-emerald-100 text-emerald-800{% elif doc.student_program.status == 'submitted' %}bg-blue-100 text-blue-800{% elif doc.student_program.status == 'interview' %}bg-purple-100 text-purple-800{% elif doc.student_program.status == 'rejected' %}bg-rose-100 text-rose-800{% else %}bg-zinc-100 text-zinc-900{% endif %}">
                   {{ doc.student_program.get_status_display }}
                 </span>
               {% endif %}
@@ -130,7 +130,7 @@
           <a href="{% url 'documents:detail' doc.id %}" class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">
             Ko'rish
           </a>
-          <a href="{% url 'documents:edit' doc.id %}" class="px-3.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-xl transition">
+          <a href="{% url 'documents:edit' doc.id %}" class="px-3.5 py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold rounded-xl transition">
             Tahrirlash
           </a>
         </div>
@@ -138,12 +138,12 @@
       </div>
     {% empty %}
       <div class="bg-white p-10 rounded-3xl border border-slate-200 text-center space-y-3">
-        <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto">
+        <div class="w-12 h-12 rounded-2xl bg-zinc-100 text-zinc-950 flex items-center justify-center mx-auto">
           <i data-lucide="file-plus" class="w-6 h-6"></i>
         </div>
         <h3 class="text-base font-bold text-slate-900">Hozircha hujjatlar mavjud emas</h3>
         <p class="text-xs text-slate-500 max-w-sm mx-auto">Grant arizalari uchun o'z insho, rezyume yoki sertifikatlaringizni qo'shing va AI yordamida tahrirlang.</p>
-        <a href="{% url 'documents:create' %}" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition space-x-1.5">
+        <a href="{% url 'documents:create' %}" class="inline-flex items-center px-4 py-2 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold rounded-xl shadow-xs transition space-x-1.5">
           <i data-lucide="plus" class="w-4 h-4"></i>
           <span>Birinchi hujjatni qo'shish</span>
         </a>

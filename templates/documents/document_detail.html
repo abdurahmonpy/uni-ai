@@ -8,7 +8,7 @@
   <!-- Breadcrumbs & Actions -->
   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
     <div class="flex items-center space-x-2 text-xs font-semibold text-slate-500">
-      <a href="{% url 'documents:list' %}" class="hover:text-indigo-600">Hujjatlarim</a>
+      <a href="{% url 'documents:list' %}" class="hover:text-zinc-950">Hujjatlarim</a>
       <span>/</span>
       <span class="text-slate-900 truncate max-w-xs">{{ document.title }}</span>
     </div>
@@ -20,7 +20,7 @@
           <span>{% if document.ai_feedback %}AI Tahlilni yangilash{% else %}AI Review olish{% endif %}</span>
         </a>
       {% endif %}
-      <a href="{% url 'documents:edit' document.id %}" class="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-xl transition flex items-center space-x-1">
+      <a href="{% url 'documents:edit' document.id %}" class="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold rounded-xl transition flex items-center space-x-1">
         <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
         <span>Tahrirlash</span>
       </a>
@@ -36,11 +36,11 @@
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-6 border-b border-slate-100">
       <div class="space-y-1">
         <div class="flex items-center space-x-2">
-          <span class="px-3 py-0.5 text-xs font-bold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-100">
+          <span class="px-3 py-0.5 text-xs font-bold rounded-md bg-zinc-100 text-zinc-900 border border-zinc-200">
             {{ document.get_doc_type_display }}
           </span>
           <span class="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">Versiya {{ document.version }}</span>
-          <span class="text-xs px-2.5 py-0.5 rounded-full font-bold {% if document.status == 'final' %}bg-emerald-50 text-emerald-700{% elif document.status == 'under_review' %}bg-amber-50 text-amber-700{% else %}bg-slate-100 text-slate-600{% endif %}">
+          <span class="text-xs px-2.5 py-0.5 rounded-full font-bold {% if document.status == 'final' %}bg-zinc-100 text-zinc-900{% elif document.status == 'under_review' %}bg-amber-50 text-amber-700{% else %}bg-slate-100 text-slate-600{% endif %}">
             {{ document.get_status_display }}
           </span>
         </div>
@@ -50,7 +50,7 @@
       {% if document.linked_program %}
         <div class="text-right">
           <span class="text-xs text-slate-400">Mo'ljallangan dastur</span>
-          <p class="text-sm font-bold text-indigo-600">{{ document.linked_program.name }}</p>
+          <p class="text-sm font-bold text-zinc-950">{{ document.linked_program.name }}</p>
         </div>
       {% endif %}
     </div>
@@ -86,7 +86,7 @@
     {% if document.file %}
       <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+          <div class="w-10 h-10 rounded-xl bg-zinc-100 text-zinc-950 flex items-center justify-center font-bold">
             <i data-lucide="file-text" class="w-5 h-5"></i>
           </div>
           <div>
@@ -95,7 +95,7 @@
           </div>
         </div>
         <a href="{{ document.file.url }}" target="_blank" download class="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-xl transition flex items-center space-x-1.5 shadow-xs">
-          <i data-lucide="download" class="w-3.5 h-3.5 text-indigo-600"></i>
+          <i data-lucide="download" class="w-3.5 h-3.5 text-zinc-950"></i>
           <span>Yuklab olish</span>
         </a>
       </div>
@@ -106,7 +106,7 @@
       <div class="mt-8 space-y-4">
         <div class="flex items-center justify-between border-b border-slate-100 pb-2">
           <h2 class="text-lg font-bold text-slate-900">Portfolio qismlari (Ishlar)</h2>
-          <a href="{% url 'documents:portfolio_upload' document.id %}" class="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-lg transition flex items-center space-x-1">
+          <a href="{% url 'documents:portfolio_upload' document.id %}" class="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold rounded-lg transition flex items-center space-x-1">
             <i data-lucide="plus" class="w-4 h-4"></i>
             <span>Yangi ish qo'shish</span>
           </a>
@@ -128,7 +128,7 @@
                   <div class="mt-2 flex items-center justify-between">
                     <span class="text-xs text-slate-500">{{ item.medium|default:"Medium" }}</span>
                     {% if item.ai_feedback %}
-                      <span class="text-xs bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded">Tekshirilgan</span>
+                      <span class="text-xs bg-zinc-100 text-zinc-900 font-semibold px-2 py-0.5 rounded">Tekshirilgan</span>
                     {% else %}
                       <span class="text-xs bg-amber-50 text-amber-700 font-semibold px-2 py-0.5 rounded">Tahlilsiz</span>
                     {% endif %}

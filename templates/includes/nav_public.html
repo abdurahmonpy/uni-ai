@@ -1,27 +1,27 @@
 {% load static %}
 <!-- Public Header for unauthenticated / landing / public pages -->
-<header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-xs">
+<header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-zinc-200 shadow-xs">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <!-- Brand Logo -->
-    <a href="{% url 'home' %}" class="flex items-center space-x-3 text-slate-900 hover:opacity-90 transition">
-      <div class="w-10 h-10 rounded-xl bg-white border border-slate-200 overflow-hidden shadow-xs flex items-center justify-center p-0.5">
+    <a href="{% url 'home' %}" class="flex items-center space-x-3 text-zinc-950 hover:opacity-90 transition">
+      <div class="w-10 h-10 rounded-xl bg-white border border-zinc-200 overflow-hidden shadow-xs flex items-center justify-center p-0.5">
         <img src="{% static 'images/unimentor_logo.png' %}" alt="UniMentor AI" class="w-full h-full object-contain scale-110">
       </div>
       <div class="flex items-center space-x-1.5">
-        <span class="text-xl font-extrabold text-slate-900 tracking-tight">UniMentor</span>
-        <span class="text-[10px] font-black uppercase px-1.5 py-0.5 rounded-md bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-xs">AI</span>
+        <span class="text-xl font-extrabold text-zinc-950 tracking-tight">UniMentor</span>
+        <span class="text-[10px] font-black uppercase px-1.5 py-0.5 rounded-md bg-zinc-950 text-white shadow-xs">AI</span>
       </div>
     </a>
 
     <!-- Public Nav Links -->
-    <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-700">
-      <a href="{% url 'programs:catalog' %}" class="hover:text-orange-600 transition">
-        Universitetlar
+    <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-zinc-700">
+      <a href="{% url 'programs:catalog' %}" class="hover:text-zinc-950 transition font-bold">
+        Tavsiya etilgan universitetlar
       </a>
-      <a href="{% url 'home' %}#mentor" class="hover:text-orange-600 transition">
+      <a href="{% url 'home' %}#mentor" class="hover:text-zinc-950 transition">
         Mentor
       </a>
-      <a href="{% url 'home' %}#how-it-works" class="hover:text-orange-600 transition">
+      <a href="{% url 'home' %}#how-it-works" class="hover:text-zinc-950 transition">
         Qanday ishlaydi?
       </a>
     </nav>
@@ -29,15 +29,15 @@
     <!-- Auth Actions -->
     <div class="flex items-center space-x-3">
       {% if request.user.is_authenticated %}
-        <a href="{% url 'dashboard:index' %}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-xs transition space-x-1.5 shadow-orange-100">
+        <a href="{% url 'dashboard:index' %}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-zinc-950 hover:bg-zinc-800 rounded-xl shadow-xs transition space-x-1.5">
           <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
           <span>Boshqaruv paneli</span>
         </a>
       {% else %}
-        <a href="{% url 'accounts:login' %}" class="text-sm font-bold text-slate-700 hover:text-orange-600 px-3 py-2 rounded-xl transition">
+        <a href="{% url 'accounts:login' %}" class="text-sm font-bold text-zinc-700 hover:text-zinc-950 px-3 py-2 rounded-xl transition">
           Kirish
         </a>
-        <a href="{% url 'accounts:register' %}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl shadow-xs transition space-x-1 shadow-orange-200">
+        <a href="{% url 'accounts:register' %}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-zinc-950 hover:bg-zinc-800 rounded-xl shadow-xs transition space-x-1">
           <span>Ro'yxatdan o'tish</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>

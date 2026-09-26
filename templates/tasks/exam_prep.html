@@ -32,10 +32,10 @@
   <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
     <div class="flex items-center justify-between">
       <h2 class="text-sm font-bold text-slate-900 flex items-center space-x-2">
-        <i data-lucide="bar-chart-3" class="w-4 h-4 text-indigo-600"></i>
+        <i data-lucide="bar-chart-3" class="w-4 h-4 text-zinc-950"></i>
         <span>5 Asosiy Ko'nikma Balari (0–100)</span>
       </h2>
-      <span class="text-xs text-slate-400">Umumiy Ready Score: <strong class="text-indigo-600">{{ ready_score }}%</strong></span>
+      <span class="text-xs text-slate-400">Umumiy Ready Score: <strong class="text-zinc-950">{{ ready_score }}%</strong></span>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -43,13 +43,13 @@
         <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-slate-700">{{ item.label }}</span>
-            <i data-lucide="{{ item.icon }}" class="w-4 h-4 text-indigo-600"></i>
+            <i data-lucide="{{ item.icon }}" class="w-4 h-4 text-zinc-950"></i>
           </div>
           <div class="text-2xl font-black text-slate-900">
             {{ item.score }}<span class="text-xs text-slate-400 font-normal">/100</span>
           </div>
           <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
-            <div class="bg-indigo-600 h-1.5 rounded-full" style="width: {{ item.score }}%"></div>
+            <div class="bg-zinc-950 h-1.5 rounded-full" style="width: {{ item.score }}%"></div>
           </div>
         </div>
       {% endfor %}
@@ -60,19 +60,19 @@
   <div class="space-y-4">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-3">
       <div class="flex items-center space-x-2">
-        <i data-lucide="zap" class="w-5 h-5 text-indigo-600"></i>
+        <i data-lucide="zap" class="w-5 h-5 text-zinc-950"></i>
         <h2 class="text-base font-black text-slate-900">Kunlik Mashqlar va Vazifalar</h2>
       </div>
 
       <!-- Tabs -->
       <div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-xl">
-        <a href="{% url 'tasks:exam_prep' %}?tab=today" class="px-3 py-1.5 rounded-lg text-xs font-bold transition {% if tab == 'today' %}bg-white text-indigo-600 shadow-xs{% else %}text-slate-600 hover:text-slate-900{% endif %}">
+        <a href="{% url 'tasks:exam_prep' %}?tab=today" class="px-3 py-1.5 rounded-lg text-xs font-bold transition {% if tab == 'today' %}bg-white text-zinc-950 shadow-xs{% else %}text-slate-600 hover:text-slate-900{% endif %}">
           Bugungi ({{ today_count }})
         </a>
-        <a href="{% url 'tasks:exam_prep' %}?tab=completed" class="px-3 py-1.5 rounded-lg text-xs font-bold transition {% if tab == 'completed' %}bg-white text-indigo-600 shadow-xs{% else %}text-slate-600 hover:text-slate-900{% endif %}">
+        <a href="{% url 'tasks:exam_prep' %}?tab=completed" class="px-3 py-1.5 rounded-lg text-xs font-bold transition {% if tab == 'completed' %}bg-white text-zinc-950 shadow-xs{% else %}text-slate-600 hover:text-slate-900{% endif %}">
           Tugallangan ({{ total_completed_count }})
         </a>
-        <a href="{% url 'tasks:exam_prep' %}?tab=all" class="px-3 py-1.5 rounded-lg text-xs font-bold transition {% if tab == 'all' %}bg-white text-indigo-600 shadow-xs{% else %}text-slate-600 hover:text-slate-900{% endif %}">
+        <a href="{% url 'tasks:exam_prep' %}?tab=all" class="px-3 py-1.5 rounded-lg text-xs font-bold transition {% if tab == 'all' %}bg-white text-zinc-950 shadow-xs{% else %}text-slate-600 hover:text-slate-900{% endif %}">
           Barchasi
         </a>
       </div>
@@ -81,19 +81,19 @@
     <!-- Task Cards List -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {% for task in exam_tasks %}
-        <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs flex flex-col justify-between space-y-4 hover:border-indigo-200 transition">
+        <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs flex flex-col justify-between space-y-4 hover:border-zinc-300 transition">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-indigo-50 text-indigo-700">
+              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-zinc-100 text-zinc-900">
                 {{ task.get_task_type_display }}
               </span>
               {% if task.completed %}
-                <span class="flex items-center space-x-1 text-emerald-600 text-xs font-bold">
+                <span class="flex items-center space-x-1 text-zinc-950 text-xs font-bold">
                   <i data-lucide="check-circle" class="w-4 h-4"></i>
                   <span>{{ task.score }} ball</span>
                 </span>
               {% else %}
-                <span class="text-xs text-amber-600 font-bold bg-amber-50 px-2 py-0.5 rounded-md">
+                <span class="text-xs text-zinc-900 font-bold bg-zinc-100 px-2 py-0.5 rounded-md">
                   Kutilmoqda
                 </span>
               {% endif %}
@@ -123,7 +123,7 @@
                 Tahlilni ko'rish
               </a>
             {% else %}
-              <a href="{% url 'tasks:detail' task.id %}" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition flex items-center space-x-1">
+              <a href="{% url 'tasks:detail' task.id %}" class="px-4 py-2 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold rounded-xl transition flex items-center space-x-1">
                 <span>Mashqni bajarish</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </a>
@@ -142,7 +142,7 @@
   <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6 mt-8">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
       <div>
-        <div class="flex items-center space-x-2 text-xs font-bold text-indigo-600 uppercase tracking-wider mb-0.5">
+        <div class="flex items-center space-x-2 text-xs font-bold text-zinc-950 uppercase tracking-wider mb-0.5">
           <i data-lucide="book-open" class="w-4 h-4"></i>
           <span>Imtihon Strategiyalari Kutubxonasi</span>
         </div>
@@ -151,11 +151,11 @@
 
       <!-- Category Filter Pills -->
       <div class="flex items-center space-x-1.5 overflow-x-auto pb-1">
-        <a href="{% url 'tasks:exam_prep' %}" class="px-3 py-1 rounded-xl text-xs font-bold transition {% if not selected_category %}bg-indigo-600 text-white{% else %}bg-slate-100 text-slate-600 hover:bg-slate-200{% endif %}">
+        <a href="{% url 'tasks:exam_prep' %}" class="px-3 py-1 rounded-xl text-xs font-bold transition {% if not selected_category %}bg-zinc-950 text-white{% else %}bg-slate-100 text-slate-600 hover:bg-slate-200{% endif %}">
           Barchasi
         </a>
         {% for cat_val, cat_lbl in ielts_category_choices %}
-          <a href="{% url 'tasks:exam_prep' %}?category={{ cat_val }}" class="px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition {% if selected_category == cat_val %}bg-indigo-600 text-white{% else %}bg-slate-100 text-slate-600 hover:bg-slate-200{% endif %}">
+          <a href="{% url 'tasks:exam_prep' %}?category={{ cat_val }}" class="px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition {% if selected_category == cat_val %}bg-zinc-950 text-white{% else %}bg-slate-100 text-slate-600 hover:bg-slate-200{% endif %}">
             {{ cat_lbl }}
           </a>
         {% endfor %}
@@ -167,11 +167,11 @@
       {% for guide in ielts_resources %}
         <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between space-y-3">
           <div>
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-100 text-indigo-800">
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-zinc-200 text-zinc-950">
               {{ guide.get_category_display }}
             </span>
             <h3 class="text-sm font-bold text-slate-900 mt-2">
-              <a href="{% url 'resources:detail' guide.id %}" class="hover:text-indigo-600 transition">{{ guide.title }}</a>
+              <a href="{% url 'resources:detail' guide.id %}" class="hover:text-zinc-950 transition">{{ guide.title }}</a>
             </h3>
             <p class="text-xs text-slate-600 mt-1 leading-relaxed">
               {{ guide.summary }}
@@ -180,7 +180,7 @@
 
           <div class="pt-2 border-t border-slate-200/60 flex items-center justify-between">
             <span class="text-[11px] text-slate-400">{{ guide.author_name }}</span>
-            <a href="{% url 'resources:detail' guide.id %}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center space-x-1">
+            <a href="{% url 'resources:detail' guide.id %}" class="text-xs font-bold text-zinc-950 hover:text-zinc-950 flex items-center space-x-1">
               <span>Qo'llanmani o'qish</span>
               <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
             </a>

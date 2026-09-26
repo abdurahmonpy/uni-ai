@@ -7,7 +7,7 @@
 
   <!-- Breadcrumb and Task Header -->
   <div class="space-y-2">
-    <a href="{% url 'tasks:list' %}" class="inline-flex items-center space-x-1 text-xs font-bold text-indigo-600 hover:text-indigo-800">
+    <a href="{% url 'tasks:list' %}" class="inline-flex items-center space-x-1 text-xs font-bold text-zinc-950 hover:text-zinc-950">
       <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
       <span>Barcha vazifalarga qaytish</span>
     </a>
@@ -15,12 +15,12 @@
     <div class="flex items-center space-x-2 flex-wrap gap-1">
       <!-- Track Badge -->
       {% if task.track == 'track_a' %}
-        <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200 flex items-center space-x-1">
+        <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-zinc-200 text-zinc-950 border border-zinc-300 flex items-center space-x-1">
           <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
           <span>Track A: Imtihon Tayyorgarligi</span>
         </span>
       {% else %}
-        <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center space-x-1">
+        <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-zinc-200 text-emerald-800 border border-zinc-300 flex items-center space-x-1">
           <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
           <span>Track B: Universitet Arizasi va Hujjatlar</span>
         </span>
@@ -47,7 +47,7 @@
     <!-- Instructions -->
     {% if task.content.instruction %}
       <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs md:text-sm text-slate-700 font-medium flex items-start space-x-2">
-        <i data-lucide="bookmark" class="w-4 h-4 text-indigo-600 flex-shrink-0 mt-0.5"></i>
+        <i data-lucide="bookmark" class="w-4 h-4 text-zinc-950 flex-shrink-0 mt-0.5"></i>
         <div>
           <strong>Ko'rsatma:</strong> {{ task.content.instruction }}
         </div>
@@ -66,9 +66,9 @@
 
     <!-- Guidelines (for essay / SOP / LOR tasks) -->
     {% if task.content.guidelines %}
-      <div class="p-4 bg-amber-50/70 border border-amber-200 rounded-2xl text-xs md:text-sm text-slate-800 space-y-1.5">
+      <div class="p-4 bg-zinc-100/70 border border-amber-200 rounded-2xl text-xs md:text-sm text-slate-800 space-y-1.5">
         <div class="font-bold text-amber-900 flex items-center space-x-1.5">
-          <i data-lucide="sparkles" class="w-4 h-4 text-amber-700"></i>
+          <i data-lucide="sparkles" class="w-4 h-4 text-zinc-900"></i>
           <span>Yozish bo'yicha tavsiyalar:</span>
         </div>
         <ul class="list-disc list-inside space-y-1 text-slate-700">
@@ -82,7 +82,7 @@
     <!-- Question Box -->
     <div class="space-y-3">
       <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">Savol / Topshiriq:</h3>
-      <div class="p-4 bg-indigo-50/50 border border-indigo-200 rounded-2xl text-base md:text-lg font-bold text-slate-900">
+      <div class="p-4 bg-zinc-100/50 border border-zinc-300 rounded-2xl text-base md:text-lg font-bold text-slate-900">
         {{ task.content.question|default:"Quyidagi topshiriqqa javob bering:" }}
       </div>
     </div>
@@ -98,8 +98,8 @@
             To'g'ri variantni tanlang:
           </label>
           {% for opt in task.content.options %}
-            <label class="flex items-start p-4 border border-slate-200 rounded-2xl cursor-pointer hover:bg-slate-50 transition has-[:checked]:bg-indigo-50 has-[:checked]:border-indigo-500 has-[:checked]:ring-2 has-[:checked]:ring-indigo-200">
-              <input type="radio" name="selected_option" value="{{ opt.key }}" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300">
+            <label class="flex items-start p-4 border border-slate-200 rounded-2xl cursor-pointer hover:bg-slate-50 transition has-[:checked]:bg-zinc-100 has-[:checked]:border-zinc-950 has-[:checked]:ring-2 has-[:checked]:ring-indigo-200">
+              <input type="radio" name="selected_option" value="{{ opt.key }}" class="mt-1 h-4 w-4 text-zinc-950 focus:ring-indigo-500 border-slate-300">
               <div class="ml-3 text-sm md:text-base">
                 <span class="font-bold text-slate-900">{{ opt.key }})</span>
                 <span class="text-slate-800 ml-1">{{ opt.text }}</span>
@@ -119,7 +119,7 @@
             rows="6"
             required
             placeholder="Javobingizni shu yerga batafsil yozing..."
-            class="w-full rounded-2xl border-slate-200 focus:border-indigo-500 focus:ring-indigo-500 text-sm p-4 leading-relaxed"
+            class="w-full rounded-2xl border-slate-200 focus:border-zinc-950 focus:ring-indigo-500 text-sm p-4 leading-relaxed"
           ></textarea>
           <p class="text-xs text-slate-400">
             Topshiriq mazmuni bo'yicha to'liqroq va asosli javob yozish AI bahosini oshiradi.
@@ -133,7 +133,7 @@
         </a>
         <button
           type="submit"
-          class="px-6 py-3.5 {% if task.track == 'track_a' %}bg-purple-600 hover:bg-purple-700{% else %}bg-emerald-600 hover:bg-emerald-700{% endif %} text-white text-sm font-bold rounded-2xl shadow-md transition inline-flex items-center space-x-2"
+          class="px-6 py-3.5 {% if task.track == 'track_a' %}bg-zinc-950 hover:bg-purple-700{% else %}bg-zinc-950 hover:bg-emerald-700{% endif %} text-white text-sm font-bold rounded-2xl shadow-md transition inline-flex items-center space-x-2"
         >
           <span>Javobni topshirish</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>

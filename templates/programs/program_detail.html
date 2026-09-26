@@ -7,7 +7,7 @@
 
   <!-- Breadcrumb and Return Link -->
   <div class="flex items-center justify-between">
-    <a href="{% url 'programs:catalog' %}" class="inline-flex items-center space-x-1.5 text-xs font-bold text-orange-600 hover:text-orange-800 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs transition">
+    <a href="{% url 'programs:catalog' %}" class="inline-flex items-center space-x-1.5 text-xs font-bold text-zinc-950 hover:text-zinc-950 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-xs transition">
       <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
       <span>Barcha grant va universitetlarga qaytish</span>
     </a>
@@ -27,9 +27,9 @@
     <div class="relative z-10 flex items-center justify-between flex-wrap gap-2">
       <div class="flex items-center space-x-2 flex-wrap gap-y-1">
         <span class="text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-xl backdrop-blur-md shadow-xs flex items-center space-x-1.5
-          {% if program.type == 'grant' %}bg-emerald-600 text-white
-          {% elif program.type == 'exchange' %}bg-blue-600 text-white
-          {% elif program.type == 'partial_grant' %}bg-amber-600 text-white
+          {% if program.type == 'grant' %}bg-zinc-950 text-white
+          {% elif program.type == 'exchange' %}bg-zinc-900 text-white
+          {% elif program.type == 'partial_grant' %}bg-zinc-900 text-white
           {% else %}bg-zinc-800 text-white{% endif %}">
           <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
           <span>{{ program.get_type_display }}</span>
@@ -54,7 +54,7 @@
         onclick="toggleTrackProgramDetail({{ program.id }}, this)"
         id="detail-track-btn"
         class="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl backdrop-blur-md text-xs font-bold transition duration-150 shadow-sm
-          {% if is_tracked %}bg-orange-500 text-white border border-orange-400 shadow-orange-500/30{% else %}bg-black/60 hover:bg-black/80 text-white border border-white/20{% endif %}"
+          {% if is_tracked %}bg-zinc-950 text-white border border-zinc-800 shadow-zinc-900/10{% else %}bg-black/60 hover:bg-black/80 text-white border border-white/20{% endif %}"
         title="Kuzatuvga qo'shish yoki olib tashlash"
       >
         <i data-lucide="bookmark" class="w-4 h-4 {% if is_tracked %}fill-white text-white{% else %}text-white{% endif %}"></i>
@@ -65,12 +65,12 @@
     <!-- Bottom hero titles -->
     <div class="relative z-10 space-y-2">
       {% if program.university %}
-        <div class="flex items-center space-x-2 text-orange-300 font-bold text-xs sm:text-sm drop-shadow-sm">
+        <div class="flex items-center space-x-2 text-zinc-300 font-bold text-xs sm:text-sm drop-shadow-sm">
           <i data-lucide="building-2" class="w-4 h-4"></i>
           <span>{{ program.university.name }}{% if program.university.city %} • {{ program.university.city }}{% endif %}</span>
         </div>
       {% else %}
-        <div class="flex items-center space-x-2 text-orange-300 font-bold text-xs sm:text-sm drop-shadow-sm">
+        <div class="flex items-center space-x-2 text-zinc-300 font-bold text-xs sm:text-sm drop-shadow-sm">
           <i data-lucide="award" class="w-4 h-4"></i>
           <span>Xalqaro Hukumat va Jamg'arma Grant Dasturi</span>
         </div>
@@ -87,8 +87,8 @@
     
     <!-- 1. Grant Qamrovi -->
     <div class="p-4 rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-2">
-      <div class="flex items-center space-x-2 text-emerald-800 font-bold text-xs uppercase tracking-wider">
-        <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
+      <div class="flex items-center space-x-2 text-zinc-900 font-bold text-xs uppercase tracking-wider">
+        <div class="w-7 h-7 rounded-lg bg-zinc-200 text-zinc-900 flex items-center justify-center">
           <i data-lucide="gift" class="w-4 h-4"></i>
         </div>
         <span>Qamrovi</span>
@@ -102,8 +102,8 @@
 
     <!-- 2. Til Talabi -->
     <div class="p-4 rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-2">
-      <div class="flex items-center space-x-2 text-blue-800 font-bold text-xs uppercase tracking-wider">
-        <div class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center">
+      <div class="flex items-center space-x-2 text-zinc-900 font-bold text-xs uppercase tracking-wider">
+        <div class="w-7 h-7 rounded-lg bg-zinc-200 text-zinc-900 flex items-center justify-center">
           <i data-lucide="languages" class="w-4 h-4"></i>
         </div>
         <span>Til talabi</span>
@@ -117,8 +117,8 @@
 
     <!-- 3. Bosqich -->
     <div class="p-4 rounded-3xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-2">
-      <div class="flex items-center space-x-2 text-orange-800 font-bold text-xs uppercase tracking-wider">
-        <div class="w-7 h-7 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center">
+      <div class="flex items-center space-x-2 text-zinc-950 font-bold text-xs uppercase tracking-wider">
+        <div class="w-7 h-7 rounded-lg bg-zinc-200 text-zinc-900 flex items-center justify-center">
           <i data-lucide="graduation-cap" class="w-4 h-4"></i>
         </div>
         <span>Daraja</span>
@@ -152,7 +152,7 @@
     <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <div class="flex items-center space-x-2">
-          <div class="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
+          <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-950 flex items-center justify-center">
             <i data-lucide="compass" class="w-4 h-4"></i>
           </div>
           <div>
@@ -162,7 +162,7 @@
         </div>
 
         {% if student_program %}
-          <span class="px-3 py-1 rounded-full text-xs font-extrabold {% if student_program.status == 'accepted' %}bg-emerald-100 text-emerald-800{% elif student_program.status == 'submitted' %}bg-blue-100 text-blue-800{% elif student_program.status == 'interview' %}bg-purple-100 text-purple-800{% elif student_program.status == 'rejected' %}bg-rose-100 text-rose-800{% else %}bg-orange-100 text-orange-800{% endif %}">
+          <span class="px-3 py-1 rounded-full text-xs font-extrabold {% if student_program.status == 'accepted' %}bg-zinc-200 text-zinc-900{% elif student_program.status == 'submitted' %}bg-zinc-200 text-zinc-900{% elif student_program.status == 'interview' %}bg-zinc-200 text-purple-800{% elif student_program.status == 'rejected' %}bg-rose-100 text-rose-800{% else %}bg-zinc-200 text-zinc-950{% endif %}">
             {{ student_program.get_status_display }}
           </span>
         {% else %}
@@ -177,7 +177,7 @@
             <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
               Joriy holat
             </label>
-            <select name="status" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-semibold text-slate-800 focus:ring-2 focus:ring-orange-500">
+            <select name="status" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-semibold text-slate-800 focus:ring-2 focus:ring-zinc-950">
               {% for val, label in status_choices %}
                 <option value="{{ val }}" {% if student_program and student_program.status == val %}selected{% endif %}>
                   {{ label }}
@@ -190,14 +190,14 @@
             <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
               Topshirilgan sana
             </label>
-            <input type="date" name="submitted_at" value="{{ student_program.submitted_at|date:'Y-m-d'|default:'' }}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:ring-2 focus:ring-orange-500">
+            <input type="date" name="submitted_at" value="{{ student_program.submitted_at|date:'Y-m-d'|default:'' }}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:ring-2 focus:ring-zinc-950">
           </div>
 
           <div>
             <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
               Qaror / Natija sanasi
             </label>
-            <input type="date" name="decision_at" value="{{ student_program.decision_at|date:'Y-m-d'|default:'' }}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:ring-2 focus:ring-orange-500">
+            <input type="date" name="decision_at" value="{{ student_program.decision_at|date:'Y-m-d'|default:'' }}" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:ring-2 focus:ring-zinc-950">
           </div>
         </div>
 
@@ -205,11 +205,11 @@
           <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">
             Shaxsiy izohlar (Login ID, Portal havolasi, tayyorgarlik eslatmalari)
           </label>
-          <input type="text" name="notes" value="{{ student_program.notes|default:'' }}" placeholder="Masalan: Portal login ID: 98124, insho 2-qoralamasi tayyor" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:ring-2 focus:ring-orange-500">
+          <input type="text" name="notes" value="{{ student_program.notes|default:'' }}" placeholder="Masalan: Portal login ID: 98124, insho 2-qoralamasi tayyor" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:ring-2 focus:ring-zinc-950">
         </div>
 
         <div class="flex justify-end pt-1">
-          <button type="submit" class="px-5 py-2 bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center space-x-1">
+          <button type="submit" class="px-5 py-2 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center space-x-1">
             <i data-lucide="check" class="w-3.5 h-3.5"></i>
             <span>Holatni saqlash</span>
           </button>
@@ -228,7 +228,7 @@
       {% if program.description %}
         <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs space-y-3">
           <h2 class="text-base font-bold text-slate-900 flex items-center space-x-2">
-            <i data-lucide="info" class="w-4 h-4 text-orange-600"></i>
+            <i data-lucide="info" class="w-4 h-4 text-zinc-950"></i>
             <span>Dastur Haqida Umumiy Ma'lumot</span>
           </h2>
           <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
@@ -240,7 +240,7 @@
       <!-- Academic & Eligibility Criteria -->
       <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs space-y-4">
         <h2 class="text-base font-bold text-slate-900 flex items-center space-x-2 pb-3 border-b border-slate-100">
-          <i data-lucide="award" class="w-4 h-4 text-orange-600"></i>
+          <i data-lucide="award" class="w-4 h-4 text-zinc-950"></i>
           <span>Nomzodga Qo'yiladigan Asosiy Talablar</span>
         </h2>
 
@@ -275,8 +275,8 @@
 
           <!-- Ish tajribasi -->
           {% if program.parsed_details.experience %}
-            <div class="sm:col-span-2 p-4 rounded-2xl bg-purple-50/70 border border-purple-100 space-y-1">
-              <span class="text-[11px] font-bold text-purple-600 uppercase tracking-wider block">Ish va jamoat tajribasi talabi</span>
+            <div class="sm:col-span-2 p-4 rounded-2xl bg-zinc-100/70 border border-zinc-200 space-y-1">
+              <span class="text-[11px] font-bold text-zinc-950 uppercase tracking-wider block">Ish va jamoat tajribasi talabi</span>
               <p class="text-xs font-bold text-purple-950">{{ program.parsed_details.experience }}</p>
             </div>
           {% endif %}
@@ -287,7 +287,7 @@
       <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs space-y-4">
         <div class="flex items-center justify-between pb-3 border-b border-slate-100">
           <h2 class="text-base font-bold text-slate-900 flex items-center space-x-2">
-            <i data-lucide="clipboard-check" class="w-4 h-4 text-orange-600"></i>
+            <i data-lucide="clipboard-check" class="w-4 h-4 text-zinc-950"></i>
             <span>Kerakli Hujjatlar Nazorat Ro'yxati</span>
           </h2>
           <span class="text-xs font-bold text-slate-400">{{ program.parsed_details.documents|length }} ta talab</span>
@@ -296,8 +296,8 @@
         {% if program.parsed_details.documents %}
           <div class="space-y-2.5">
             {% for doc in program.parsed_details.documents %}
-              <div class="p-3.5 rounded-2xl bg-slate-50 hover:bg-orange-50/40 border border-slate-100 hover:border-orange-200 transition flex items-center space-x-3">
-                <div class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
+              <div class="p-3.5 rounded-2xl bg-slate-50 hover:bg-zinc-100/40 border border-slate-100 hover:border-zinc-300 transition flex items-center space-x-3">
+                <div class="w-6 h-6 rounded-lg bg-zinc-200 text-zinc-900 flex items-center justify-center flex-shrink-0">
                   <i data-lucide="check" class="w-3.5 h-3.5"></i>
                 </div>
                 <span class="text-xs font-bold text-slate-800">{{ doc }}</span>
@@ -313,7 +313,7 @@
       {% if program.university %}
         <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs space-y-4">
           <h2 class="text-base font-bold text-slate-900 flex items-center space-x-2 pb-3 border-b border-slate-100">
-            <i data-lucide="building" class="w-4 h-4 text-orange-600"></i>
+            <i data-lucide="building" class="w-4 h-4 text-zinc-950"></i>
             <span>{{ program.university.name }} — Universitet Profili</span>
           </h2>
 
@@ -358,7 +358,7 @@
           href="{{ program.source_url }}"
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full py-3.5 px-4 bg-orange-600 hover:bg-orange-700 active:scale-[0.99] text-white text-xs font-bold rounded-2xl shadow-md shadow-orange-500/20 transition flex items-center justify-center space-x-2 text-center"
+          class="w-full py-3.5 px-4 bg-zinc-950 hover:bg-zinc-800 active:scale-[0.99] text-white text-xs font-bold rounded-2xl shadow-md shadow-zinc-900/10 transition flex items-center justify-center space-x-2 text-center"
         >
           <span>Rasmiy Saytga O'tish</span>
           <i data-lucide="external-link" class="w-4 h-4"></i>
@@ -368,7 +368,7 @@
       <!-- AI Mentor Consultation Card -->
       <div class="bg-zinc-950 rounded-2xl p-6 text-white border border-zinc-800 shadow-xs space-y-4">
         <div class="flex items-center space-x-2.5">
-          <div class="w-8 h-8 rounded-xl bg-orange-600 text-white flex items-center justify-center">
+          <div class="w-8 h-8 rounded-xl bg-zinc-950 text-white flex items-center justify-center">
             <i data-lucide="bot" class="w-4 h-4"></i>
           </div>
           <div>
@@ -385,15 +385,15 @@
           href="{% url 'mentor:chat' %}"
           class="w-full py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/15 text-white text-xs font-bold rounded-xl transition flex items-center justify-center space-x-1.5 text-center"
         >
-          <i data-lucide="message-circle" class="w-3.5 h-3.5 text-orange-400"></i>
+          <i data-lucide="message-circle" class="w-3.5 h-3.5 text-zinc-400"></i>
           <span>Mentor bilan muhokama qilish</span>
         </a>
       </div>
 
       <!-- Verification Meta Card (R5 Requirement) -->
       <div class="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-xs space-y-3 text-xs text-slate-600">
-        <div class="flex items-center space-x-2 text-emerald-700 font-bold">
-          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+        <div class="flex items-center space-x-2 text-zinc-900 font-bold">
+          <i data-lucide="shield-check" class="w-4 h-4 text-zinc-950"></i>
           <span>Rasmiy Ma'lumot Tekshiruvi</span>
         </div>
         <p class="text-[11px] text-slate-500 leading-relaxed">
@@ -456,17 +456,17 @@
         const icon = btn.querySelector('i[data-lucide="bookmark"]');
 
         if (data.is_tracked) {
-          btn.className = 'inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition duration-150 bg-orange-100 text-orange-800 border border-orange-200';
+          btn.className = 'inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition duration-150 bg-zinc-200 text-zinc-950 border border-zinc-300';
           if (labelSpan) labelSpan.textContent = 'Kuzatilmoqda';
           if (icon) {
-            icon.classList.add('fill-orange-600', 'text-orange-600');
+            icon.classList.add('fill-zinc-950', 'text-zinc-950');
             icon.classList.remove('text-slate-500');
           }
         } else {
           btn.className = 'inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition duration-150 bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200';
           if (labelSpan) labelSpan.textContent = 'Kuzatish';
           if (icon) {
-            icon.classList.remove('fill-orange-600', 'text-orange-600');
+            icon.classList.remove('fill-zinc-950', 'text-zinc-950');
             icon.classList.add('text-slate-500');
           }
         }

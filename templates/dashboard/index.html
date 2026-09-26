@@ -5,75 +5,64 @@
 {% block content %}
 <div class="space-y-6">
 
-  <!-- Header & Welcome Banner — Hand-Drawn Dark Paper Style -->
-  <div class="flex flex-col md:flex-row md:items-center justify-between bg-zinc-900 text-white gap-4 p-6 md:p-8"
-       style="border: 2.5px solid #292929; border-radius: 6px 18px 10px 14px / 12px 6px 18px 8px; box-shadow: 5px 6px 0 #1a1a1a; position: relative; overflow: hidden;">
-    <!-- Decorative corner sketch marks -->
-    <span style="position:absolute;top:8px;left:10px;width:20px;height:20px;border-left:2px solid #ff6326;border-top:2px solid #ff6326;border-radius:2px 0 0 0;opacity:0.6;"></span>
-    <span style="position:absolute;bottom:8px;right:10px;width:20px;height:20px;border-right:2px solid #ff6326;border-bottom:2px solid #ff6326;border-radius:0 0 2px 0;opacity:0.6;"></span>
-
-    <div class="space-y-3">
+  <!-- Header & Welcome Banner — Phenomenon Studio Style -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between bg-zinc-950 text-white gap-6 p-6 md:p-8 rounded-[28px] border border-zinc-800 shadow-2xl shadow-zinc-900/10">
+    <div class="space-y-3.5">
       <!-- Demographic Badges Strip -->
       <div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
         {% if demographics.grade_display %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 px-3 py-1 text-zinc-200"
-                style="border:1.5px solid #ff6326;border-radius:3px 8px 4px 7px/6px 3px 8px 4px;font-family:'Caveat',cursive;">
-            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-orange-400"></i>
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-900 border border-zinc-700 px-3 py-1 rounded-full text-zinc-300">
+            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-zinc-300"></i>
             <span>{{ demographics.grade_display }}</span>
           </span>
         {% endif %}
 
         {% if demographics.region_display %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 px-3 py-1 text-zinc-200"
-                style="border:1.5px solid #888;border-radius:5px 3px 7px 4px/4px 6px 3px 5px;font-family:'Caveat',cursive;">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-orange-400"></i>
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-900 border border-zinc-700 px-3 py-1 rounded-full text-zinc-300">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-zinc-300"></i>
             <span>{{ demographics.region_display }}</span>
           </span>
         {% endif %}
 
         {% if demographics.field_of_study_display %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 px-3 py-1 text-zinc-200"
-                style="border:1.5px solid #888;border-radius:4px 7px 3px 8px/7px 4px 6px 3px;font-family:'Caveat',cursive;">
-            <i data-lucide="compass" class="w-3.5 h-3.5 text-orange-400"></i>
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-900 border border-zinc-700 px-3 py-1 rounded-full text-zinc-300">
+            <i data-lucide="compass" class="w-3.5 h-3.5 text-zinc-300"></i>
             <span>{{ demographics.field_of_study_display }}</span>
           </span>
         {% endif %}
 
         {% if demographics.target_countries %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 px-3 py-1 text-zinc-200"
-                style="border:1.5px solid #888;border-radius:6px 4px 8px 3px/3px 7px 4px 6px;font-family:'Caveat',cursive;">
-            <i data-lucide="globe" class="w-3.5 h-3.5 text-orange-400"></i>
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-900 border border-zinc-700 px-3 py-1 rounded-full text-zinc-300">
+            <i data-lucide="globe" class="w-3.5 h-3.5 text-zinc-300"></i>
             <span>{{ demographics.target_countries|join:", " }}</span>
           </span>
         {% endif %}
 
         {% if demographics.budget_display %}
-          <span class="inline-flex items-center space-x-1.5 px-3 py-1 text-emerald-100"
-                style="background:#1a4a36;border:1.5px solid #4ade80;border-radius:5px 8px 4px 7px/8px 4px 7px 5px;font-family:'Caveat',cursive;">
-            <i data-lucide="award" class="w-3.5 h-3.5 text-emerald-300"></i>
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-900 border border-zinc-700 px-3 py-1 rounded-full text-zinc-300">
+            <i data-lucide="award" class="w-3.5 h-3.5 text-zinc-300"></i>
             <span>{{ demographics.budget_display }}</span>
           </span>
         {% endif %}
       </div>
 
-      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight" style="font-family:'Caveat',cursive;text-shadow:1px 1px 0 #000;">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
         Xush kelibsiz, {{ student.user.first_name|default:student.user.phone_number }}!
       </h1>
-      <p class="text-zinc-300 text-sm md:text-base max-w-2xl" style="font-family:'Patrick Hand',cursive;">
+      <p class="text-zinc-300 text-sm md:text-base max-w-2xl font-normal leading-relaxed">
         Bugungi Dual-Track rejangiz bo'yicha Imtihon tayyorgarligi (Track A) va Universitet arizasi (Track B) vazifalarini bajaring.
       </p>
     </div>
     
-    <!-- Streak & Ready Score — Stamp Style -->
+    <!-- Streak & Ready Score Pill -->
     <div class="mt-2 md:mt-0 flex flex-wrap md:flex-col items-start md:items-end gap-3 self-start md:self-auto">
-      <div class="flex items-center px-4 py-2.5"
-           style="background:rgba(255,255,255,0.08);border:2px solid #ff6326;border-radius:4px 12px 6px 10px/10px 4px 12px 5px;box-shadow:3px 3px 0 #ff6326;">
-        <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center mr-3">
-          <i data-lucide="flame" class="w-5 h-5 text-amber-300"></i>
+      <div class="flex items-center px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-lg">
+        <div class="w-10 h-10 rounded-xl bg-zinc-800 text-zinc-300 flex items-center justify-center mr-3">
+          <i data-lucide="flame" class="w-5 h-5 text-zinc-300"></i>
         </div>
         <div>
-          <div class="text-xl font-black text-white" style="font-family:'Caveat',cursive;">{{ streak_count }} kun</div>
-          <div class="text-[11px] text-zinc-300 font-medium">Ketma-ketlik (Streak)</div>
+          <div class="text-xl font-extrabold text-white tracking-tight">{{ streak_count }} kun</div>
+          <div class="text-[11px] text-zinc-400 font-medium">Ketma-ketlik (Streak)</div>
         </div>
       </div>
     </div>
@@ -86,27 +75,27 @@
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
     
     <!-- Widget 1: Track A Exam Countdown -->
-    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-indigo-200 transition min-w-0">
+    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-purple-700 truncate pr-2">
-            <span class="w-6 h-6 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
+          <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-zinc-950 truncate pr-2">
+            <span class="w-6 h-6 rounded-lg bg-zinc-100 text-zinc-950 flex items-center justify-center shrink-0">
               <i data-lucide="calendar-check" class="w-3.5 h-3.5"></i>
             </span>
             <span class="truncate">Imtihon Sanasi</span>
           </div>
-          <span class="text-[11px] px-2.5 py-0.5 bg-purple-100 text-purple-800 font-bold rounded-full shrink-0">
+          <span class="text-[11px] px-2.5 py-0.5 bg-zinc-100 text-zinc-950 font-bold rounded-full shrink-0">
             Track A
           </span>
         </div>
 
         <div class="my-2">
           <div class="flex items-baseline space-x-2 flex-wrap">
-            <span class="text-4xl xl:text-5xl font-black text-purple-700">{{ exam_days_left }}</span>
+            <span class="text-4xl xl:text-5xl font-black text-zinc-950">{{ exam_days_left }}</span>
             <span class="text-sm xl:text-base font-bold text-slate-500">kun qoldi</span>
           </div>
           <div class="text-sm font-bold text-slate-800 mt-2 flex items-center space-x-1.5 min-w-0">
-            <i data-lucide="target" class="w-4 h-4 text-purple-600 shrink-0"></i>
+            <i data-lucide="target" class="w-4 h-4 text-zinc-900 shrink-0"></i>
             <span class="truncate">{{ exam_target_score }}</span>
           </div>
           <div class="text-xs text-slate-500 mt-1 truncate">
@@ -117,7 +106,7 @@
 
       <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-2 gap-2">
         <span class="text-[11px] xl:text-xs text-slate-500 font-medium truncate">Standardized Test Prep</span>
-        <a href="{% url 'tasks:list' %}?track=track_a" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-purple-700 hover:text-purple-900 group shrink-0">
+        <a href="{% url 'tasks:list' %}?track=track_a" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-950 hover:text-zinc-950 group shrink-0">
           <span>Mashqlar</span>
           <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition group-hover:translate-x-0.5"></i>
         </a>
@@ -125,17 +114,17 @@
     </div>
 
     <!-- Widget 2: Track B Admission Deadline Countdown -->
-    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-emerald-200 transition min-w-0">
+    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-emerald-700 truncate pr-2">
-            <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+          <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-zinc-900 truncate pr-2">
+            <span class="w-6 h-6 rounded-lg bg-zinc-100 text-zinc-900 flex items-center justify-center shrink-0">
               <i data-lucide="send" class="w-3.5 h-3.5"></i>
             </span>
             <span class="truncate">Universitet Arizasi</span>
           </div>
           {% if has_primary_target %}
-            <span class="text-[11px] px-2.5 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-full flex items-center space-x-1 shrink-0">
+            <span class="text-[11px] px-2.5 py-0.5 bg-zinc-100 text-zinc-950 font-bold rounded-full flex items-center space-x-1 shrink-0">
               <i data-lucide="bookmark" class="w-3 h-3"></i>
               <span class="hidden xl:inline">Maqsad</span>
             </span>
@@ -148,7 +137,7 @@
 
         <div class="my-2">
           <div class="flex items-baseline space-x-2 flex-wrap">
-            <span class="text-4xl xl:text-5xl font-black text-emerald-700">{{ admission_days_left }}</span>
+            <span class="text-4xl xl:text-5xl font-black text-zinc-900">{{ admission_days_left }}</span>
             <span class="text-sm xl:text-base font-bold text-slate-500">kun qoldi</span>
           </div>
           <div class="text-sm font-bold text-slate-800 mt-2 truncate" title="{{ primary_program_name }}">
@@ -168,7 +157,7 @@
 
       <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-2 gap-2">
         <span class="text-[11px] xl:text-xs text-slate-500 font-medium truncate">Arizalar & Hujjatlar</span>
-        <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-emerald-700 hover:text-emerald-900 group shrink-0">
+        <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-900 hover:text-zinc-700 group shrink-0">
           <span>Ko'rish</span>
           <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition group-hover:translate-x-0.5"></i>
         </a>
@@ -176,16 +165,16 @@
     </div>
 
     <!-- Widget 3: Overall Ready Score Card -->
-    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-orange-200 transition min-w-0">
+    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-orange-700 truncate pr-2">
-            <span class="w-6 h-6 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center shrink-0">
+          <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-zinc-950 truncate pr-2">
+            <span class="w-6 h-6 rounded-lg bg-zinc-100 text-zinc-950 flex items-center justify-center shrink-0">
               <i data-lucide="target" class="w-3.5 h-3.5"></i>
             </span>
             <span class="truncate">Tayyorgarlik</span>
           </div>
-          <span class="text-[11px] px-2.5 py-0.5 bg-orange-100 text-orange-800 font-bold rounded-full shrink-0">
+          <span class="text-[11px] px-2.5 py-0.5 bg-zinc-100 text-zinc-950 font-bold rounded-full shrink-0">
             Score
           </span>
         </div>
@@ -198,16 +187,16 @@
           
           <!-- Score Progress Bar -->
           <div class="w-full bg-slate-100 rounded-full h-3 my-2 overflow-hidden">
-            <div class="bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full transition-all duration-500" style="width: {{ overall_ready_score }}%"></div>
+            <div class="bg-gradient-to-r from-zinc-900 to-zinc-950 h-3 rounded-full transition-all duration-500" style="width: {{ overall_ready_score }}%"></div>
           </div>
           
           <p class="text-[11px] xl:text-xs text-slate-600 mt-1 line-clamp-2">
             {% if overall_ready_score >= 80 %}
-              <span class="text-emerald-700 font-semibold">Yuqori tayyorgarlik!</span>
+              <span class="text-zinc-900 font-semibold">Yuqori tayyorgarlik!</span>
             {% elif overall_ready_score >= 60 %}
-              <span class="text-orange-700 font-semibold">Yaxshi daraja!</span>
+              <span class="text-zinc-950 font-semibold">Yaxshi daraja!</span>
             {% else %}
-              <span class="text-amber-700 font-semibold">Boshlang'ich bosqich.</span>
+              <span class="text-zinc-900 font-semibold">Boshlang'ich bosqich.</span>
             {% endif %}
           </p>
         </div>
@@ -215,20 +204,91 @@
 
       <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-2 gap-2">
         <span class="text-[11px] xl:text-xs text-slate-500 font-medium truncate">Ko'nikma Tahlili</span>
-        <a href="{% url 'dashboard:stats' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-indigo-600 hover:text-indigo-800 group shrink-0">
+        <a href="{% url 'dashboard:stats' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-900 hover:text-zinc-950 group shrink-0">
           <span>Tafsilot</span>
           <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition group-hover:translate-x-0.5"></i>
         </a>
       </div>
     </div>
 
+  <!-- ================= TAVSIYA ETILGAN UNIVERSITETLAR ================= -->
+  <div class="bg-white rounded-[28px] p-6 md:p-8 border border-zinc-200 shadow-xl shadow-zinc-900/5 space-y-5">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-200 pb-4 gap-2">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-11 h-11 rounded-2xl bg-zinc-100 text-zinc-950 flex items-center justify-center shadow-xs">
+          <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h2 class="text-xl md:text-2xl font-extrabold text-zinc-900 tracking-tight">Tavsiya etilgan universitetlar</h2>
+            <span class="pill-badge bg-zinc-100 text-zinc-950 text-[10px] font-bold">AI Moslashuv</span>
+          </div>
+          <p class="text-xs sm:text-sm text-zinc-500 font-normal">Sizning ko'rsatkichlaringiz, yo'nalishingiz va byudjetingiz asosida saralangan OTMlar</p>
+        </div>
+      </div>
+
+      <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-xs font-bold text-zinc-950 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-100/70 px-4 py-2 rounded-xl transition space-x-1.5 self-start sm:self-auto">
+        <span>Barchasini ko'rish</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+
+    <!-- Universities Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {% for prog in recommended_programs %}
+        <div class="p-5 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-white hover:border-zinc-400 hover:shadow-lg transition duration-200 flex flex-col justify-between space-y-4">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-zinc-100 text-zinc-950">
+                {% if forloop.first %}96% Mos{% elif forloop.counter == 2 %}92% Mos{% elif forloop.counter == 3 %}88% Mos{% else %}85% Mos{% endif %}
+              </span>
+              <span class="text-[11px] font-semibold text-zinc-500 flex items-center space-x-1">
+                <i data-lucide="map-pin" class="w-3 h-3 text-zinc-400"></i>
+                <span>{{ prog.country }}</span>
+              </span>
+            </div>
+
+            <div>
+              <h3 class="font-extrabold text-zinc-900 text-sm md:text-base leading-snug line-clamp-2" title="{{ prog.name }}">
+                <a href="{% url 'programs:detail' prog.id %}" class="hover:text-zinc-950 transition">
+                  {{ prog.name }}
+                </a>
+              </h3>
+              {% if prog.university %}
+                <p class="text-xs text-zinc-500 mt-0.5 truncate">{{ prog.university.name }}</p>
+              {% endif %}
+            </div>
+
+            <div class="space-y-1 text-xs text-zinc-600 pt-1">
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-zinc-400">Dastur turi:</span>
+                <span class="font-semibold text-zinc-700">{{ prog.get_type_display|truncatechars:20 }}</span>
+              </div>
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-zinc-400">Muddat:</span>
+                <span class="font-bold text-zinc-950">{{ prog.deadline|default:"Ochiq" }}</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="{% url 'programs:detail' prog.id %}" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-800 hover:text-white bg-white hover:bg-zinc-950 rounded-xl border border-zinc-200 hover:border-zinc-950 transition duration-150 flex items-center justify-center space-x-1.5 shadow-2xs">
+            <span>Tavsiyani ko'rish</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      {% empty %}
+        <div class="col-span-4 p-8 text-center bg-zinc-50 rounded-2xl text-zinc-500 text-sm">
+          Universitet tavsiyalari yuklanmoqda...
+        </div>
+      {% endfor %}
+    </div>
   </div>
 
   <!-- Faol Arizalarim (My Active Applications Status Card) -->
   <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-xs space-y-4">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+        <div class="w-10 h-10 rounded-2xl bg-zinc-100 text-zinc-900 flex items-center justify-center">
           <i data-lucide="send" class="w-5 h-5"></i>
         </div>
         <div>
@@ -237,7 +297,7 @@
         </div>
       </div>
 
-      <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-xs font-bold text-indigo-600 hover:text-indigo-800">
+      <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-xs font-bold text-zinc-900 hover:text-zinc-950">
         <span>Barcha dasturlarni ko'rish</span>
         <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>
       </a>
@@ -246,7 +306,7 @@
     <!-- Status Breakdown Badges -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
       <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
+        <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-bold text-xs">
           {{ applications_summary.submitted }}
         </div>
         <div>
@@ -256,7 +316,7 @@
       </div>
 
       <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-xs">
+        <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-bold text-xs">
           {{ applications_summary.interview }}
         </div>
         <div>
@@ -266,17 +326,17 @@
       </div>
 
       <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs">
+        <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-bold text-xs">
           {{ applications_summary.accepted }}
         </div>
         <div>
           <span class="text-[11px] font-bold text-slate-700 block">Qabul qilindi</span>
-          <span class="text-[10px] text-emerald-600 font-bold">Muvaffaqiyat</span>
+          <span class="text-[10px] text-zinc-900 font-bold">Muvaffaqiyat</span>
         </div>
       </div>
 
       <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs">
+        <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-bold text-xs">
           {{ applications_summary.preparing }}
         </div>
         <div>
@@ -293,10 +353,10 @@
           <div class="p-4 bg-white hover:bg-slate-50/50 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div class="space-y-0.5">
               <div class="flex items-center space-x-2">
-                <a href="{% url 'programs:detail' app.program.id %}" class="text-xs sm:text-sm font-bold text-slate-900 hover:text-indigo-600">
+                <a href="{% url 'programs:detail' app.program.id %}" class="text-xs sm:text-sm font-bold text-slate-900 hover:text-zinc-900">
                   {{ app.program.name }}
                 </a>
-                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold {% if app.status == 'accepted' %}bg-emerald-100 text-emerald-800{% elif app.status == 'submitted' %}bg-blue-100 text-blue-800{% elif app.status == 'interview' %}bg-purple-100 text-purple-800{% elif app.status == 'rejected' %}bg-rose-100 text-rose-800{% else %}bg-indigo-50 text-indigo-700{% endif %}">
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold {% if app.status == 'accepted' %}bg-zinc-100 text-zinc-950{% elif app.status == 'submitted' %}bg-zinc-100 text-zinc-950{% elif app.status == 'interview' %}bg-zinc-100 text-zinc-950{% elif app.status == 'rejected' %}bg-rose-100 text-rose-800{% else %}bg-zinc-100 text-zinc-950{% endif %}">
                   {{ app.get_status_display }}
                 </span>
               </div>
@@ -306,7 +366,7 @@
               </p>
             </div>
 
-            <a href="{% url 'programs:detail' app.program.id %}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center space-x-1">
+            <a href="{% url 'programs:detail' app.program.id %}" class="text-xs font-bold text-zinc-900 hover:text-zinc-950 flex items-center space-x-1">
               <span>Holatni o'zgartirish</span>
               <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
             </a>
@@ -315,7 +375,7 @@
       </div>
     {% else %}
       <div class="p-6 bg-slate-50 rounded-2xl text-center text-xs text-slate-500 border border-dashed border-slate-200">
-        Hozircha kuzatuvga olingan yoki topshirilgan arizalar yo'q. <a href="{% url 'programs:catalog' %}" class="text-indigo-600 font-bold underline">Dasturlar katalogidan</a> mos grantni tanlang!
+        Hozircha kuzatuvga olingan yoki topshirilgan arizalar yo'q. <a href="{% url 'programs:catalog' %}" class="text-zinc-900 font-bold underline">Dasturlar katalogidan</a> mos grantni tanlang!
       </div>
     {% endif %}
   </div>
@@ -326,7 +386,7 @@
       
       <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-5 gap-3">
         <div>
-          <div class="inline-flex items-center space-x-2 text-xs font-bold text-indigo-700 uppercase tracking-wider">
+          <div class="inline-flex items-center space-x-2 text-xs font-bold text-zinc-950 uppercase tracking-wider">
             <i data-lucide="layers" class="w-4 h-4"></i>
             <span>Sinxronlashtirilgan Dual-Track O'quv Rejasi</span>
             <span>•</span>
@@ -341,11 +401,11 @@
         </div>
 
         <div class="flex items-center space-x-2">
-          <span class="text-xs bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold px-3 py-1.5 rounded-full flex items-center space-x-1.5">
+          <span class="text-xs bg-zinc-100 text-zinc-950 border border-indigo-200 font-bold px-3 py-1.5 rounded-full flex items-center space-x-1.5">
             <i data-lucide="clock" class="w-3.5 h-3.5"></i>
             <span>Haftalik: {{ active_plan.generated_by_ai.weekly_hours|default:12 }} soat</span>
           </span>
-          <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1.5 rounded-full">
+          <span class="text-xs bg-zinc-100 text-zinc-950 font-bold px-3 py-1.5 rounded-full">
             Faol Reja
           </span>
         </div>
@@ -362,23 +422,23 @@
         <div class="p-5 md:p-6 bg-gradient-to-b from-purple-50/70 to-purple-50/20 rounded-2xl border border-purple-200 space-y-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
-              <div class="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center shadow-xs">
+              <div class="w-9 h-9 rounded-xl bg-zinc-950 text-white flex items-center justify-center shadow-xs">
                 <i data-lucide="book-open" class="w-5 h-5"></i>
               </div>
               <div>
                 <h3 class="text-base font-bold text-slate-900">Track A: Imtihon Tayyorgarligi</h3>
-                <p class="text-xs text-purple-700 font-medium">IELTS / SAT / Duolingo / CEFR</p>
+                <p class="text-xs text-zinc-950 font-medium">IELTS / SAT / Duolingo / CEFR</p>
               </div>
             </div>
-            <span class="text-xs font-black text-purple-800 bg-purple-100 px-2.5 py-1 rounded-full">
+            <span class="text-xs font-black text-zinc-950 bg-zinc-100 px-2.5 py-1 rounded-full">
               {{ track_a_progress_pct }}% Bajarildi
             </span>
           </div>
 
           <!-- Progress Bar -->
           <div class="space-y-1">
-            <div class="w-full bg-purple-100 rounded-full h-2 overflow-hidden">
-              <div class="bg-purple-600 h-2 rounded-full transition-all duration-500" style="width: {{ track_a_progress_pct }}%"></div>
+            <div class="w-full bg-zinc-100 rounded-full h-2 overflow-hidden">
+              <div class="bg-zinc-950 h-2 rounded-full transition-all duration-500" style="width: {{ track_a_progress_pct }}%"></div>
             </div>
             <div class="flex justify-between text-[11px] text-slate-500">
               <span>Haftasiga: <strong>{{ track_a_data.weekly_hours|default:8 }} soat</strong></span>
@@ -389,14 +449,14 @@
           <!-- Track A Milestones List -->
           <div class="space-y-2 pt-2">
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center space-x-1.5">
-              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-purple-600"></i>
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-zinc-900"></i>
               <span>Oylik Asosiy Bosqichlar:</span>
             </h4>
             <div class="space-y-2 max-h-56 overflow-y-auto pr-1">
               {% for m in track_a_milestones %}
                 <div class="p-3 bg-white border border-purple-100 rounded-xl text-xs space-y-1 shadow-2xs">
                   <div class="flex items-center justify-between">
-                    <span class="font-bold text-purple-800">{{ m.month }}-Oy ({{ m.target_week }}-hafta)</span>
+                    <span class="font-bold text-zinc-950">{{ m.month }}-Oy ({{ m.target_week }}-hafta)</span>
                     <span class="text-[10px] text-slate-500 font-medium">{{ m.drills_target|default:"20+" }} ta mashq</span>
                   </div>
                   <p class="text-slate-800 font-medium">{{ m.focus }}</p>
@@ -418,17 +478,17 @@
               </div>
               <div>
                 <h3 class="text-base font-bold text-slate-900">Track B: Universitet Arizasi va Hujjatlar</h3>
-                <p class="text-xs text-emerald-700 font-medium">SOP, LOR, Portfolio, Deadline</p>
+                <p class="text-xs text-zinc-900 font-medium">SOP, LOR, Portfolio, Deadline</p>
               </div>
             </div>
-            <span class="text-xs font-black text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">
+            <span class="text-xs font-black text-zinc-950 bg-zinc-100 px-2.5 py-1 rounded-full">
               {{ track_b_progress_pct }}% Bajarildi
             </span>
           </div>
 
           <!-- Progress Bar -->
           <div class="space-y-1">
-            <div class="w-full bg-emerald-100 rounded-full h-2 overflow-hidden">
+            <div class="w-full bg-zinc-100 rounded-full h-2 overflow-hidden">
               <div class="bg-emerald-600 h-2 rounded-full transition-all duration-500" style="width: {{ track_b_progress_pct }}%"></div>
             </div>
             <div class="flex justify-between text-[11px] text-slate-500">
@@ -440,15 +500,15 @@
           <!-- Track B Milestones List -->
           <div class="space-y-2 pt-2">
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center space-x-1.5">
-              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-zinc-900"></i>
               <span>Oylik Hujjat Bosqichlari:</span>
             </h4>
             <div class="space-y-2 max-h-56 overflow-y-auto pr-1">
               {% for m in track_b_milestones %}
                 <div class="p-3 bg-white border border-emerald-100 rounded-xl text-xs space-y-1 shadow-2xs">
                   <div class="flex items-center justify-between">
-                    <span class="font-bold text-emerald-800">{{ m.month }}-Oy ({{ m.target_week }}-hafta)</span>
-                    <span class="text-[10px] text-emerald-700 font-medium">Deadline Nazorati</span>
+                    <span class="font-bold text-zinc-950">{{ m.month }}-Oy ({{ m.target_week }}-hafta)</span>
+                    <span class="text-[10px] text-zinc-900 font-medium">Deadline Nazorati</span>
                   </div>
                   <p class="text-slate-800 font-medium">{{ m.focus }}</p>
                   <p class="text-slate-500 text-[11px]">Maqsad: {{ m.goal }}</p>
@@ -467,7 +527,7 @@
         <div class="pt-2 border-t border-slate-100">
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center space-x-1.5">
-              <i data-lucide="calendar-range" class="w-4 h-4 text-indigo-600"></i>
+              <i data-lucide="calendar-range" class="w-4 h-4 text-zinc-900"></i>
               <span>Sinxronlashtirilgan Haftalik Taqsimot (Track A & Track B Kunlari)</span>
             </h3>
           </div>
@@ -476,18 +536,18 @@
             {% for w in weekly_schedule|slice:":4" %}
               <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
                 <div class="flex items-center justify-between font-bold text-slate-900 border-b border-slate-200 pb-1.5">
-                  <span class="text-indigo-700">{{ w.week }}-Hafta</span>
+                  <span class="text-zinc-950">{{ w.week }}-Hafta</span>
                   <span class="text-[10px] text-slate-500">{{ w.daily_hours }} soat/kun</span>
                 </div>
                 <div class="space-y-1">
-                  <div class="text-[11px] font-bold text-purple-800 flex items-center space-x-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-purple-600"></span>
+                  <div class="text-[11px] font-bold text-zinc-950 flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-zinc-950"></span>
                     <span>Track A (Du, Chor, Ju):</span>
                   </div>
                   <p class="text-slate-600 text-[11px] line-clamp-2">{{ w.track_a_focus }}</p>
                 </div>
                 <div class="space-y-1 pt-1 border-t border-slate-200/60">
-                  <div class="text-[11px] font-bold text-emerald-800 flex items-center space-x-1">
+                  <div class="text-[11px] font-bold text-zinc-950 flex items-center space-x-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
                     <span>Track B (Se, Pay, Sha):</span>
                   </div>
@@ -508,7 +568,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-3">
       <div>
         <h2 class="text-lg md:text-xl font-bold text-slate-900 flex items-center space-x-2">
-          <i data-lucide="zap" class="w-5 h-5 text-amber-500"></i>
+          <i data-lucide="zap" class="w-5 h-5 text-zinc-900"></i>
           <span>Bugungi Amaliy Mashg'ulotlar (Dual-Track Tasks)</span>
         </h2>
         <p class="text-xs md:text-sm text-slate-500">Har bir yo'nalish bo'yicha vazifalarni bajaring va AI tahlilini o'rganing.</p>
@@ -516,7 +576,7 @@
 
       <!-- Task Track Filter Tabs -->
       <div class="flex items-center space-x-1.5 bg-slate-100 p-1.5 rounded-2xl text-xs font-semibold self-start sm:self-auto" id="task-filter-tabs">
-        <button type="button" onclick="filterDashboardTasks('all')" id="tab-btn-all" class="px-3 py-1.5 rounded-xl bg-indigo-600 text-white shadow-xs transition">
+        <button type="button" onclick="filterDashboardTasks('all')" id="tab-btn-all" class="px-3 py-1.5 rounded-xl bg-zinc-950 text-white shadow-xs transition">
           Barchasi ({{ total_tasks_count }})
         </button>
         <button type="button" onclick="filterDashboardTasks('track_a')" id="tab-btn-track_a" class="px-3 py-1.5 rounded-xl text-slate-600 hover:bg-slate-200 transition">
@@ -532,7 +592,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="dashboard-tasks-container">
       {% for task in today_tasks %}
         <div class="task-item-card p-5 rounded-2xl border flex flex-col justify-between transition
-          {% if task.track == 'track_a' %}border-purple-200 bg-purple-50/20{% else %}border-emerald-200 bg-emerald-50/20{% endif %}
+          {% if task.track == 'track_a' %}border-purple-200 bg-zinc-100/20{% else %}border-emerald-200 bg-zinc-100/20{% endif %}
           {% if task.completed %}ring-1 ring-indigo-200{% endif %}"
           data-track="{{ task.track }}">
           
@@ -542,12 +602,12 @@
               <div class="flex items-center space-x-1.5 flex-wrap gap-1">
                 <!-- Track Badge -->
                 {% if task.track == 'track_a' %}
-                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-purple-100 text-purple-800 border border-purple-200 rounded-full flex items-center space-x-1">
+                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-zinc-100 text-zinc-950 border border-purple-200 rounded-full flex items-center space-x-1">
                     <i data-lucide="book-open" class="w-3 h-3"></i>
                     <span>Track A: Imtihon</span>
                   </span>
                 {% else %}
-                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-full flex items-center space-x-1">
+                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-zinc-100 text-zinc-950 border border-emerald-200 rounded-full flex items-center space-x-1">
                     <i data-lucide="file-text" class="w-3 h-3"></i>
                     <span>Track B: Ariza</span>
                   </span>
@@ -560,12 +620,12 @@
               </div>
 
               {% if task.completed %}
-                <span class="text-xs font-bold text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded-full flex items-center space-x-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-indigo-700"></i>
+                <span class="text-xs font-bold text-zinc-950 bg-zinc-100 px-2.5 py-0.5 rounded-full flex items-center space-x-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-zinc-950"></i>
                   <span>{{ task.score }} ball</span>
                 </span>
               {% else %}
-                <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-full">
+                <span class="text-xs font-bold text-zinc-900 bg-zinc-100 px-2.5 py-0.5 rounded-full">
                   Kutilmoqda
                 </span>
               {% endif %}
@@ -582,13 +642,13 @@
           <div class="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between">
             {% if task.completed %}
               <span class="text-xs text-slate-500">Bajarildi: {{ task.completed_at|date:"H:i" }}</span>
-              <a href="{% url 'tasks:result' task.id %}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 inline-flex items-center space-x-1">
+              <a href="{% url 'tasks:result' task.id %}" class="text-xs font-bold text-zinc-900 hover:text-zinc-950 inline-flex items-center space-x-1">
                 <span>AI Tahlilini ko'rish</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </a>
             {% else %}
               <span class="text-xs text-slate-500 font-medium">Ball: 100 gacha</span>
-              <a href="{% url 'tasks:detail' task.id %}" class="px-4 py-2 {% if task.track == 'track_a' %}bg-purple-600 hover:bg-purple-700{% else %}bg-emerald-600 hover:bg-emerald-700{% endif %} text-white text-xs font-bold rounded-xl shadow-xs transition inline-flex items-center space-x-1">
+              <a href="{% url 'tasks:detail' task.id %}" class="px-4 py-2 {% if task.track == 'track_a' %}bg-zinc-950 hover:bg-purple-700{% else %}bg-emerald-600 hover:bg-emerald-700{% endif %} text-white text-xs font-bold rounded-xl shadow-xs transition inline-flex items-center space-x-1">
                 <span>Bajarish</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </a>
@@ -608,7 +668,7 @@
   <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
     <div class="border-b border-slate-100 pb-4">
       <h2 class="text-lg md:text-xl font-bold text-slate-900 flex items-center space-x-2">
-        <i data-lucide="bar-chart-3" class="w-5 h-5 text-indigo-600"></i>
+        <i data-lucide="bar-chart-3" class="w-5 h-5 text-zinc-900"></i>
         <span>5 Asosiy Ko'nikma Bo'yicha Natijalar (SkillScores)</span>
       </h2>
       <p class="text-xs md:text-sm text-slate-500">Har bir ko'nikma 0 dan 100 gacha shkala bo'yicha baholanadi.</p>
@@ -628,7 +688,7 @@
             <span class="text-xs font-bold text-slate-400">/ 100</span>
           </div>
           <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
-            <div class="{% if item.is_weakest %}bg-rose-500{% else %}bg-indigo-600{% endif %} h-2 rounded-full transition-all duration-500" style="width: {{ item.score }}%"></div>
+            <div class="{% if item.is_weakest %}bg-rose-500{% else %}bg-zinc-950{% endif %} h-2 rounded-full transition-all duration-500" style="width: {{ item.score }}%"></div>
           </div>
         </div>
       {% endfor %}
@@ -643,11 +703,11 @@
       <div>
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-slate-500">
-            <i data-lucide="calendar" class="w-4 h-4 text-indigo-600"></i>
+            <i data-lucide="calendar" class="w-4 h-4 text-zinc-900"></i>
             <span>Haftalik Intizom</span>
           </div>
-          <span class="text-xs px-2.5 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 font-semibold rounded-full flex items-center space-x-1">
-            <i data-lucide="flame" class="w-3 h-3 text-amber-600"></i>
+          <span class="text-xs px-2.5 py-0.5 bg-zinc-100 text-zinc-900 border border-amber-200 font-semibold rounded-full flex items-center space-x-1">
+            <i data-lucide="flame" class="w-3 h-3 text-zinc-900"></i>
             <span>{{ streak_count }} kun</span>
           </span>
         </div>
@@ -656,14 +716,14 @@
           <div class="grid grid-cols-7 gap-1.5 text-center">
             {% for day in weekly_consistency %}
               <div class="flex flex-col items-center">
-                <span class="text-[10px] font-bold {% if day.is_today %}text-indigo-600 font-black{% else %}text-slate-500{% endif %} mb-1">
+                <span class="text-[10px] font-bold {% if day.is_today %}text-zinc-900 font-black{% else %}text-slate-500{% endif %} mb-1">
                   {{ day.day_name }}
                 </span>
                 <div class="w-8 h-8 rounded-xl flex items-center justify-center text-xs transition-all duration-150
                   {% if day.is_completed %}
-                    bg-indigo-600 text-white font-bold shadow-xs
+                    bg-zinc-950 text-white font-bold shadow-xs
                   {% elif day.is_today %}
-                    bg-indigo-50 text-indigo-800 border-2 border-indigo-500 font-bold
+                    bg-zinc-100 text-zinc-950 border-2 border-indigo-500 font-bold
                   {% else %}
                     bg-slate-100 text-slate-400 border border-slate-200
                   {% endif %}
@@ -690,10 +750,10 @@
     <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3 lg:col-span-2">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <h2 class="text-base font-bold text-slate-900 flex items-center space-x-2">
-          <i data-lucide="trending-up" class="w-4 h-4 text-indigo-600"></i>
+          <i data-lucide="trending-up" class="w-4 h-4 text-zinc-900"></i>
           <span>So'nggi Rivojlanish Tarixi</span>
         </h2>
-        <a href="{% url 'dashboard:stats' %}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">
+        <a href="{% url 'dashboard:stats' %}" class="text-xs font-bold text-zinc-900 hover:text-zinc-950">
           Barchasini ko'rish
         </a>
       </div>
@@ -707,8 +767,8 @@
             </div>
             <div class="flex items-center space-x-3 text-xs">
               <span class="text-slate-500">Ready: <strong>{{ log.overall_ready_score }}%</strong></span>
-              <span class="text-amber-600 font-bold flex items-center space-x-1">
-                <i data-lucide="flame" class="w-3.5 h-3.5 text-amber-500"></i>
+              <span class="text-zinc-900 font-bold flex items-center space-x-1">
+                <i data-lucide="flame" class="w-3.5 h-3.5 text-zinc-900"></i>
                 <span>{{ log.streak_count }}</span>
               </span>
             </div>
@@ -743,7 +803,7 @@ function filterDashboardTasks(track) {
   // Highlight active button
   const activeBtn = document.getElementById('tab-btn-' + track);
   if (activeBtn) {
-    activeBtn.className = "px-3 py-1.5 rounded-xl bg-indigo-600 text-white shadow-xs transition font-bold";
+    activeBtn.className = "px-3 py-1.5 rounded-xl bg-zinc-950 text-white shadow-xs transition font-bold";
   }
 
   // Show / Hide cards

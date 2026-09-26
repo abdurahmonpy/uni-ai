@@ -5,32 +5,28 @@
 
 {% block content %}
 <div class="max-w-4xl mx-auto my-6 sm:my-12 px-3 sm:px-4">
-  <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[580px] overflow-hidden"
-       style="background: #fffef9; border: 2.5px solid #292929; border-radius: 8px 18px 10px 16px / 16px 8px 18px 10px; box-shadow: 6px 7px 0 #292929;">
+  <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[580px] overflow-hidden bg-white rounded-[28px] border border-zinc-200 shadow-2xl shadow-zinc-900/5">
     
     <!-- Left Showcase Column (Desktop Only / Hero branding) -->
-    <div class="lg:col-span-5 bg-zinc-900 p-8 sm:p-10 text-white flex flex-col justify-between"
-         style="border-right: 2.5px solid #292929; position: relative;">
+    <div class="lg:col-span-5 bg-zinc-950 p-8 sm:p-10 text-white flex flex-col justify-between border-r border-zinc-800 relative">
       <!-- Brand and Header -->
       <div class="space-y-6">
         <div class="flex items-center space-x-2.5">
-          <div class="w-9 h-9 bg-white p-0.5 flex items-center justify-center overflow-hidden"
-               style="border: 2px solid #292929; border-radius: 4px 8px 5px 7px; box-shadow: 2px 2px 0 #ff6326;">
+          <div class="w-10 h-10 bg-white p-1 rounded-xl flex items-center justify-center overflow-hidden shadow-sm">
             <img src="{% static 'images/unimentor_logo.png' %}" alt="UniMentor" class="w-full h-full object-contain">
           </div>
-          <span class="text-xl font-bold tracking-tight text-white" style="font-family: 'Caveat', cursive;">UniMentor</span>
-          <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-orange-600 text-white" style="border: 1.5px solid #292929;">AI</span>
+          <span class="text-xl font-extrabold tracking-tight text-white">UniMentor</span>
+          <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-zinc-950 text-white">AI</span>
         </div>
 
-        <div class="space-y-2">
-          <span class="px-3 py-1 bg-zinc-800 text-orange-400 text-xs font-bold inline-block"
-                style="border: 1.5px solid #ff6326; border-radius: 4px 10px 6px 8px; font-family: 'Caveat', cursive;">
+        <div class="space-y-2.5">
+          <span class="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-bold rounded-full inline-block">
             Boshlash
           </span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white leading-tight tracking-tight" style="font-family: 'Caveat', cursive;">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight tracking-tight">
             Xorijiy universitetlar va katta grantlarga tizimli tayyorgarlik
           </h2>
-          <p class="text-sm text-zinc-300 leading-relaxed" style="font-family: 'Patrick Hand', cursive;">
+          <p class="text-sm text-zinc-400 leading-relaxed font-normal">
             Har kungi shaxsiy Dual-Track rejasi, insho tahriri va kunlik vazifalar bilan o'z orzuingizdagi grantga erishing.
           </p>
         </div>
@@ -38,50 +34,46 @@
         <!-- Value Points -->
         <div class="space-y-3 pt-2">
           <div class="flex items-center space-x-3 text-xs text-zinc-300 font-medium">
-            <div class="w-5 h-5 bg-zinc-800 text-emerald-400 flex items-center justify-center flex-shrink-0"
-                 style="border: 1.5px solid #4ade80; border-radius: 3px 6px 4px 5px;">
-              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <div class="w-6 h-6 rounded-lg bg-zinc-900 text-emerald-400 flex items-center justify-center flex-shrink-0 border border-zinc-800">
+              <i data-lucide="check" class="w-4 h-4"></i>
             </div>
-            <span style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Global UGRAD, DAAD va Chevening dasturlari</span>
+            <span>Global UGRAD, DAAD va Chevening dasturlari</span>
           </div>
 
           <div class="flex items-center space-x-3 text-xs text-zinc-300 font-medium">
-            <div class="w-5 h-5 bg-zinc-800 text-orange-400 flex items-center justify-center flex-shrink-0"
-                 style="border: 1.5px solid #ff6326; border-radius: 3px 6px 4px 5px;">
-              <i data-lucide="flame" class="w-3.5 h-3.5"></i>
+            <div class="w-6 h-6 rounded-lg bg-zinc-900 text-zinc-300 flex items-center justify-center flex-shrink-0 border border-zinc-800">
+              <i data-lucide="flame" class="w-4 h-4"></i>
             </div>
-            <span style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Duolingo uslubidagi kunlik streak va intizom</span>
+            <span>Duolingo uslubidagi kunlik streak va intizom</span>
           </div>
 
           <div class="flex items-center space-x-3 text-xs text-zinc-300 font-medium">
-            <div class="w-5 h-5 bg-zinc-800 text-amber-300 flex items-center justify-center flex-shrink-0"
-                 style="border: 1.5px solid #fcd34d; border-radius: 3px 6px 4px 5px;">
-              <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+            <div class="w-6 h-6 rounded-lg bg-zinc-900 text-amber-300 flex items-center justify-center flex-shrink-0 border border-zinc-800">
+              <i data-lucide="bot" class="w-4 h-4"></i>
             </div>
-            <span style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">24/7 shaxsiy AI mentor va arizalar tahlili</span>
+            <span>24/7 shaxsiy AI mentor va arizalar tahlili</span>
           </div>
         </div>
       </div>
 
       <!-- Trust Badge Card at bottom -->
-      <div class="pt-6 mt-6 border-t border-zinc-700/80 flex items-center justify-between text-xs text-zinc-400">
+      <div class="pt-6 mt-6 border-t border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
         <span>100% Bepul diagnostika</span>
-        <span class="font-bold text-orange-400" style="font-family: 'Caveat', cursive;">UniMentor Platformasi</span>
+        <span class="font-bold text-zinc-200">UniMentor Platformasi</span>
       </div>
     </div>
 
     <!-- Right Form Column -->
-    <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center bg-white" style="background: #fffef9;">
+    <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center bg-white">
       
       <div class="max-w-md w-full mx-auto space-y-6">
         <div>
-          <h1 class="text-3xl font-extrabold text-stone-900 tracking-tight" style="font-family: 'Caveat', cursive;">Ro'yxatdan o'tish</h1>
-          <p class="text-sm text-stone-600 mt-1" style="font-family: 'Patrick Hand', cursive;">O'zbekiston maktab o'quvchilari uchun maxsus moslashtirilgan</p>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight">Ro'yxatdan o'tish</h1>
+          <p class="text-sm text-zinc-500 mt-1">O'zbekiston maktab o'quvchilari uchun maxsus moslashtirilgan</p>
         </div>
 
         {% if form.non_field_errors %}
-          <div class="p-3.5 bg-red-50 text-red-700 text-xs space-y-1"
-               style="border: 2px solid #ef4444; border-radius: 4px 10px 6px 8px; box-shadow: 2px 2px 0 #ef4444;">
+          <div class="p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl space-y-1">
             {% for error in form.non_field_errors %}
               <p class="font-medium">{{ error }}</p>
             {% endfor %}
@@ -92,58 +84,58 @@
           {% csrf_token %}
 
           <div>
-            <label for="id_first_name" class="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5" style="font-family: 'Caveat', cursive; font-size: 1rem;">
+            <label for="id_first_name" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5">
               Ismingiz *
             </label>
             {{ form.first_name }}
             {% if form.first_name.errors %}
-              <p class="text-red-600 text-xs mt-1 font-medium">{{ form.first_name.errors.0 }}</p>
+              <p class="text-rose-600 text-xs mt-1 font-medium">{{ form.first_name.errors.0 }}</p>
             {% endif %}
           </div>
 
           <div>
-            <label for="id_phone_number" class="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5" style="font-family: 'Caveat', cursive; font-size: 1rem;">
+            <label for="id_phone_number" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5">
               Telefon raqami (Asosiy login) *
             </label>
             {{ form.phone_number }}
             {% if form.phone_number.errors %}
-              <p class="text-red-600 text-xs mt-1 font-medium">{{ form.phone_number.errors.0 }}</p>
+              <p class="text-rose-600 text-xs mt-1 font-medium">{{ form.phone_number.errors.0 }}</p>
             {% endif %}
-            <p class="text-xs text-stone-500 mt-1">Masalan: +998 90 123 45 67 yoki 901234567</p>
+            <p class="text-xs text-zinc-400 mt-1">Masalan: +998 90 123 45 67 yoki 901234567</p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="id_password" class="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5" style="font-family: 'Caveat', cursive; font-size: 1rem;">
+              <label for="id_password" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5">
                 Parol *
               </label>
               {{ form.password }}
               {% if form.password.errors %}
-                <p class="text-red-600 text-xs mt-1 font-medium">{{ form.password.errors.0 }}</p>
+                <p class="text-rose-600 text-xs mt-1 font-medium">{{ form.password.errors.0 }}</p>
               {% endif %}
-              <p class="text-xs text-stone-500 mt-1">Kamida 6 ta belgi</p>
+              <p class="text-xs text-zinc-400 mt-1">Kamida 6 ta belgi</p>
             </div>
 
             <div>
-              <label for="id_password_confirm" class="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5" style="font-family: 'Caveat', cursive; font-size: 1rem;">
+              <label for="id_password_confirm" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5">
                 Parolni tasdiqlang *
               </label>
               {{ form.password_confirm }}
               {% if form.password_confirm.errors %}
-                <p class="text-red-600 text-xs mt-1 font-medium">{{ form.password_confirm.errors.0 }}</p>
+                <p class="text-rose-600 text-xs mt-1 font-medium">{{ form.password_confirm.errors.0 }}</p>
               {% endif %}
             </div>
           </div>
 
-          <button type="submit" class="hd-btn w-full py-3 px-5 text-white flex items-center justify-center space-x-2 mt-4 cursor-pointer">
+          <button type="submit" class="w-full py-3.5 px-5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold rounded-xl shadow-sm transition flex items-center justify-center space-x-2 mt-4 cursor-pointer">
             <span>Profilingizni yaratish</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </form>
 
-        <div class="pt-4 border-t border-stone-300 text-center text-sm text-stone-700">
+        <div class="pt-4 border-t border-zinc-200 text-center text-sm text-stone-600">
           <span>Profilingiz bormi?</span>
-          <a href="{% url 'accounts:login' %}" class="text-orange-600 font-bold ml-1 hover:underline inline-flex items-center space-x-1" style="font-family: 'Caveat', cursive; font-size: 1.15rem;">
+          <a href="{% url 'accounts:login' %}" class="text-zinc-950 font-bold ml-1 hover:underline inline-flex items-center space-x-1">
             <span>Tizimga kiring</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>

@@ -8,7 +8,7 @@
   <!-- Sticky Exam Header with Prominent Countdown Timer -->
   <div class="sticky top-2 z-40 bg-slate-900 text-white rounded-3xl p-4 sm:p-5 shadow-lg border border-slate-800 flex items-center justify-between mb-6">
     <div class="flex items-center space-x-3">
-      <div class="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center font-black text-xs">
+      <div class="w-8 h-8 rounded-xl bg-zinc-950 flex items-center justify-center font-black text-xs">
         {{ current_index }}/{{ total_sections }}
       </div>
       <div>
@@ -28,7 +28,7 @@
     </div>
 
     <div>
-      <button type="button" onclick="confirmAndSubmit()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition flex items-center space-x-1.5">
+      <button type="button" onclick="confirmAndSubmit()" class="px-4 py-2 bg-zinc-950 hover:bg-zinc-1000 text-white text-xs font-bold rounded-xl transition flex items-center space-x-1.5">
         <span>Bo'limni yakunlash</span>
         <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
       </button>
@@ -44,7 +44,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <!-- Audio / Transcript Context -->
         <div class="lg:col-span-5 bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
-          <div class="flex items-center space-x-2 text-indigo-600 font-bold text-xs">
+          <div class="flex items-center space-x-2 text-zinc-950 font-bold text-xs">
             <i data-lucide="headphones" class="w-4 h-4"></i>
             <span>Audio Matni (Listening Transcript)</span>
           </div>
@@ -65,8 +65,8 @@
               {% if q.type == 'multiple_choice' %}
                 <div class="space-y-2">
                   {% for opt in q.options %}
-                    <label class="flex items-center space-x-2.5 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-indigo-300 cursor-pointer text-xs transition">
-                      <input type="radio" name="{{ q.id }}" value="{{ opt }}" class="text-indigo-600 focus:ring-indigo-500">
+                    <label class="flex items-center space-x-2.5 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-zinc-400 cursor-pointer text-xs transition">
+                      <input type="radio" name="{{ q.id }}" value="{{ opt }}" class="text-zinc-950 focus:ring-indigo-500">
                       <span class="text-slate-700 font-medium">{{ opt }}</span>
                     </label>
                   {% endfor %}
@@ -86,7 +86,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <!-- Reading Passage -->
         <div class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
-          <div class="flex items-center space-x-2 text-emerald-600 font-bold text-xs">
+          <div class="flex items-center space-x-2 text-zinc-950 font-bold text-xs">
             <i data-lucide="book-open" class="w-4 h-4"></i>
             <span>Akademik Matn (Reading Passage)</span>
           </div>
@@ -109,7 +109,7 @@
               <div class="space-y-2">
                 {% for opt in q.options %}
                   <label class="flex items-center space-x-2.5 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-emerald-300 cursor-pointer text-xs transition">
-                    <input type="radio" name="{{ q.id }}" value="{{ opt }}" class="text-emerald-600 focus:ring-emerald-500">
+                    <input type="radio" name="{{ q.id }}" value="{{ opt }}" class="text-zinc-950 focus:ring-emerald-500">
                     <span class="text-slate-700 font-medium">{{ opt }}</span>
                   </label>
                 {% endfor %}
@@ -125,7 +125,7 @@
         <!-- Task 1 -->
         <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div class="flex items-center space-x-2 text-amber-600 font-bold text-xs">
+            <div class="flex items-center space-x-2 text-zinc-900 font-bold text-xs">
               <i data-lucide="pen-tool" class="w-4 h-4"></i>
               <span>Task 1 (Kamida 150 so'z)</span>
             </div>
@@ -140,13 +140,13 @@
         <!-- Task 2 -->
         <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div class="flex items-center space-x-2 text-indigo-600 font-bold text-xs">
+            <div class="flex items-center space-x-2 text-zinc-950 font-bold text-xs">
               <i data-lucide="file-text" class="w-4 h-4"></i>
               <span>Task 2 (Kamida 250 so'z)</span>
             </div>
             <span class="text-xs text-slate-400" id="task2Count">0 so'z</span>
           </div>
-          <p class="text-xs sm:text-sm font-bold text-slate-800 bg-indigo-50/60 p-4 rounded-2xl border border-indigo-100">
+          <p class="text-xs sm:text-sm font-bold text-slate-800 bg-zinc-100/60 p-4 rounded-2xl border border-zinc-200">
             {{ section.content.task_2.prompt }}
           </p>
           <textarea id="task2Input" name="task_2" rows="12" placeholder="Task 2 inshongizni ingliz tilida shu yerga yozing..." class="w-full p-4 rounded-2xl border border-slate-300 text-xs sm:text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 leading-relaxed font-mono" oninput="countWords('task2Input', 'task2Count')"></textarea>
@@ -160,7 +160,7 @@
       <span class="text-xs text-slate-400">
         Bo'limni yakunlaganingizdan so'ng javoblarni o'zgartirib bo'lmaydi.
       </span>
-      <button type="submit" class="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-2">
+      <button type="submit" class="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 active:scale-[0.99] text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-2">
         <span>Bo'limni topshirish va davom etish</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </button>
