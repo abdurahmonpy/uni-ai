@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Tavsiya etilgan universitetlar va grantlar | UniMentor{% endblock %}
+{% block title %}Universitetlar va grantlar | UniMentor{% endblock %}
 
 {% block content %}
 <div class="space-y-6">
@@ -15,7 +15,7 @@
         <span>Jami: {{ total_count }} ta tasdiqlangan</span>
       </div>
       <h1 class="text-2xl md:text-3xl font-extrabold text-stone-900">
-        Tavsiya etilgan universitetlar va grantlar
+        Universitetlar va grantlar
       </h1>
       <p class="text-sm text-stone-600 mt-1">
         Barcha dasturlar moderatorlarimiz tomonidan rasmiy manbalar asosida tekshirilgan va tasdiqlangan.
@@ -166,16 +166,16 @@
               {% endif %}
             </div>
 
-            <!-- Kuzatish (Track / Bookmark) Toggle Button (floating top-right) -->
+            <!-- Bookmark Toggle Button (Icon Only - Image 3 spec) -->
             <button
               type="button"
               onclick="toggleTrackProgram({{ prog.id }}, this)"
-              class="track-btn pointer-events-auto inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl backdrop-blur-md text-xs font-bold transition duration-150 shadow-sm
-                {% if prog.is_tracked %}bg-zinc-1000 text-white border border-zinc-800 shadow-zinc-900/10{% else %}bg-black/55 hover:bg-black/75 text-white/95 border border-white/20{% endif %}"
-              title="Kuzatuvga qo'shish yoki olib tashlash"
+              class="track-btn pointer-events-auto p-2.5 rounded-xl backdrop-blur-md text-xs font-bold transition duration-150 shadow-sm cursor-pointer
+                {% if prog.is_tracked %}bg-zinc-950 text-white border border-zinc-800{% else %}bg-black/55 hover:bg-black/75 text-white/95 border border-white/20{% endif %}"
+              title="{% if prog.is_tracked %}Kuzatuvdan chiqarish{% else %}Kuzatuvga saqlash{% endif %}"
+              aria-label="Kuzatish"
             >
-              <i data-lucide="bookmark" class="w-3.5 h-3.5 {% if prog.is_tracked %}fill-white text-white{% else %}text-white{% endif %}"></i>
-              <span class="track-btn-label">{% if prog.is_tracked %}Kuzatilmoqda{% else %}Kuzatish{% endif %}</span>
+              <i data-lucide="bookmark" class="w-4 h-4 {% if prog.is_tracked %}fill-white text-white{% else %}text-white{% endif %}"></i>
             </button>
           </div>
 
@@ -204,147 +204,76 @@
           </div>
         </div>
 
-        <!-- 2. Card Content Body -->
-        <div class="p-5 md:p-6 flex-1 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            
+        <!-- 2. Card Content Body (Clean & Compact) -->
+        <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+          <div class="space-y-2.5">
             <!-- Program Title -->
             <div>
-              <h2 class="text-lg md:text-xl font-black text-slate-900 leading-snug group-hover:text-zinc-950 transition-colors">
+              <h2 class="text-base md:text-lg font-bold text-zinc-950 leading-snug group-hover:text-zinc-700 transition-colors">
                 {{ prog.name }}
               </h2>
-              {% if prog.description %}
-                <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mt-1">
-                  {{ prog.description }}
+              {% if prog.university %}
+                <p class="text-xs font-medium text-zinc-500 mt-1 flex items-center space-x-1.5">
+                  <i data-lucide="building-2" class="w-3.5 h-3.5 text-zinc-400"></i>
+                  <span>{{ prog.university.name }}{% if prog.university.city %}, {{ prog.university.city }}{% endif %}</span>
                 </p>
               {% endif %}
             </div>
 
-            <!-- Key Highlights Grid (4 visual metrics cards) -->
-            <div class="grid grid-cols-2 gap-2 text-xs">
-              
-              <!-- 1. Grant Qamrovi -->
-              <div class="p-2.5 rounded-2xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between space-y-1">
-                <div class="flex items-center space-x-1.5 text-zinc-900 font-bold text-[10px] sm:text-[11px] uppercase tracking-wider">
-                  <i data-lucide="gift" class="w-3.5 h-3.5 text-zinc-950 flex-shrink-0"></i>
-                  <span>Grant Qamrovi</span>
-                </div>
-                <p class="text-[11px] font-extrabold text-zinc-950 leading-tight line-clamp-2" title="{{ prog.parsed_details.coverage }}">
-                  {{ prog.parsed_details.coverage }}
-                </p>
-              </div>
+            <!-- Compact Key Meta Tags -->
+            <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
+              <span class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-zinc-100 text-zinc-800 font-semibold text-[11px]">
+                <i data-lucide="award" class="w-3 h-3 text-zinc-600"></i>
+                <span>{{ prog.parsed_details.coverage|default:prog.get_type_display }}</span>
+              </span>
 
-              <!-- 2. Til Talabi -->
-              <div class="p-2.5 rounded-2xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between space-y-1">
-                <div class="flex items-center space-x-1.5 text-zinc-900 font-bold text-[10px] sm:text-[11px] uppercase tracking-wider">
-                  <i data-lucide="languages" class="w-3.5 h-3.5 text-zinc-950 flex-shrink-0"></i>
-                  <span>Til talabi</span>
-                </div>
-                <p class="text-[11px] font-extrabold text-zinc-950 leading-tight line-clamp-2" title="{{ prog.parsed_details.language }}">
-                  {{ prog.parsed_details.language }}
-                </p>
-              </div>
+              {% if prog.parsed_details.language and prog.parsed_details.language != "Ko'rsatilmagan" %}
+                <span class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-zinc-100 text-zinc-800 font-semibold text-[11px]">
+                  <i data-lucide="languages" class="w-3 h-3 text-zinc-600"></i>
+                  <span>{{ prog.parsed_details.language }}</span>
+                </span>
+              {% endif %}
 
-              <!-- 3. Bosqich / Daraja -->
-              <div class="p-2.5 rounded-2xl bg-zinc-50 border border-zinc-200 flex flex-col justify-between space-y-1">
-                <div class="flex items-center space-x-1.5 text-zinc-900 font-bold text-[10px] sm:text-[11px] uppercase tracking-wider">
-                  <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-zinc-950 flex-shrink-0"></i>
-                  <span>Bosqich</span>
-                </div>
-                <p class="text-[11px] font-extrabold text-zinc-950 leading-tight line-clamp-2" title="{{ prog.parsed_details.degree }}">
-                  {{ prog.parsed_details.degree }}
-                </p>
-              </div>
-
-              <!-- 4. Topshirish Muddati / Baho -->
-              <div class="p-2.5 rounded-2xl bg-amber-50/80 border border-amber-100 flex flex-col justify-between space-y-1">
-                <div class="flex items-center space-x-1.5 text-amber-800 font-bold text-[10px] sm:text-[11px] uppercase tracking-wider">
-                  {% if prog.parsed_details.gpa or prog.parsed_details.sat %}
-                    <i data-lucide="award" class="w-3.5 h-3.5 text-amber-600 flex-shrink-0"></i>
-                    <span>Akademik talab</span>
-                  {% else %}
-                    <i data-lucide="calendar" class="w-3.5 h-3.5 text-amber-600 flex-shrink-0"></i>
-                    <span>Muddati</span>
-                  {% endif %}
-                </div>
-                <p class="text-[11px] font-extrabold text-amber-950 leading-tight line-clamp-2">
-                  {% if prog.parsed_details.gpa and prog.parsed_details.sat %}
-                    {{ prog.parsed_details.gpa }} • {{ prog.parsed_details.sat }}
-                  {% elif prog.parsed_details.gpa %}
-                    {{ prog.parsed_details.gpa }}
-                  {% elif prog.parsed_details.sat %}
-                    {{ prog.parsed_details.sat }}
-                  {% elif prog.deadline %}
-                    {{ prog.deadline }}
-                  {% else %}
-                    Yillik ochiq qabul
-                  {% endif %}
-                </p>
-              </div>
-
+              {% if prog.deadline %}
+                <span class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200/60 font-semibold text-[11px]">
+                  <i data-lucide="calendar" class="w-3 h-3 text-amber-600"></i>
+                  <span>{{ prog.deadline }}</span>
+                </span>
+              {% endif %}
             </div>
 
-            <!-- Ish tajribasi qo'shimcha talabi agar mavjud bo'lsa -->
-            {% if prog.parsed_details.experience %}
-              <div class="px-3 py-2 rounded-2xl bg-purple-50/80 border border-purple-100 text-[11px] text-purple-900 font-medium flex items-center space-x-2">
-                <i data-lucide="briefcase" class="w-4 h-4 text-zinc-900 flex-shrink-0"></i>
-                <span><strong>Ish tajribasi:</strong> {{ prog.parsed_details.experience }}</span>
-              </div>
+            {% if prog.description %}
+              <p class="text-xs text-zinc-600 line-clamp-2 leading-relaxed">
+                {{ prog.description }}
+              </p>
             {% endif %}
-
-            <!-- Talab qilinadigan hujjatlar to'plami (Toza ro'yxat) -->
-            {% if prog.parsed_details.documents %}
-              <div class="pt-2 border-t border-slate-100 space-y-1.5">
-                <span class="text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
-                  Talab qilinadigan hujjatlar:
-                </span>
-                <div class="flex flex-wrap gap-1.5">
-                  {% for doc in prog.parsed_details.documents|slice:":3" %}
-                    <span class="text-[11px] font-medium text-slate-700 bg-slate-100/90 hover:bg-slate-200/90 px-2.5 py-1 rounded-xl inline-flex items-center space-x-1.5 transition">
-                      <i data-lucide="check" class="w-3 h-3 text-zinc-950 flex-shrink-0"></i>
-                      <span class="truncate max-w-[210px]">{{ doc }}</span>
-                    </span>
-                  {% endfor %}
-                  {% if prog.parsed_details.documents|length > 3 %}
-                    <span class="text-[10px] font-bold text-zinc-900 bg-zinc-100 border border-zinc-300 px-2 py-1 rounded-xl">
-                      + yana {{ prog.parsed_details.documents|length|add:"-3" }} ta
-                    </span>
-                  {% endif %}
-                </div>
-              </div>
-            {% endif %}
-
           </div>
 
-          <!-- 3. Verification & Footer Actions -->
-          <div class="pt-3.5 border-t border-slate-100 space-y-2.5">
-            <div class="flex items-center justify-between text-[11px] text-slate-500">
-              <span class="flex items-center space-x-1">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-zinc-950"></i>
-                <span>Rasmiy tekshirilgan: <strong class="text-slate-700">{{ prog.last_verified_date|date:"d-M, Y" }}</strong></span>
-              </span>
-              <span class="text-[11px] text-zinc-900 font-bold bg-zinc-100 px-2 py-0.5 rounded-md border border-zinc-200 flex items-center space-x-1">
-                <i data-lucide="check-circle-2" class="w-3 h-3 text-zinc-950"></i>
-                <span>Tasdiqlangan</span>
-              </span>
-            </div>
+          <!-- Card Actions (Clean CTA to Detail Page) -->
+          <div class="pt-3 border-t border-zinc-100 flex items-center justify-between gap-2">
+            <span class="text-[11px] text-zinc-400 font-medium flex items-center space-x-1">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span>Tasdiqlangan</span>
+            </span>
 
-            <div class="flex items-center justify-between gap-2 pt-1">
-              <a
-                href="{{ prog.source_url }}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="px-3.5 py-2.5 text-xs font-bold text-slate-700 hover:text-zinc-950 bg-slate-50 hover:bg-zinc-100 border border-slate-200 rounded-xl transition inline-flex items-center space-x-1.5 flex-1 justify-center sm:flex-initial"
-              >
-                <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
-                <span>Rasmiy manba</span>
-              </a>
+            <div class="flex items-center space-x-2">
+              {% if prog.source_url %}
+                <a
+                  href="{{ prog.source_url }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-2 text-zinc-500 hover:text-zinc-950 hover:bg-zinc-100 rounded-xl transition"
+                  title="Rasmiy manba"
+                >
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+              {% endif %}
 
               <a
                 href="{% url 'programs:detail' prog.id %}"
-                class="px-5 py-2.5 bg-slate-900 hover:bg-zinc-950 active:scale-[0.98] text-white font-bold rounded-xl shadow-xs hover:shadow-md transition-all text-xs inline-flex items-center space-x-2 flex-1 justify-center sm:flex-initial"
+                class="px-4 py-2 bg-zinc-950 hover:bg-zinc-800 text-white font-bold rounded-xl text-xs inline-flex items-center space-x-1.5 transition shadow-xs cursor-pointer"
               >
-                <span>Batafsil ma'lumot</span>
+                <span>Batafsil</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </a>
             </div>
@@ -471,22 +400,19 @@
 
       if (response.ok) {
         const data = await response.json();
-        const labelSpan = btn.querySelector('.track-btn-label');
-        const icon = btn.querySelector('i[data-lucide="bookmark"]');
+        const icon = btn.querySelector('i[data-lucide="bookmark"]') || btn.querySelector('svg');
 
         if (data.is_tracked) {
-          btn.className = 'track-btn inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition duration-150 bg-zinc-200 text-zinc-900 border border-zinc-300';
-          if (labelSpan) labelSpan.textContent = 'Kuzatilmoqda';
+          btn.className = 'track-btn pointer-events-auto p-2.5 rounded-xl backdrop-blur-md text-xs font-bold transition duration-150 shadow-sm cursor-pointer bg-zinc-950 text-white border border-zinc-800';
+          btn.title = 'Kuzatuvdan chiqarish';
           if (icon) {
-            icon.classList.add('fill-zinc-950', 'text-zinc-950');
-            icon.classList.remove('text-slate-500');
+            icon.classList.add('fill-white', 'text-white');
           }
         } else {
-          btn.className = 'track-btn inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition duration-150 bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200';
-          if (labelSpan) labelSpan.textContent = 'Kuzatish';
+          btn.className = 'track-btn pointer-events-auto p-2.5 rounded-xl backdrop-blur-md text-xs font-bold transition duration-150 shadow-sm cursor-pointer bg-black/55 hover:bg-black/75 text-white/95 border border-white/20';
+          btn.title = 'Kuzatuvga saqlash';
           if (icon) {
-            icon.classList.remove('fill-zinc-950', 'text-zinc-950');
-            icon.classList.add('text-slate-500');
+            icon.classList.remove('fill-white');
           }
         }
         lucide.createIcons();
