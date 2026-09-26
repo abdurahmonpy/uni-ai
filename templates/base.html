@@ -78,92 +78,224 @@
     }
   </script>
   
+  <!-- Google Fonts: Caveat (handwriting) + Patrick Hand -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
   <style>
+    /* =============================================
+       HAND-DRAWN STYLE — Global Design System
+       Accent: #ff6326  |  Ink: #292929
+       Paper: #fdf6e3   |  Card: #fffef9
+    ============================================= */
+
     :root {
-      --color-brand: #ff6326;
-      --color-brand-hover: #e54d12;
-      --color-brand-charcoal: #292929;
-    }
-    .bg-brand { background-color: #ff6326 !important; }
-    .text-brand { color: #ff6326 !important; }
-    .border-brand { border-color: #ff6326 !important; }
-
-    /* Universal logo palette alignment */
-    .text-indigo-600, .text-violet-600 { color: #ff6326 !important; }
-    .text-indigo-700, .text-violet-700 { color: #e54d12 !important; }
-    .text-indigo-800, .text-indigo-900 { color: #292929 !important; }
-    .bg-indigo-600, .bg-violet-600 { background-color: #ff6326 !important; }
-    .bg-indigo-700, .bg-violet-700 { background-color: #e54d12 !important; }
-    .bg-indigo-50, .bg-violet-50 { background-color: #fff5f0 !important; }
-    .bg-indigo-100, .bg-violet-100 { background-color: #ffe8de !important; }
-    .border-indigo-100, .border-violet-100 { border-color: #ffe8de !important; }
-    .border-indigo-200, .border-violet-200 { border-color: #ffd3bf !important; }
-    .border-indigo-500, .border-indigo-600 { border-color: #ff6326 !important; }
-    .ring-indigo-200, .ring-indigo-300 { --tw-ring-color: #ffd3bf !important; }
-    /* Custom Scrollbar for better UX */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f5f9;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
+      --hd-ink:    #292929;
+      --hd-orange: #ff6326;
+      --hd-paper:  #fdf6e3;
+      --hd-card:   #fffef9;
+      --hd-cream:  #fef9ee;
     }
 
-    /* Subtle top-bar progress loading animation */
+    /* Base page background — warm paper */
+    html { background-color: var(--hd-paper) !important; }
+    body { background-color: var(--hd-paper) !important; font-family: 'Patrick Hand', cursive !important; }
+
+    /* Headings use Caveat handwritten font */
+    h1, h2, h3, h4, h5, h6,
+    .hd-heading { font-family: 'Caveat', cursive !important; letter-spacing: 0.01em; }
+
+    /* Override Tailwind slate/zinc backgrounds to paper */
+    .bg-slate-50, .bg-slate-100, html.h-full.bg-slate-50 { background-color: var(--hd-paper) !important; }
+
+    /* Exclude layout containers from card styling */
+    header, footer, aside, nav, body, html, #main-content, main, table, thead, tbody, tr, th, td, #chat-messages, .no-hd {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    /* ---- HAND-DRAWN CARD ---- */
+    .hd-card,
+    .bg-white:not(header):not(footer):not(aside):not(nav):not(body):not(html):not(#main-content):not(main):not(#chat-messages):not(button):not(input):not(select):not(textarea):not(.no-hd) {
+      background-color: var(--hd-card) !important;
+      border: 2px solid var(--hd-ink) !important;
+      border-radius: 4px 14px 8px 12px / 10px 4px 14px 6px !important;
+      box-shadow: 3px 4px 0 var(--hd-ink) !important;
+      transition: box-shadow 0.15s ease, transform 0.15s ease !important;
+    }
+    .hd-card:hover,
+    .bg-white:not(header):not(footer):not(aside):not(nav):not(body):not(html):not(#main-content):not(main):not(#chat-messages):not(button):not(input):not(select):not(textarea):not(.no-hd):hover {
+      box-shadow: 5px 6px 0 var(--hd-ink) !important;
+      transform: translate(-1px, -1px) !important;
+    }
+
+    /* Header & Footer Hand-drawn ink styling */
+    header {
+      background-color: var(--hd-cream) !important;
+      border-bottom: 2px solid var(--hd-ink) !important;
+      box-shadow: 0 3px 0 #e8dfc8 !important;
+    }
+    footer {
+      background-color: var(--hd-cream) !important;
+      border-top: 2px solid var(--hd-ink) !important;
+      box-shadow: 0 -3px 0 #e8dfc8 !important;
+    }
+
+    /* ---- HAND-DRAWN BUTTON (primary) ---- */
+    .hd-btn,
+    button[type="submit"],
+    a.hd-btn {
+      font-family: 'Caveat', cursive !important;
+      font-size: 1.1rem !important;
+      font-weight: 700 !important;
+      background-color: var(--hd-orange) !important;
+      color: #fff !important;
+      border: 2.5px solid var(--hd-ink) !important;
+      border-radius: 3px 10px 5px 8px / 8px 4px 10px 3px !important;
+      box-shadow: 3px 3px 0 var(--hd-ink) !important;
+      letter-spacing: 0.02em !important;
+      transition: box-shadow 0.1s, transform 0.1s !important;
+    }
+    .hd-btn:hover,
+    button[type="submit"]:hover {
+      box-shadow: 1px 2px 0 var(--hd-ink) !important;
+      transform: translate(2px, 1px) !important;
+    }
+    .hd-btn:active,
+    button[type="submit"]:active {
+      box-shadow: 0 0 0 var(--hd-ink) !important;
+      transform: translate(3px, 3px) !important;
+    }
+
+    /* ---- HAND-DRAWN BUTTON (outline/secondary) ---- */
+    .hd-btn-outline,
+    a.border.border-slate-200,
+    a.border.border-slate-300 {
+      font-family: 'Caveat', cursive !important;
+      font-size: 1rem !important;
+      background-color: var(--hd-card) !important;
+      color: var(--hd-ink) !important;
+      border: 2px solid var(--hd-ink) !important;
+      border-radius: 5px 8px 3px 10px / 6px 3px 9px 4px !important;
+      box-shadow: 2px 2px 0 var(--hd-ink) !important;
+      transition: box-shadow 0.1s, transform 0.1s !important;
+    }
+    .hd-btn-outline:hover {
+      box-shadow: 0 0 0 var(--hd-ink) !important;
+      transform: translate(2px, 2px) !important;
+    }
+
+    /* ---- HAND-DRAWN INPUT ---- */
+    input:not([type="checkbox"]):not([type="radio"]):not([type="date"]),
+    select, textarea, input[type="date"] {
+      font-family: 'Patrick Hand', cursive !important;
+      background-color: var(--hd-card) !important;
+      border: 2px solid var(--hd-ink) !important;
+      border-radius: 4px 10px 6px 8px / 8px 4px 10px 5px !important;
+      box-shadow: 2px 2px 0 #c8bfa8 !important;
+      transition: box-shadow 0.15s !important;
+    }
+    input:not([type="checkbox"]):not([type="radio"]):focus,
+    select:focus, textarea:focus {
+      outline: none !important;
+      box-shadow: 3px 3px 0 var(--hd-orange) !important;
+      border-color: var(--hd-orange) !important;
+    }
+
+    /* ---- SIDEBAR (Desktop) ---- */
+    #desktop-sidebar {
+      background-color: var(--hd-cream) !important;
+      border-right: 2px solid var(--hd-ink) !important;
+      box-shadow: 3px 0 0 #e8dfc8 !important;
+    }
+
+    /* ---- BADGE / PILL ---- */
+    .rounded-full {
+      border: 1.5px solid var(--hd-ink) !important;
+      font-family: 'Caveat', cursive !important;
+    }
+
+    /* ---- ACTIVE NAV ITEM ---- */
+    .border-l-4.border-orange-600 {
+      border-left: 3px solid var(--hd-orange) !important;
+      background-color: #fff5eb !important;
+    }
+
+    /* ---- PROGRESS BAR ---- */
+    .bg-orange-600, [style*="background-color: #ff6326"],
+    .bg-orange-500 {
+      background-color: var(--hd-orange) !important;
+      /* Rough edge via clip-path */
+    }
+
+    /* Heatmap cells */
+    .bg-emerald-500 { border: 1.5px solid var(--hd-ink) !important; }
+
+    /* ---- MOBILE BOTTOM NAV ---- */
+    nav.sm\:hidden.fixed {
+      background-color: var(--hd-cream) !important;
+      border-top: 2.5px solid var(--hd-ink) !important;
+      box-shadow: 0 -3px 0 #e8dfc8 !important;
+    }
+
+    /* ---- TOP PROGRESS BAR ---- */
     #top-progress-bar {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 0%;
       height: 3px;
-      background: linear-gradient(90deg, #FF6326, #FF8A5C, #292929);
+      background: linear-gradient(90deg, var(--hd-orange), #ff8a5c, var(--hd-ink));
       z-index: 99999;
       transition: width 0.2s ease, opacity 0.3s ease;
       opacity: 0;
     }
 
-    /* Page transition smooth fade */
-    .page-transition {
-      animation: fadeIn 0.25s ease-out;
-    }
+    /* ---- PAGE TRANSITION ---- */
+    .page-transition { animation: fadeIn 0.22s ease-out; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(3px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Infinite Marquee Animation for Partners/Universities */
+    /* ---- MARQUEE ---- */
     @keyframes marqueeScroll {
-      0% { transform: translateX(0%); }
+      0%   { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
     }
     .animate-marquee-infinite {
-      display: flex;
-      width: max-content;
+      display: flex; width: max-content;
       animation: marqueeScroll 35s linear infinite;
     }
-    .animate-marquee-infinite:hover {
-      animation-play-state: paused;
+    .animate-marquee-infinite:hover { animation-play-state: paused; }
+
+    /* ---- SCROLLBAR ---- */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--hd-paper); }
+    ::-webkit-scrollbar-thumb { background: #c8bfa8; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #a09070; }
+
+    /* Decorative squiggle underline for accent text */
+    .hd-underline {
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-decoration-color: var(--hd-orange);
+      text-underline-offset: 4px;
     }
 
-    /* Subtle Card Hover Transitions */
-    .card-subtle-hover {
-      transition: all 0.2s ease-in-out;
-    }
-    .card-subtle-hover:hover {
-      border-color: #cbd5e1;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    /* Card subtle hover (override) */
+    .card-subtle-hover { transition: all 0.15s ease-in-out; }
+
+    /* Dark sections keep dark, no override */
+    .bg-zinc-900, .bg-zinc-950, .bg-zinc-800,
+    [class*="from-zinc"], [class*="via-zinc"] {
+      /* keep as-is for dark hero banners */
     }
   </style>
   {% block extra_head %}{% endblock %}
 </head>
-<body class="min-h-full font-sans antialiased text-slate-900 bg-slate-50 overflow-x-hidden">
+<body class="min-h-full antialiased text-stone-900 overflow-x-hidden">
   <div id="top-progress-bar"></div>
 
   {% if request.user.is_authenticated and not hide_sidebar and not '/onboarding/' in request.path %}

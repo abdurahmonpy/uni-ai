@@ -1,41 +1,43 @@
-<nav class="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 shadow-lg pb-safe">
+<nav class="sm:hidden fixed bottom-0 left-0 right-0 z-50 pb-safe"
+     style="background: #fef9ee; border-top: 2.5px solid #292929; box-shadow: 0 -3px 0 #e8dfc8;">
   <div class="grid grid-cols-5 h-16 items-center px-1">
     
     <!-- 1. Bosh sahifa -->
     <a href="{% url 'dashboard:index' %}" 
-       class="flex flex-col items-center justify-center py-1 text-center transition {% if request.path == '/dashboard/' or request.path == '/' %}text-orange-600 font-bold{% else %}text-slate-500 hover:text-slate-800{% endif %}">
-      <i data-lucide="home" class="w-4 h-4 mb-1"></i>
-      <span class="text-[9px] leading-tight">Asosiy</span>
+       class="flex flex-col items-center justify-center py-1 text-center transition {% if request.path == '/dashboard/' or request.path == '/' %}text-orange-600 font-bold{% else %}text-stone-600 hover:text-stone-900{% endif %}">
+      <i data-lucide="home" class="w-4 h-4 mb-0.5"></i>
+      <span class="text-xs leading-tight" style="font-family: 'Caveat', cursive; font-size: 0.9rem;">Asosiy</span>
     </a>
 
     <!-- 2. Imtihon Tayyorgarligi -->
     <a href="{% url 'tasks:exam_prep' %}" 
-       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}text-orange-600 font-bold{% else %}text-slate-500 hover:text-slate-800{% endif %}">
-      <i data-lucide="headphones" class="w-4 h-4 mb-1"></i>
-      <span class="text-[9px] leading-tight">Imtihon</span>
+       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}text-orange-600 font-bold{% else %}text-stone-600 hover:text-stone-900{% endif %}">
+      <i data-lucide="headphones" class="w-4 h-4 mb-0.5"></i>
+      <span class="text-xs leading-tight" style="font-family: 'Caveat', cursive; font-size: 0.9rem;">Imtihon</span>
     </a>
 
-    <!-- 3. AI Mentor (markazda, kattaroq) -->
+    <!-- 3. AI Mentor (markazda, qo'lda chizilgan shtamp) -->
     <a href="{% url 'mentor:chat' %}" 
-       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/mentor/' in request.path %}text-orange-600 font-bold{% else %}text-slate-500 hover:text-slate-800{% endif %}">
-      <div class="w-10 h-10 rounded-2xl {% if '/mentor/' in request.path %}bg-orange-600{% else %}bg-zinc-900{% endif %} flex items-center justify-center -mt-4 shadow-md border-2 border-white">
+       class="flex flex-col items-center justify-center py-1 text-center transition">
+      <div class="w-11 h-11 flex items-center justify-center -mt-5 transition cursor-pointer"
+           style="background: #ff6326; border: 2px solid #292929; box-shadow: 2px 3px 0 #292929; border-radius: 6px 12px 8px 10px;">
         <i data-lucide="message-circle" class="w-5 h-5 text-white"></i>
       </div>
-      <span class="text-[9px] leading-tight mt-1">AI Mentor</span>
+      <span class="text-xs leading-tight mt-1 font-bold text-orange-600" style="font-family: 'Caveat', cursive; font-size: 0.95rem;">AI Mentor</span>
     </a>
 
     <!-- 4. Dasturlar -->
     <a href="{% url 'programs:catalog' %}" 
-       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/programs/' in request.path %}text-orange-600 font-bold{% else %}text-slate-500 hover:text-slate-800{% endif %}">
-      <i data-lucide="graduation-cap" class="w-4 h-4 mb-1"></i>
-      <span class="text-[9px] leading-tight">Dasturlar</span>
+       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/programs/' in request.path %}text-orange-600 font-bold{% else %}text-stone-600 hover:text-stone-900{% endif %}">
+      <i data-lucide="graduation-cap" class="w-4 h-4 mb-0.5"></i>
+      <span class="text-xs leading-tight" style="font-family: 'Caveat', cursive; font-size: 0.9rem;">Dasturlar</span>
     </a>
 
     <!-- 5. Profil -->
     <a href="{% url 'accounts:profile' %}" 
-       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/accounts/profile/' in request.path %}text-orange-600 font-bold{% else %}text-slate-500 hover:text-slate-800{% endif %}">
-      <i data-lucide="user" class="w-4 h-4 mb-1"></i>
-      <span class="text-[9px] leading-tight">Profil</span>
+       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/accounts/profile/' in request.path %}text-orange-600 font-bold{% else %}text-stone-600 hover:text-stone-900{% endif %}">
+      <i data-lucide="user" class="w-4 h-4 mb-0.5"></i>
+      <span class="text-xs leading-tight" style="font-family: 'Caveat', cursive; font-size: 0.9rem;">Profil</span>
     </a>
 
   </div>

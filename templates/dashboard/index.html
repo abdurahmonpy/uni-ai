@@ -5,63 +5,74 @@
 {% block content %}
 <div class="space-y-6">
 
-  <!-- Header & Welcome Banner with Student Demographics -->
-  <div class="flex flex-col md:flex-row md:items-center justify-between bg-gradient-to-r from-zinc-950 via-zinc-900 to-slate-900 border border-zinc-800 rounded-3xl p-6 md:p-8 text-white shadow-md gap-4">
+  <!-- Header & Welcome Banner — Hand-Drawn Dark Paper Style -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between bg-zinc-900 text-white gap-4 p-6 md:p-8"
+       style="border: 2.5px solid #292929; border-radius: 6px 18px 10px 14px / 12px 6px 18px 8px; box-shadow: 5px 6px 0 #1a1a1a; position: relative; overflow: hidden;">
+    <!-- Decorative corner sketch marks -->
+    <span style="position:absolute;top:8px;left:10px;width:20px;height:20px;border-left:2px solid #ff6326;border-top:2px solid #ff6326;border-radius:2px 0 0 0;opacity:0.6;"></span>
+    <span style="position:absolute;bottom:8px;right:10px;width:20px;height:20px;border-right:2px solid #ff6326;border-bottom:2px solid #ff6326;border-radius:0 0 2px 0;opacity:0.6;"></span>
+
     <div class="space-y-3">
       <!-- Demographic Badges Strip -->
       <div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
         {% if demographics.grade_display %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full text-zinc-200">
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 px-3 py-1 text-zinc-200"
+                style="border:1.5px solid #ff6326;border-radius:3px 8px 4px 7px/6px 3px 8px 4px;font-family:'Caveat',cursive;">
             <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-orange-400"></i>
             <span>{{ demographics.grade_display }}</span>
           </span>
         {% endif %}
 
         {% if demographics.region_display %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full text-zinc-200">
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 px-3 py-1 text-zinc-200"
+                style="border:1.5px solid #888;border-radius:5px 3px 7px 4px/4px 6px 3px 5px;font-family:'Caveat',cursive;">
             <i data-lucide="map-pin" class="w-3.5 h-3.5 text-orange-400"></i>
             <span>{{ demographics.region_display }}</span>
           </span>
         {% endif %}
 
         {% if demographics.field_of_study_display %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full text-zinc-200">
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 px-3 py-1 text-zinc-200"
+                style="border:1.5px solid #888;border-radius:4px 7px 3px 8px/7px 4px 6px 3px;font-family:'Caveat',cursive;">
             <i data-lucide="compass" class="w-3.5 h-3.5 text-orange-400"></i>
             <span>{{ demographics.field_of_study_display }}</span>
           </span>
         {% endif %}
 
         {% if demographics.target_countries %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full text-zinc-200">
+          <span class="inline-flex items-center space-x-1.5 bg-zinc-800 px-3 py-1 text-zinc-200"
+                style="border:1.5px solid #888;border-radius:6px 4px 8px 3px/3px 7px 4px 6px;font-family:'Caveat',cursive;">
             <i data-lucide="globe" class="w-3.5 h-3.5 text-orange-400"></i>
             <span>{{ demographics.target_countries|join:", " }}</span>
           </span>
         {% endif %}
 
         {% if demographics.budget_display %}
-          <span class="inline-flex items-center space-x-1.5 bg-emerald-700/70 border border-emerald-500/40 px-3 py-1 rounded-full text-emerald-100">
+          <span class="inline-flex items-center space-x-1.5 px-3 py-1 text-emerald-100"
+                style="background:#1a4a36;border:1.5px solid #4ade80;border-radius:5px 8px 4px 7px/8px 4px 7px 5px;font-family:'Caveat',cursive;">
             <i data-lucide="award" class="w-3.5 h-3.5 text-emerald-300"></i>
             <span>{{ demographics.budget_display }}</span>
           </span>
         {% endif %}
       </div>
 
-      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight" style="font-family:'Caveat',cursive;text-shadow:1px 1px 0 #000;">
         Xush kelibsiz, {{ student.user.first_name|default:student.user.phone_number }}!
       </h1>
-      <p class="text-zinc-300 text-sm md:text-base max-w-2xl">
+      <p class="text-zinc-300 text-sm md:text-base max-w-2xl" style="font-family:'Patrick Hand',cursive;">
         Bugungi Dual-Track rejangiz bo'yicha Imtihon tayyorgarligi (Track A) va Universitet arizasi (Track B) vazifalarini bajaring.
       </p>
     </div>
     
-    <!-- Streak & Ready Score Pill -->
+    <!-- Streak & Ready Score — Stamp Style -->
     <div class="mt-2 md:mt-0 flex flex-wrap md:flex-col items-start md:items-end gap-3 self-start md:self-auto">
-      <div class="flex items-center bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2.5 rounded-2xl shadow-xs">
+      <div class="flex items-center px-4 py-2.5"
+           style="background:rgba(255,255,255,0.08);border:2px solid #ff6326;border-radius:4px 12px 6px 10px/10px 4px 12px 5px;box-shadow:3px 3px 0 #ff6326;">
         <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center mr-3">
           <i data-lucide="flame" class="w-5 h-5 text-amber-300"></i>
         </div>
         <div>
-          <div class="text-xl font-black text-white">{{ streak_count }} kun</div>
+          <div class="text-xl font-black text-white" style="font-family:'Caveat',cursive;">{{ streak_count }} kun</div>
           <div class="text-[11px] text-zinc-300 font-medium">Ketma-ketlik (Streak)</div>
         </div>
       </div>

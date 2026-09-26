@@ -6,7 +6,7 @@
 {% block content %}
 <div class="space-y-16 md:space-y-24 py-4 md:py-8">
 
-  <!-- ================= HERO SECTION (Linear / Stripe Tier-1 Product UI) ================= -->
+  <!-- ================= HERO SECTION (Hand-Drawn Sketch / Notion Style) ================= -->
   <section class="relative pt-2 pb-6 md:py-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       
@@ -14,56 +14,59 @@
       <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
         
         <!-- Top Minimalist Pill Badge -->
-        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200/90 text-zinc-800 text-xs font-semibold">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 bg-stone-100 text-stone-900 text-xs font-semibold"
+             style="border: 1.5px solid #292929; border-radius: 4px 10px 5px 8px; font-family: 'Caveat', cursive; font-size: 1.05rem;">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" style="border: 1px solid #292929;"></span>
           <span>9–11 sinf o'quvchilari uchun maxsus</span>
         </div>
 
         <!-- Main Headline -->
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-zinc-900 tracking-tight leading-[1.12]">
-          Xorijiy universitetlar va <span class="text-orange-600">katta grantlarga</span> shaxsiy AI tizimi bilan kiring
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-stone-900 tracking-tight leading-[1.08]"
+            style="font-family: 'Caveat', cursive;">
+          Xorijiy universitetlar va <span class="text-orange-600 hd-underline">katta grantlarga</span> shaxsiy AI tizimi bilan kiring
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+        <p class="text-lg sm:text-xl text-stone-700 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal"
+           style="font-family: 'Patrick Hand', cursive;">
           UniMentor — har kuni <strong>Dual-Track reja</strong> (IELTS/SAT test drilllari va universitet grant arizalari) tuzib beruvchi, insholaringizni xalqaro qabul komissiyasi mezonlarida tahrir qiluvchi shaxsiy AI mentor.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
-          <a href="{% url 'accounts:register' %}" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 bg-orange-600 hover:bg-orange-700 active:scale-[0.99] text-white text-sm font-semibold rounded-xl shadow-xs transition duration-150 space-x-2 group">
-            <i data-lucide="compass" class="w-4 h-4"></i>
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+          <a href="{% url 'accounts:register' %}" class="hd-btn w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-white space-x-2 cursor-pointer">
+            <i data-lucide="compass" class="w-5 h-5"></i>
             <span>Diagnostika va Reja Olish</span>
-            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5"></i>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
           </a>
-          <a href="{% url 'programs:catalog' %}" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-white hover:bg-zinc-50 active:scale-[0.99] text-zinc-800 text-sm font-semibold rounded-xl border border-zinc-200 shadow-xs transition duration-150 space-x-2">
-            <i data-lucide="graduation-cap" class="w-4 h-4 text-zinc-500"></i>
+          <a href="{% url 'programs:catalog' %}" class="hd-btn-outline w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-stone-800 space-x-2 cursor-pointer">
+            <i data-lucide="graduation-cap" class="w-5 h-5 text-stone-700"></i>
             <span>225+ Grantlar Katalogi</span>
           </a>
         </div>
 
         <!-- Social Proof Stats Row -->
-        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-zinc-200 text-left">
+        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-stone-300 text-left">
           <div class="space-y-0.5">
-            <div class="flex items-center space-x-1.5 text-zinc-900 font-bold text-sm sm:text-base">
+            <div class="flex items-center space-x-1.5 text-stone-900 font-bold text-base sm:text-lg" style="font-family: 'Caveat', cursive;">
               <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
               <span>100% Bepul</span>
             </div>
-            <p class="text-xs text-zinc-500">Boshlang'ich diagnostika</p>
+            <p class="text-xs text-stone-600" style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Boshlang'ich diagnostika</p>
           </div>
           <div class="space-y-0.5">
-            <div class="flex items-center space-x-1.5 text-zinc-900 font-bold text-sm sm:text-base">
+            <div class="flex items-center space-x-1.5 text-stone-900 font-bold text-base sm:text-lg" style="font-family: 'Caveat', cursive;">
               <i data-lucide="flame" class="w-4 h-4 text-orange-600 flex-shrink-0"></i>
               <span>Duolingo Uslubi</span>
             </div>
-            <p class="text-xs text-zinc-500">Kunlik streak va intizom</p>
+            <p class="text-xs text-stone-600" style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Kunlik streak va intizom</p>
           </div>
           <div class="space-y-0.5">
-            <div class="flex items-center space-x-1.5 text-zinc-900 font-bold text-sm sm:text-base">
-              <i data-lucide="bot" class="w-4 h-4 text-zinc-700 flex-shrink-0"></i>
+            <div class="flex items-center space-x-1.5 text-stone-900 font-bold text-base sm:text-lg" style="font-family: 'Caveat', cursive;">
+              <i data-lucide="bot" class="w-4 h-4 text-stone-700 flex-shrink-0"></i>
               <span>24/7 AI Mentor</span>
             </div>
-            <p class="text-xs text-zinc-500">Insho va arizalar tahlili</p>
+            <p class="text-xs text-stone-600" style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Insho va arizalar tahlili</p>
           </div>
         </div>
 
@@ -72,43 +75,50 @@
       <!-- Right Column: Hero Visual Showcase Image -->
       <div class="lg:col-span-6 relative flex justify-center items-center">
         <!-- Main Card Frame -->
-        <div class="relative w-full max-w-lg bg-white p-3 sm:p-4 rounded-3xl border border-zinc-200 shadow-xl shadow-zinc-200/50">
-          <div class="relative rounded-2xl overflow-hidden border border-zinc-100 bg-zinc-50">
+        <div class="relative w-full max-w-lg p-3 sm:p-4"
+             style="background: #fffef9; border: 2.5px solid #292929; border-radius: 8px 18px 10px 16px / 16px 8px 18px 10px; box-shadow: 6px 7px 0 #292929;">
+          <div class="relative overflow-hidden"
+               style="border: 2px solid #292929; border-radius: 6px 12px 8px 10px; background: #fdf6e3;">
             <img 
               src="{% static 'images/unimentor_hero_showcase.jpg' %}" 
               alt="UniMentor AI Study Platform" 
-              class="w-full h-auto object-cover transform hover:scale-[1.02] transition duration-500 rounded-2xl"
+              class="w-full h-auto object-cover transform hover:scale-[1.02] transition duration-500"
             >
             
             <!-- Bottom badge overlay -->
-            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs px-3.5 py-2.5 rounded-xl bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-lg">
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs px-3.5 py-2.5 bg-zinc-950/90"
+                 style="border: 1.5px solid #ff6326; border-radius: 4px 8px 5px 7px; font-family: 'Caveat', cursive; font-size: 1.05rem;">
               <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping inline-block"></span>
                 <span class="font-bold">24/7 AI Mentor Faol</span>
               </div>
-              <span class="text-[11px] text-orange-400 font-bold">Dual-Track Shaxsiy Reja</span>
+              <span class="text-orange-400 font-bold">Dual-Track Shaxsiy Reja</span>
             </div>
           </div>
 
           <!-- Floating Badge Top Left: Streak -->
-          <div class="absolute -top-3 -left-3 sm:-left-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-zinc-200 shadow-lg flex items-center space-x-2.5">
-            <div class="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center p-1 text-orange-600">
+          <div class="absolute -top-3 -left-3 sm:-left-4 px-3.5 py-2 flex items-center space-x-2.5"
+               style="background: #fffef9; border: 2px solid #292929; border-radius: 6px 12px 7px 10px; box-shadow: 3px 3px 0 #292929;">
+            <div class="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center p-1 text-orange-600"
+                 style="border: 1px solid #ff6326;">
               <i data-lucide="flame" class="w-5 h-5 text-orange-600"></i>
             </div>
             <div>
-              <p class="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Kunlik Intizom</p>
-              <p class="text-xs font-black text-zinc-900">14 Kunlik Streak</p>
+              <p class="text-[10px] font-bold uppercase tracking-wider text-stone-500" style="font-family: 'Caveat', cursive;">Kunlik Intizom</p>
+              <p class="text-xs font-black text-stone-900" style="font-family: 'Caveat', cursive; font-size: 1.1rem;">14 Kunlik Streak</p>
             </div>
           </div>
 
           <!-- Floating Badge Bottom Right: Ready Score -->
-          <div class="absolute -bottom-3 -right-3 sm:-right-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl border border-zinc-200 shadow-lg flex items-center space-x-2.5">
-            <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center p-1 text-emerald-600">
+          <div class="absolute -bottom-3 -right-3 sm:-right-4 px-3.5 py-2 flex items-center space-x-2.5"
+               style="background: #fffef9; border: 2px solid #292929; border-radius: 6px 12px 7px 10px; box-shadow: 3px 3px 0 #292929;">
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center p-1 text-emerald-600"
+                 style="border: 1px solid #4ade80;">
               <i data-lucide="award" class="w-5 h-5 text-emerald-600"></i>
             </div>
             <div>
-              <p class="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Qabul Ehtimoli</p>
-              <p class="text-xs font-black text-emerald-700">82% Ready Score</p>
+              <p class="text-[10px] font-bold uppercase tracking-wider text-stone-500" style="font-family: 'Caveat', cursive;">Qabul Ehtimoli</p>
+              <p class="text-xs font-black text-stone-900" style="font-family: 'Caveat', cursive; font-size: 1.1rem;">84% Ready Score</p>
             </div>
           </div>
         </div>

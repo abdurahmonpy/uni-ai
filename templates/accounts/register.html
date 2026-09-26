@@ -5,28 +5,32 @@
 
 {% block content %}
 <div class="max-w-4xl mx-auto my-6 sm:my-12 px-3 sm:px-4">
-  <div class="bg-white rounded-2xl border border-zinc-200 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[580px]">
+  <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[580px] overflow-hidden"
+       style="background: #fffef9; border: 2.5px solid #292929; border-radius: 8px 18px 10px 16px / 16px 8px 18px 10px; box-shadow: 6px 7px 0 #292929;">
     
     <!-- Left Showcase Column (Desktop Only / Hero branding) -->
-    <div class="lg:col-span-5 bg-zinc-950 border-r border-zinc-800 p-8 sm:p-10 text-white flex flex-col justify-between">
+    <div class="lg:col-span-5 bg-zinc-900 p-8 sm:p-10 text-white flex flex-col justify-between"
+         style="border-right: 2.5px solid #292929; position: relative;">
       <!-- Brand and Header -->
       <div class="space-y-6">
         <div class="flex items-center space-x-2.5">
-          <div class="w-9 h-9 rounded-xl bg-white p-0.5 shadow-xs flex items-center justify-center overflow-hidden">
+          <div class="w-9 h-9 bg-white p-0.5 flex items-center justify-center overflow-hidden"
+               style="border: 2px solid #292929; border-radius: 4px 8px 5px 7px; box-shadow: 2px 2px 0 #ff6326;">
             <img src="{% static 'images/unimentor_logo.png' %}" alt="UniMentor" class="w-full h-full object-contain">
           </div>
-          <span class="text-lg font-bold tracking-tight text-white">UniMentor</span>
-          <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-orange-600 text-white">AI</span>
+          <span class="text-xl font-bold tracking-tight text-white" style="font-family: 'Caveat', cursive;">UniMentor</span>
+          <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-orange-600 text-white" style="border: 1.5px solid #292929;">AI</span>
         </div>
 
         <div class="space-y-2">
-          <span class="px-2.5 py-1 bg-zinc-800 text-zinc-300 text-[11px] font-semibold rounded-md border border-zinc-700/80 inline-block">
+          <span class="px-3 py-1 bg-zinc-800 text-orange-400 text-xs font-bold inline-block"
+                style="border: 1.5px solid #ff6326; border-radius: 4px 10px 6px 8px; font-family: 'Caveat', cursive;">
             Boshlash
           </span>
-          <h2 class="text-xl sm:text-2xl font-bold text-white leading-tight tracking-tight">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white leading-tight tracking-tight" style="font-family: 'Caveat', cursive;">
             Xorijiy universitetlar va katta grantlarga tizimli tayyorgarlik
           </h2>
-          <p class="text-xs text-zinc-400 leading-relaxed">
+          <p class="text-sm text-zinc-300 leading-relaxed" style="font-family: 'Patrick Hand', cursive;">
             Har kungi shaxsiy Dual-Track rejasi, insho tahriri va kunlik vazifalar bilan o'z orzuingizdagi grantga erishing.
           </p>
         </div>
@@ -34,46 +38,50 @@
         <!-- Value Points -->
         <div class="space-y-3 pt-2">
           <div class="flex items-center space-x-3 text-xs text-zinc-300 font-medium">
-            <div class="w-5 h-5 rounded-md bg-zinc-800 text-emerald-400 flex items-center justify-center flex-shrink-0 border border-zinc-700">
+            <div class="w-5 h-5 bg-zinc-800 text-emerald-400 flex items-center justify-center flex-shrink-0"
+                 style="border: 1.5px solid #4ade80; border-radius: 3px 6px 4px 5px;">
               <i data-lucide="check" class="w-3.5 h-3.5"></i>
             </div>
-            <span>Global UGRAD, DAAD va Chevening dasturlari</span>
+            <span style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Global UGRAD, DAAD va Chevening dasturlari</span>
           </div>
 
           <div class="flex items-center space-x-3 text-xs text-zinc-300 font-medium">
-            <div class="w-5 h-5 rounded-md bg-zinc-800 text-orange-400 flex items-center justify-center flex-shrink-0 border border-zinc-700">
+            <div class="w-5 h-5 bg-zinc-800 text-orange-400 flex items-center justify-center flex-shrink-0"
+                 style="border: 1.5px solid #ff6326; border-radius: 3px 6px 4px 5px;">
               <i data-lucide="flame" class="w-3.5 h-3.5"></i>
             </div>
-            <span>Duolingo uslubidagi kunlik streak va intizom</span>
+            <span style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">Duolingo uslubidagi kunlik streak va intizom</span>
           </div>
 
           <div class="flex items-center space-x-3 text-xs text-zinc-300 font-medium">
-            <div class="w-5 h-5 rounded-md bg-zinc-800 text-zinc-300 flex items-center justify-center flex-shrink-0 border border-zinc-700">
+            <div class="w-5 h-5 bg-zinc-800 text-amber-300 flex items-center justify-center flex-shrink-0"
+                 style="border: 1.5px solid #fcd34d; border-radius: 3px 6px 4px 5px;">
               <i data-lucide="bot" class="w-3.5 h-3.5"></i>
             </div>
-            <span>24/7 shaxsiy AI mentor va arizalar tahlili</span>
+            <span style="font-family: 'Patrick Hand', cursive; font-size: 0.95rem;">24/7 shaxsiy AI mentor va arizalar tahlili</span>
           </div>
         </div>
       </div>
 
       <!-- Trust Badge Card at bottom -->
-      <div class="pt-6 mt-6 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-500">
+      <div class="pt-6 mt-6 border-t border-zinc-700/80 flex items-center justify-between text-xs text-zinc-400">
         <span>100% Bepul diagnostika</span>
-        <span class="font-semibold text-zinc-300">UniMentor Platformasi</span>
+        <span class="font-bold text-orange-400" style="font-family: 'Caveat', cursive;">UniMentor Platformasi</span>
       </div>
     </div>
 
     <!-- Right Form Column -->
-    <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center bg-white">
+    <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center bg-white" style="background: #fffef9;">
       
       <div class="max-w-md w-full mx-auto space-y-6">
         <div>
-          <h1 class="text-2xl font-bold text-zinc-900 tracking-tight">Ro'yxatdan o'tish</h1>
-          <p class="text-xs sm:text-sm text-zinc-500 mt-1">O'zbekiston maktab o'quvchilari uchun maxsus moslashtirilgan</p>
+          <h1 class="text-3xl font-extrabold text-stone-900 tracking-tight" style="font-family: 'Caveat', cursive;">Ro'yxatdan o'tish</h1>
+          <p class="text-sm text-stone-600 mt-1" style="font-family: 'Patrick Hand', cursive;">O'zbekiston maktab o'quvchilari uchun maxsus moslashtirilgan</p>
         </div>
 
         {% if form.non_field_errors %}
-          <div class="p-3.5 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl space-y-1">
+          <div class="p-3.5 bg-red-50 text-red-700 text-xs space-y-1"
+               style="border: 2px solid #ef4444; border-radius: 4px 10px 6px 8px; box-shadow: 2px 2px 0 #ef4444;">
             {% for error in form.non_field_errors %}
               <p class="font-medium">{{ error }}</p>
             {% endfor %}
@@ -84,7 +92,7 @@
           {% csrf_token %}
 
           <div>
-            <label for="id_first_name" class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">
+            <label for="id_first_name" class="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5" style="font-family: 'Caveat', cursive; font-size: 1rem;">
               Ismingiz *
             </label>
             {{ form.first_name }}
@@ -94,30 +102,30 @@
           </div>
 
           <div>
-            <label for="id_phone_number" class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">
+            <label for="id_phone_number" class="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5" style="font-family: 'Caveat', cursive; font-size: 1rem;">
               Telefon raqami (Asosiy login) *
             </label>
             {{ form.phone_number }}
             {% if form.phone_number.errors %}
               <p class="text-red-600 text-xs mt-1 font-medium">{{ form.phone_number.errors.0 }}</p>
             {% endif %}
-            <p class="text-[11px] text-zinc-400 mt-1">Masalan: +998 90 123 45 67 yoki 901234567</p>
+            <p class="text-xs text-stone-500 mt-1">Masalan: +998 90 123 45 67 yoki 901234567</p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="id_password" class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">
+              <label for="id_password" class="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5" style="font-family: 'Caveat', cursive; font-size: 1rem;">
                 Parol *
               </label>
               {{ form.password }}
               {% if form.password.errors %}
                 <p class="text-red-600 text-xs mt-1 font-medium">{{ form.password.errors.0 }}</p>
               {% endif %}
-              <p class="text-[11px] text-zinc-400 mt-1">Kamida 6 ta belgi</p>
+              <p class="text-xs text-stone-500 mt-1">Kamida 6 ta belgi</p>
             </div>
 
             <div>
-              <label for="id_password_confirm" class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">
+              <label for="id_password_confirm" class="block text-xs font-bold text-stone-800 uppercase tracking-wider mb-1.5" style="font-family: 'Caveat', cursive; font-size: 1rem;">
                 Parolni tasdiqlang *
               </label>
               {{ form.password_confirm }}
@@ -127,17 +135,17 @@
             </div>
           </div>
 
-          <button type="submit" class="w-full py-3 px-5 bg-orange-600 hover:bg-orange-700 active:scale-[0.99] text-white text-sm font-semibold rounded-xl shadow-xs transition flex items-center justify-center space-x-2 mt-2">
+          <button type="submit" class="hd-btn w-full py-3 px-5 text-white flex items-center justify-center space-x-2 mt-4 cursor-pointer">
             <span>Profilingizni yaratish</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </button>
         </form>
 
-        <div class="pt-4 border-t border-zinc-100 text-center text-xs text-zinc-600">
+        <div class="pt-4 border-t border-stone-300 text-center text-sm text-stone-700">
           <span>Profilingiz bormi?</span>
-          <a href="{% url 'accounts:login' %}" class="text-orange-600 hover:text-orange-700 font-semibold ml-1 hover:underline inline-flex items-center space-x-1">
+          <a href="{% url 'accounts:login' %}" class="text-orange-600 font-bold ml-1 hover:underline inline-flex items-center space-x-1" style="font-family: 'Caveat', cursive; font-size: 1.15rem;">
             <span>Tizimga kiring</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
         </div>
 
