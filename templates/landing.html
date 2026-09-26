@@ -3,6 +3,48 @@
 
 {% block title %}UniMentor — Xorijda Ta'lim va Grantlar AI Mentori | 9-11 Sinf O'quvchilari Uchun{% endblock %}
 
+{% block extra_head %}
+<style>
+  @keyframes levitate3D {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-22px) rotate(1.8deg);
+    }
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+  }
+
+  @keyframes shadowPulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scale(0.78);
+      opacity: 0.12;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.3;
+    }
+  }
+
+  .hero-3d-float {
+    animation: levitate3D 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .hero-3d-shadow {
+    animation: shadowPulse 5s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="space-y-16 md:space-y-24 py-4 md:py-8">
 
@@ -46,18 +88,19 @@
 
       </div>
 
-      <!-- Right Column: Hero Visual Showcase Image -->
-      <div class="lg:col-span-6 relative flex justify-center items-center">
-        <!-- Main Card Frame -->
-        <div class="relative w-full max-w-lg p-3 sm:p-4 bg-white rounded-2xl border border-zinc-200 shadow-xl">
-          <div class="relative rounded-xl overflow-hidden bg-white flex items-center justify-center p-2">
-            <img 
-              src="{% static 'images/hero_graduation_cap.png' %}" 
-              alt="Akademik kepka va universitet diplomi" 
-              class="w-full h-auto max-h-[380px] object-contain transform hover:scale-[1.02] transition duration-500 rounded-xl"
-            >
-          </div>
+      <!-- Right Column: Interactive Free-Floating 3D Academic Cap & Diploma -->
+      <div id="hero-3d-stage" class="lg:col-span-6 relative flex flex-col items-center justify-center py-4 select-none" style="perspective: 1200px;">
+        <!-- 3D Floating Object (No box, no borders, pure free-floating element) -->
+        <div id="hero-3d-object" class="hero-3d-float relative w-full max-w-md sm:max-w-lg transition-transform duration-200 ease-out cursor-pointer flex justify-center">
+          <img 
+            src="{% static 'images/hero_graduation_cap.png' %}" 
+            alt="3D Akademik kepka va diplom" 
+            class="w-full max-h-[440px] object-contain filter drop-shadow-2xl mix-blend-multiply"
+            draggable="false"
+          >
         </div>
+        <!-- Dynamic Ambient 3D Ground Shadow -->
+        <div class="hero-3d-shadow w-2/3 max-w-xs h-6 bg-zinc-950/20 rounded-[100%] blur-md -mt-6"></div>
       </div>
 
     </div>
@@ -1294,4 +1337,51 @@
   {% include 'includes/disclaimer.html' %}
 
 </div>
+
+<!-- 3D Interactive Mouse Tilt & Parallax Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stage = document.getElementById('hero-3d-stage');
+    const obj = document.getElementById('hero-3d-object');
+    if (!stage || !obj) return;
+
+    let targetRotX = 0;
+    let targetRotY = 0;
+    let currentRotX = 0;
+    let currentRotY = 0;
+    let isHovering = false;
+    let animFrame = null;
+
+    function updateTilt() {
+      if (isHovering) {
+        currentRotX += (targetRotX - currentRotX) * 0.12;
+        currentRotY += (targetRotY - currentRotY) * 0.12;
+        obj.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg) scale3d(1.05, 1.05, 1.05)`;
+        animFrame = requestAnimationFrame(updateTilt);
+      }
+    }
+
+    stage.addEventListener('mouseenter', function() {
+      isHovering = true;
+      obj.style.animationPlayState = 'paused';
+      if (animFrame) cancelAnimationFrame(animFrame);
+      animFrame = requestAnimationFrame(updateTilt);
+    });
+
+    stage.addEventListener('mousemove', function(e) {
+      const rect = stage.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      targetRotY = (x / (rect.width / 2)) * 16;
+      targetRotX = -(y / (rect.height / 2)) * 16;
+    });
+
+    stage.addEventListener('mouseleave', function() {
+      isHovering = false;
+      if (animFrame) cancelAnimationFrame(animFrame);
+      obj.style.transform = '';
+      obj.style.animationPlayState = 'running';
+    });
+  });
+</script>
 {% endblock %}
