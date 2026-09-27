@@ -455,8 +455,8 @@
     </button>
     {% endif %}
 
-    <!-- Flash Messages Banner Container (Only for non-auth pages) -->
-    {% if not '/accounts/' in request.path %}
+    <!-- Flash Messages Banner Container (Only for non-auth and non-onboarding pages) -->
+    {% if not '/accounts/' in request.path and not '/onboarding/' in request.path %}
     <div class="max-w-6xl w-full mx-auto px-4 pt-3">
       {% include 'includes/messages.html' %}
     </div>
@@ -473,8 +473,8 @@
       {% endblock %}
     </main>
 
-    <!-- Footer (Only for non-auth pages) -->
-    {% if not '/accounts/' in request.path %}
+    <!-- Footer (Only for non-auth and non-onboarding pages) -->
+    {% if not '/accounts/' in request.path and not '/onboarding/' in request.path %}
     <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-3">
         <div class="flex items-center space-x-2">

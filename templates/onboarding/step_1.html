@@ -1,430 +1,325 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Qadam 1/4: Shaxsiy profil | UniMentor{% endblock %}
+{% block title %}UniMentor — Shaxsiy profil{% endblock %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto py-6 sm:py-10 px-4">
+<div class="max-w-xl mx-auto py-12 sm:py-20 px-4">
 
-  <!-- Step & Question Progress Header -->
-  <div class="mb-6 bg-white rounded-2xl p-5 shadow-xs border border-zinc-200">
-    <div class="flex items-center justify-between mb-2.5">
-      <div class="flex items-center space-x-2">
-        <span class="w-6 h-6 rounded-lg bg-zinc-950 text-white flex items-center justify-center text-xs font-bold">1</span>
-        <span class="text-xs font-bold uppercase tracking-wider text-zinc-900">Shaxsiy Profil</span>
-      </div>
-      <span id="questionStepLabel" class="text-xs font-bold text-zinc-500">1 / 9-savol</span>
-    </div>
+  <!-- Minimal Back Navigation Button -->
+  <button 
+    type="button" 
+    id="prevBtn" 
+    onclick="handlePrevStep()" 
+    class="invisible mb-6 inline-flex items-center space-x-1.5 text-xs font-semibold text-zinc-400 hover:text-zinc-900 transition cursor-pointer"
+  >
+    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+    <span>Orqaga</span>
+  </button>
 
-    <!-- Animated Smooth Progress Bar -->
-    <div class="w-full bg-zinc-100 rounded-full h-2 overflow-hidden">
-      <div id="wizardProgressBar" class="bg-zinc-950 h-2 rounded-full transition-all duration-300 ease-out" style="width: 11%;"></div>
-    </div>
+  <form id="onboardingWizardForm" method="post">
+    {% csrf_token %}
 
-    <!-- 4 Global Milestone Pills -->
-    <div class="grid grid-cols-4 gap-2 mt-4 pt-3 border-t border-zinc-100 text-center text-[11px] font-semibold">
-      <div class="text-zinc-950 font-bold flex items-center justify-center space-x-1">
-        <i data-lucide="check-circle" class="w-3.5 h-3.5 text-zinc-950"></i>
-        <span>1. Profil</span>
-      </div>
-      <div class="text-zinc-400">2. Sertifikat</div>
-      <div class="text-zinc-400">3. Universitet</div>
-      <div class="text-zinc-400">4. O'quv rejasi</div>
-    </div>
-  </div>
-
-  <!-- Main Question Card Container -->
-  <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-zinc-200 min-h-[460px] flex flex-col justify-between">
-    
-    <form id="onboardingWizardForm" method="post" class="flex-1 flex flex-col justify-between">
-      {% csrf_token %}
-
-      {% if form.non_field_errors %}
-        <div class="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-start space-x-3">
-          <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5"></i>
-          <div>
-            {% for error in form.non_field_errors %}
-              <p class="font-medium">{{ error }}</p>
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-
-      <!-- ============================================================== -->
-      <!-- QUESTION 1: ISM -->
-      <!-- ============================================================== -->
-      <div id="step-1" class="wizard-step space-y-6">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            1-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Ismingiz nima?
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            UniMentor AI sizga shaxsiy va do'stona murojaat qilishi uchun ismingizni kiriting.
-          </p>
-        </div>
-
-        <div class="pt-4">
-          <label for="id_first_name" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-            Ismingiz *
-          </label>
-          <input 
-            type="text" 
-            name="first_name" 
-            id="id_first_name" 
-            value="{{ form.first_name.value|default:'' }}"
-            placeholder="Masalan: Sardor yoki Malika" 
-            class="w-full px-5 py-4 border-2 border-zinc-200 rounded-2xl text-base font-semibold text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-zinc-950 focus:ring-0 transition"
-            autofocus
-          >
-          <p id="error-step-1" class="hidden text-xs text-rose-600 font-medium mt-2"></p>
-        </div>
-      </div>
-
-      <!-- ============================================================== -->
-      <!-- QUESTION 2: SINF -->
-      <!-- ============================================================== -->
-      <div id="step-2" class="wizard-step space-y-6 hidden">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            2-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Hozir nechanchi sinfda o'qiysiz?
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            Sizning sinfingizga qarab xalqaro grantlar, imtihonlar va arizalar muddatlari moslashtiriladi.
-          </p>
-        </div>
-
-        <div class="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {% for radio in form.grade %}
-            <label class="cursor-pointer group block">
-              {{ radio.tag }}
-              <div class="grade-card p-5 rounded-2xl border-2 border-zinc-200 text-center transition flex flex-col items-center justify-center space-y-2 hover:border-zinc-400 bg-white">
-                <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center text-zinc-900 group-hover:scale-105 transition">
-                  <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-                </div>
-                <span class="text-base font-bold text-zinc-900">{{ radio.choice_label }}</span>
-                <span class="text-[11px] text-zinc-500 font-medium leading-tight">
-                  {% if '9' in radio.choice_label %}
-                    Boshlang'ich tayyorgarlik
-                  {% elif '10' in radio.choice_label %}
-                    Eng muhim bosqich
-                  {% else %}
-                    Universitetga qabul yili
-                  {% endif %}
-                </span>
-              </div>
-            </label>
+    {% if form.non_field_errors %}
+      <div class="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-start space-x-3">
+        <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5"></i>
+        <div>
+          {% for error in form.non_field_errors %}
+            <p class="font-medium">{{ error }}</p>
           {% endfor %}
         </div>
-        <p id="error-step-2" class="hidden text-xs text-rose-600 font-medium"></p>
       </div>
+    {% endif %}
 
-      <!-- ============================================================== -->
-      <!-- QUESTION 3: HUDUD & VILOYAT -->
-      <!-- ============================================================== -->
-      <div id="step-3" class="wizard-step space-y-6 hidden">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            3-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Qaysi hudud yoki shahardansiz?
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            Sizning viloyatingizdagi grant imtiyozlari va xalqaro imtihon markazlarini aniqlashda yordam beradi.
-          </p>
-        </div>
+    <!-- ============================================================== -->
+    <!-- 1: ISM -->
+    <!-- ============================================================== -->
+    <div id="step-1" class="wizard-step space-y-6">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+        Ismingiz nima?
+      </h1>
 
-        <div class="pt-2 space-y-4">
-          <div>
-            <label for="id_region" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-              Viloyat / Hudud *
-            </label>
-            {{ form.region }}
-            {% if form.region.errors %}
-              <p class="text-xs text-rose-600 font-medium mt-1">{{ form.region.errors.0 }}</p>
-            {% endif %}
-          </div>
-
-          <div>
-            <label for="id_city" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-              Shahar yoki Tuman (ixtiyoriy)
-            </label>
-            {{ form.city }}
-          </div>
-        </div>
-        <p id="error-step-3" class="hidden text-xs text-rose-600 font-medium"></p>
-      </div>
-
-      <!-- ============================================================== -->
-      <!-- QUESTION 4: TUG'ILGAN SANA -->
-      <!-- ============================================================== -->
-      <div id="step-4" class="wizard-step space-y-6 hidden">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            4-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Tug'ilgan sanangizni kiriting
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            Aksariyat xalqaro grant va stipendiya dasturlarida yosh chegaralari mavjud (maksimal 39 yoshgacha).
-          </p>
-        </div>
-
-        <div class="pt-4">
-          <label for="id_birth_date" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-            Tug'ilgan sana (kun.oy.yil) *
-          </label>
-          {{ form.birth_date }}
-          <div id="ageBadge" class="hidden mt-3 inline-flex items-center space-x-1.5 px-3 py-1.5 bg-zinc-100 rounded-xl text-xs font-bold text-zinc-900 border border-zinc-200">
-            <i data-lucide="user" class="w-3.5 h-3.5 text-zinc-700"></i>
-            <span id="ageBadgeText"></span>
-          </div>
-          <p id="error-step-4" class="hidden text-xs text-rose-600 font-medium mt-2"></p>
-        </div>
-      </div>
-
-      <!-- ============================================================== -->
-      <!-- QUESTION 5: YO'NALISH (FIELD OF STUDY) -->
-      <!-- ============================================================== -->
-      <div id="step-5" class="wizard-step space-y-6 hidden">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            5-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Qaysi sohada ta'lim olmoqchisiz?
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            AI siz tanlagan yo'nalish bo'yicha dunyodagi eng nufuzli universitetlar va ixtisoslashgan grantlarni tanlaydi.
-          </p>
-        </div>
-
-        <div class="pt-2">
-          <label for="id_target_field_of_study" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-            O'qish yo'nalishi *
-          </label>
-          {{ form.target_field_of_study }}
-          {% if form.target_field_of_study.errors %}
-            <p class="text-xs text-rose-600 font-medium mt-1">{{ form.target_field_of_study.errors.0 }}</p>
-          {% endif %}
-        </div>
-        <p id="error-step-5" class="hidden text-xs text-rose-600 font-medium"></p>
-      </div>
-
-      <!-- ============================================================== -->
-      <!-- QUESTION 6: KELAJAK KASBI -->
-      <!-- ============================================================== -->
-      <div id="step-6" class="wizard-step space-y-6 hidden">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            6-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Kelajakda qaysi kasb egasi bo'lmoqchisiz?
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            Universitetlarga insho (Motivation Letter / SOP) va rezyume yozishda asosiy maqsadingiz bo'ladi.
-          </p>
-        </div>
-
-        <div class="pt-2">
-          <label for="id_target_career" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-            Kelajak kasbingiz *
-          </label>
-          {{ form.target_career }}
-          {% if form.target_career.errors %}
-            <p class="text-xs text-rose-600 font-medium mt-1">{{ form.target_career.errors.0 }}</p>
-          {% endif %}
-        </div>
-        <p id="error-step-6" class="hidden text-xs text-rose-600 font-medium"></p>
-      </div>
-
-      <!-- ============================================================== -->
-      <!-- QUESTION 7: DAVLATLAR -->
-      <!-- ============================================================== -->
-      <div id="step-7" class="wizard-step space-y-6 hidden">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            7-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Qaysi davlatlarda o'qishni rejalashtiryapsiz?
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            Bir yoki bir nechta davlatni tanlashingiz mumkin.
-          </p>
-        </div>
-
-        <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[300px] overflow-y-auto pr-1">
-          {% for checkbox in form.target_countries %}
-            <label class="cursor-pointer group block">
-              {{ checkbox.tag }}
-              <div class="country-card p-3.5 rounded-2xl border-2 border-zinc-200 transition-all flex items-center justify-between hover:border-zinc-400 bg-white">
-                <div class="flex items-center space-x-2.5">
-                  <i data-lucide="globe" class="w-4 h-4 text-zinc-900 flex-shrink-0"></i>
-                  <span class="text-xs font-bold text-zinc-800 leading-tight">{{ checkbox.choice_label }}</span>
-                </div>
-                <div class="w-4 h-4 rounded-md border border-zinc-300 bg-white flex items-center justify-center flex-shrink-0 ml-2 check-indicator">
-                  <i data-lucide="check" class="w-3 h-3 text-white hidden check-svg"></i>
-                </div>
-              </div>
-            </label>
-          {% endfor %}
-        </div>
-        <p id="error-step-7" class="hidden text-xs text-rose-600 font-medium"></p>
-      </div>
-
-      <!-- ============================================================== -->
-      <!-- QUESTION 8: QIZIQISHLAR -->
-      <!-- ============================================================== -->
-      <div id="step-8" class="wizard-step space-y-6 hidden">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            8-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Qanday qiziqish va mashg'ulotlaringiz bor?
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            Xorijiy universitetlar qabul komissiyasi sizning darsdan tashqari faolligingizga katta e'tibor qaratadi.
-          </p>
-        </div>
-
-        <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[300px] overflow-y-auto pr-1">
-          {% for checkbox in form.interests %}
-            <label class="cursor-pointer group block">
-              {{ checkbox.tag }}
-              <div class="interest-card p-3.5 rounded-2xl border-2 border-zinc-200 transition-all flex items-center justify-between hover:border-zinc-400 bg-white">
-                <div class="flex items-center space-x-2.5">
-                  <i data-lucide="sparkles" class="w-4 h-4 text-zinc-900 flex-shrink-0"></i>
-                  <span class="text-xs font-bold text-zinc-800 leading-tight">{{ checkbox.choice_label }}</span>
-                </div>
-                <div class="w-4 h-4 rounded-md border border-zinc-300 bg-white flex items-center justify-center flex-shrink-0 ml-2 check-indicator">
-                  <i data-lucide="check" class="w-3 h-3 text-white hidden check-svg"></i>
-                </div>
-              </div>
-            </label>
-          {% endfor %}
-        </div>
-        <p id="error-step-8" class="hidden text-xs text-rose-600 font-medium"></p>
-      </div>
-
-      <!-- ============================================================== -->
-      <!-- QUESTION 9: DASTUR TURI VA BYUDJET -->
-      <!-- ============================================================== -->
-      <div id="step-9" class="wizard-step space-y-6 hidden">
-        <div class="space-y-2">
-          <span class="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-bold rounded-full">
-            9-SAVOL
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-            Ta'lim uchun moliyaviy afzalligingiz qanday?
-          </h2>
-          <p class="text-sm text-zinc-500 font-normal">
-            Sizga 100% to'liq qoplab beruvchi grantlar yoki qisman chegirmali dasturlarni saralaymiz.
-          </p>
-        </div>
-
-        <div class="pt-2 space-y-4">
-          <div>
-            <label for="id_budget_preference" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-              Byudjet imkoniyati / Afzallik *
-            </label>
-            {{ form.budget_preference }}
-          </div>
-
-          <div>
-            <label for="id_target_program_type" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-              Dastur turi *
-            </label>
-            {{ form.target_program_type }}
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
-              Hozirgi taxminiy ingliz tili darajangiz
-            </label>
-            <div class="grid grid-cols-3 gap-2">
-              {% for radio in form.english_level %}
-                <label class="cursor-pointer group">
-                  {{ radio.tag }}
-                  <div class="english-card p-3 rounded-xl border-2 border-zinc-200 text-center transition font-bold text-zinc-700 bg-white hover:border-zinc-400 text-xs">
-                    {{ radio.choice_label }}
-                  </div>
-                </label>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-        <p id="error-step-9" class="hidden text-xs text-rose-600 font-medium"></p>
-      </div>
-
-      <!-- ============================================================== -->
-      <!-- BOTTOM NAVIGATION CONTROLS -->
-      <!-- ============================================================== -->
-      <div class="pt-8 mt-6 border-t border-zinc-100 flex items-center justify-between">
-        <button 
-          type="button" 
-          id="prevBtn" 
-          onclick="handlePrevStep()" 
-          class="invisible px-5 py-3 rounded-xl border border-zinc-300 text-zinc-700 hover:bg-zinc-100 font-bold text-xs transition flex items-center space-x-2"
+      <div class="relative flex items-center w-full">
+        <input 
+          type="text" 
+          name="first_name" 
+          id="id_first_name" 
+          value="{{ form.first_name.value|default:'' }}"
+          placeholder="Ismingizni kiriting..." 
+          class="w-full pl-5 pr-14 py-4 text-xl sm:text-2xl font-semibold text-zinc-900 border-2 border-zinc-200 rounded-2xl focus:border-zinc-950 outline-none bg-white placeholder:text-zinc-300 transition shadow-xs"
+          autofocus
         >
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Orqaga</span>
-        </button>
-
         <button 
           type="button" 
-          id="nextBtn" 
           onclick="handleNextStep()" 
-          class="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-sm rounded-xl shadow-xs transition flex items-center space-x-2 cursor-pointer"
+          class="absolute right-2.5 p-2.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95"
+          title="Davom etish (Enter)"
         >
-          <span id="nextBtnText">Keyingisi</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p id="error-step-1" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 2: SINF -->
+    <!-- ============================================================== -->
+    <div id="step-2" class="wizard-step space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+          Hozir nechanchi sinfda o'qiysiz?
+        </h1>
+        <button 
+          type="button" 
+          onclick="handleNextStep()" 
+          class="p-3 bg-zinc-950 hover:bg-zinc-800 text-white rounded-xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95 flex-shrink-0 ml-4"
+          title="Davom etish"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
         </button>
       </div>
 
-    </form>
-  </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+        {% for radio in form.grade %}
+          <label class="cursor-pointer group block">
+            {{ radio.tag }}
+            <div onclick="selectGrade(this)" class="grade-card p-5 rounded-2xl border-2 border-zinc-200 text-center transition flex flex-col items-center justify-center space-y-2 hover:border-zinc-400 bg-white">
+              <span class="text-xl font-extrabold text-zinc-900">{{ radio.choice_label }}</span>
+            </div>
+          </label>
+        {% endfor %}
+      </div>
+      <p id="error-step-2" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
 
+    <!-- ============================================================== -->
+    <!-- 3: HUDUD -->
+    <!-- ============================================================== -->
+    <div id="step-3" class="wizard-step space-y-6 hidden">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+        Qaysi viloyat yoki hududdansiz?
+      </h1>
+
+      <div class="space-y-4">
+        <div class="flex items-center space-x-3 w-full">
+          <div class="flex-1">
+            {{ form.region }}
+          </div>
+          <button 
+            type="button" 
+            onclick="handleNextStep()" 
+            class="p-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95 flex-shrink-0"
+            title="Davom etish"
+          >
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div>
+          {{ form.city }}
+        </div>
+      </div>
+      <p id="error-step-3" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 4: TUG'ILGAN SANA -->
+    <!-- ============================================================== -->
+    <div id="step-4" class="wizard-step space-y-6 hidden">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+        Tug'ilgan sanangiz qachon?
+      </h1>
+
+      <div class="flex items-center space-x-3 w-full">
+        <div class="flex-1">
+          {{ form.birth_date }}
+        </div>
+        <button 
+          type="button" 
+          onclick="handleNextStep()" 
+          class="p-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95 flex-shrink-0"
+          title="Davom etish (Enter)"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="ageBadge" class="hidden inline-flex items-center space-x-1.5 px-3 py-1.5 bg-zinc-100 rounded-xl text-xs font-bold text-zinc-900 border border-zinc-200">
+        <i data-lucide="user" class="w-3.5 h-3.5 text-zinc-700"></i>
+        <span id="ageBadgeText"></span>
+      </div>
+      <p id="error-step-4" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 5: YO'NALISH -->
+    <!-- ============================================================== -->
+    <div id="step-5" class="wizard-step space-y-6 hidden">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+        Qaysi sohada ta'lim olmoqchisiz?
+      </h1>
+
+      <div class="flex items-center space-x-3 w-full">
+        <div class="flex-1">
+          {{ form.target_field_of_study }}
+        </div>
+        <button 
+          type="button" 
+          onclick="handleNextStep()" 
+          class="p-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95 flex-shrink-0"
+          title="Davom etish"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p id="error-step-5" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 6: KASB -->
+    <!-- ============================================================== -->
+    <div id="step-6" class="wizard-step space-y-6 hidden">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+        Kelajakda qaysi kasb egasi bo'lmoqchisiz?
+      </h1>
+
+      <div class="flex items-center space-x-3 w-full">
+        <div class="flex-1">
+          {{ form.target_career }}
+        </div>
+        <button 
+          type="button" 
+          onclick="handleNextStep()" 
+          class="p-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95 flex-shrink-0"
+          title="Davom etish"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p id="error-step-6" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 7: DAVLATLAR -->
+    <!-- ============================================================== -->
+    <div id="step-7" class="wizard-step space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+          Qaysi davlatlarda o'qishni rejalashtiryapsiz?
+        </h1>
+        <button 
+          type="button" 
+          onclick="handleNextStep()" 
+          class="p-3 bg-zinc-950 hover:bg-zinc-800 text-white rounded-xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95 flex-shrink-0 ml-4"
+          title="Davom etish"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[340px] overflow-y-auto pr-1">
+        {% for checkbox in form.target_countries %}
+          <label class="cursor-pointer group block">
+            {{ checkbox.tag }}
+            <div class="country-card p-3.5 rounded-2xl border-2 border-zinc-200 transition-all flex items-center justify-between hover:border-zinc-400 bg-white">
+              <span class="text-xs font-bold text-zinc-800 leading-tight">{{ checkbox.choice_label }}</span>
+              <div class="w-4 h-4 rounded-md border border-zinc-300 bg-white flex items-center justify-center flex-shrink-0 ml-2 check-indicator">
+                <i data-lucide="check" class="w-3 h-3 text-white hidden check-svg"></i>
+              </div>
+            </div>
+          </label>
+        {% endfor %}
+      </div>
+      <p id="error-step-7" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 8: QIZIQISHLAR -->
+    <!-- ============================================================== -->
+    <div id="step-8" class="wizard-step space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+          Qanday qiziqish va mashg'ulotlaringiz bor?
+        </h1>
+        <button 
+          type="button" 
+          onclick="handleNextStep()" 
+          class="p-3 bg-zinc-950 hover:bg-zinc-800 text-white rounded-xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95 flex-shrink-0 ml-4"
+          title="Davom etish"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[340px] overflow-y-auto pr-1">
+        {% for checkbox in form.interests %}
+          <label class="cursor-pointer group block">
+            {{ checkbox.tag }}
+            <div class="interest-card p-3.5 rounded-2xl border-2 border-zinc-200 transition-all flex items-center justify-between hover:border-zinc-400 bg-white">
+              <span class="text-xs font-bold text-zinc-800 leading-tight">{{ checkbox.choice_label }}</span>
+              <div class="w-4 h-4 rounded-md border border-zinc-300 bg-white flex items-center justify-center flex-shrink-0 ml-2 check-indicator">
+                <i data-lucide="check" class="w-3 h-3 text-white hidden check-svg"></i>
+              </div>
+            </div>
+          </label>
+        {% endfor %}
+      </div>
+      <p id="error-step-8" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 9: BYUDJET VA DASTUR TURI -->
+    <!-- ============================================================== -->
+    <div id="step-9" class="wizard-step space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+          Ta'lim uchun moliyaviy afzalligingiz qanday?
+        </h1>
+        <button 
+          type="button" 
+          onclick="handleNextStep()" 
+          class="p-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl transition flex items-center justify-center cursor-pointer shadow-xs active:scale-95 flex-shrink-0 ml-4"
+          title="Saqlash va yakunlash"
+        >
+          <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label for="id_budget_preference" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
+            Byudjet imkoniyati / Afzallik
+          </label>
+          {{ form.budget_preference }}
+        </div>
+        <div>
+          <label for="id_target_program_type" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
+            Dastur turi
+          </label>
+          {{ form.target_program_type }}
+        </div>
+      </div>
+      <p id="error-step-9" class="hidden text-xs text-rose-600 font-semibold"></p>
+    </div>
+
+  </form>
 </div>
 
-<!-- Multi-Question Wizard JavaScript -->
+<!-- Multi-Question Wizard Script -->
 <script>
   let currentStep = 1;
   const totalQuestions = 9;
 
   function updateWizardUI() {
-    // Hide all steps
     document.querySelectorAll('.wizard-step').forEach(el => el.classList.add('hidden'));
 
-    // Show current step
     const activeStepEl = document.getElementById('step-' + currentStep);
     if (activeStepEl) {
       activeStepEl.classList.remove('hidden');
+      const input = activeStepEl.querySelector('input:not([type="hidden"]):not([type="radio"]):not([type="checkbox"]), select');
+      if (input) {
+        setTimeout(() => input.focus(), 50);
+      }
     }
 
-    // Update Progress Bar
-    const progressPercent = Math.round((currentStep / totalQuestions) * 100);
-    const bar = document.getElementById('wizardProgressBar');
-    if (bar) {
-      bar.style.width = progressPercent + '%';
-    }
-
-    // Update Step Label
-    const stepLabel = document.getElementById('questionStepLabel');
-    if (stepLabel) {
-      stepLabel.innerText = currentStep + ' / ' + totalQuestions + '-savol';
-    }
-
-    // Toggle Previous Button
     const prevBtn = document.getElementById('prevBtn');
     if (prevBtn) {
       if (currentStep === 1) {
@@ -434,17 +329,6 @@
       }
     }
 
-    // Update Next Button Text
-    const nextBtnText = document.getElementById('nextBtnText');
-    if (nextBtnText) {
-      if (currentStep === totalQuestions) {
-        nextBtnText.innerText = "Profilni yakunlash va Davom etish";
-      } else {
-        nextBtnText.innerText = "Keyingisi";
-      }
-    }
-
-    // Re-initialize Lucide Icons
     if (window.lucide) {
       lucide.createIcons();
     }
@@ -501,7 +385,7 @@
 
           if (age > 39) {
             if (errorEl) {
-              errorEl.innerText = "Yoshingiz " + age + " da. Dasturlarda qatnashish uchun maksimal yosh 39 yoshgacha bo'lishi kerak.";
+              errorEl.innerText = "Yoshingiz " + age + " da. Maksimal yosh 39 yoshgacha bo'lishi kerak.";
               errorEl.classList.remove('hidden');
             }
             return false;
@@ -539,7 +423,6 @@
       updateWizardUI();
       window.scrollTo({ top: 100, behavior: 'smooth' });
     } else {
-      // Final Submit
       document.getElementById('onboardingWizardForm').submit();
     }
   }
@@ -549,6 +432,14 @@
       currentStep--;
       updateWizardUI();
       window.scrollTo({ top: 100, behavior: 'smooth' });
+    }
+  }
+
+  function selectGrade(el) {
+    const radio = el.parentElement.querySelector('input[type="radio"]');
+    if (radio) {
+      radio.checked = true;
+      setTimeout(() => handleNextStep(), 150);
     }
   }
 
@@ -609,8 +500,7 @@
 
 <style>
   /* Radio Cards Active States */
-  input[type="radio"].peer:checked + .grade-card,
-  input[type="radio"].peer:checked + .english-card {
+  input[type="radio"].peer:checked + .grade-card {
     border-color: #09090b !important;
     background-color: #f4f4f5 !important;
     color: #09090b !important;
