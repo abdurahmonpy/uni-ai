@@ -25,28 +25,28 @@ COUNTRY_CHOICES = [
 ]
 
 INTERESTS_CHOICES = [
-    ('coding_web', 'Dasturlash & Web-dizayn'),
-    ('robotics_stem', 'Robototexnika & STEM loyihalari'),
-    ('math_olympiad', 'Matematika & Mantiqiy masalalar'),
-    ('debate_mun', 'Debatlar & Notiqlik san\'ati (Model UN)'),
-    ('volunteering', 'Volontyorlik & Ijtimoiy tashabbuslar'),
-    ('reading_research', 'Kitobxonlik & Ilmiy izlanishlar'),
-    ('sports_health', 'Sport & Sog\'lom turmush tarzi'),
-    ('languages', 'Xorijiy tillarni o\'rganish'),
-    ('creative_arts', 'San\'at, Musiqa & Media'),
-    ('eco_sustainability', 'Ekologiya & Tabiatni muhofaza qilish'),
+    ('coding_web', 'Dasturlash'),
+    ('robotics_stem', 'Robototexnika'),
+    ('math_olympiad', 'Matematika'),
+    ('debate_mun', 'Debat va Notiqlik'),
+    ('volunteering', 'Volontyorlik'),
+    ('reading_research', 'Kitobxonlik'),
+    ('sports_health', 'Sport'),
+    ('languages', 'Chet tillari'),
+    ('creative_arts', 'San\'at va Musiqa'),
+    ('eco_sustainability', 'Ekologiya'),
 ]
 
 TARGET_FIELD_CHOICES = [
     ('', "Yo'nalishni tanlang..."),
-    ('cs_it', "Dasturlash va Axborot Texnologiyalari (CS & IT)"),
+    ('cs_it', "Dasturlash va Axborot Texnologiyalari"),
     ('ai_ds', "Sun'iy Intellekt va Data Science"),
     ('medicine', "Tibbiyot va Sog'liqni Saqlash"),
     ('business_finance', "Biznes, Moliya va Menejment"),
     ('engineering', "Muhandislik va Robototexnika"),
     ('international_law', "Xalqaro Munosabatlar va Huquq"),
     ('economics', "Iqtisodiyot va Ekonometrika"),
-    ('natural_sciences', "Aniq va Tabiiy Fanlar (STEM)"),
+    ('natural_sciences', "Aniq va Tabiiy Fanlar"),
     ('architecture_design', "Arxitektura va Dizayn"),
     ('education_humanities', "Pedagogika va Gumanitar Fanlar"),
 ]
@@ -54,20 +54,20 @@ TARGET_FIELD_CHOICES = [
 CAREER_CHOICES = [
     ('', "Kelajak kasbingizni tanlang..."),
     ("Software Engineer / Dasturchi", "Software Engineer / Dasturchi"),
-    ("Sun'iy intellekt (AI/ML) muhandisi", "Sun'iy intellekt (AI/ML) muhandisi"),
+    ("Sun'iy intellekt muhandisi", "Sun'iy intellekt muhandisi"),
     ("Data Scientist / Ma'lumotlar tahlilchisi", "Data Scientist / Ma'lumotlar tahlilchisi"),
-    ("Kiberxavfsizlik mutaxassisi (Cybersecurity)", "Kiberxavfsizlik mutaxassisi (Cybersecurity)"),
+    ("Kiberxavfsizlik mutaxassisi", "Kiberxavfsizlik mutaxassisi"),
     ("UI/UX va Mahsulot dizayneri", "UI/UX va Mahsulot dizayneri"),
     ("Shifokor / Jarroh / Kardioxirurg", "Shifokor / Jarroh / Kardioxirurg"),
     ("Biotibbiyot va Genetik tadqiqotchi", "Biotibbiyot va Genetik tadqiqotchi"),
     ("Farmatsevtika va Tibbiy biotexnolog", "Farmatsevtika va Tibbiy biotexnolog"),
     ("Investitsion bankir / Moliya tahlilchisi", "Investitsion bankir / Moliya tahlilchisi"),
-    ("Kompaniya boshqaruvchisi / Menejer (CEO)", "Kompaniya boshqaruvchisi / Menejer (CEO)"),
+    ("Kompaniya boshqaruvchisi / CEO", "Kompaniya boshqaruvchisi / CEO"),
     ("Biznes konsultatsiya va Strateg", "Biznes konsultatsiya va Strateg"),
     ("Iqtisodchi va Ekonometrist", "Iqtisodchi va Ekonometrist"),
     ("Robototexnika va Mexatronika muhandisi", "Robototexnika va Mexatronika muhandisi"),
     ("Aerokosmik va Aviatsiya muhandisi", "Aerokosmik va Aviatsiya muhandisi"),
-    ("Arxitektor va Shaharsoz (Urbanist)", "Arxitektor va Shaharsoz (Urbanist)"),
+    ("Arxitektor va Shaharsoz", "Arxitektor va Shaharsoz"),
     ("Yashil energetika va Ekologiya muhandisi", "Yashil energetika va Ekologiya muhandisi"),
     ("Xalqaro diplomat va Elchixona xodimi", "Xalqaro diplomat va Elchixona xodimi"),
     ("Xalqaro huquqshunos va Korporativ advokat", "Xalqaro huquqshunos va Korporativ advokat"),
@@ -219,7 +219,7 @@ class OnboardingStep1Form(forms.Form):
             if age > 39:
                 raise ValidationError("Kechirasiz, platformada ro'yxatdan o'tish va dasturlarda qatnashish uchun maksimal yosh 39 yoshgacha bo'lishi kerak.")
             if age < 10:
-                raise ValidationError("Iltimos, haqiqiy tug'ilgan sanani kiriting (kamida 10 yosh).")
+                raise ValidationError("Iltimos, haqiqiy tug'ilgan sanani kiriting. Kamida 10 yosh bo'lishi kerak.")
         return bdate
 
     def clean_grade(self):

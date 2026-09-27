@@ -126,9 +126,9 @@ class Student(models.Model):
     ]
 
     BUDGET_CHOICES = [
-        ('toliq_grant', "To'liq Grant (Full Scholarship)"),
-        ('qisman_grant', "Qisman Grant (Partial Tuition / Discount)"),
-        ('ozi_moliyalashtirish', "O'zi moliyalashtirish (Self-funded)"),
+        ('toliq_grant', "To'liq Grant"),
+        ('qisman_grant', "Qisman Grant"),
+        ('ozi_moliyalashtirish', "O'zi moliyalashtirish"),
     ]
 
     PROGRAM_TYPE_CHOICES = [
