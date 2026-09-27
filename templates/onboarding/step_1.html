@@ -3,7 +3,38 @@
 
 {% block title %}UniMentor — Shaxsiy profil{% endblock %}
 
+{% block extra_head %}
+<style>
+  @keyframes shakeKeyframes {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+  }
+  .animate-shake {
+    animation: shakeKeyframes 0.45s ease-in-out;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
+<!-- SMS-style Toast Notification -->
+<div id="smsNotificationToast" class="fixed top-5 inset-x-0 mx-auto max-w-md w-[92%] z-50 transition-all duration-300 transform -translate-y-28 opacity-0 pointer-events-none">
+  <div class="bg-zinc-950/95 backdrop-blur-md text-white p-4 rounded-2xl shadow-2xl border border-white/10 flex items-center space-x-3.5">
+    <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0 text-white shadow-inner">
+      <i data-lucide="message-square" class="w-5 h-5 text-amber-300"></i>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-black uppercase tracking-wider text-zinc-400">UniMentor • Xabar</span>
+        <span class="text-[10px] text-zinc-500 font-medium">hozir</span>
+      </div>
+      <p id="smsNotificationMessage" class="text-xs sm:text-sm font-bold text-white mt-0.5 leading-snug">
+        To'ldirmadingiz! Iltimos, davom etishdan oldin savolga javob bering.
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="max-w-xl mx-auto py-12 sm:py-20 px-4">
 
   <!-- Minimal Back Navigation Button -->
@@ -97,7 +128,7 @@
     <!-- ============================================================== -->
     <div id="step-3" class="wizard-step space-y-6 hidden">
       <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
-        Qaysi viloyat yoki hududdansiz?
+        Qaysi shahar yoki viloyatdansiz?
       </h1>
 
       <div class="space-y-4">
@@ -113,9 +144,6 @@
           >
             <i data-lucide="chevron-right" class="w-5 h-5"></i>
           </button>
-        </div>
-        <div>
-          {{ form.city }}
         </div>
       </div>
       <p id="error-step-3" class="hidden text-xs text-rose-600 font-semibold"></p>
@@ -584,6 +612,36 @@
     }
   }
 
+  let smsToastTimer = null;
+  function showSmsNotification(msg) {
+    const toast = document.getElementById('smsNotificationToast');
+    const msgEl = document.getElementById('smsNotificationMessage');
+    if (!toast || !msgEl) return;
+
+    msgEl.textContent = msg || "To'ldirmadingiz! Iltimos, davom etishdan oldin savolga javob bering.";
+
+    if (smsToastTimer) clearTimeout(smsToastTimer);
+
+    toast.classList.remove('-translate-y-28', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    // Shake active step container
+    const activeStepEl = document.getElementById('step-' + currentStep);
+    if (activeStepEl) {
+      activeStepEl.classList.add('animate-shake');
+      setTimeout(() => activeStepEl.classList.remove('animate-shake'), 500);
+    }
+
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+    smsToastTimer = setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('-translate-y-28', 'opacity-0', 'pointer-events-none');
+    }, 3200);
+  }
+
   function validateStep(step) {
     const errorEl = document.getElementById('error-step-' + step);
     if (errorEl) {
@@ -594,68 +652,86 @@
     if (step === 1) {
       const nameInput = document.getElementById('id_first_name');
       if (!nameInput || !nameInput.value.trim()) {
-        if (errorEl) {
-          errorEl.innerText = "Iltimos, ismingizni kiriting.";
-          errorEl.classList.remove('hidden');
-        }
+        showSmsNotification("To'ldirmadingiz! Iltimos, davom etish uchun ismingizni kiriting.");
         if (nameInput) nameInput.focus();
         return false;
       }
     } else if (step === 2) {
       const checkedGrade = document.querySelector('input[name="grade"]:checked');
       if (!checkedGrade) {
-        if (errorEl) {
-          errorEl.innerText = "Iltimos, nechanchi sinfda o'qishingizni tanlang.";
-          errorEl.classList.remove('hidden');
-        }
+        showSmsNotification("Tanlamadingiz! Iltimos, o'qiydigan sinfingizni tanlang.");
+        return false;
+      }
+    } else if (step === 3) {
+      const regInput = document.getElementById('id_region');
+      if (!regInput || !regInput.value) {
+        showSmsNotification("Tanlamadingiz! Iltimos, shahar yoki viloyatingizni tanlang.");
+        if (regInput) regInput.focus();
         return false;
       }
     } else if (step === 4) {
       const bDateInput = document.getElementById('id_birth_date');
-      if (bDateInput && bDateInput.value) {
-        const parts = bDateInput.value.split('-');
-        if (parts.length === 3) {
-          const bYear = parseInt(parts[0], 10);
-          const bMonth = parseInt(parts[1], 10) - 1;
-          const bDay = parseInt(parts[2], 10);
-          const bDate = new Date(bYear, bMonth, bDay);
-          const today = new Date();
+      if (!bDateInput || !bDateInput.value) {
+        showSmsNotification("To'ldirmadingiz! Iltimos, tug'ilgan sanangizni tanlang.");
+        if (bDateInput) bDateInput.focus();
+        return false;
+      }
+      const parts = bDateInput.value.split('-');
+      if (parts.length === 3) {
+        const bYear = parseInt(parts[0], 10);
+        const bMonth = parseInt(parts[1], 10) - 1;
+        const bDay = parseInt(parts[2], 10);
+        const bDate = new Date(bYear, bMonth, bDay);
+        const today = new Date();
 
-          if (bDate > today) {
-            if (errorEl) {
-              errorEl.innerText = "Tug'ilgan sana kelajakda bo'lishi mumkin emas.";
-              errorEl.classList.remove('hidden');
-            }
-            return false;
-          }
-
-          let age = today.getFullYear() - bYear;
-          const m = today.getMonth() - bMonth;
-          if (m < 0 || (m === 0 && today.getDate() < bDay)) age--;
-
-          if (age > 39) {
-            if (errorEl) {
-              errorEl.innerText = "Yoshingiz " + age + " da. Maksimal yosh 39 yoshgacha bo'lishi kerak.";
-              errorEl.classList.remove('hidden');
-            }
-            return false;
-          }
-          if (age < 10) {
-            if (errorEl) {
-              errorEl.innerText = "Iltimos, haqiqiy tug'ilgan sanani kiriting. Kamida 10 yosh bo'lishi kerak.";
-              errorEl.classList.remove('hidden');
-            }
-            return false;
-          }
+        if (bDate > today) {
+          showSmsNotification("Tug'ilgan sana kelajakda bo'lishi mumkin emas.");
+          return false;
         }
+
+        let age = today.getFullYear() - bYear;
+        const m = today.getMonth() - bMonth;
+        if (m < 0 || (m === 0 && today.getDate() < bDay)) age--;
+
+        if (age > 39) {
+          showSmsNotification("Yoshingiz " + age + " da. Maksimal yosh 39 yoshgacha bo'lishi kerak.");
+          return false;
+        }
+        if (age < 10) {
+          showSmsNotification("Iltimos, haqiqiy tug'ilgan sanani kiriting. Kamida 10 yosh bo'lishi kerak.");
+          return false;
+        }
+      }
+    } else if (step === 5) {
+      const checkedInterests = document.querySelectorAll('input[name="interests"]:checked');
+      if (checkedInterests.length === 0) {
+        showSmsNotification("Tanlamadingiz! Iltimos, kamida bitta qiziqishingizni tanlang.");
+        return false;
+      }
+    } else if (step === 6) {
+      const fieldInput = document.getElementById('id_target_field_of_study');
+      if (!fieldInput || !fieldInput.value) {
+        showSmsNotification("Tanlamadingiz! Iltimos, ta'lim yo'nalishingizni tanlang.");
+        if (fieldInput) fieldInput.focus();
+        return false;
       }
     } else if (step === 7) {
       const checkedCountries = document.querySelectorAll('input[name="target_countries"]:checked');
       if (checkedCountries.length === 0) {
-        if (errorEl) {
-          errorEl.innerText = "Kamida bitta davlatni tanlang.";
-          errorEl.classList.remove('hidden');
-        }
+        showSmsNotification("Tanlamadingiz! Iltimos, kamida bitta maqsadli davlatni tanlang.");
+        return false;
+      }
+    } else if (step === 8) {
+      const careerInput = document.getElementById('id_target_career');
+      if (!careerInput || !careerInput.value) {
+        showSmsNotification("Tanlamadingiz! Iltimos, kelajak kasbingizni tanlang.");
+        if (careerInput) careerInput.focus();
+        return false;
+      }
+    } else if (step === 9) {
+      const checkedLevel = document.querySelector('input[name="english_level"]:checked');
+      if (!checkedLevel) {
+        showSmsNotification("Tanlamadingiz! Iltimos, ingliz tili darajangizni tanlang.");
         return false;
       }
     }

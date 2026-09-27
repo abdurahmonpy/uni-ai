@@ -279,7 +279,7 @@ def parse_certificate_api_view(request):
     uploaded_file = request.FILES['certificate_file']
     try:
         from apps.services.certificate_parser import parse_certificate_file
-        result = parse_certificate_file(uploaded_file, uploaded_file.name)
+        result = parse_certificate_file(uploaded_file, uploaded_file.name, student_name=request.user.first_name)
         return JsonResponse(result)
     except Exception as e:
         logger.error(f"Error parsing certificate file: {e}", exc_info=True)

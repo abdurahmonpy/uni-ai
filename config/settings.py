@@ -103,16 +103,45 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-# Persistent Volume & Media settings
-DATA_DIR = Path(os.getenv('DATA_DIR', '/data'))
-if DATA_DIR.exists() and os.access(DATA_DIR, os.W_OK):
-    DEFAULT_SQLITE_PATH = DATA_DIR / 'db.sqlite3'
-    MEDIA_ROOT = DATA_DIR / 'media'
+# Persistent Volume & Media settings (Railway /data volume support)
+DATA_DIR_PATH = os.getenv('DATA_DIR', '/data')
+DATA_DIR = Path(DATA_DIR_PATH)
+
+if DATA_DIR.exists() and (DATA_DIR.is_dir() or str(DATA_DIR) == '/data'):
+    try:
+        os.makedirs(DATA_DIR, exist_ok=True)
+        sqlite_in_data = DATA_DIR / 'db.sqlite3'
+        sqlite_in_base = BASE_DIR / 'db.sqlite3'
+
+        # If /data/db.sqlite3 does not exist yet on initial mount, copy the repository db.sqlite3!
+        if not sqlite_in_data.exists() and sqlite_in_base.exists():
+            import shutil
+            try:
+                shutil.copy2(sqlite_in_base, sqlite_in_data)
+                print(f"[Railway Volume] Copied base database {sqlite_in_base} to persistent volume {sqlite_in_data}")
+            except Exception as copy_err:
+                print(f"[Railway Volume] Notice: Could not copy initial db: {copy_err}")
+
+        DEFAULT_SQLITE_PATH = sqlite_in_data
+        MEDIA_ROOT = DATA_DIR / 'media'
+        os.makedirs(MEDIA_ROOT, exist_ok=True)
+    except Exception as e:
+        print(f"[Railway Volume] Volume initialization error: {e}")
+        DEFAULT_SQLITE_PATH = BASE_DIR / 'db.sqlite3'
+        MEDIA_ROOT = BASE_DIR / 'media'
 else:
     DEFAULT_SQLITE_PATH = BASE_DIR / 'db.sqlite3'
     MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL = '/media/'
+
+# Session Persistence Settings (Stay logged in for 60 days, never force re-registration)
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 60  # 60 days
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
 
 # Database configuration: Dual-mode with PostgreSQL (Railway) / SQLite fallback
 DATABASE_URL = os.getenv('DATABASE_URL')
@@ -143,7 +172,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': DEFAULT_SQLITE_PATH,
-            'OPTIONS': {'timeout': 20},
+            'OPTIONS': {'timeout': 30},
         }
     }
 

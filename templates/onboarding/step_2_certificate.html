@@ -119,28 +119,46 @@
           </button>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 py-1">
+        <!-- Candidate Details & Verification -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-1">
           <div class="p-3 bg-zinc-50 rounded-xl">
-            <span class="text-xs font-medium text-zinc-500 block">Sertifikat</span>
-            <span id="resultCertType" class="text-base font-extrabold text-zinc-900">—</span>
+            <span class="text-[11px] font-medium text-zinc-500 block">Nomzod</span>
+            <span id="resultCandidateName" class="text-sm font-extrabold text-zinc-900 truncate block">—</span>
           </div>
           <div class="p-3 bg-zinc-50 rounded-xl">
-            <span class="text-xs font-medium text-zinc-500 block">Umumiy ball</span>
-            <span id="resultOverallScore" class="text-base font-extrabold text-zinc-900">—</span>
+            <span class="text-[11px] font-medium text-zinc-500 block">Jinsi</span>
+            <span id="resultGender" class="text-sm font-extrabold text-zinc-900 block">—</span>
           </div>
           <div class="p-3 bg-zinc-50 rounded-xl">
-            <span class="text-xs font-medium text-zinc-500 block">Sana</span>
-            <span id="resultTestDate" class="text-base font-extrabold text-zinc-900">—</span>
+            <span class="text-[11px] font-medium text-zinc-500 block">Topshirilgan sana va vaqt</span>
+            <span id="resultTestDateTime" class="text-xs font-extrabold text-zinc-900 block">—</span>
           </div>
         </div>
 
-        <div class="flex items-center space-x-2 pt-1">
-          <span id="resultValidityBadge" class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
-            <i data-lucide="check-circle" class="w-3.5 h-3.5 mr-1"></i>
-            <span id="resultValidityText">3 yillik muddat ichida</span>
-          </span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 py-1">
+          <div class="p-3 bg-zinc-50 rounded-xl">
+            <span class="text-[11px] font-medium text-zinc-500 block">Sertifikat</span>
+            <span id="resultCertType" class="text-sm font-extrabold text-zinc-900 truncate block">—</span>
+          </div>
+          <div class="p-3 bg-zinc-50 rounded-xl">
+            <span class="text-[11px] font-medium text-zinc-500 block">Umumiy ball (Overall)</span>
+            <span id="resultOverallScore" class="text-lg font-black text-emerald-600 block">—</span>
+          </div>
+          <div class="p-3 bg-zinc-50 rounded-xl col-span-2 sm:col-span-1 flex items-center justify-center">
+            <span id="resultValidityBadge" class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5 mr-1"></i>
+              <span id="resultValidityText">Amal qilish muddati to'g'ri</span>
+            </span>
+          </div>
         </div>
-      </div>
+
+        <!-- Section Scores Breakdown -->
+        <div id="sectionScoresContainer" class="p-3 bg-zinc-50 rounded-xl space-y-1.5">
+          <span class="text-[11px] font-bold text-zinc-700 block uppercase tracking-wide">Bo'limlar bo'yicha ballar:</span>
+          <div id="sectionScoresGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-semibold text-zinc-800">
+            <!-- Populated via JS -->
+          </div>
+        </div>
 
       <!-- Hidden form inputs (populated automatically by parser) -->
       <input type="hidden" name="certificate_type" id="hidden_certificate_type" value="{{ form.certificate_type.value|default:'' }}">
@@ -310,10 +328,28 @@
 
       if (data.success) {
         // Populate display
+        document.getElementById('resultCandidateName').innerText = data.candidate_name || "Tasdiqlangan Nomzod";
+        document.getElementById('resultGender').innerText = data.gender || "Ko'rsatilmagan";
+        document.getElementById('resultTestDateTime').innerText = `${data.test_date} • ${data.test_time || '09:00'}`;
         document.getElementById('resultCertType').innerText = data.certificate_type_display || data.certificate_type.toUpperCase();
         document.getElementById('resultOverallScore').innerText = data.overall_score;
-        document.getElementById('resultTestDate').innerText = data.test_date;
         document.getElementById('resultValidityText').innerText = data.validity_message;
+
+        // Section breakdown
+        const grid = document.getElementById('sectionScoresGrid');
+        if (grid) {
+          grid.innerHTML = '';
+          if (data.section_scores && Object.keys(data.section_scores).length > 0) {
+            for (const [sec, val] of Object.entries(data.section_scores)) {
+              const item = document.createElement('div');
+              item.className = 'p-2 bg-white rounded-lg border border-zinc-200 flex justify-between items-center';
+              item.innerHTML = `<span class="capitalize text-zinc-500">${sec}:</span><span class="font-bold text-zinc-900">${val}</span>`;
+              grid.appendChild(item);
+            }
+          } else {
+            grid.innerHTML = '<span class="text-zinc-400 italic col-span-4">Bo\'lim ballari to\'liq</span>';
+          }
+        }
 
         // Set hidden form fields
         document.getElementById('hidden_certificate_type').value = data.certificate_type;
@@ -329,6 +365,7 @@
 
         // Show result card
         parseResultCard.classList.remove('hidden');
+        if (window.lucide) lucide.createIcons();
       } else {
         dropzone.classList.remove('hidden');
         if (certError) {
