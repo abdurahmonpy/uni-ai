@@ -346,8 +346,8 @@ def step_3_matching_view(request):
     """
     student, _ = Student.objects.get_or_create(user=request.user)
 
-    # Get top 5 curated recommendations
-    recommendations = matching_service.get_curated_recommendations(student, limit=5)
+    # Get curated recommendations (12 items for 3-per-page pagination)
+    recommendations = matching_service.get_curated_recommendations(student, limit=12)
 
     if request.method == 'POST':
         primary_id = request.POST.get('primary_program_id') or request.POST.get('primary_program')
@@ -384,6 +384,7 @@ def step_3_matching_view(request):
         'target_selection': target_selection,
         'step_number': 3,
         'total_steps': 4,
+        'hide_header': True,
     })
 
 

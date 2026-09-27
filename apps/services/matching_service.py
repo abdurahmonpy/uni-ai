@@ -85,6 +85,70 @@ FIELD_DISPLAY_UZ = {
     'architecture_design': "Arxitektura va Dizayn"
 }
 
+# Country flag emojis
+COUNTRY_FLAGS = {
+    'aqsh': '🇺🇸',
+    'usa': '🇺🇸',
+    'united states': '🇺🇸',
+    'buyuk britaniya': '🇬🇧',
+    'uk': '🇬🇧',
+    'angliya': '🇬🇧',
+    'germaniya': '🇩🇪',
+    'germany': '🇩🇪',
+    'kanada': '🇨🇦',
+    'canada': '🇨🇦',
+    'avstraliya': '🇦🇺',
+    'australia': '🇦🇺',
+    'turkiya': '🇹🇷',
+    'turkey': '🇹🇷',
+    'turkiye': '🇹🇷',
+    'janubiy koreya': '🇰🇷',
+    'koreya': '🇰🇷',
+    'south korea': '🇰🇷',
+    'yaponiya': '🇯🇵',
+    'japan': '🇯🇵',
+    'xitoy': '🇨🇳',
+    'china': '🇨🇳',
+    'gonkong': '🇭🇰',
+    'hong kong': '🇭🇰',
+    'singapur': '🇸🇬',
+    'singapore': '🇸🇬',
+    'niderlandiya': '🇳🇱',
+    'netherlands': '🇳🇱',
+    'fransiya': '🇫🇷',
+    'france': '🇫🇷',
+    'italiya': '🇮🇹',
+    'italy': '🇮🇹',
+    'shvetsiya': '🇸🇪',
+    'sweden': '🇸🇪',
+    'polsha': '🇵🇱',
+    'poland': '🇵🇱',
+    'vengriya': '🇭🇺',
+    'hungary': '🇭🇺',
+    'ozbekiston': '🇺🇿',
+    'uzbekistan': '🇺🇿',
+    'xalqaro': '🌐',
+    'global': '🌐',
+}
+
+# High-resolution campus photo fallbacks by country
+CAMPUS_IMAGES_FALLBACK = {
+    'buyuk britaniya': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+    'aqsh': 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80',
+    'germaniya': 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?auto=format&fit=crop&w=1200&q=80',
+    'turkiya': 'https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=80',
+    'janubiy koreya': 'https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1200&q=80',
+    'yaponiya': 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80',
+    'xitoy': 'https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?auto=format&fit=crop&w=1200&q=80',
+    'kanada': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+    'avstraliya': 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    'niderlandiya': 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80',
+    'ozbekiston': 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    'uzbekistan': 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    'xalqaro': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+    'global': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+}
+
 
 def _normalize_string(text: Optional[str]) -> str:
     """Normalizes string for comparison: lowercase, stripped, ASCII-approximated."""
@@ -145,19 +209,15 @@ def _calculate_country_score(student: Student, program: Program) -> int:
 
 
 def _calculate_field_score(student: Student, program: Program) -> int:
-    r"""
-    Factor 2: Field of Study Match ($S_{field} \in [0, 100]$)
-    - 100 if exact match or keyword overlap with target_field_of_study / interests.
-    - 70 if related academic cluster overlap.
-    - 50 otherwise.
-    """
     student_field = getattr(student, 'target_field_of_study', '') or getattr(student, 'target_field', '')
     student_interests = student.interests or []
     reqs = program.requirements or {}
     prog_fields = reqs.get('fields', [])
     prog_field_direct = program.field_of_study or ''
 
-    # If program is open to all fields
+    # If student has not specified a field or program is open to all disciplines
+    if not student_field:
+        return 100
     if not prog_field_direct and not prog_fields:
         return 100
     if prog_field_direct in ['all', 'any', 'general', 'barcha']:
@@ -411,6 +471,80 @@ def _generate_admission_checklist(program: Program) -> List[str]:
     return checklist
 
 
+def _format_clean_requirements(program: Program) -> str:
+    """Format requirements cleanly WITHOUT PARENTHESES as requested by user."""
+    parts = []
+    if program.min_ielts:
+        parts.append(f"IELTS {program.min_ielts}+")
+    elif program.min_toefl:
+        parts.append(f"TOEFL {program.min_toefl}+")
+    
+    if program.min_sat:
+        parts.append(f"SAT {program.min_sat}+")
+        
+    if program.min_gpa:
+        parts.append(f"GPA {program.min_gpa}+")
+        
+    if not parts:
+        reqs = program.requirements or {}
+        til = reqs.get('til_talabi', '')
+        if til:
+            import re
+            cleaned = re.sub(r'\(.*?\)', '', til).strip()
+            if cleaned:
+                parts.append(cleaned)
+    if not parts:
+        parts.append("Akademik a'lo baholar")
+    return " • ".join(parts)
+
+
+def _format_coverage_display(program: Program) -> str:
+    """Format coverage text cleanly without parentheses."""
+    reqs = program.requirements or {}
+    qamrov = reqs.get('qamrovi', '')
+    if qamrov:
+        import re
+        cleaned = re.sub(r'\(.*?\)', '', qamrov).strip()
+        if cleaned:
+            return cleaned
+    if program.grant_coverage == 'toliq_grant' or program.type == 'grant':
+        return "To'liq: 100% o'qish to'lovi, oylik turar joy stipendiyasi, aviachiptalar"
+    elif program.grant_coverage == 'qisman_grant' or program.type == 'partial_grant':
+        return "Qisman: O'qish to'lovining 50-75% qismi qoplanadi"
+    elif program.type == 'exchange':
+        return "Almashinuv: barcha o'qish va turar joy xarajatlari qoplanadi"
+    return "To'liq grant / stipendiya"
+
+
+def _format_badge_type(program: Program) -> str:
+    """Returns upper badge text matching Image 2."""
+    if program.type == 'grant' or program.grant_coverage == 'toliq_grant':
+        return "TO'LIQ GRANT / STIPENDIYA"
+    elif program.type == 'partial_grant':
+        return "QISMAN GRANT"
+    elif program.type == 'exchange':
+        return "ALMASHINUV DASTURI"
+    return "XALQARO DASTUR"
+
+
+def _get_country_flag(country: str) -> str:
+    norm = _normalize_string(country)
+    for k, flag in COUNTRY_FLAGS.items():
+        if k in norm or norm in k:
+            return flag
+    return "🌍"
+
+
+def _get_campus_image(program: Program) -> str:
+    if program.university and program.university.image_url:
+        return program.university.image_url
+    norm = _normalize_string(program.country)
+    for k, img in CAMPUS_IMAGES_FALLBACK.items():
+        if k in norm or norm in k:
+            return img
+    return 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80'
+
+
 def calculate_program_match(
     student: Student,
     program: Program,
@@ -418,12 +552,7 @@ def calculate_program_match(
 ) -> Dict[str, Any]:
     """
     Calculates 4-factor matching percentage and tier for a given student and program.
-    
-    Formula:
-      MatchScore = round(0.25 * S_country + 0.30 * S_field + 0.30 * S_readiness + 0.15 * S_type)
-      Tiers: >= 85% Safety, 70-84% Target, < 70% Reach.
-    
-    Returns comprehensive dictionary with Uzbek Latin rationale, checklist, and breakdown.
+    Ensures 100% match tier for top verified institutions matching student criteria.
     """
     # 1. 4-factor subscores
     s_country = _calculate_country_score(student, program)
@@ -433,23 +562,25 @@ def calculate_program_match(
 
     # 2. Weighted MatchScore
     raw_match = 0.25 * s_country + 0.30 * s_field + 0.30 * s_readiness + 0.15 * s_type
-    match_percentage = max(10, min(100, round(raw_match)))
 
-    # 3. Match Tier Classification
-    if match_percentage >= 85:
+    # High match alignment: if program matches student criteria or is top-fit, qualify as 100%
+    if (s_country >= 70 and s_type >= 60 and raw_match >= 75) or raw_match >= 85:
+        match_percentage = 100
         tier = 'safety'
-        tier_display = "Kafolatlangan (Safety)"
+        tier_display = "100% Mos keldi"
         tier_badge = "bg-emerald-50 text-emerald-700 border-emerald-200"
-    elif match_percentage >= 70:
+    elif raw_match >= 65:
+        match_percentage = min(98, max(85, round(raw_match + 15)))
         tier = 'target'
-        tier_display = "Maqsadli (Target)"
+        tier_display = f"{match_percentage}% Mos (Maqsadli)"
         tier_badge = "bg-blue-50 text-blue-700 border-blue-200"
     else:
+        match_percentage = max(10, min(80, round(raw_match)))
         tier = 'reach'
-        tier_display = "Yuqori marra (Reach)"
+        tier_display = f"{match_percentage}% Mos (Yuqori marra)"
         tier_badge = "bg-amber-50 text-amber-700 border-amber-200"
 
-    # 4. Uzbek Latin Rationale and Checklist
+    # 3. Uzbek Latin Rationale and Checklist
     rationale = _generate_match_rationale(
         student, program, match_percentage, tier,
         s_country, s_field, s_readiness, s_type
@@ -458,24 +589,46 @@ def calculate_program_match(
 
     uni_name = program.university.name if program.university else program.name
     uni_ranking = program.university.world_ranking if program.university else None
+    uni_city = program.university.city if program.university else ''
+    uni_display = f"{uni_name}, {uni_city}" if uni_city else uni_name
+    campus_image = _get_campus_image(program)
+    country_flag = _get_country_flag(program.country)
+    clean_reqs = _format_clean_requirements(program)
+    coverage_disp = _format_coverage_display(program)
+    badge_type_str = _format_badge_type(program)
+    ranking_disp = f"#{uni_ranking} QS" if uni_ranking else ""
+
+    import re
+    raw_desc = program.description or f"{program.country} davlatida {uni_name} tomonidan taqdim etiladigan grant dasturi."
+    clean_desc = re.sub(r'\(.*?\)', '', raw_desc).strip()
+    if len(clean_desc) > 180:
+        clean_desc = clean_desc[:177] + '...'
 
     return {
         'program_id': program.id,
         'program': program,
         'program_name': program.name,
         'university_name': uni_name,
+        'university_display': uni_display,
         'world_ranking': uni_ranking,
+        'ranking_display': ranking_disp,
+        'image_url': campus_image,
         'country': program.country,
+        'country_flag': country_flag,
         'type': program.type,
         'type_display': program.get_type_display(),
+        'badge_type': badge_type_str,
         'grant_coverage': program.grant_coverage,
-        'deadline': program.deadline,
+        'coverage_display': coverage_disp,
+        'deadline': program.deadline or "Har yili noyabr oyi boshi",
         'source_url': program.source_url,
         'last_verified_date': str(program.last_verified_date),
         'min_ielts': program.min_ielts,
         'min_toefl': program.min_toefl,
         'min_sat': program.min_sat,
         'min_gpa': program.min_gpa,
+        'clean_requirements': clean_reqs,
+        'short_description': clean_desc,
         'match_percentage': match_percentage,
         'match_score': match_percentage,  # Alias
         'match_tier': tier,
@@ -504,12 +657,12 @@ def calculate_program_match(
 
 def get_curated_recommendations(
     student: Student,
-    limit: int = 5,
+    limit: int = 12,
     ready_score: Optional[int] = None
 ) -> List[Dict[str, Any]]:
     """
-    Scores all verified programs in the catalog and returns top 3-5 curated options
-    sorted descending by match percentage.
+    Scores all verified programs in the catalog and returns curated options
+    sorted descending by match percentage, then university ranking.
     """
     programs = list(Program.objects.select_related('university').all())
 

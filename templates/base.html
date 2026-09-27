@@ -435,11 +435,11 @@
 
     <!-- Mobile Top Navigation Bar (< 640px) -->
     {% include 'includes/nav_top.html' %}
-  {% elif '/onboarding/' in request.path %}
+  {% elif '/onboarding/' in request.path and not hide_header %}
     <!-- Minimal Clean Header for Onboarding Flow -->
     {% include 'includes/nav_onboarding.html' %}
   {% elif '/accounts/' in request.path or hide_header %}
-    <!-- No Header for Auth Pages (Register / Login) -->
+    <!-- No Header for Auth Pages and custom pages without header -->
   {% else %}
     <!-- Public Header for unauthenticated landing and public catalog pages -->
     {% include 'includes/nav_public.html' %}
