@@ -15,7 +15,7 @@ class UserRegistrationForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'placeholder': '+998 90 123 45 67',
             'type': 'tel',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800'
+            'class': 'w-full px-3.5 py-2.5 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800 text-sm'
         }),
         error_messages={'required': "Telefon raqami kiritilishi shart."}
     )
@@ -23,7 +23,7 @@ class UserRegistrationForm(forms.ModelForm):
         label="Parol",
         widget=forms.PasswordInput(attrs={
             'placeholder': 'Kamida 6 ta belgi',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800'
+            'class': 'w-full px-3.5 py-2.5 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800 text-sm'
         }),
         error_messages={'required': "Parol kiritilishi shart."}
     )
@@ -31,7 +31,7 @@ class UserRegistrationForm(forms.ModelForm):
         label="Parolni tasdiqlash",
         widget=forms.PasswordInput(attrs={
             'placeholder': 'Parolni qayta kiriting',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800'
+            'class': 'w-full px-3.5 py-2.5 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800 text-sm'
         }),
         error_messages={'required': "Parolni tasdiqlash shart."}
     )
@@ -83,7 +83,7 @@ class UserLoginForm(forms.Form):
         widget=forms.TextInput(attrs={
             'placeholder': '+998 90 123 45 67',
             'type': 'tel',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-slate-800'
+            'class': 'w-full px-3.5 py-2.5 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800 text-sm'
         }),
         error_messages={'required': "Telefon raqami kiritilishi shart."}
     )
@@ -91,7 +91,7 @@ class UserLoginForm(forms.Form):
         label="Parol",
         widget=forms.PasswordInput(attrs={
             'placeholder': 'Parolingizni kiriting',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-slate-800'
+            'class': 'w-full px-3.5 py-2.5 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800 text-sm'
         }),
         error_messages={'required': "Parol kiritilishi shart."}
     )

@@ -4,10 +4,10 @@
 {% block title %}Kirish — UniMentor AI Mentori{% endblock %}
 
 {% block content %}
-<div class="min-h-screen w-full flex flex-col lg:flex-row bg-white">
+<div class="h-screen w-full flex flex-col lg:flex-row bg-white overflow-y-auto lg:overflow-hidden">
   
   <!-- Left Side: Visual Showcase (Full-height split - 50%) -->
-  <div class="hidden lg:flex lg:w-1/2 min-h-screen relative p-12 xl:p-16 flex-col justify-between text-white bg-zinc-950 overflow-hidden">
+  <div class="hidden lg:flex lg:w-1/2 h-full relative p-8 xl:p-12 flex-col justify-between text-white bg-zinc-950 overflow-hidden">
     <img 
       src="{% static 'images/auth_banner_wave.jpg' %}" 
       alt="UniMentor AI" 
@@ -22,62 +22,61 @@
     </div>
 
     <!-- Bottom: Quote & Headline -->
-    <div class="relative z-10 space-y-4 max-w-lg pb-4">
-      <h2 class="text-4xl xl:text-5xl font-serif font-medium text-white tracking-tight leading-tight">
+    <div class="relative z-10 space-y-3 max-w-lg pb-2">
+      <h2 class="text-3xl xl:text-4xl font-serif font-medium text-white tracking-tight leading-tight">
         Orzularingizga erishing
       </h2>
-      <p class="text-sm xl:text-base text-white/80 leading-relaxed font-light">
+      <p class="text-xs xl:text-sm text-white/80 leading-relaxed font-light">
         Mehnat qilsangiz, jarayonga ishonsangiz va rejaga qat'iy amal qilsangiz, barcha maqsadlaringizga yetasiz.
       </p>
     </div>
   </div>
 
   <!-- Right Side: Form Column (Full-height split - 50%) -->
-  <div class="w-full lg:w-1/2 min-h-screen flex flex-col justify-between p-6 sm:p-12 md:p-16 xl:p-20 bg-white">
+  <div class="w-full lg:w-1/2 h-full flex flex-col justify-between p-6 sm:p-8 xl:p-10 bg-white overflow-y-auto lg:overflow-hidden">
     <!-- Top Right Logo -->
     <div class="flex items-center justify-between lg:justify-end space-x-2">
       <div class="flex items-center space-x-2.5">
-        <div class="w-9 h-9 rounded-xl bg-zinc-950 p-1.5 flex items-center justify-center shadow-xs">
+        <div class="w-8 h-8 rounded-xl bg-zinc-950 p-1.5 flex items-center justify-center shadow-xs">
           <img src="{% static 'images/unimentor_logo.png' %}" alt="UniMentor" class="w-full h-full object-contain filter invert">
         </div>
-        <span class="text-lg font-bold text-zinc-950 tracking-tight">UniMentor</span>
+        <span class="text-base font-bold text-zinc-950 tracking-tight">UniMentor</span>
       </div>
     </div>
 
     <!-- Form Center Body -->
-    <div class="max-w-md w-full mx-auto my-auto py-8 space-y-6">
-      <div class="space-y-1.5">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight">Tizimga kirish</h1>
-        <p class="text-sm text-zinc-500">Hisobingizga kirish uchun telefon raqamingiz va parolingizni kiriting</p>
+    <div class="max-w-md w-full mx-auto my-auto space-y-4">
+      <div class="space-y-1">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight">Tizimga kirish</h1>
+        <p class="text-xs sm:text-sm text-zinc-500">Hisobingizga kirish uchun telefon raqamingiz va parolingizni kiriting</p>
       </div>
 
       {% if form.non_field_errors %}
-        <div class="p-4 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl space-y-1">
+        <div class="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl space-y-1">
           {% for error in form.non_field_errors %}
             <p class="font-medium">{{ error }}</p>
           {% endfor %}
         </div>
       {% endif %}
 
-      <form method="post" action="{% url 'accounts:login' %}" class="space-y-4">
+      <form method="post" action="{% url 'accounts:login' %}" class="space-y-3">
         {% csrf_token %}
         {% if request.GET.next %}
           <input type="hidden" name="next" value="{{ request.GET.next }}">
         {% endif %}
 
         <div>
-          <label for="id_phone_number" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-2">
+          <label for="id_phone_number" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5">
             Telefon raqami *
           </label>
           {{ form.phone_number }}
           {% if form.phone_number.errors %}
             <p class="text-rose-600 text-xs mt-1 font-medium">{{ form.phone_number.errors.0 }}</p>
           {% endif %}
-          <p class="text-xs text-zinc-400 mt-1">Masalan: +998 90 123 45 67</p>
         </div>
 
         <div>
-          <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center justify-between mb-1.5">
             <label for="id_password" class="block text-xs font-bold text-zinc-700 uppercase tracking-wider">
               Parol *
             </label>
@@ -88,20 +87,20 @@
           {% endif %}
         </div>
 
-        <div class="flex items-center justify-between text-xs text-zinc-600 pt-1">
+        <div class="flex items-center justify-between text-xs text-zinc-600">
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="checkbox" name="remember_me" class="rounded border-zinc-300 text-zinc-950 focus:ring-zinc-950">
             <span>Eslab qolish</span>
           </label>
         </div>
 
-        <button type="submit" class="w-full py-4 px-5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-sm rounded-xl shadow-sm transition flex items-center justify-center space-x-2 cursor-pointer mt-4">
+        <button type="submit" class="w-full py-3 sm:py-3.5 px-5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-sm rounded-xl shadow-xs transition flex items-center justify-center space-x-2 cursor-pointer mt-3">
           <span>Kirish</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>
       </form>
 
-      <p class="text-center text-sm text-zinc-500 pt-2">
+      <p class="text-center text-xs sm:text-sm text-zinc-500 pt-1">
         Hisobingiz yo'qmi? 
         <a href="{% url 'accounts:register' %}" class="font-bold text-zinc-950 hover:underline ml-1">
           Ro'yxatdan o'tish
@@ -110,7 +109,7 @@
     </div>
 
     <!-- Footer caption -->
-    <div class="text-xs text-zinc-400 text-center py-2">
+    <div class="text-[11px] text-zinc-400 text-center py-1">
       UniMentor AI • Xorijda Ta'lim Maslahatchisi
     </div>
   </div>

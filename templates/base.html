@@ -446,7 +446,7 @@
   {% endif %}
 
   <!-- Main Layout Wrapper (Desktop offset sm:pl-60 only when sidebar is active) -->
-  <div id="main-content" class="min-h-screen flex flex-col {% if request.user.is_authenticated and not hide_sidebar and not '/onboarding/' in request.path %}sm:pl-60{% endif %} transition-all duration-300">
+  <div id="main-content" class="{% if '/accounts/' in request.path %}h-screen overflow-hidden flex flex-col{% else %}min-h-screen flex flex-col {% if request.user.is_authenticated and not hide_sidebar and not '/onboarding/' in request.path %}sm:pl-60{% endif %}{% endif %} transition-all duration-300">
     
     <!-- Desktop Open Sidebar Button (Hidden initially) -->
     {% if request.user.is_authenticated and not hide_sidebar and not '/onboarding/' in request.path %}
@@ -463,7 +463,7 @@
     {% endif %}
 
     <!-- Main Application Content Area with Smooth Page Transition -->
-    <main class="flex-1 w-full page-transition {% if '/accounts/' in request.path %}min-h-screen p-0 m-0{% else %}max-w-6xl mx-auto px-4 sm:px-6 py-4 md:py-8 {% if request.user.is_authenticated and not hide_sidebar and not '/onboarding/' in request.path %}pb-20 sm:pb-8{% endif %}{% endif %}">
+    <main class="flex-1 w-full page-transition {% if '/accounts/' in request.path %}h-full p-0 m-0 overflow-hidden{% else %}max-w-6xl mx-auto px-4 sm:px-6 py-4 md:py-8 {% if request.user.is_authenticated and not hide_sidebar and not '/onboarding/' in request.path %}pb-20 sm:pb-8{% endif %}{% endif %}">
       {% block content %}
         {% if message %}
           <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-200 text-center">
