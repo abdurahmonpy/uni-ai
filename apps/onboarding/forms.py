@@ -14,13 +14,13 @@ from apps.onboarding.models import TestCertificate
 from apps.services.certificate_service import check_certificate_validity
 
 COUNTRY_CHOICES = [
-    ('AQSh', 'AQSh (Global UGRAD, Universitet Grantlari)'),
-    ('Buyuk Britaniya', 'Buyuk Britaniya (Chevening, Foundation)'),
-    ('Germaniya', 'Germaniya (DAAD, Davlat Universitetlari)'),
-    ('Turkiya', 'Turkiya (Türkiye Bursları)'),
-    ('Janubiy Koreya', 'Janubiy Koreya (GKS / KGSP)'),
-    ('Kanada', 'Kanada (Universitet Grantlari)'),
-    ('Yaponiya', 'Yaponiya (MEXT)'),
+    ('AQSh', 'AQSh'),
+    ('Buyuk Britaniya', 'Buyuk Britaniya'),
+    ('Germaniya', 'Germaniya'),
+    ('Turkiya', 'Turkiya'),
+    ('Janubiy Koreya', 'Janubiy Koreya'),
+    ('Kanada', 'Kanada'),
+    ('Yaponiya', 'Yaponiya'),
     ('Boshqa', 'Boshqa davlatlar'),
 ]
 
@@ -114,14 +114,14 @@ class OnboardingStep1Form(forms.Form):
         choices=Student.GRADE_CHOICES,
         coerce=int,
         label="Hozir nechanchi sinfda o'qiysiz?",
-        widget=forms.RadioSelect(attrs={'class': 'peer hidden'}),
+        widget=forms.RadioSelect(attrs={'class': 'peer sr-only'}),
         required=True,
         error_messages={'required': "Iltimos, o'qiydigan sinfingizni tanlang."}
     )
     target_countries = forms.MultipleChoiceField(
         choices=COUNTRY_CHOICES,
         label="Qaysi davlatlarda ta'lim olishni rejalashtiryapsiz?",
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'peer hidden'}),
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'peer sr-only'}),
         required=True,
         error_messages={'required': "Kamida bitta davlatni tanlang."}
     )
@@ -137,7 +137,7 @@ class OnboardingStep1Form(forms.Form):
     english_level = forms.ChoiceField(
         choices=Student.ENGLISH_LEVEL_CHOICES,
         label="Hozirgi ingliz tili darajangiz qanday?",
-        widget=forms.RadioSelect(attrs={'class': 'peer hidden'}),
+        widget=forms.RadioSelect(attrs={'class': 'peer sr-only'}),
         initial='beginner',
         required=False,
     )
@@ -171,7 +171,7 @@ class OnboardingStep1Form(forms.Form):
         choices=INTERESTS_CHOICES,
         label="Qiziqishlaringiz va mashg'ulotlaringiz",
         required=False,
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'peer hidden'})
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'peer sr-only'})
     )
     target_field_of_study = forms.ChoiceField(
         choices=TARGET_FIELD_CHOICES,
