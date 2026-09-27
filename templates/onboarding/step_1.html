@@ -50,6 +50,7 @@
 
   <form id="onboardingWizardForm" method="post">
     {% csrf_token %}
+    <input type="hidden" name="english_level" value="{{ form.english_level.value|default:'beginner' }}">
 
     {% if form.non_field_errors %}
       <div class="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-start space-x-3">
@@ -703,16 +704,17 @@
         }
       }
     } else if (step === 5) {
-      const checkedInterests = document.querySelectorAll('input[name="interests"]:checked');
-      if (checkedInterests.length === 0) {
-        showSmsNotification("Tanlamadingiz! Iltimos, kamida bitta qiziqishingizni tanlang.");
-        return false;
-      }
-    } else if (step === 6) {
       const fieldInput = document.getElementById('id_target_field_of_study');
       if (!fieldInput || !fieldInput.value) {
         showSmsNotification("Tanlamadingiz! Iltimos, ta'lim yo'nalishingizni tanlang.");
         if (fieldInput) fieldInput.focus();
+        return false;
+      }
+    } else if (step === 6) {
+      const careerInput = document.getElementById('id_target_career');
+      if (!careerInput || !careerInput.value) {
+        showSmsNotification("Tanlamadingiz! Iltimos, kelajak kasbingizni tanlang.");
+        if (careerInput) careerInput.focus();
         return false;
       }
     } else if (step === 7) {
@@ -722,16 +724,22 @@
         return false;
       }
     } else if (step === 8) {
-      const careerInput = document.getElementById('id_target_career');
-      if (!careerInput || !careerInput.value) {
-        showSmsNotification("Tanlamadingiz! Iltimos, kelajak kasbingizni tanlang.");
-        if (careerInput) careerInput.focus();
+      const checkedInterests = document.querySelectorAll('input[name="interests"]:checked');
+      if (checkedInterests.length === 0) {
+        showSmsNotification("Tanlamadingiz! Iltimos, kamida bitta qiziqishingizni tanlang.");
         return false;
       }
     } else if (step === 9) {
-      const checkedLevel = document.querySelector('input[name="english_level"]:checked');
-      if (!checkedLevel) {
-        showSmsNotification("Tanlamadingiz! Iltimos, ingliz tili darajangizni tanlang.");
+      const budget = document.getElementById('id_budget_preference');
+      const programType = document.getElementById('id_target_program_type');
+      if (budget && !budget.value) {
+        showSmsNotification("Tanlamadingiz! Iltimos, moliyaviy afzalligingizni tanlang.");
+        budget.focus();
+        return false;
+      }
+      if (programType && !programType.value) {
+        showSmsNotification("Tanlamadingiz! Iltimos, dastur turini tanlang.");
+        programType.focus();
         return false;
       }
     }
