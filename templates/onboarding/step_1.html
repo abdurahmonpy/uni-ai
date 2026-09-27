@@ -380,8 +380,119 @@
 
 <!-- Multi-Question Wizard Script -->
 <script>
-  let currentStep = 1;
+  let currentStep = {{ saved_step|default:1 }};
   const totalQuestions = 9;
+  const DRAFT_STORAGE_KEY = 'kelajak_onboarding_step1_draft';
+
+  function getFormDataObject() {
+    return {
+      step: currentStep,
+      first_name: document.getElementById('id_first_name') ? document.getElementById('id_first_name').value : '',
+      grade: document.querySelector('input[name="grade"]:checked') ? document.querySelector('input[name="grade"]:checked').value : '',
+      region: document.getElementById('id_region') ? document.getElementById('id_region').value : '',
+      birth_date: document.getElementById('id_birth_date') ? document.getElementById('id_birth_date').value : '',
+      city: document.getElementById('id_city') ? document.getElementById('id_city').value : '',
+      target_career: document.getElementById('id_target_career') ? document.getElementById('id_target_career').value : '',
+      target_field_of_study: document.getElementById('id_target_field_of_study') ? document.getElementById('id_target_field_of_study').value : '',
+      target_countries: Array.from(document.querySelectorAll('input[name="target_countries"]:checked')).map(cb => cb.value),
+      interests: Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value),
+      budget_preference: document.getElementById('id_budget_preference') ? document.getElementById('id_budget_preference').value : '',
+      target_program_type: document.getElementById('id_target_program_type') ? document.getElementById('id_target_program_type').value : '',
+    };
+  }
+
+  let saveDraftTimeout = null;
+  function saveDraft() {
+    try {
+      const data = getFormDataObject();
+      localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(data));
+
+      clearTimeout(saveDraftTimeout);
+      saveDraftTimeout = setTimeout(() => {
+        const formEl = document.getElementById('onboardingWizardForm');
+        if (formEl) {
+          const formData = new FormData(formEl);
+          formData.append('step', currentStep);
+          fetch("{% url 'onboarding:save_step1_draft' %}", {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          }).catch(() => {});
+        }
+      }, 150);
+    } catch (e) {
+      console.error('Draft save failed:', e);
+    }
+  }
+
+  function restoreDraft() {
+    try {
+      let draft = null;
+      const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+      if (raw) {
+        draft = JSON.parse(raw);
+      }
+
+      if (draft) {
+        if (draft.first_name && document.getElementById('id_first_name')) {
+          document.getElementById('id_first_name').value = draft.first_name;
+        }
+        if (draft.grade) {
+          const radio = document.querySelector(`input[name="grade"][value="${draft.grade}"]`);
+          if (radio) radio.checked = true;
+        }
+        if (draft.region && document.getElementById('id_region')) {
+          document.getElementById('id_region').value = draft.region;
+        }
+        if (draft.birth_date && document.getElementById('id_birth_date')) {
+          document.getElementById('id_birth_date').value = draft.birth_date;
+        }
+        if (draft.city && document.getElementById('id_city')) {
+          document.getElementById('id_city').value = draft.city;
+        }
+        if (draft.target_career && document.getElementById('id_target_career')) {
+          document.getElementById('id_target_career').value = draft.target_career;
+        }
+        if (draft.target_field_of_study && document.getElementById('id_target_field_of_study')) {
+          document.getElementById('id_target_field_of_study').value = draft.target_field_of_study;
+        }
+        if (Array.isArray(draft.target_countries) && draft.target_countries.length > 0) {
+          document.querySelectorAll('input[name="target_countries"]').forEach(cb => {
+            cb.checked = draft.target_countries.includes(cb.value);
+          });
+        }
+        if (Array.isArray(draft.interests) && draft.interests.length > 0) {
+          document.querySelectorAll('input[name="interests"]').forEach(cb => {
+            cb.checked = draft.interests.includes(cb.value);
+          });
+        }
+        if (draft.budget_preference && document.getElementById('id_budget_preference')) {
+          document.getElementById('id_budget_preference').value = draft.budget_preference;
+        }
+        if (draft.target_program_type && document.getElementById('id_target_program_type')) {
+          document.getElementById('id_target_program_type').value = draft.target_program_type;
+        }
+        if (draft.step && draft.step >= 1 && draft.step <= totalQuestions) {
+          currentStep = draft.step;
+        }
+      } else {
+        const serverStep = parseInt("{{ saved_step|default:1 }}", 10);
+        if (serverStep >= 1 && serverStep <= totalQuestions) {
+          currentStep = serverStep;
+        }
+      }
+    } catch (e) {
+      console.error('Draft restore failed:', e);
+    }
+  }
+
+  function clearDraft() {
+    try {
+      localStorage.removeItem(DRAFT_STORAGE_KEY);
+    } catch (e) {}
+  }
 
   function syncSelectionStyles() {
     // Sync Radios (Grade, etc.)
@@ -559,9 +670,11 @@
 
     if (currentStep < totalQuestions) {
       currentStep++;
+      saveDraft();
       updateWizardUI();
       window.scrollTo({ top: 100, behavior: 'smooth' });
     } else {
+      clearDraft();
       document.getElementById('onboardingWizardForm').submit();
     }
   }
@@ -569,6 +682,7 @@
   function handlePrevStep() {
     if (currentStep > 1) {
       currentStep--;
+      saveDraft();
       updateWizardUI();
       window.scrollTo({ top: 100, behavior: 'smooth' });
     }
@@ -579,11 +693,15 @@
     if (radio) {
       radio.checked = true;
       syncSelectionStyles();
+      saveDraft();
     }
   }
 
   function handleCountryToggle(labelEl) {
-    setTimeout(syncSelectionStyles, 20);
+    setTimeout(() => {
+      syncSelectionStyles();
+      saveDraft();
+    }, 20);
   }
 
   // Handle Enter key inside text inputs
@@ -626,13 +744,28 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+    restoreDraft();
     updateWizardUI();
 
     document.addEventListener('change', function(e) {
-      if (e.target.matches('input[type="radio"], input[type="checkbox"]')) {
+      if (e.target.matches('input[type="radio"], input[type="checkbox"], select, input')) {
         syncSelectionStyles();
+        saveDraft();
       }
     });
+
+    document.addEventListener('input', function(e) {
+      if (e.target.matches('input, select, textarea')) {
+        saveDraft();
+      }
+    });
+
+    const formEl = document.getElementById('onboardingWizardForm');
+    if (formEl) {
+      formEl.addEventListener('submit', function() {
+        clearDraft();
+      });
+    }
 
     const bDateInput = document.getElementById('id_birth_date');
     if (bDateInput) {

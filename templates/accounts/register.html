@@ -144,6 +144,11 @@ document.addEventListener('DOMContentLoaded', function() {
     return formatted;
   }
 
+  const savedPhone = sessionStorage.getItem('unimentor_reg_phone');
+  if (savedPhone && (!phoneInput.value || phoneInput.value.trim() === '')) {
+    phoneInput.value = savedPhone;
+  }
+
   // Pre-fill +998 when user focuses or clicks if empty
   phoneInput.addEventListener('focus', function() {
     if (!this.value || this.value.trim() === '') {
@@ -158,10 +163,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (digits.length === 0) {
       this.value = '+998 ';
+      sessionStorage.setItem('unimentor_reg_phone', this.value);
       return;
     }
 
     this.value = formatUzbekPhone(raw);
+    sessionStorage.setItem('unimentor_reg_phone', this.value);
   });
 
   // Prevent backspacing the +998 prefix
@@ -170,6 +177,13 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
     }
   });
+
+  const regForm = phoneInput.closest('form');
+  if (regForm) {
+    regForm.addEventListener('submit', function() {
+      sessionStorage.removeItem('unimentor_reg_phone');
+    });
+  }
 });
 </script>
 {% endblock %}

@@ -3,6 +3,8 @@ Views for multi-step intelligent onboarding wizard, certificate qualification,
 diagnostic testing, AI university matching, and dual-track study plan activation.
 """
 import logging
+from datetime import datetime
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -38,6 +40,7 @@ def step_1_view(request):
         form = OnboardingStep1Form(request.POST)
         if form.is_valid():
             form.save(student)
+            request.session.pop('onboarding_step_1_step', None)
             messages.success(request, "Profil ma'lumotlaringiz muvaffaqiyatli saqlandi.")
             return redirect('onboarding:step_2_certificate')
     else:
@@ -72,12 +75,90 @@ def step_1_view(request):
 
         form = OnboardingStep1Form(initial=initial_data)
 
+    saved_step = request.session.get('onboarding_step_1_step', 1)
+
     return render(request, 'onboarding/step_1.html', {
         'form': form,
         'student': student,
         'step_number': 1,
         'total_steps': 4,
+        'saved_step': saved_step,
     })
+
+
+@login_required
+def save_step1_draft_view(request):
+    """
+    Auto-save endpoint for Onboarding Step 1.
+    Saves in-progress answers into database and session so that
+    refreshing the page never loses user's filled data or current question.
+    """
+    if request.method != 'POST':
+        return JsonResponse({'status': 'error', 'message': "Faqat POST so'rovi qabul qilinadi."}, status=405)
+
+    student, _ = Student.objects.get_or_create(user=request.user)
+
+    step = request.POST.get('step')
+    if step:
+        try:
+            request.session['onboarding_step_1_step'] = int(step)
+        except (ValueError, TypeError):
+            pass
+
+    first_name = request.POST.get('first_name', '').strip()
+    if first_name:
+        request.user.first_name = first_name
+        request.user.save(update_fields=['first_name'])
+
+    grade = request.POST.get('grade')
+    if grade:
+        try:
+            student.grade = int(grade)
+        except (ValueError, TypeError):
+            pass
+
+    region = request.POST.get('region', '').strip()
+    if region:
+        student.region = region
+
+    city = request.POST.get('city', '').strip()
+    if city:
+        student.city = city
+
+    birth_date_str = request.POST.get('birth_date', '').strip()
+    if birth_date_str:
+        try:
+            student.birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d').date()
+            student.birth_year = student.birth_date.year
+        except ValueError:
+            pass
+
+    target_career = request.POST.get('target_career', '').strip()
+    if target_career:
+        student.target_career = target_career
+
+    target_field_of_study = request.POST.get('target_field_of_study', '').strip()
+    if target_field_of_study:
+        student.target_field_of_study = target_field_of_study
+
+    target_countries = request.POST.getlist('target_countries')
+    if target_countries:
+        student.target_countries = target_countries
+
+    interests = request.POST.getlist('interests')
+    if interests:
+        student.interests = interests
+
+    budget_preference = request.POST.get('budget_preference', '').strip()
+    if budget_preference:
+        student.budget_preference = budget_preference
+
+    target_program_type = request.POST.get('target_program_type', '').strip()
+    if target_program_type:
+        student.target_program_type = target_program_type
+
+    student.save()
+    return JsonResponse({'status': 'ok'})
 
 
 @login_required
