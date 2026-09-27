@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
-  <rect width="640" height="480" fill="#ee1c25"/>
-  <polygon points="120,60 134,105 180,105 142,132 156,177 120,150 84,177 98,132 60,105 106,105" fill="#ffff00"/>
-  <polygon points="220,40 225,55 240,55 228,64 232,79 220,70 208,79 212,64 200,55 215,55" fill="#ffff00"/>
-  <polygon points="260,80 265,95 280,95 268,104 272,119 260,110 248,119 252,104 240,95 255,95" fill="#ffff00"/>
-  <polygon points="260,140 265,155 280,155 268,164 272,179 260,170 248,179 252,164 240,155 255,155" fill="#ffff00"/>
-  <polygon points="220,180 225,195 240,195 228,204 232,219 220,210 208,219 212,204 200,195 215,195" fill="#ffff00"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900" height="600"><path fill="#EE1C25" d="M0 0h900v600H0"/><g transform="matrix(3 0 0 3 150 150)"><path id="a" fill="#FF0" d="m0-30 17.634 54.27-46.166-33.54h57.064l-46.166 33.54Z"/></g><use xlink:href="#a" transform="rotate(23.036 2.784 766.082)"/><use xlink:href="#a" transform="rotate(45.87 38.201 485.396)"/><use xlink:href="#a" transform="rotate(69.945 29.892 362.328)"/><use xlink:href="#a" transform="rotate(20.66 -590.66 957.955)"/></svg>

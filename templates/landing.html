@@ -126,164 +126,342 @@
       <div class="overflow-hidden relative [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
         <div class="animate-marquee-infinite space-x-3 py-1">
           <!-- Item 1: Harvard -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/harvard_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="Harvard">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/harvard.edu?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/harvard_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Harvard"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Harvard University</p>
-              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/us.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="US">
-                Ivy League • AQSh
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/us.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="US">
+                <span>Ivy League • AQSh</span>
               </p>
             </div>
           </div>
+
           <!-- Item 2: DAAD -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/daad_logo.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="DAAD">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/daad.de?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/daad_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="DAAD"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">DAAD Scholarship</p>
-              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/de.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="DE">
-                100% To'liq Grant
+              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/de.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="DE">
+                <span>100% To'liq Grant</span>
               </p>
             </div>
           </div>
+
           <!-- Item 3: Oxford -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/oxford_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="Oxford">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/ox.ac.uk?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/oxford_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Oxford"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">University of Oxford</p>
-              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/gb.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="UK">
-                Buyuk Britaniya
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/gb.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="UK">
+                <span>Buyuk Britaniya</span>
               </p>
             </div>
           </div>
+
           <!-- Item 4: Global UGRAD -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/ugrad_badge.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="UGRAD">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/worldlearning.org?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/ugrad_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="UGRAD"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Global UGRAD</p>
-              <p class="text-[10px] text-zinc-950 font-semibold flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/us.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="US">
-                AQSh Davlat Departamenti
+              <p class="text-[10px] text-zinc-950 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/us.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="US">
+                <span>AQSh Davlat Dep.</span>
               </p>
             </div>
           </div>
+
           <!-- Item 5: MIT -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/mit_seal.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="MIT">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/mit.edu?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/mit_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="MIT"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">MIT Technology</p>
-              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/us.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="US">
-                Top #1 CS • AQSh
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/us.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="US">
+                <span>Top #1 CS • AQSh</span>
               </p>
             </div>
           </div>
+
           <!-- Item 6: Chevening -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/chevening_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="Chevening">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/chevening.org?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/chevening_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Chevening"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Chevening Grant</p>
-              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/gb.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="UK">
-                100% Stipendiya
+              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/gb.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="UK">
+                <span>100% Stipendiya</span>
               </p>
             </div>
           </div>
+
           <!-- Item 7: Türkiye Bursları -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/turkiye_burslari.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="Turkiye Burslari">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/turkiyeburslari.gov.tr?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/turkiye_burslari_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Turkiye Burslari"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Türkiye Bursları</p>
-              <p class="text-[10px] text-zinc-600 font-semibold flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/tr.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="TR">
-                Bakalavr & Magistratura
+              <p class="text-[10px] text-zinc-600 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/tr.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="TR">
+                <span>Bakalavr & Mag.</span>
               </p>
             </div>
           </div>
+
           <!-- Item 8: Cambridge -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/cambridge_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="Cambridge">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/cam.ac.uk?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/cambridge_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Cambridge"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Cambridge University</p>
-              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/gb.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="UK">
-                Russell Group
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/gb.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="UK">
+                <span>Russell Group</span>
               </p>
             </div>
           </div>
+
           <!-- Item 9: Seoul National -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/snu_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="SNU">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/snu.ac.kr?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/snu_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="SNU"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Seoul National (SNU)</p>
-              <p class="text-[10px] text-zinc-600 font-semibold flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/kr.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="KR">
-                GKS To'liq Grant
+              <p class="text-[10px] text-zinc-600 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/kr.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="KR">
+                <span>GKS To'liq Grant</span>
               </p>
             </div>
           </div>
+
           <!-- Item 10: Westminster Tashkent -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/wiut_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="WIUT">
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/wiut.uz?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/wiut_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="WIUT"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">WIUT Toshkent</p>
-              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/uz.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="UZ">
-                Xalqaro Standart
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/uz.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="UZ">
+                <span>Xalqaro Standart</span>
               </p>
             </div>
           </div>
 
           <!-- REPEAT SET FOR SEAMLESS INFINITE LOOP -->
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/harvard_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="Harvard">
+          <!-- Repeat Item 1: Harvard -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/harvard.edu?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/harvard_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Harvard"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Harvard University</p>
-              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/us.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="US">
-                Ivy League • AQSh
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/us.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="US">
+                <span>Ivy League • AQSh</span>
               </p>
             </div>
           </div>
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/daad_logo.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="DAAD">
+
+          <!-- Repeat Item 2: DAAD -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/daad.de?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/daad_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="DAAD"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">DAAD Scholarship</p>
-              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/de.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="DE">
-                100% To'liq Grant
+              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/de.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="DE">
+                <span>100% To'liq Grant</span>
               </p>
             </div>
           </div>
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/oxford_crest.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="Oxford">
+
+          <!-- Repeat Item 3: Oxford -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/ox.ac.uk?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/oxford_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Oxford"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">University of Oxford</p>
-              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/gb.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="UK">
-                Buyuk Britaniya
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/gb.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="UK">
+                <span>Buyuk Britaniya</span>
               </p>
             </div>
           </div>
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/ugrad_badge.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="UGRAD">
+
+          <!-- Repeat Item 4: Global UGRAD -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/worldlearning.org?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/ugrad_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="UGRAD"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">Global UGRAD</p>
-              <p class="text-[10px] text-zinc-950 font-semibold flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/us.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="US">
-                AQSh Davlat Departamenti
+              <p class="text-[10px] text-zinc-950 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/us.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="US">
+                <span>AQSh Davlat Dep.</span>
               </p>
             </div>
           </div>
-          <div class="flex items-center space-x-3 bg-white px-3.5 py-2 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[200px] flex-shrink-0">
-            <img src="{% static 'images/logos/mit_seal.svg' %}" class="w-7 h-7 rounded-lg object-contain" alt="MIT">
+
+          <!-- Repeat Item 5: MIT -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/mit.edu?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/mit_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="MIT"
+            >
             <div>
               <p class="text-xs font-bold text-zinc-900 leading-tight">MIT Technology</p>
-              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1 mt-0.5">
-                <img src="{% static 'images/flags/us.svg' %}" class="w-3.5 h-2.5 rounded-[2px] object-cover" alt="US">
-                Top #1 CS • AQSh
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/us.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="US">
+                <span>Top #1 CS • AQSh</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Repeat Item 6: Chevening -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/chevening.org?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/chevening_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Chevening"
+            >
+            <div>
+              <p class="text-xs font-bold text-zinc-900 leading-tight">Chevening Grant</p>
+              <p class="text-[10px] text-zinc-900 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/gb.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="UK">
+                <span>100% Stipendiya</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Repeat Item 7: Türkiye Bursları -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/turkiyeburslari.gov.tr?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/turkiye_burslari_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Turkiye Burslari"
+            >
+            <div>
+              <p class="text-xs font-bold text-zinc-900 leading-tight">Türkiye Bursları</p>
+              <p class="text-[10px] text-zinc-600 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/tr.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="TR">
+                <span>Bakalavr & Mag.</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Repeat Item 8: Cambridge -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/cam.ac.uk?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/cambridge_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="Cambridge"
+            >
+            <div>
+              <p class="text-xs font-bold text-zinc-900 leading-tight">Cambridge University</p>
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/gb.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="UK">
+                <span>Russell Group</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Repeat Item 9: Seoul National -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/snu.ac.kr?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/snu_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="SNU"
+            >
+            <div>
+              <p class="text-xs font-bold text-zinc-900 leading-tight">Seoul National (SNU)</p>
+              <p class="text-[10px] text-zinc-600 font-semibold flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/kr.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="KR">
+                <span>GKS To'liq Grant</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Repeat Item 10: Westminster Tashkent -->
+          <div class="flex items-center space-x-3 bg-white px-3.5 py-2.5 rounded-xl border border-zinc-200/90 shadow-2xs min-w-[210px] flex-shrink-0">
+            <img 
+              src="https://img.logo.dev/wiut.uz?token=pk_fvlfhDT_QtWHkDXdEQATvQ&size=160&format=png" 
+              onerror="this.onerror=null; this.src='{% static 'images/logos/wiut_logo.png' %}'" 
+              class="w-7 h-7 rounded-lg object-contain bg-zinc-50/50 p-0.5 border border-zinc-100 flex-shrink-0" 
+              alt="WIUT"
+            >
+            <div>
+              <p class="text-xs font-bold text-zinc-900 leading-tight">WIUT Toshkent</p>
+              <p class="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5 mt-0.5">
+                <img src="{% static 'images/flags/uz.svg' %}" class="w-4 h-2.5 rounded-[2px] object-cover shadow-2xs" alt="UZ">
+                <span>Xalqaro Standart</span>
               </p>
             </div>
           </div>

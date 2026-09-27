@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
-  <path fill="#012169" d="M0 0h640v480H0z"/>
-  <path stroke="#fff" stroke-width="60" d="m0 0 640 480m0-480L0 480"/>
-  <path stroke="#c8102e" stroke-width="40" d="m0 0 640 480m0-480L0 480"/>
-  <path stroke="#fff" stroke-width="100" d="M320 0v480M0 240h640"/>
-  <path stroke="#c8102e" stroke-width="60" d="M320 0v480M0 240h640"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="1200" height="600"><clipPath id="a"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="b"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#a)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="m0 0 60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="m0 0 60 30m0-30L0 30" clip-path="url(#b)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg>

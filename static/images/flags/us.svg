@@ -1,16 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
-  <rect width="640" height="480" fill="#bd3d44"/>
-  <path stroke="#fff" stroke-width="37" d="M0,55H640M0,129H640M0,203H640M0,277H640M0,351H640M0,425H640"/>
-  <rect width="260" height="259" fill="#192f5d"/>
-  <g fill="#fff">
-    <g id="s5">
-      <g id="s2"><polygon points="26,18 29,26 37,26 31,31 33,39 26,34 19,39 21,31 15,26 23,26"/><polygon points="26,58 29,66 37,66 31,71 33,79 26,74 19,79 21,71 15,66 23,66"/></g>
-      <use href="#s2" y="80"/><use href="#s2" y="160"/>
-    </g>
-    <use href="#s5" x="40"/>
-    <use href="#s5" x="80"/>
-    <use href="#s5" x="120"/>
-    <use href="#s5" x="160"/>
-    <use href="#s5" x="200"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1235" height="650" viewBox="0 0 7410 3900"><path fill="#b31942" d="M0 0h7410v3900H0"/><path stroke="#FFF" stroke-width="300" d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"/><path fill="#0a3161" d="M0 0h2964v2100H0"/><g fill="#FFF"><g id="d"><g id="c"><g id="e"><g id="b"><path id="a" d="m247 90 70.534 217.082-184.66-134.164h228.253L176.466 307.082z"/><use xlink:href="#a" y="420"/><use xlink:href="#a" y="840"/><use xlink:href="#a" y="1260"/></g><use xlink:href="#a" y="1680"/></g><use xlink:href="#b" x="247" y="210"/></g><use xlink:href="#c" x="494"/></g><use xlink:href="#d" x="988"/><use xlink:href="#c" x="1976"/><use xlink:href="#e" x="2470"/></g></svg>
