@@ -219,7 +219,7 @@ LOGOUT_REDIRECT_URL = 'accounts:login'
 
 # Anthropic Claude / OpenRouter API configuration
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY', '')
-ANTHROPIC_MODEL = os.getenv('ANTHROPIC_MODEL', 'claude-sonnet-4-6')
+ANTHROPIC_MODEL = os.getenv('ANTHROPIC_MODEL', 'nvidia/nemotron-3.5-lightning:free')
 
 # Jazzmin Admin Configuration
 JAZZMIN_SETTINGS = {
