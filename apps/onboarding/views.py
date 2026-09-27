@@ -42,6 +42,8 @@ def step_1_view(request):
             return redirect('onboarding:step_2_certificate')
     else:
         initial_data = {}
+        if request.user.first_name:
+            initial_data['first_name'] = request.user.first_name
         if student.grade:
             initial_data['grade'] = student.grade
         if student.target_countries:

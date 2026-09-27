@@ -56,6 +56,17 @@
           </p>
         </div>
 
+        <!-- 0. Ism -->
+        <div class="space-y-1.5">
+          <label class="block text-xs font-bold text-zinc-700 uppercase tracking-wider mb-1.5">
+            Ismingiz *
+          </label>
+          {{ form.first_name }}
+          {% if form.first_name.errors %}
+            <p class="text-xs text-rose-600 mt-1 font-medium">{{ form.first_name.errors.0 }}</p>
+          {% endif %}
+        </div>
+
         <!-- 1. Sinf -->
         <div class="space-y-2">
           <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">
@@ -341,6 +352,15 @@
 
   function goToStep(stepNumber) {
     if (currentStep === 1 && stepNumber > 1) {
+      const nameInput = document.querySelector('input[name="first_name"]');
+      if (nameInput && !nameInput.value.trim()) {
+        nameInput.focus();
+        nameInput.classList.add('border-rose-500');
+        return;
+      } else if (nameInput) {
+        nameInput.classList.remove('border-rose-500');
+      }
+
       if (!checkBirthDate()) {
         const input = document.querySelector('input[name="birth_date"]');
         if (input) input.focus();

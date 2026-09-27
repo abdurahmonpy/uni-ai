@@ -9,22 +9,13 @@ from .utils import normalize_uzbek_phone
 User = get_user_model()
 
 class UserRegistrationForm(forms.ModelForm):
-    first_name = forms.CharField(
-        max_length=150,
-        label="Ismingiz",
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Masalan: Malika',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-slate-800'
-        }),
-        error_messages={'required': "Ismingizni kiriting."}
-    )
     phone_number = forms.CharField(
         max_length=25,
         label="Telefon raqami",
         widget=forms.TextInput(attrs={
             'placeholder': '+998 90 123 45 67',
             'type': 'tel',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-slate-800'
+            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800'
         }),
         error_messages={'required': "Telefon raqami kiritilishi shart."}
     )
@@ -32,22 +23,22 @@ class UserRegistrationForm(forms.ModelForm):
         label="Parol",
         widget=forms.PasswordInput(attrs={
             'placeholder': 'Kamida 6 ta belgi',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-slate-800'
+            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800'
         }),
         error_messages={'required': "Parol kiritilishi shart."}
     )
     password_confirm = forms.CharField(
-        label="Parolni tasdiqlang",
+        label="Parolni tasdiqlash",
         widget=forms.PasswordInput(attrs={
             'placeholder': 'Parolni qayta kiriting',
-            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition text-slate-800'
+            'class': 'w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 outline-none transition text-slate-800'
         }),
         error_messages={'required': "Parolni tasdiqlash shart."}
     )
 
     class Meta:
         model = User
-        fields = ['first_name', 'phone_number', 'password']
+        fields = ['phone_number', 'password']
 
     def clean_phone_number(self):
         raw_phone = self.cleaned_data.get('phone_number')
@@ -81,7 +72,7 @@ class UserRegistrationForm(forms.ModelForm):
         user = User.objects.create_user(
             phone_number=self.cleaned_data['phone_number'],
             password=self.cleaned_data['password'],
-            first_name=self.cleaned_data['first_name']
+            first_name=''
         )
         return user
 

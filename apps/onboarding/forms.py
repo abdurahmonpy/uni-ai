@@ -100,6 +100,16 @@ class OnboardingStep1Form(forms.Form):
             'max': today.isoformat(),
         })
 
+    first_name = forms.CharField(
+        max_length=150,
+        label="Ismingiz",
+        required=True,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Masalan: Malika yoki Sardor',
+            'class': 'w-full px-4 py-3 rounded-xl border border-zinc-300 focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 text-zinc-900 bg-white font-medium text-sm'
+        }),
+        error_messages={'required': "Iltimos, ismingizni kiriting."}
+    )
     grade = forms.TypedChoiceField(
         choices=Student.GRADE_CHOICES,
         coerce=int,
@@ -226,6 +236,9 @@ class OnboardingStep1Form(forms.Form):
 
     def save(self, student: Student) -> Student:
         cd = self.cleaned_data
+        if 'first_name' in cd and cd['first_name']:
+            student.user.first_name = cd['first_name'].strip()
+            student.user.save(update_fields=['first_name'])
         if 'grade' in cd and cd['grade'] is not None:
             student.grade = int(cd['grade'])
         if 'target_countries' in cd and cd['target_countries']:
