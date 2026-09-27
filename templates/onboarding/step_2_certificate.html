@@ -91,97 +91,200 @@
         </div>
       </div>
 
+      <!-- Manual Entry Link -->
+      <div id="manualEntryTrigger" class="text-center">
+        <button 
+          type="button" 
+          onclick="openManualEntry()" 
+          class="text-xs font-semibold text-zinc-500 hover:text-zinc-900 inline-flex items-center space-x-1.5 transition underline cursor-pointer"
+        >
+          <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+          <span>Yoki ma'lumotlarni qo'lda kiritish</span>
+        </button>
+      </div>
+
       <!-- Hidden file input -->
       {{ form.certificate_file }}
 
       <!-- Parsing Progress / Loader -->
-      <div id="parseLoading" class="hidden p-5 rounded-2xl bg-zinc-50 border border-zinc-200 text-center space-y-2">
-        <div class="inline-block animate-spin w-6 h-6 border-2 border-zinc-950 border-t-transparent rounded-full"></div>
-        <p class="text-sm font-bold text-zinc-900">Sertifikat tahlil qilinmoqda...</p>
-        <p class="text-xs text-zinc-500">AI ma'lumotlarni o'qib, ballarni tasdiqlamoqda</p>
+      <div id="parseLoading" class="hidden p-6 rounded-3xl bg-zinc-50 border border-zinc-200 text-center space-y-2.5">
+        <div class="inline-block animate-spin w-7 h-7 border-2 border-zinc-950 border-t-transparent rounded-full"></div>
+        <p class="text-sm font-extrabold text-zinc-900">Sertifikat AI tomonidan o'qilmoqda...</p>
+        <p class="text-xs text-zinc-500">Nomzod ismi, jinsi, topshirilgan sana va barcha ballar aniqlanmoqda</p>
       </div>
 
-      <!-- Parsed Result Card -->
-      <div id="parseResultCard" class="hidden p-5 rounded-2xl bg-white border-2 border-zinc-950 space-y-3">
+      <!-- Parsed Result Card with Full Editability -->
+      <div id="parseResultCard" class="hidden p-5 sm:p-6 rounded-3xl bg-white border-2 border-zinc-950 space-y-4 shadow-sm">
+        
+        <!-- Header -->
         <div class="flex items-center justify-between pb-3 border-b border-zinc-100">
           <div class="flex items-center space-x-2">
-            <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="check" class="w-4 h-4"></i>
             </div>
-            <span class="text-sm font-bold text-zinc-900">Sertifikat muvaffaqiyatli aniqlandi</span>
+            <div>
+              <span class="text-sm font-extrabold text-zinc-900 block leading-tight">Sertifikat ma'lumotlari aniqlandi</span>
+              <span class="text-[11px] text-zinc-500 font-medium">Istalgan maydonni bemalol tekshirib, tahrirlashingiz mumkin</span>
+            </div>
           </div>
           <button 
             type="button" 
             onclick="document.getElementById('id_certificate_file').click()" 
-            class="text-xs font-semibold text-zinc-500 hover:text-zinc-900 underline"
+            class="text-xs font-bold text-zinc-600 hover:text-zinc-950 underline flex items-center space-x-1"
+            title="Boshqa fayl yuklash"
           >
-            Boshqa fayl
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 mr-0.5"></i>
+            <span>Boshqa fayl</span>
           </button>
         </div>
 
-        <!-- Candidate Details & Verification -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 py-1">
-          <div class="p-3 bg-zinc-50 rounded-xl">
-            <span class="text-[11px] font-medium text-zinc-500 block">Nomzod</span>
-            <span id="resultCandidateName" class="text-sm font-extrabold text-zinc-900 truncate block">—</span>
+        <!-- Identity & Candidate Details -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <div class="p-3 bg-zinc-50 rounded-2xl border border-zinc-200/80">
+            <label class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">Nomzod (Ism-sharif)</label>
+            <input 
+              type="text" 
+              name="candidate_name_display" 
+              id="editCandidateName" 
+              placeholder="Masalan: Aziza Khikmatullaeva"
+              class="w-full text-sm font-extrabold text-zinc-900 bg-white border border-zinc-300 rounded-xl px-3 py-2 focus:border-zinc-950 focus:ring-0 outline-none transition"
+            >
           </div>
-          <div class="p-3 bg-zinc-50 rounded-xl">
-            <span class="text-[11px] font-medium text-zinc-500 block">Jinsi</span>
-            <span id="resultGender" class="text-sm font-extrabold text-zinc-900 block">—</span>
+          <div class="p-3 bg-zinc-50 rounded-2xl border border-zinc-200/80">
+            <label class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">Jinsi</label>
+            <select 
+              name="gender_display" 
+              id="editGender" 
+              class="w-full text-xs font-extrabold text-zinc-900 bg-white border border-zinc-300 rounded-xl px-2.5 py-2.5 focus:border-zinc-950 focus:ring-0 outline-none transition"
+            >
+              <option value="Ayol (Female)">Ayol (Female)</option>
+              <option value="Erkak (Male)">Erkak (Male)</option>
+              <option value="Ko'rsatilmagan">Ko'rsatilmagan</option>
+            </select>
           </div>
-          <div class="p-3 bg-zinc-50 rounded-xl">
-            <span class="text-[11px] font-medium text-zinc-500 block">Topshirilgan sana va vaqt</span>
-            <span id="resultTestDateTime" class="text-xs font-extrabold text-zinc-900 block">—</span>
+          <div class="p-3 bg-zinc-50 rounded-2xl border border-zinc-200/80">
+            <label class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">Topshirilgan sana</label>
+            <input 
+              type="date" 
+              name="test_date" 
+              id="inputTestDate" 
+              onchange="recalculateValidity()"
+              class="w-full text-xs font-extrabold text-zinc-900 bg-white border border-zinc-300 rounded-xl px-2.5 py-2.5 focus:border-zinc-950 focus:ring-0 outline-none transition"
+            >
           </div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 py-1">
-          <div class="p-3 bg-zinc-50 rounded-xl">
-            <span class="text-[11px] font-medium text-zinc-500 block">Sertifikat</span>
-            <span id="resultCertType" class="text-sm font-extrabold text-zinc-900 truncate block">—</span>
+        <!-- Certificate Type & Overall Score & Validity -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <div class="p-3 bg-zinc-50 rounded-2xl border border-zinc-200/80">
+            <label class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">Sertifikat turi</label>
+            <select 
+              name="certificate_type" 
+              id="selectCertType" 
+              onchange="handleCertTypeChange()"
+              class="w-full text-sm font-extrabold text-zinc-900 bg-white border border-zinc-300 rounded-xl px-3 py-2.5 focus:border-zinc-950 focus:ring-0 outline-none transition"
+            >
+              <option value="ielts">IELTS</option>
+              <option value="toefl">TOEFL iBT</option>
+              <option value="sat">SAT Digital</option>
+              <option value="duolingo">Duolingo (DET)</option>
+              <option value="cefr">CEFR / Milliy</option>
+            </select>
           </div>
-          <div class="p-3 bg-zinc-50 rounded-xl">
-            <span class="text-[11px] font-medium text-zinc-500 block">Umumiy ball (Overall)</span>
-            <span id="resultOverallScore" class="text-lg font-black text-emerald-600 block">—</span>
+          <div class="p-3 bg-zinc-50 rounded-2xl border border-zinc-200/80">
+            <label class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">Umumiy ball (Overall)</label>
+            <input 
+              type="text" 
+              name="overall_score" 
+              id="inputOverallScore" 
+              placeholder="8.0"
+              class="w-full text-base font-black text-emerald-600 bg-white border border-zinc-300 rounded-xl px-3 py-2 focus:border-zinc-950 focus:ring-0 outline-none transition"
+            >
           </div>
-          <div class="p-3 bg-zinc-50 rounded-xl col-span-2 sm:col-span-1 flex items-center justify-center">
-            <span id="resultValidityBadge" class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
-              <i data-lucide="check-circle" class="w-3.5 h-3.5 mr-1"></i>
-              <span id="resultValidityText">Amal qilish muddati to'g'ri</span>
-            </span>
+          <div class="p-3 bg-zinc-50 rounded-2xl border border-zinc-200/80 flex flex-col justify-center">
+            <label class="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">Amal qilish muddati</label>
+            <div id="resultValidityBadge" class="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-emerald-100 text-emerald-800 text-xs font-bold transition">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 flex-shrink-0" id="validityIcon"></i>
+              <span id="resultValidityText" class="truncate">3 yil ichida (Yaroqli)</span>
+            </div>
           </div>
         </div>
 
         <!-- Section Scores Breakdown -->
-        <div id="sectionScoresContainer" class="p-3 bg-zinc-50 rounded-xl space-y-1.5">
-          <span class="text-[11px] font-bold text-zinc-700 block uppercase tracking-wide">Bo'limlar bo'yicha ballar:</span>
-          <div id="sectionScoresGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-semibold text-zinc-800">
-            <!-- Populated via JS -->
+        <div id="sectionScoresContainer" class="p-3.5 bg-zinc-50 rounded-2xl border border-zinc-200/80 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-extrabold text-zinc-700 uppercase tracking-wider">Bo'limlar bo'yicha ballar:</span>
+            <span class="text-[11px] text-zinc-400 font-semibold">Tahrirlash mumkin</span>
+          </div>
+
+          <!-- IELTS / Standard 4 Sections Grid -->
+          <div id="gridIeltsSections" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Listening</span>
+              <input type="number" step="0.5" min="0" max="9" name="listening" id="inputListening" placeholder="9.0" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Reading</span>
+              <input type="number" step="0.5" min="0" max="9" name="reading" id="inputReading" placeholder="8.5" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Writing</span>
+              <input type="number" step="0.5" min="0" max="9" name="writing" id="inputWriting" placeholder="7.0" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Speaking</span>
+              <input type="number" step="0.5" min="0" max="9" name="speaking" id="inputSpeaking" placeholder="7.0" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+          </div>
+
+          <!-- SAT Sections Grid (Hidden by default) -->
+          <div id="gridSatSections" class="hidden grid grid-cols-2 gap-2">
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">EBRW (200-800)</span>
+              <input type="number" step="10" min="200" max="800" name="ebrw" id="inputEbrw" placeholder="700" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Math (200-800)</span>
+              <input type="number" step="10" min="200" max="800" name="math" id="inputMath" placeholder="750" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+          </div>
+
+          <!-- Duolingo Sections Grid (Hidden by default) -->
+          <div id="gridDetSections" class="hidden grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Literacy</span>
+              <input type="number" step="5" min="10" max="160" name="literacy" id="inputLiteracy" placeholder="125" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Comprehension</span>
+              <input type="number" step="5" min="10" max="160" name="comprehension" id="inputComprehension" placeholder="130" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Conversation</span>
+              <input type="number" step="5" min="10" max="160" name="conversation" id="inputConversation" placeholder="120" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
+            <div class="p-2 bg-white rounded-xl border border-zinc-200">
+              <span class="text-[11px] font-bold text-zinc-500 block mb-1">Production</span>
+              <input type="number" step="5" min="10" max="160" name="production" id="inputProduction" placeholder="115" class="w-full text-sm font-black text-zinc-900 bg-zinc-50 border border-zinc-300 rounded-lg px-2 py-1 text-center focus:border-zinc-950 focus:bg-white outline-none">
+            </div>
           </div>
         </div>
 
-      <!-- Hidden form inputs (populated automatically by parser) -->
-      <input type="hidden" name="certificate_type" id="hidden_certificate_type" value="{{ form.certificate_type.value|default:'' }}">
-      <input type="hidden" name="test_date" id="hidden_test_date" value="{{ form.test_date.value|default:'' }}">
-      <input type="hidden" name="overall_score" id="hidden_overall_score" value="{{ form.overall_score.value|default:'' }}">
-      <input type="hidden" name="reading" id="hidden_reading" value="">
-      <input type="hidden" name="listening" id="hidden_listening" value="">
-      <input type="hidden" name="writing" id="hidden_writing" value="">
-      <input type="hidden" name="speaking" id="hidden_speaking" value="">
+        <!-- Error message for file/fields -->
+        <p id="certError" class="hidden text-xs text-rose-600 font-semibold"></p>
 
-      <!-- Error message for file/fields -->
-      <p id="certError" class="hidden text-xs text-rose-600 font-semibold"></p>
+        <!-- Submit button when cert exists -->
+        <div class="pt-2">
+          <button 
+            type="submit" 
+            id="btnSubmitCert"
+            class="w-full py-3.5 px-6 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl font-bold text-sm transition flex items-center justify-center space-x-2 shadow-xs cursor-pointer active:scale-98"
+          >
+            <span>Davom etish</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
 
-      <!-- Submit button when cert exists -->
-      <div class="pt-2">
-        <button 
-          type="submit" 
-          id="btnSubmitCert"
-          class="w-full py-3.5 px-6 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl font-bold text-sm transition flex items-center justify-center space-x-2 shadow-xs cursor-pointer active:scale-98"
-        >
-          <span>Davom etish</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
       </div>
 
     </div>
@@ -256,11 +359,88 @@
     }
   }
 
+  function recalculateValidity() {
+    const dateInput = document.getElementById('inputTestDate');
+    const badge = document.getElementById('resultValidityBadge');
+    const badgeText = document.getElementById('resultValidityText');
+    const icon = document.getElementById('validityIcon');
+    if (!dateInput || !badge || !badgeText) return;
+
+    if (!dateInput.value) {
+      badgeText.innerText = "Sana kiritilmadi";
+      badge.className = "flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-zinc-100 text-zinc-700 text-xs font-bold transition";
+      return;
+    }
+
+    const testDate = new Date(dateInput.value);
+    const today = new Date();
+    const diffTime = today - testDate;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays <= 1095) {
+      badgeText.innerText = "3 yil ichida (Yaroqli)";
+      badge.className = "flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-emerald-100 text-emerald-800 text-xs font-bold transition";
+      if (icon) icon.className = "w-4 h-4 text-emerald-600 flex-shrink-0";
+    } else {
+      badgeText.innerText = "Muddati o'tgan (Diagnostika talab qilinadi)";
+      badge.className = "flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-amber-100 text-amber-800 text-xs font-bold transition";
+      if (icon) icon.className = "w-4 h-4 text-amber-600 flex-shrink-0";
+    }
+  }
+
+  function handleCertTypeChange() {
+    const certType = document.getElementById('selectCertType') ? document.getElementById('selectCertType').value : 'ielts';
+    const gridIelts = document.getElementById('gridIeltsSections');
+    const gridSat = document.getElementById('gridSatSections');
+    const gridDet = document.getElementById('gridDetSections');
+
+    if (gridIelts) gridIelts.classList.add('hidden');
+    if (gridSat) gridSat.classList.add('hidden');
+    if (gridDet) gridDet.classList.add('hidden');
+
+    if (certType === 'sat') {
+      if (gridSat) gridSat.classList.remove('hidden');
+    } else if (certType === 'duolingo') {
+      if (gridDet) gridDet.classList.remove('hidden');
+    } else {
+      if (gridIelts) gridIelts.classList.remove('hidden');
+    }
+  }
+
+  function openManualEntry() {
+    const dropzone = document.getElementById('dropzone');
+    const manualTrigger = document.getElementById('manualEntryTrigger');
+    const parseResultCard = document.getElementById('parseResultCard');
+    
+    if (dropzone) dropzone.classList.add('hidden');
+    if (manualTrigger) manualTrigger.classList.add('hidden');
+    if (parseResultCard) parseResultCard.classList.remove('hidden');
+
+    // Set today or recent date if empty
+    const dateInput = document.getElementById('inputTestDate');
+    if (dateInput && !dateInput.value) {
+      dateInput.value = new Date().toISOString().split('T')[0];
+    }
+    const nameInput = document.getElementById('editCandidateName');
+    if (nameInput && !nameInput.value) {
+      nameInput.value = "{{ request.user.first_name|default:'' }}";
+    }
+    const scoreInput = document.getElementById('inputOverallScore');
+    if (scoreInput && !scoreInput.value) {
+      scoreInput.value = "7.0";
+    }
+
+    handleCertTypeChange();
+    recalculateValidity();
+    if (window.lucide) lucide.createIcons();
+  }
+
   // File Upload & Automatic AI Parsing
   const fileInput = document.getElementById('id_certificate_file');
   const dropzone = document.getElementById('dropzone');
   const parseLoading = document.getElementById('parseLoading');
   const parseResultCard = document.getElementById('parseResultCard');
+  const manualEntryTrigger = document.getElementById('manualEntryTrigger');
   const certError = document.getElementById('certError');
 
   if (dropzone) {
@@ -309,7 +489,8 @@
     // Show loading
     parseLoading.classList.remove('hidden');
     parseResultCard.classList.add('hidden');
-    dropzone.classList.add('hidden');
+    if (dropzone) dropzone.classList.add('hidden');
+    if (manualEntryTrigger) manualEntryTrigger.classList.add('hidden');
 
     const formData = new FormData();
     formData.append('certificate_file', file);
@@ -327,47 +508,74 @@
       parseLoading.classList.add('hidden');
 
       if (data.success) {
-        // Populate display
-        document.getElementById('resultCandidateName').innerText = data.candidate_name || "Tasdiqlangan Nomzod";
-        document.getElementById('resultGender').innerText = data.gender || "Ko'rsatilmagan";
-        document.getElementById('resultTestDateTime').innerText = `${data.test_date} • ${data.test_time || '09:00'}`;
-        document.getElementById('resultCertType').innerText = data.certificate_type_display || data.certificate_type.toUpperCase();
-        document.getElementById('resultOverallScore').innerText = data.overall_score;
-        document.getElementById('resultValidityText').innerText = data.validity_message;
+        // Populate inputs with extracted data
+        if (data.candidate_name) {
+          document.getElementById('editCandidateName').value = data.candidate_name;
+        }
+        if (data.gender) {
+          const genderSelect = document.getElementById('editGender');
+          if (genderSelect) {
+            for (let opt of genderSelect.options) {
+              if (opt.value.toLowerCase().includes(data.gender.toLowerCase()) || data.gender.toLowerCase().includes(opt.value.toLowerCase())) {
+                genderSelect.value = opt.value;
+                break;
+              }
+            }
+          }
+        }
+        if (data.test_date) {
+          document.getElementById('inputTestDate').value = data.test_date;
+        }
+        if (data.certificate_type) {
+          document.getElementById('selectCertType').value = data.certificate_type;
+        }
+        if (data.overall_score !== undefined) {
+          document.getElementById('inputOverallScore').value = data.overall_score;
+        }
 
         // Section breakdown
-        const grid = document.getElementById('sectionScoresGrid');
-        if (grid) {
-          grid.innerHTML = '';
-          if (data.section_scores && Object.keys(data.section_scores).length > 0) {
-            for (const [sec, val] of Object.entries(data.section_scores)) {
-              const item = document.createElement('div');
-              item.className = 'p-2 bg-white rounded-lg border border-zinc-200 flex justify-between items-center';
-              item.innerHTML = `<span class="capitalize text-zinc-500">${sec}:</span><span class="font-bold text-zinc-900">${val}</span>`;
-              grid.appendChild(item);
-            }
-          } else {
-            grid.innerHTML = '<span class="text-zinc-400 italic col-span-4">Bo\'lim ballari to\'liq</span>';
+        if (data.section_scores) {
+          if (data.section_scores.listening !== undefined && document.getElementById('inputListening')) {
+            document.getElementById('inputListening').value = data.section_scores.listening;
+          }
+          if (data.section_scores.reading !== undefined && document.getElementById('inputReading')) {
+            document.getElementById('inputReading').value = data.section_scores.reading;
+          }
+          if (data.section_scores.writing !== undefined && document.getElementById('inputWriting')) {
+            document.getElementById('inputWriting').value = data.section_scores.writing;
+          }
+          if (data.section_scores.speaking !== undefined && document.getElementById('inputSpeaking')) {
+            document.getElementById('inputSpeaking').value = data.section_scores.speaking;
+          }
+          if (data.section_scores.ebrw !== undefined && document.getElementById('inputEbrw')) {
+            document.getElementById('inputEbrw').value = data.section_scores.ebrw;
+          }
+          if (data.section_scores.math !== undefined && document.getElementById('inputMath')) {
+            document.getElementById('inputMath').value = data.section_scores.math;
+          }
+          if (data.section_scores.comprehension !== undefined && document.getElementById('inputComprehension')) {
+            document.getElementById('inputComprehension').value = data.section_scores.comprehension;
+          }
+          if (data.section_scores.conversation !== undefined && document.getElementById('inputConversation')) {
+            document.getElementById('inputConversation').value = data.section_scores.conversation;
+          }
+          if (data.section_scores.production !== undefined && document.getElementById('inputProduction')) {
+            document.getElementById('inputProduction').value = data.section_scores.production;
+          }
+          if (data.section_scores.literacy !== undefined && document.getElementById('inputLiteracy')) {
+            document.getElementById('inputLiteracy').value = data.section_scores.literacy;
           }
         }
 
-        // Set hidden form fields
-        document.getElementById('hidden_certificate_type').value = data.certificate_type;
-        document.getElementById('hidden_test_date').value = data.test_date;
-        document.getElementById('hidden_overall_score').value = data.overall_score;
-
-        if (data.section_scores) {
-          if (data.section_scores.reading) document.getElementById('hidden_reading').value = data.section_scores.reading;
-          if (data.section_scores.listening) document.getElementById('hidden_listening').value = data.section_scores.listening;
-          if (data.section_scores.writing) document.getElementById('hidden_writing').value = data.section_scores.writing;
-          if (data.section_scores.speaking) document.getElementById('hidden_speaking').value = data.section_scores.speaking;
-        }
+        handleCertTypeChange();
+        recalculateValidity();
 
         // Show result card
         parseResultCard.classList.remove('hidden');
         if (window.lucide) lucide.createIcons();
       } else {
-        dropzone.classList.remove('hidden');
+        if (dropzone) dropzone.classList.remove('hidden');
+        if (manualEntryTrigger) manualEntryTrigger.classList.remove('hidden');
         if (certError) {
           certError.innerText = data.message || "Faylni o'qishda xatolik yuz berdi.";
           certError.classList.remove('hidden');
@@ -376,7 +584,8 @@
     })
     .catch(err => {
       parseLoading.classList.add('hidden');
-      dropzone.classList.remove('hidden');
+      if (dropzone) dropzone.classList.remove('hidden');
+      if (manualEntryTrigger) manualEntryTrigger.classList.remove('hidden');
       if (certError) {
         certError.innerText = "Sertifikatni yuklashda server xatosi yuz berdi.";
         certError.classList.remove('hidden');
@@ -389,14 +598,14 @@
   if (certForm) {
     certForm.addEventListener('submit', function(e) {
       if (selectedHasCert === 'yes') {
-        const certType = document.getElementById('hidden_certificate_type').value;
-        const testDate = document.getElementById('hidden_test_date').value;
-        const score = document.getElementById('hidden_overall_score').value;
+        const certType = document.getElementById('selectCertType') ? document.getElementById('selectCertType').value : '';
+        const testDate = document.getElementById('inputTestDate') ? document.getElementById('inputTestDate').value : '';
+        const score = document.getElementById('inputOverallScore') ? document.getElementById('inputOverallScore').value : '';
 
-        if (!certType || !score) {
+        if (!certType || !score || !testDate) {
           e.preventDefault();
           if (certError) {
-            certError.innerText = "Iltimos, sertifikat faylini yuklang yoki kuting.";
+            certError.innerText = "Iltimos, sertifikat turi, sana va umumiy ballni to'ldiring.";
             certError.classList.remove('hidden');
           }
         }

@@ -200,6 +200,15 @@ def step_2_certificate_view(request):
                         'total_steps': 4,
                     })
 
+                # Update user candidate name if provided
+                candidate_name = request.POST.get('candidate_name_display', '').strip()
+                if candidate_name:
+                    parts = candidate_name.split(' ', 1)
+                    request.user.first_name = parts[0]
+                    if len(parts) > 1:
+                        request.user.last_name = parts[1]
+                    request.user.save(update_fields=['first_name', 'last_name'])
+
                 # Update student metadata fields if available
                 updated_fields = []
                 if hasattr(student, 'has_certificate'):
