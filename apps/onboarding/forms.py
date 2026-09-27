@@ -272,8 +272,8 @@ class CertificateStepForm(forms.Form):
     Step 2: Certificate details and section breakdown validation.
     """
     HAS_CERT_CHOICES = [
-        ('yes', 'Ha, xalqaro yoki milliy sertifikatim bor (IELTS, SAT, TOEFL, DET, CEFR)'),
-        ('no', 'Yo\'q, menda hali til sertifikati yo\'q'),
+        ('yes', 'Ha, sertifikatim bor'),
+        ('no', "Yo'q, menda til sertifikati yo'q"),
     ]
 
     has_certificate = forms.ChoiceField(
@@ -282,6 +282,11 @@ class CertificateStepForm(forms.Form):
         initial='yes',
         widget=forms.RadioSelect(attrs={'class': 'peer hidden'}),
         required=True
+    )
+    certificate_file = forms.FileField(
+        label="Sertifikat fayli",
+        required=False,
+        widget=forms.FileInput(attrs={'accept': '.pdf,.png,.jpg,.jpeg', 'class': 'hidden', 'id': 'id_certificate_file'})
     )
     certificate_type = forms.ChoiceField(
         choices=[('', 'Sertifikat turini tanlang...')] + list(TestCertificate.CERTIFICATE_TYPE_CHOICES),

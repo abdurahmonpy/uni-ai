@@ -265,9 +265,34 @@ def step_2_certificate_view(request):
 
 
 @login_required
+def parse_certificate_api_view(request):
+    """
+    API endpoint to parse uploaded certificate file (PDF/Image)
+    and return extracted data (type, score, date, validity).
+    """
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'message': "Faqat POST so'rovi qabul qilinadi."}, status=405)
+
+    if 'certificate_file' not in request.FILES:
+        return JsonResponse({'success': False, 'message': "Sertifikat fayli yuklanmadi."}, status=400)
+
+    uploaded_file = request.FILES['certificate_file']
+    try:
+        from apps.services.certificate_parser import parse_certificate_file
+        result = parse_certificate_file(uploaded_file, uploaded_file.name)
+        return JsonResponse(result)
+    except Exception as e:
+        logger.error(f"Error parsing certificate file: {e}", exc_info=True)
+        return JsonResponse({
+            'success': False,
+            'message': f"Faylni tahlil qilishda xatolik yuz berdi: {str(e)}"
+        }, status=400)
+
+
+@login_required
 def diagnostic_view(request):
     """
-    Step 2 Fallback: Interactive Diagnostic test page and evaluation handler.
+    Step 2 Fallback: Interactive Diagnostic test page (Grammar and Reading only).
     Creates 5 DiagnosticResults and 5 SkillScores, then routes to Step 3 Matching.
     """
     student, _ = Student.objects.get_or_create(user=request.user)
@@ -288,23 +313,9 @@ def diagnostic_view(request):
             if request.POST.get(q['id'])
         }
 
-        # Extract listening answers
-        listening_answers = {
-            q['id']: request.POST.get(q['id'], '').strip()
-            for q in test_data['listening_simulation']['questions']
-            if request.POST.get(q['id'])
-        }
-
-        # Extract writing and speaking responses
-        writing_essay = request.POST.get('writing_essay', request.POST.get('writing_response', '')).strip()
-        speaking_response = request.POST.get('speaking_response', '').strip()
-
         answers_payload = {
             'reading_answers': reading_answers,
             'grammar_answers': grammar_answers,
-            'listening_answers': listening_answers,
-            'writing_essay': writing_essay,
-            'speaking_response': speaking_response,
         }
         for k, v in request.POST.items():
             if k not in answers_payload:
@@ -313,7 +324,7 @@ def diagnostic_view(request):
         # Process diagnostic grading and save 5 SkillScores & 5 DiagnosticResults
         result_data = process_diagnostic_submission(student, answers_payload)
 
-        messages.success(request, "Diagnostika testi muvaffaqiyatli topshirildi! Endi sizga mos universitet va grantlarni tanlang.")
+        messages.success(request, f"Diagnostika testi muvaffaqiyatli topshirildi! Natijangiz: {result_data['overall_ready_score']} ball.")
         return redirect('onboarding:step_3_matching')
 
     return render(request, 'onboarding/diagnostic.html', {
@@ -321,9 +332,6 @@ def diagnostic_view(request):
         'test_data': test_data,
         'reading': test_data['reading'],
         'grammar': test_data['grammar'],
-        'writing': test_data['writing'],
-        'listening': test_data['listening_simulation'],
-        'speaking': test_data['speaking_simulation'],
         'step_number': 2,
         'total_steps': 4,
     })

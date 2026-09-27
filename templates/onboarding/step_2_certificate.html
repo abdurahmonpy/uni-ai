@@ -1,212 +1,376 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Qadam 2/4: Sertifikat va Diagnostika | UniMentor{% endblock %}
+{% block title %}UniMentor — Til sertifikati{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto py-6 px-4 sm:px-6">
+<div class="max-w-xl mx-auto py-12 sm:py-20 px-4">
 
-  <!-- 4-Step Progress Indicator Bar -->
-  <div class="mb-8 bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200">
-    <div class="flex items-center justify-between mb-3 text-xs sm:text-sm font-bold text-slate-700">
-      <span class="text-zinc-950 flex items-center gap-1.5">
-        <i data-lucide="award" class="w-4 h-4 text-zinc-950"></i>
-        Qadam 2/4: Sertifikat va Diagnostika
-      </span>
-      <span class="text-slate-400 font-medium hidden sm:inline">Keyingi: Universitet va Grant tanlash</span>
-    </div>
-    <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-      <div class="bg-zinc-950 h-2.5 rounded-full transition-all duration-300" style="width: 50%"></div>
-    </div>
-    <div class="grid grid-cols-4 gap-2 mt-3 text-center text-xs">
-      <div class="text-zinc-900 font-medium flex items-center justify-center space-x-1"><span>1. Profil</span><i data-lucide="check" class="w-3.5 h-3.5 inline"></i></div>
-      <div class="text-zinc-900 font-bold">2. Sertifikat</div>
-      <div class="text-slate-400 font-medium">3. Universitet</div>
-      <div class="text-slate-400 font-medium">4. O'quv rejasi</div>
-    </div>
-  </div>
+  <!-- Minimal Back Navigation Button -->
+  <a 
+    href="{% url 'onboarding:step_1' %}" 
+    class="mb-6 inline-flex items-center space-x-1.5 text-xs font-semibold text-zinc-400 hover:text-zinc-900 transition cursor-pointer"
+  >
+    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+    <span>Orqaga</span>
+  </a>
 
-  <!-- Main Card -->
-  <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200">
-    <div class="mb-6">
-      <div class="inline-flex items-center space-x-2 px-3 py-1 bg-zinc-100 border border-zinc-200 rounded-full text-zinc-900 text-xs font-bold mb-3">
-        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-zinc-950"></i>
-        <span>Sertifikat Tahlili & Diagnostika</span>
-      </div>
-      <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
-        Til va standartlashtirilgan test sertifikatlari
-      </h1>
-      <p class="text-slate-600 text-sm md:text-base mt-2 leading-relaxed">
-        Agar sizda xalqaro (IELTS, TOEFL, SAT, Duolingo DET) yoki milliy (CEFR) sertifikat bo'lsa va u oxirgi 3 yil (1095 kun) ichida olingan bo'lsa, bilim darajangiz avtomatik tasdiqlanadi va diagnostika testidan ozod etilasiz.
-      </p>
-    </div>
+  <form id="certificateForm" method="post" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
 
-    <!-- Mandatory Uzbek Disclaimer -->
-    {% include 'includes/disclaimer.html' %}
-
-    <form method="post" class="space-y-8 mt-6" id="certificateForm">
-      {% csrf_token %}
-
-      {% if form.non_field_errors %}
-        <div class="p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-sm flex items-start space-x-3">
-          <i data-lucide="alert-circle" class="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5"></i>
-          <div>
-            {% for error in form.non_field_errors %}
-              <p>{{ error }}</p>
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-
-      <!-- 1. Has Certificate Toggle -->
-      <div>
-        <label class="block text-base font-bold text-slate-900 mb-3">
-          Sizda xalqaro yoki milliy til bilish sertifikati bormi?
-        </label>
-        {% if form.has_certificate.errors %}
-          <p class="text-xs text-rose-600 mb-2 font-medium">{{ form.has_certificate.errors.0 }}</p>
-        {% endif %}
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {% for radio in form.has_certificate %}
-            <label class="cursor-pointer">
-              {{ radio.tag }}
-              <div class="p-4 rounded-2xl border-2 transition-all duration-200 font-medium text-slate-700 bg-slate-50 border-slate-200 hover:border-zinc-400 peer-checked:border-zinc-950 peer-checked:bg-zinc-100 peer-checked:text-zinc-950 shadow-sm flex items-center space-x-3">
-                {% if radio.data.value == 'yes' %}
-                  <div class="w-8 h-8 rounded-xl bg-indigo-100 text-zinc-900 flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="check-circle" class="w-5 h-5 text-zinc-950"></i>
-                  </div>
-                {% else %}
-                  <div class="w-8 h-8 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center flex-shrink-0">
-                    <i data-lucide="help-circle" class="w-5 h-5 text-slate-600"></i>
-                  </div>
-                {% endif %}
-                <span class="text-sm font-bold block">{{ radio.choice_label }}</span>
-              </div>
-            </label>
+    {% if form.non_field_errors %}
+      <div class="p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-start space-x-3">
+        <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5"></i>
+        <div>
+          {% for error in form.non_field_errors %}
+            <p class="font-medium">{{ error }}</p>
           {% endfor %}
         </div>
       </div>
+    {% endif %}
 
-      <!-- Certificate Details Container (conditionally shown via JS/CSS) -->
-      <div id="certDetailsSection" class="p-5 bg-slate-50/80 rounded-2xl border border-slate-200 space-y-6">
-        <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
-          <i data-lucide="file-check" class="w-5 h-5 text-zinc-950"></i>
-          Sertifikat ma'lumotlari va ballar
-        </h3>
+    <!-- 1: SAVOL -->
+    <div class="space-y-2">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight leading-tight">
+        Til sertifikatingiz bormi?
+      </h1>
+      <p class="text-sm text-zinc-500">
+        Xalqaro yoki milliy imtihon sertifikati (IELTS, TOEFL, SAT, Duolingo, CEFR)
+      </p>
+    </div>
 
-        <!-- Row 1: Certificate Type & Test Date -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-bold text-slate-900 mb-1.5">
-              Sertifikat turi <span class="text-rose-500">*</span>
-            </label>
-            {% if form.certificate_type.errors %}
-              <p class="text-xs text-rose-600 mb-1 font-medium">{{ form.certificate_type.errors.0 }}</p>
-            {% endif %}
-            {{ form.certificate_type }}
-          </div>
-          <div>
-            <label class="block text-sm font-bold text-slate-900 mb-1.5">
-              Imtihon topshirilgan sana <span class="text-rose-500">*</span>
-            </label>
-            {% if form.test_date.errors %}
-              <p class="text-xs text-rose-600 mb-1 font-medium">{{ form.test_date.errors.0 }}</p>
-            {% endif %}
-            {{ form.test_date }}
-            <p class="text-xs text-slate-500 mt-1">Sertifikat sanasi 3 yil (1095 kun) ichida bo'lishi lozim.</p>
-          </div>
-        </div>
-
-        <!-- Row 2: Overall Score -->
-        <div>
-          <label class="block text-sm font-bold text-slate-900 mb-1.5">
-            Umumiy ball (Overall Score) <span class="text-rose-500">*</span>
-          </label>
-          {% if form.overall_score.errors %}
-            <p class="text-xs text-rose-600 mb-1 font-medium">{{ form.overall_score.errors.0 }}</p>
-          {% endif %}
-          {{ form.overall_score }}
-          <p class="text-xs text-slate-500 mt-1">Masalan: IELTS 7.5, SAT 1420, TOEFL 105, Duolingo 130, CEFR C1</p>
-        </div>
-
-        <!-- Section Scores Breakdown (Optional / Fine-grained) -->
-        <div class="pt-4 border-t border-slate-200">
-          <label class="block text-sm font-bold text-slate-900 mb-2">
-            Bo'limlar bo'yicha ballar (ixtiyoriy, aniqroq tahlil uchun):
-          </label>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div>
-              <span class="text-xs font-semibold text-slate-600 block mb-1">Reading</span>
-              {{ form.reading }}
+    <!-- Tanlov Kartalari -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+      {% for radio in form.has_certificate %}
+        <label class="cursor-pointer group block" onclick="handleCertToggle('{{ radio.data.value }}')">
+          {{ radio.tag }}
+          <div class="cert-choice-card p-4 rounded-2xl border-2 transition-all flex items-center justify-between {% if radio.data.value == form.has_certificate.value or forloop.first %}border-zinc-950 bg-zinc-100 ring-2 ring-zinc-950{% else %}border-zinc-200 bg-white hover:border-zinc-400{% endif %}" id="card-choice-{{ radio.data.value }}">
+            <div class="flex items-center space-x-3 min-w-0">
+              {% if radio.data.value == 'yes' %}
+                <div class="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 text-emerald-600">
+                  <i data-lucide="award" class="w-4 h-4"></i>
+                </div>
+              {% else %}
+                <div class="w-9 h-9 rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center flex-shrink-0 text-zinc-600">
+                  <i data-lucide="pen-tool" class="w-4 h-4"></i>
+                </div>
+              {% endif %}
+              <span class="text-sm font-bold text-zinc-900 truncate">{{ radio.choice_label }}</span>
             </div>
-            <div>
-              <span class="text-xs font-semibold text-slate-600 block mb-1">Listening</span>
-              {{ form.listening }}
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-slate-600 block mb-1">Writing</span>
-              {{ form.writing }}
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-slate-600 block mb-1">Speaking</span>
-              {{ form.speaking }}
+            <div class="w-6 h-6 rounded-md border-2 {% if radio.data.value == form.has_certificate.value or forloop.first %}border-zinc-950 bg-zinc-950{% else %}border-zinc-300 bg-white{% endif %} flex items-center justify-center flex-shrink-0 ml-2 check-indicator transition">
+              <svg class="w-4 h-4 text-white {% if not radio.data.value == form.has_certificate.value and not forloop.first %}hidden{% endif %} check-svg pointer-events-none" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
             </div>
           </div>
+        </label>
+      {% endfor %}
+    </div>
+
+    <!-- Sertifikat Bor Bo'lganda: Fayl Yuklash Qismi -->
+    <div id="section-has-cert" class="space-y-4 pt-2">
+
+      <!-- Drag & Drop Upload Box -->
+      <div 
+        id="dropzone"
+        onclick="document.getElementById('id_certificate_file').click()"
+        class="border-2 border-dashed border-zinc-300 hover:border-zinc-950 rounded-3xl p-6 sm:p-8 text-center cursor-pointer transition bg-zinc-50/50 hover:bg-zinc-50 relative group"
+      >
+        <div class="w-12 h-12 mx-auto rounded-2xl bg-white border border-zinc-200 group-hover:border-zinc-950 flex items-center justify-center mb-3 shadow-xs transition">
+          <i data-lucide="file-up" class="w-6 h-6 text-zinc-900"></i>
         </div>
-
-      </div>
-
-      <!-- No Certificate Info Banner (shown when 'no' is selected) -->
-      <div id="noCertBanner" class="hidden p-5 bg-zinc-100 border border-zinc-300 rounded-2xl flex items-start space-x-3 text-zinc-950">
-        <i data-lucide="info" class="w-6 h-6 text-zinc-950 flex-shrink-0 mt-0.5"></i>
-        <div>
-          <h4 class="font-bold text-sm text-indigo-950">Diagnostika testi haqida:</h4>
-          <p class="text-xs sm:text-sm text-zinc-900 mt-1 leading-relaxed">
-            Sertifikatingiz bo'lmasa yoki muddati o'tgan bo'lsa, keyingi bosqichda sizga 10-15 daqiqalik qisqa interaktiv test taqdim etiladi. Test natijasida 5 ta ko'nikmangiz 0-100 shkalada baholanadi va unga asoslanib mos grantlar tanlanadi.
-          </p>
+        <p class="text-sm font-bold text-zinc-900">
+          Sertifikat faylini yuklang yoki bu yerga tashlang
+        </p>
+        <p class="text-xs text-zinc-500 mt-1">
+          PDF, PNG yoki JPG formatida (maksimal 10MB)
+        </p>
+        <div class="inline-flex items-center space-x-1.5 mt-3 px-3 py-1 bg-zinc-100 rounded-full text-zinc-700 text-xs font-semibold">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-zinc-900"></i>
+          <span>Dastur turini, sanasini va ballarni avtomatik aniqlaydi</span>
         </div>
       </div>
 
-      <!-- Action Navigation Buttons -->
-      <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <a href="{% url 'onboarding:step_1' %}" class="w-full sm:w-auto px-6 py-3 border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold rounded-2xl transition flex items-center justify-center space-x-2 text-sm">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Oldingi qadam</span>
-        </a>
-        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold rounded-2xl shadow-md transition-all duration-200 text-center flex items-center justify-center space-x-2">
+      <!-- Hidden file input -->
+      {{ form.certificate_file }}
+
+      <!-- Parsing Progress / Loader -->
+      <div id="parseLoading" class="hidden p-5 rounded-2xl bg-zinc-50 border border-zinc-200 text-center space-y-2">
+        <div class="inline-block animate-spin w-6 h-6 border-2 border-zinc-950 border-t-transparent rounded-full"></div>
+        <p class="text-sm font-bold text-zinc-900">Sertifikat tahlil qilinmoqda...</p>
+        <p class="text-xs text-zinc-500">AI ma'lumotlarni o'qib, ballarni tasdiqlamoqda</p>
+      </div>
+
+      <!-- Parsed Result Card -->
+      <div id="parseResultCard" class="hidden p-5 rounded-2xl bg-white border-2 border-zinc-950 space-y-3">
+        <div class="flex items-center justify-between pb-3 border-b border-zinc-100">
+          <div class="flex items-center space-x-2">
+            <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            </div>
+            <span class="text-sm font-bold text-zinc-900">Sertifikat muvaffaqiyatli aniqlandi</span>
+          </div>
+          <button 
+            type="button" 
+            onclick="document.getElementById('id_certificate_file').click()" 
+            class="text-xs font-semibold text-zinc-500 hover:text-zinc-900 underline"
+          >
+            Boshqa fayl
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 py-1">
+          <div class="p-3 bg-zinc-50 rounded-xl">
+            <span class="text-xs font-medium text-zinc-500 block">Sertifikat</span>
+            <span id="resultCertType" class="text-base font-extrabold text-zinc-900">—</span>
+          </div>
+          <div class="p-3 bg-zinc-50 rounded-xl">
+            <span class="text-xs font-medium text-zinc-500 block">Umumiy ball</span>
+            <span id="resultOverallScore" class="text-base font-extrabold text-zinc-900">—</span>
+          </div>
+          <div class="p-3 bg-zinc-50 rounded-xl">
+            <span class="text-xs font-medium text-zinc-500 block">Sana</span>
+            <span id="resultTestDate" class="text-base font-extrabold text-zinc-900">—</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2 pt-1">
+          <span id="resultValidityBadge" class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5 mr-1"></i>
+            <span id="resultValidityText">3 yillik muddat ichida</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Hidden form inputs (populated automatically by parser) -->
+      <input type="hidden" name="certificate_type" id="hidden_certificate_type" value="{{ form.certificate_type.value|default:'' }}">
+      <input type="hidden" name="test_date" id="hidden_test_date" value="{{ form.test_date.value|default:'' }}">
+      <input type="hidden" name="overall_score" id="hidden_overall_score" value="{{ form.overall_score.value|default:'' }}">
+      <input type="hidden" name="reading" id="hidden_reading" value="">
+      <input type="hidden" name="listening" id="hidden_listening" value="">
+      <input type="hidden" name="writing" id="hidden_writing" value="">
+      <input type="hidden" name="speaking" id="hidden_speaking" value="">
+
+      <!-- Error message for file/fields -->
+      <p id="certError" class="hidden text-xs text-rose-600 font-semibold"></p>
+
+      <!-- Submit button when cert exists -->
+      <div class="pt-2">
+        <button 
+          type="submit" 
+          id="btnSubmitCert"
+          class="w-full py-3.5 px-6 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl font-bold text-sm transition flex items-center justify-center space-x-2 shadow-xs cursor-pointer active:scale-98"
+        >
           <span>Davom etish</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>
       </div>
 
-    </form>
-  </div>
+    </div>
+
+    <!-- Sertifikat Yo'q Bo'lganda: Diagnostika Testiga O'tish -->
+    <div id="section-no-cert" class="hidden space-y-4 pt-2">
+      <div class="p-5 rounded-2xl bg-zinc-50 border border-zinc-200 space-y-2">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="info" class="w-4 h-4 text-zinc-900"></i>
+          <span class="text-sm font-bold text-zinc-900">Qisqa diagnostika testi</span>
+        </div>
+        <p class="text-xs text-zinc-600 leading-relaxed">
+          Hechqisi yo'q! Bilim darajangizni aniqlash va mos universitetlarni tavsiya qilish uchun <strong>Grammar</strong> va <strong>Reading</strong> bo'yicha qisqa testdan o'tasiz.
+        </p>
+      </div>
+
+      <button 
+        type="submit" 
+        class="w-full py-3.5 px-6 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl font-bold text-sm transition flex items-center justify-center space-x-2 shadow-xs cursor-pointer active:scale-98"
+      >
+        <span>Diagnostika testini boshlash</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+  </form>
 </div>
 
 <script>
+  let selectedHasCert = 'yes';
+
+  function handleCertToggle(val) {
+    selectedHasCert = val;
+    const radio = document.querySelector(`input[name="has_certificate"][value="${val}"]`);
+    if (radio) radio.checked = true;
+
+    // Toggle card styles
+    ['yes', 'no'].forEach(v => {
+      const card = document.getElementById('card-choice-' + v);
+      if (!card) return;
+      const indicator = card.querySelector('.check-indicator');
+      const svg = card.querySelector('.check-svg');
+
+      if (v === val) {
+        card.classList.add('border-zinc-950', 'bg-zinc-100', 'ring-2', 'ring-zinc-950');
+        card.classList.remove('border-zinc-200', 'bg-white');
+        if (indicator) {
+          indicator.classList.add('border-zinc-950', 'bg-zinc-950');
+          indicator.classList.remove('border-zinc-300', 'bg-white');
+        }
+        if (svg) svg.classList.remove('hidden');
+      } else {
+        card.classList.remove('border-zinc-950', 'bg-zinc-100', 'ring-2', 'ring-zinc-950');
+        card.classList.add('border-zinc-200', 'bg-white');
+        if (indicator) {
+          indicator.classList.remove('border-zinc-950', 'bg-zinc-950');
+          indicator.classList.add('border-zinc-300', 'bg-white');
+        }
+        if (svg) svg.classList.add('hidden');
+      }
+    });
+
+    const hasSection = document.getElementById('section-has-cert');
+    const noSection = document.getElementById('section-no-cert');
+
+    if (val === 'yes') {
+      hasSection.classList.remove('hidden');
+      noSection.classList.add('hidden');
+    } else {
+      hasSection.classList.add('hidden');
+      noSection.classList.remove('hidden');
+    }
+  }
+
+  // File Upload & Automatic AI Parsing
+  const fileInput = document.getElementById('id_certificate_file');
+  const dropzone = document.getElementById('dropzone');
+  const parseLoading = document.getElementById('parseLoading');
+  const parseResultCard = document.getElementById('parseResultCard');
+  const certError = document.getElementById('certError');
+
+  if (dropzone) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('border-zinc-950', 'bg-zinc-100');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('border-zinc-950', 'bg-zinc-100');
+      }, false);
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      if (files && files.length > 0) {
+        fileInput.files = files;
+        uploadAndParseCertificate(files[0]);
+      }
+    }, false);
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener('change', function() {
+      if (this.files && this.files.length > 0) {
+        uploadAndParseCertificate(this.files[0]);
+      }
+    });
+  }
+
+  function uploadAndParseCertificate(file) {
+    if (!file) return;
+
+    if (certError) {
+      certError.classList.add('hidden');
+      certError.innerText = '';
+    }
+
+    // Show loading
+    parseLoading.classList.remove('hidden');
+    parseResultCard.classList.add('hidden');
+    dropzone.classList.add('hidden');
+
+    const formData = new FormData();
+    formData.append('certificate_file', file);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    fetch("{% url 'onboarding:parse_certificate' %}", {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      parseLoading.classList.add('hidden');
+
+      if (data.success) {
+        // Populate display
+        document.getElementById('resultCertType').innerText = data.certificate_type_display || data.certificate_type.toUpperCase();
+        document.getElementById('resultOverallScore').innerText = data.overall_score;
+        document.getElementById('resultTestDate').innerText = data.test_date;
+        document.getElementById('resultValidityText').innerText = data.validity_message;
+
+        // Set hidden form fields
+        document.getElementById('hidden_certificate_type').value = data.certificate_type;
+        document.getElementById('hidden_test_date').value = data.test_date;
+        document.getElementById('hidden_overall_score').value = data.overall_score;
+
+        if (data.section_scores) {
+          if (data.section_scores.reading) document.getElementById('hidden_reading').value = data.section_scores.reading;
+          if (data.section_scores.listening) document.getElementById('hidden_listening').value = data.section_scores.listening;
+          if (data.section_scores.writing) document.getElementById('hidden_writing').value = data.section_scores.writing;
+          if (data.section_scores.speaking) document.getElementById('hidden_speaking').value = data.section_scores.speaking;
+        }
+
+        // Show result card
+        parseResultCard.classList.remove('hidden');
+      } else {
+        dropzone.classList.remove('hidden');
+        if (certError) {
+          certError.innerText = data.message || "Faylni o'qishda xatolik yuz berdi.";
+          certError.classList.remove('hidden');
+        }
+      }
+    })
+    .catch(err => {
+      parseLoading.classList.add('hidden');
+      dropzone.classList.remove('hidden');
+      if (certError) {
+        certError.innerText = "Sertifikatni yuklashda server xatosi yuz berdi.";
+        certError.classList.remove('hidden');
+      }
+    });
+  }
+
+  // Form submission check
+  const certForm = document.getElementById('certificateForm');
+  if (certForm) {
+    certForm.addEventListener('submit', function(e) {
+      if (selectedHasCert === 'yes') {
+        const certType = document.getElementById('hidden_certificate_type').value;
+        const testDate = document.getElementById('hidden_test_date').value;
+        const score = document.getElementById('hidden_overall_score').value;
+
+        if (!certType || !score) {
+          e.preventDefault();
+          if (certError) {
+            certError.innerText = "Iltimos, sertifikat faylini yuklang yoki kuting.";
+            certError.classList.remove('hidden');
+          }
+        }
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
+    handleCertToggle('{{ form.has_certificate.value|default:"yes" }}');
     if (window.lucide) {
       lucide.createIcons();
-    }
-
-    const radioYes = document.querySelector('input[name="has_certificate"][value="yes"]');
-    const radioNo = document.querySelector('input[name="has_certificate"][value="no"]');
-    const certSection = document.getElementById('certDetailsSection');
-    const noCertBanner = document.getElementById('noCertBanner');
-
-    function toggleCertView() {
-      if (radioNo && radioNo.checked) {
-        certSection.classList.add('hidden');
-        noCertBanner.classList.remove('hidden');
-      } else {
-        certSection.classList.remove('hidden');
-        noCertBanner.classList.add('hidden');
-      }
-    }
-
-    if (radioYes && radioNo) {
-      radioYes.addEventListener('change', toggleCertView);
-      radioNo.addEventListener('change', toggleCertView);
-      toggleCertView();
     }
   });
 </script>
