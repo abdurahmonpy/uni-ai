@@ -129,7 +129,7 @@ class OnboardingStep1Form(forms.Form):
         choices=Student.PROGRAM_TYPE_CHOICES,
         label="Sizni qiziqtirgan dastur turi qanday?",
         widget=forms.Select(attrs={
-            'class': 'w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-800 text-xs font-semibold bg-white'
+            'class': 'w-full px-4 py-3.5 rounded-2xl border-2 border-zinc-200 focus:border-zinc-950 focus:ring-0 text-zinc-900 text-sm font-semibold bg-white transition'
         }),
         initial='grant',
         required=False,
@@ -146,7 +146,7 @@ class OnboardingStep1Form(forms.Form):
         required=False,
         widget=forms.DateInput(attrs={
             'type': 'date',
-            'class': 'w-full px-4 py-3 rounded-xl border border-zinc-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-zinc-900 bg-white font-medium text-sm',
+            'class': 'w-full px-4 py-3.5 rounded-2xl border-2 border-zinc-200 focus:border-zinc-950 focus:ring-0 text-zinc-900 bg-white font-semibold text-sm transition',
             'placeholder': 'YYYY-MM-DD',
         })
     )
@@ -155,7 +155,7 @@ class OnboardingStep1Form(forms.Form):
         label="Viloyat / Hudud",
         required=False,
         widget=forms.Select(attrs={
-            'class': 'w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-800'
+            'class': 'w-full px-4 py-3.5 rounded-2xl border-2 border-zinc-200 focus:border-zinc-950 focus:ring-0 text-zinc-900 bg-white font-semibold text-sm transition'
         })
     )
     city = forms.CharField(
@@ -164,7 +164,7 @@ class OnboardingStep1Form(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={
             'placeholder': 'Masalan: Samarqand shahri yoki Urgut tumani',
-            'class': 'w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-800'
+            'class': 'w-full px-4 py-3.5 rounded-2xl border-2 border-zinc-200 focus:border-zinc-950 focus:ring-0 text-zinc-900 bg-white font-medium text-sm transition'
         })
     )
     interests = forms.MultipleChoiceField(
@@ -178,7 +178,7 @@ class OnboardingStep1Form(forms.Form):
         label="Kelajakdagi o'qish yo'nalishingiz",
         required=False,
         widget=forms.Select(attrs={
-            'class': 'w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-800'
+            'class': 'w-full px-4 py-3.5 rounded-2xl border-2 border-zinc-200 focus:border-zinc-950 focus:ring-0 text-zinc-900 bg-white font-semibold text-sm transition'
         })
     )
     target_career = forms.ChoiceField(
@@ -186,7 +186,7 @@ class OnboardingStep1Form(forms.Form):
         label="Kelajak kasbingiz yoki asosiy maqsadingiz",
         required=False,
         widget=forms.Select(attrs={
-            'class': 'w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-slate-800'
+            'class': 'w-full px-4 py-3.5 rounded-2xl border-2 border-zinc-200 focus:border-zinc-950 focus:ring-0 text-zinc-900 bg-white font-semibold text-sm transition'
         })
     )
     budget_preference = forms.ChoiceField(
@@ -195,7 +195,7 @@ class OnboardingStep1Form(forms.Form):
         initial='toliq_grant',
         required=False,
         widget=forms.Select(attrs={
-            'class': 'w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-800 text-xs font-semibold bg-white'
+            'class': 'w-full px-4 py-3.5 rounded-2xl border-2 border-zinc-200 focus:border-zinc-950 focus:border-zinc-950 text-zinc-900 text-sm font-semibold bg-white transition'
         })
     )
 
