@@ -356,8 +356,8 @@ def step_3_matching_view(request):
     """
     student, _ = Student.objects.get_or_create(user=request.user)
 
-    # Get curated recommendations (top matching items from 600+ university catalog)
-    recommendations = matching_service.get_curated_recommendations(student, limit=36)
+    # Get all curated recommendations from 600+ university catalog sorted by best match
+    recommendations = matching_service.get_curated_recommendations(student, limit=None)
 
     if request.method == 'POST':
         # Accept multiple selected program IDs

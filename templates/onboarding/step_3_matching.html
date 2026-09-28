@@ -222,13 +222,13 @@
     <div>
       <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-100 border border-zinc-200 rounded-full text-zinc-900 text-xs font-bold mb-2">
         <i data-lucide="sparkles" class="w-3.5 h-3.5 text-zinc-950"></i>
-        <span>100% Mos keladigan oliygohlar</span>
+        <span>600+ OTM ichidan moslari saralandi (Jami: {{ recommendations|length }} ta oliygoh)</span>
       </div>
       <h1 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight">
         Siz uchun saralangan oliygohlar va grantlar
       </h1>
       <p class="text-zinc-500 text-xs sm:text-sm mt-1.5">
-        Profilingiz va tayyorgarlik darajangizga mos keluvchi rasmiy dasturlar. Bir nechta oliygohni tanlashingiz mumkin.
+        Profilingizga mos barcha dasturlar (har bir sahifada 3 tadan). O'zingizga ma'qul bo'lgan bir nechta oliygohni tanlashingiz mumkin.
       </p>
     </div>
 
@@ -871,15 +871,35 @@
     prevBtn.onclick = () => { if (currentPage > 1) { renderPage(currentPage - 1); scrollToTop(); } };
     container.appendChild(prevBtn);
 
-    // Number buttons
-    for (let i = 1; i <= totalPages; i++) {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = `w-8 h-8 rounded-xl text-xs font-bold transition flex items-center justify-center ${i === currentPage ? 'bg-zinc-950 text-white shadow-xs' : 'text-zinc-600 hover:bg-zinc-100'}`;
-      btn.textContent = i;
-      btn.onclick = () => { renderPage(i); scrollToTop(); };
-      container.appendChild(btn);
+    // Calculate smart window of pages
+    let pages = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 4) {
+        pages = [1, 2, 3, 4, 5, '...', totalPages];
+      } else if (currentPage >= totalPages - 3) {
+        pages = [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+      } else {
+        pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
+      }
     }
+
+    pages.forEach(p => {
+      if (p === '...') {
+        const dots = document.createElement('span');
+        dots.className = 'w-7 h-8 flex items-center justify-center text-xs text-zinc-400 font-bold select-none';
+        dots.textContent = '...';
+        container.appendChild(dots);
+      } else {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `w-8 h-8 rounded-xl text-xs font-bold transition flex items-center justify-center ${p === currentPage ? 'bg-zinc-950 text-white shadow-xs' : 'text-zinc-600 hover:bg-zinc-100'}`;
+        btn.textContent = p;
+        btn.onclick = () => { renderPage(p); scrollToTop(); };
+        container.appendChild(btn);
+      }
+    });
 
     // Keyingi button
     const nextBtn = document.createElement('button');
@@ -889,6 +909,12 @@
     nextBtn.innerHTML = `<span>Keyingi</span><i data-lucide="chevron-right" class="w-4 h-4"></i>`;
     nextBtn.onclick = () => { if (currentPage < totalPages) { renderPage(currentPage + 1); scrollToTop(); } };
     container.appendChild(nextBtn);
+
+    // Page indicator badge
+    const info = document.createElement('span');
+    info.className = 'text-xs text-zinc-500 font-semibold ml-2 hidden sm:inline-block';
+    info.textContent = `${currentPage} / ${totalPages}-sahifa`;
+    container.appendChild(info);
 
     if (window.lucide) {
       lucide.createIcons();

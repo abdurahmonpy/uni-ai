@@ -652,7 +652,7 @@ def calculate_program_match(
 
 def get_curated_recommendations(
     student: Student,
-    limit: int = 12,
+    limit: Optional[int] = None,
     ready_score: Optional[int] = None
 ) -> List[Dict[str, Any]]:
     """
@@ -684,7 +684,9 @@ def get_curated_recommendations(
         reverse=True
     )
 
-    return recommendations[:limit]
+    if limit is not None:
+        return recommendations[:limit]
+    return recommendations
 
 
 @transaction.atomic
