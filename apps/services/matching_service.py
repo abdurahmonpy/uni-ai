@@ -198,14 +198,9 @@ def _calculate_country_score(student: Student, program: Program) -> int:
         for target in target_countries:
             target_cluster = _get_country_cluster(target)
             if target_cluster and target_cluster == prog_cluster:
-                return 70
+                return 40
 
-    # Popular global destination hubs
-    popular_hubs = ['aqsh', 'germaniya', 'turkiya', 'buyuk britaniya', 'janubiy koreya', 'kanada', 'yaponiya', 'singapur']
-    if any(hub in norm_prog_country for hub in popular_hubs):
-        return 50
-
-    return 30
+    return 10
 
 
 def _calculate_field_score(student: Student, program: Program) -> int:
@@ -560,22 +555,22 @@ def calculate_program_match(
     s_readiness = _calculate_readiness_score(student, program, ready_score_override=ready_score)
     s_type = _calculate_type_score(student, program)
 
-    # 2. Weighted MatchScore
-    raw_match = 0.25 * s_country + 0.30 * s_field + 0.30 * s_readiness + 0.15 * s_type
+    # 2. Weighted MatchScore prioritizing selected country and field
+    raw_match = 0.35 * s_country + 0.30 * s_field + 0.20 * s_readiness + 0.15 * s_type
 
     # High match alignment: if program matches student criteria or is top-fit, qualify as 100%
-    if (s_country >= 70 and s_type >= 60 and raw_match >= 75) or raw_match >= 85:
+    if s_country == 100 and s_field >= 70 and s_readiness >= 70:
         match_percentage = 100
         tier = 'safety'
         tier_display = "100% Mos keldi"
         tier_badge = "bg-emerald-50 text-emerald-700 border-emerald-200"
-    elif raw_match >= 65:
-        match_percentage = min(98, max(85, round(raw_match + 15)))
+    elif raw_match >= 80:
+        match_percentage = min(98, max(85, round(raw_match)))
         tier = 'target'
         tier_display = f"{match_percentage}% Mos (Maqsadli)"
         tier_badge = "bg-blue-50 text-blue-700 border-blue-200"
     else:
-        match_percentage = max(10, min(80, round(raw_match)))
+        match_percentage = max(15, min(80, round(raw_match)))
         tier = 'reach'
         tier_display = f"{match_percentage}% Mos (Yuqori marra)"
         tier_badge = "bg-amber-50 text-amber-700 border-amber-200"
