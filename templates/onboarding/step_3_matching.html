@@ -202,33 +202,40 @@
         Siz uchun saralangan oliygohlar va grantlar
       </h1>
       <p class="text-zinc-500 text-xs sm:text-sm mt-1.5">
-        Profilingiz va tayyorgarlik darajangizga mos keluvchi rasmiy dasturlar.
+        Profilingiz va tayyorgarlik darajangizga mos keluvchi rasmiy dasturlar. Bir nechta oliygohni tanlashingiz mumkin.
       </p>
     </div>
 
     <!-- Active Selection Summary -->
-    <div id="selectionSummaryPill" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-800 text-xs font-bold shrink-0">
-      <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
-      <span id="selectedProgramNameDisplay">Asosiy maqsad tanlandi</span>
+    <div id="selectionSummaryPill" class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-950 text-white rounded-2xl text-xs font-bold shrink-0 shadow-sm">
+      <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+      <span id="selectedCountPill">1 ta oliygoh tanlandi</span>
     </div>
   </div>
 
   <form method="post" id="matchingForm" class="space-y-6">
     {% csrf_token %}
     <input type="hidden" name="primary_program_id" id="primaryProgramInput" value="{{ recommendations.0.program_id|default:'' }}">
+    <div id="hiddenInputsContainer">
+      {% if recommendations.0 %}
+        <input type="hidden" name="selected_program_ids" value="{{ recommendations.0.program_id }}">
+      {% endif %}
+    </div>
 
     <!-- Cards Container -->
     <div id="programCardsContainer" class="space-y-6">
       {% for rec in recommendations %}
-        <div class="program-card bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group {% if forloop.first %}ring-2 ring-zinc-950 border-zinc-950 is-selected{% endif %}"
+        <div class="program-card bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group {% if forloop.first %}ring-2 ring-zinc-950 border-zinc-950 bg-zinc-50/40 is-selected{% endif %}"
              data-program-id="{{ rec.program_id }}"
+             data-program-name="{{ rec.program_name }}"
              data-index="{{ forloop.counter0 }}">
           
-          <!-- Top Campus Photo Banner (Matching Image 2) -->
-          <div class="relative h-60 sm:h-64 w-full overflow-hidden bg-zinc-900">
+          <!-- Top Campus Photo Banner -->
+          <div class="relative h-60 sm:h-64 w-full overflow-hidden bg-zinc-900 cursor-pointer"
+               onclick="toggleProgramSelection('{{ rec.program_id }}', '{{ rec.program_name|escapejs }}', event)">
             <img src="{{ rec.image_url }}" alt="{{ rec.program_name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             
-            <!-- Dark gradient overlay matching Image 2 -->
+            <!-- Dark gradient overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/75"></div>
 
             <!-- Top Row Floating Badges -->
@@ -255,12 +262,15 @@
                 {% endif %}
               </div>
 
-              <!-- Top Right Selection / Bookmark Button -->
+              <!-- Top Right Selection Toggle Button -->
               <button type="button"
-                      onclick="selectProgram('{{ rec.program_id }}', '{{ rec.program_name|escapejs }}')"
-                      class="bookmark-btn p-2.5 rounded-xl bg-zinc-900/80 backdrop-blur-md text-white hover:text-amber-400 border border-white/20 transition shadow"
+                      onclick="toggleProgramSelection('{{ rec.program_id }}', '{{ rec.program_name|escapejs }}', event)"
+                      class="select-toggle-btn px-3 py-1.5 rounded-xl transition shadow flex items-center gap-1.5 text-xs font-bold border {% if forloop.first %}bg-zinc-950 text-white border-emerald-400{% else %}bg-zinc-900/80 backdrop-blur-md text-white border-white/20{% endif %}"
+                      data-program-id="{{ rec.program_id }}"
                       title="Tanlash">
-                <i data-lucide="bookmark" class="w-4 h-4 bookmark-icon"></i>
+                <i data-lucide="check" class="w-3.5 h-3.5 select-icon-check {% if not forloop.first %}hidden{% endif %} text-emerald-400"></i>
+                <i data-lucide="plus" class="w-3.5 h-3.5 select-icon-plus {% if forloop.first %}hidden{% endif %}"></i>
+                <span class="select-btn-label">{% if forloop.first %}Tanlandi{% else %}Tanlash{% endif %}</span>
               </button>
             </div>
 
@@ -300,7 +310,7 @@
                 <span class="line-clamp-1">{{ rec.coverage_display }}</span>
               </div>
 
-              <!-- Requirements & Deadline Row (NO PARENTHESES) -->
+              <!-- Requirements & Deadline Row -->
               <div class="flex items-center flex-wrap gap-2 mb-3">
                 <div class="bg-zinc-100 text-zinc-800 text-xs font-medium px-3 py-1.5 rounded-xl flex items-center gap-1.5">
                   <i data-lucide="languages" class="w-3.5 h-3.5 text-zinc-600"></i>
@@ -318,7 +328,7 @@
               </p>
             </div>
 
-            <!-- Bottom Bar (Matching Image 2) -->
+            <!-- Bottom Bar -->
             <div class="pt-4 border-t border-zinc-100 flex items-center justify-between mt-auto">
               <!-- Left: Tasdiqlangan -->
               <div class="flex items-center gap-1.5 text-emerald-600 text-xs font-bold">
@@ -326,7 +336,7 @@
                 <span>Tasdiqlangan</span>
               </div>
 
-              <!-- Right: External Link & Batafsil -->
+              <!-- Right: Actions -->
               <div class="flex items-center gap-2">
                 {% if rec.source_url %}
                   <a href="{{ rec.source_url }}" target="_blank" rel="noopener noreferrer" class="p-2 text-zinc-400 hover:text-zinc-900 rounded-xl hover:bg-zinc-100 transition" title="Rasmiy manba">
@@ -334,10 +344,18 @@
                   </a>
                 {% endif %}
                 <button type="button"
-                        onclick="openDetailsModal({{ rec.program_id }})"
-                        class="bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 transition shadow-sm hover:shadow">
+                        onclick="openDetailsModal('{{ rec.program_id }}')"
+                        class="bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition">
                   <span>Batafsil</span>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+                <button type="button"
+                        onclick="toggleProgramSelection('{{ rec.program_id }}', '{{ rec.program_name|escapejs }}', event)"
+                        class="card-select-action px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm {% if forloop.first %}bg-zinc-950 text-white border-zinc-950{% else %}bg-zinc-100 hover:bg-zinc-200 text-zinc-900 border-zinc-200{% endif %}"
+                        data-program-id="{{ rec.program_id }}">
+                  <i data-lucide="plus" class="w-3.5 h-3.5 icon-add {% if forloop.first %}hidden{% endif %}"></i>
+                  <i data-lucide="check" class="w-3.5 h-3.5 icon-check {% if not forloop.first %}hidden{% endif %} text-emerald-400"></i>
+                  <span class="action-text">{% if forloop.first %}Tanlandi{% else %}Tanlash{% endif %}</span>
                 </button>
               </div>
             </div>
@@ -362,17 +380,22 @@
 
     <!-- Action Sticky/Bottom Bar -->
     <div class="sticky bottom-4 z-30 p-4 sm:p-5 bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-zinc-200 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
-      <div class="flex items-center gap-2.5 text-xs sm:text-sm">
-        <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-        <span class="text-zinc-600 font-medium">Asosiy maqsad:</span>
-        <span id="selectedProgramText" class="font-bold text-zinc-950 truncate max-w-[240px] sm:max-w-md">
-          {{ recommendations.0.program_name }}
-        </span>
+      <div class="flex items-center gap-3 text-xs sm:text-sm w-full sm:w-auto">
+        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shrink-0"></div>
+        <div class="min-w-0">
+          <div class="font-extrabold text-zinc-950 flex items-center gap-1.5">
+            <span id="selectedCountDisplay">1</span> ta oliygoh tanlandi
+          </div>
+          <p id="selectedNamesPreview" class="text-xs text-zinc-500 font-medium truncate max-w-[260px] sm:max-w-md">
+            {{ recommendations.0.program_name }}
+          </p>
+        </div>
       </div>
 
       <button type="submit"
+              id="submitMatchingBtn"
               class="w-full sm:w-auto px-7 py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold rounded-2xl shadow-md transition-all flex items-center justify-center space-x-2 text-sm">
-        <span>Davom etish (O'quv rejasi)</span>
+        <span>Tanlovni tasdiqlash</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </button>
     </div>
@@ -462,10 +485,11 @@
 
       <button type="button"
               id="modalSelectBtn"
-              onclick="selectFromModal()"
+              onclick="toggleFromModal()"
               class="px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-2">
-        <i data-lucide="check" class="w-4 h-4"></i>
-        <span>Asosiy maqsad sifatida tanlash</span>
+        <i data-lucide="plus" class="w-4 h-4 modal-icon-plus"></i>
+        <i data-lucide="check" class="w-4 h-4 modal-icon-check hidden text-emerald-400"></i>
+        <span id="modalSelectBtnLabel">Ushbu oliygohni tanlash</span>
       </button>
     </div>
 
@@ -509,6 +533,15 @@
     console.error("Failed to parse recommendations JSON", e);
   }
 
+  // Selected programs array: [ { id: "1", name: "Harvard" }, ... ]
+  let selectedPrograms = [];
+  if (programsData.length > 0) {
+    selectedPrograms = [{
+      id: String(programsData[0].program_id),
+      name: programsData[0].program_name
+    }];
+  }
+
   // 1. Hide AI Loader after 1.8 seconds
   document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
@@ -527,37 +560,138 @@
     // Initialize Pagination
     initPagination();
 
-    // Select the first program by default if not set
-    if (programsData.length > 0) {
-      const currentVal = document.getElementById('primaryProgramInput').value;
-      if (!currentVal) {
-        selectProgram(programsData[0].program_id, programsData[0].program_name);
-      }
+    // Initial UI state
+    updateSelectionUI();
+
+    // Prevent submission if 0 selected
+    const matchingForm = document.getElementById('matchingForm');
+    if (matchingForm) {
+      matchingForm.addEventListener('submit', function(e) {
+        if (selectedPrograms.length === 0) {
+          e.preventDefault();
+          alert("Iltimos, kamida bitta universitet yoki grant dasturini tanlang.");
+          return false;
+        }
+      });
     }
   });
 
-  // 2. Select Program Handler
-  function selectProgram(programId, programName) {
-    document.getElementById('primaryProgramInput').value = programId;
-    document.getElementById('selectedProgramText').textContent = programName;
-    document.getElementById('selectedProgramNameDisplay').textContent = programName;
+  // 2. Multi-Selection Toggle Handler
+  function toggleProgramSelection(programId, programName, event) {
+    if (event) {
+      event.stopPropagation();
+    }
+    const strId = String(programId);
+    const existingIndex = selectedPrograms.findIndex(p => String(p.id) === strId);
 
-    // Update active UI cards
-    document.querySelectorAll('.program-card').forEach(card => {
-      if (card.getAttribute('data-program-id') === String(programId)) {
-        card.classList.add('ring-2', 'ring-zinc-950', 'border-zinc-950', 'is-selected');
-        const bookmark = card.querySelector('.bookmark-icon');
-        if (bookmark) {
-          bookmark.classList.add('text-amber-400', 'fill-amber-400');
-        }
+    if (existingIndex >= 0) {
+      selectedPrograms.splice(existingIndex, 1);
+    } else {
+      selectedPrograms.push({
+        id: strId,
+        name: programName
+      });
+    }
+
+    updateSelectionUI();
+  }
+
+  function updateSelectionUI() {
+    // 1. Sync hidden inputs
+    const container = document.getElementById('hiddenInputsContainer');
+    if (container) {
+      container.innerHTML = '';
+      selectedPrograms.forEach(p => {
+        const inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = 'selected_program_ids';
+        inp.value = p.id;
+        container.appendChild(inp);
+      });
+    }
+
+    const primaryInput = document.getElementById('primaryProgramInput');
+    if (primaryInput) {
+      primaryInput.value = selectedPrograms.length > 0 ? selectedPrograms[0].id : '';
+    }
+
+    // 2. Sync counter displays
+    const count = selectedPrograms.length;
+    const countDisplay = document.getElementById('selectedCountDisplay');
+    if (countDisplay) {
+      countDisplay.textContent = count;
+    }
+
+    const countPill = document.getElementById('selectedCountPill');
+    if (countPill) {
+      countPill.textContent = `${count} ta oliygoh tanlandi`;
+    }
+
+    const namesPreview = document.getElementById('selectedNamesPreview');
+    if (namesPreview) {
+      if (count === 0) {
+        namesPreview.textContent = "Hali oliygoh tanlanmadi (kamida bittasini tanlang)";
       } else {
-        card.classList.remove('ring-2', 'ring-zinc-950', 'border-zinc-950', 'is-selected');
-        const bookmark = card.querySelector('.bookmark-icon');
-        if (bookmark) {
-          bookmark.classList.remove('text-amber-400', 'fill-amber-400');
+        namesPreview.textContent = selectedPrograms.map(p => p.name).join(' • ');
+      }
+    }
+
+    // 3. Sync cards UI
+    document.querySelectorAll('.program-card').forEach(card => {
+      const cardId = card.getAttribute('data-program-id');
+      const isSelected = selectedPrograms.some(p => String(p.id) === String(cardId));
+
+      if (isSelected) {
+        card.classList.add('ring-2', 'ring-zinc-950', 'border-zinc-950', 'bg-zinc-50/40', 'is-selected');
+      } else {
+        card.classList.remove('ring-2', 'ring-zinc-950', 'border-zinc-950', 'bg-zinc-50/40', 'is-selected');
+      }
+
+      // Top selection button
+      const topBtn = card.querySelector('.select-toggle-btn');
+      if (topBtn) {
+        const checkIcon = topBtn.querySelector('.select-icon-check');
+        const plusIcon = topBtn.querySelector('.select-icon-plus');
+        const label = topBtn.querySelector('.select-btn-label');
+
+        if (isSelected) {
+          topBtn.className = 'select-toggle-btn px-3 py-1.5 rounded-xl transition shadow flex items-center gap-1.5 text-xs font-bold border bg-zinc-950 text-white border-emerald-400';
+          if (checkIcon) checkIcon.classList.remove('hidden');
+          if (plusIcon) plusIcon.classList.add('hidden');
+          if (label) label.textContent = 'Tanlandi';
+        } else {
+          topBtn.className = 'select-toggle-btn px-3 py-1.5 rounded-xl transition shadow flex items-center gap-1.5 text-xs font-bold border bg-zinc-900/80 backdrop-blur-md text-white border-white/20';
+          if (checkIcon) checkIcon.classList.add('hidden');
+          if (plusIcon) plusIcon.classList.remove('hidden');
+          if (label) label.textContent = 'Tanlash';
+        }
+      }
+
+      // Bottom selection action button
+      const bottomBtn = card.querySelector('.card-select-action');
+      if (bottomBtn) {
+        const iconAdd = bottomBtn.querySelector('.icon-add');
+        const iconCheck = bottomBtn.querySelector('.icon-check');
+        const actionText = bottomBtn.querySelector('.action-text');
+
+        if (isSelected) {
+          bottomBtn.className = 'card-select-action px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm bg-zinc-950 text-white border-zinc-950 hover:bg-zinc-800';
+          if (iconAdd) iconAdd.classList.add('hidden');
+          if (iconCheck) iconCheck.classList.remove('hidden');
+          if (actionText) actionText.textContent = 'Tanlandi';
+        } else {
+          bottomBtn.className = 'card-select-action px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm bg-zinc-100 hover:bg-zinc-200 text-zinc-900 border-zinc-200';
+          if (iconAdd) iconAdd.classList.remove('hidden');
+          if (iconCheck) iconCheck.classList.add('hidden');
+          if (actionText) actionText.textContent = 'Tanlash';
         }
       }
     });
+
+    // 4. Update modal button state if open
+    if (currentModalProgramId) {
+      updateModalSelectBtnState();
+    }
 
     if (window.lucide) {
       lucide.createIcons();
@@ -601,18 +735,7 @@
       sourceLink.classList.add('hidden');
     }
 
-    // Modal select button state
-    const modalSelectBtn = document.getElementById('modalSelectBtn');
-    const isCurrent = document.getElementById('primaryProgramInput').value === String(programId);
-    if (isCurrent) {
-      modalSelectBtn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>Tanlangan (Asosiy maqsad)</span>`;
-      modalSelectBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
-      modalSelectBtn.classList.remove('bg-zinc-950', 'hover:bg-zinc-800');
-    } else {
-      modalSelectBtn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>Asosiy maqsad sifatida tanlash</span>`;
-      modalSelectBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
-      modalSelectBtn.classList.add('bg-zinc-950', 'hover:bg-zinc-800');
-    }
+    updateModalSelectBtnState();
 
     const modal = document.getElementById('detailsModal');
     modal.classList.remove('hidden');
@@ -623,19 +746,45 @@
     }
   }
 
+  function updateModalSelectBtnState() {
+    const modalSelectBtn = document.getElementById('modalSelectBtn');
+    if (!modalSelectBtn || !currentModalProgramId) return;
+
+    const isSelected = selectedPrograms.some(p => String(p.id) === String(currentModalProgramId));
+    const iconPlus = modalSelectBtn.querySelector('.modal-icon-plus');
+    const iconCheck = modalSelectBtn.querySelector('.modal-icon-check');
+    const label = document.getElementById('modalSelectBtnLabel');
+
+    if (isSelected) {
+      modalSelectBtn.className = 'px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-2';
+      if (iconPlus) iconPlus.classList.add('hidden');
+      if (iconCheck) iconCheck.classList.remove('hidden');
+      if (label) label.textContent = 'Tanlangan (O\'chirish uchun bosing)';
+    } else {
+      modalSelectBtn.className = 'px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-2';
+      if (iconPlus) iconPlus.classList.remove('hidden');
+      if (iconCheck) iconCheck.classList.add('hidden');
+      if (label) label.textContent = 'Ushbu oliygohni tanlash';
+    }
+
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  }
+
   function closeDetailsModal() {
     const modal = document.getElementById('detailsModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
+    currentModalProgramId = null;
   }
 
-  function selectFromModal() {
+  function toggleFromModal() {
     if (currentModalProgramId) {
       const prog = programsData.find(p => String(p.program_id) === String(currentModalProgramId));
       if (prog) {
-        selectProgram(prog.program_id, prog.program_name);
+        toggleProgramSelection(prog.program_id, prog.program_name);
       }
-      closeDetailsModal();
     }
   }
 
@@ -680,6 +829,7 @@
     });
 
     renderPageButtons(totalPages);
+    updateSelectionUI();
   }
 
   function renderPageButtons(totalPages) {

@@ -81,7 +81,7 @@ def step_1_view(request):
         'form': form,
         'student': student,
         'step_number': 1,
-        'total_steps': 4,
+        'total_steps': 3,
         'saved_step': saved_step,
     })
 
@@ -197,7 +197,7 @@ def step_2_certificate_view(request):
                         'form': form,
                         'student': student,
                         'step_number': 2,
-                        'total_steps': 4,
+                        'total_steps': 3,
                     })
 
                 # Update user candidate name if provided
@@ -269,7 +269,7 @@ def step_2_certificate_view(request):
         'form': form,
         'student': student,
         'step_number': 2,
-        'total_steps': 4,
+        'total_steps': 3,
     })
 
 
@@ -342,7 +342,7 @@ def diagnostic_view(request):
         'reading': test_data['reading'],
         'grammar': test_data['grammar'],
         'step_number': 2,
-        'total_steps': 4,
+        'total_steps': 3,
     })
 
 
@@ -350,8 +350,9 @@ def diagnostic_view(request):
 def step_3_matching_view(request):
     """
     Step 3: AI-Driven University & Grant Matching.
-    Presents top 3-5 curated real recommendations with Match %, details, and admission criteria.
-    Captures primary target selection and backup options.
+    Presents curated real recommendations with match %, details, and admission criteria.
+    Captures multi-selection of target universities and grants.
+    Final step of onboarding: completes onboarding and redirects directly to dashboard.
     """
     student, _ = Student.objects.get_or_create(user=request.user)
 
@@ -359,31 +360,65 @@ def step_3_matching_view(request):
     recommendations = matching_service.get_curated_recommendations(student, limit=12)
 
     if request.method == 'POST':
-        primary_id = request.POST.get('primary_program_id') or request.POST.get('primary_program')
-        backup_ids_raw = request.POST.getlist('backup_program_ids') or request.POST.getlist('backup_programs')
+        # Accept multiple selected program IDs
+        selected_ids_raw = request.POST.getlist('selected_program_ids')
+        if not selected_ids_raw:
+            primary = request.POST.get('primary_program_id') or request.POST.get('primary_program')
+            backups = request.POST.getlist('backup_program_ids') or request.POST.getlist('backup_programs')
+            selected_ids_raw = ([primary] if primary else []) + [b for b in backups if b]
+
         notes = request.POST.get('notes', '').strip()
 
-        # Fallback if no primary selected but recommendations exist
-        if not primary_id and recommendations:
-            primary_id = str(recommendations[0]['program_id'])
+        # Parse and sanitize unique integer program IDs
+        selected_ids = []
+        for sid in selected_ids_raw:
+            if str(sid).isdigit():
+                val = int(sid)
+                if val not in selected_ids:
+                    selected_ids.append(val)
 
-        if primary_id:
+        # Fallback if empty but recommendations exist
+        if not selected_ids and recommendations:
+            selected_ids = [recommendations[0]['program_id']]
+
+        if selected_ids:
             try:
-                primary_id_int = int(primary_id)
-                backup_ids = [int(bid) for bid in backup_ids_raw if str(bid).isdigit() and int(bid) != primary_id_int]
+                primary_id_int = selected_ids[0]
+                backup_ids = selected_ids[1:]
+
+                # Save target selection and register all selected programs into StudentProgram tracking
                 matching_service.save_student_target_selection(
                     student=student,
                     primary_program_id=primary_id_int,
                     backup_program_ids=backup_ids,
                     notes=notes
                 )
-                messages.success(request, "Maqsadli universitet va grant dasturlari muvaffaqiyatli saqlandi!")
-                return redirect('onboarding:step_4_timeline')
+
+                # Automatically prepare default study plan and daily tasks in background
+                try:
+                    active_plan = study_plan_service.get_active_study_plan(student)
+                    if not active_plan:
+                        plan_payload = study_plan_service.generate_dual_track_study_plan(
+                            student=student,
+                            timeline_months=getattr(student, 'plan_timeline_months', 6) or 6,
+                            planned_test_date=getattr(student, 'planned_test_date', None)
+                        )
+                        study_plan_service.activate_dual_track_study_plan(student, plan_payload)
+                    task_service.generate_daily_tasks_for_dual_track(student)
+                except Exception as ex:
+                    logger.warning(f"Background study plan/tasks provisioning error: {ex}")
+
+                # Mark student onboarding as fully completed
+                student.onboarding_completed = True
+                student.save(update_fields=['onboarding_completed'])
+
+                messages.success(request, "Tabriklaymiz! Maqsadli oliygohlaringiz muvaffaqiyatli tanlandi.")
+                return redirect('dashboard:index')
             except Exception as e:
                 logger.error(f"Error saving target selection: {e}")
                 messages.error(request, f"Tanlovni saqlashda xatolik: {e}")
         else:
-            messages.error(request, "Iltimos, asosiy maqsadli universitet yoki grant dasturini tanlang.")
+            messages.error(request, "Iltimos, kamida bitta universitet yoki grant dasturini tanlang.")
 
     target_selection = getattr(student, 'target_selection', None)
 
@@ -392,7 +427,7 @@ def step_3_matching_view(request):
         'recommendations': recommendations,
         'target_selection': target_selection,
         'step_number': 3,
-        'total_steps': 4,
+        'total_steps': 3,
         'hide_header': True,
     })
 
@@ -400,60 +435,13 @@ def step_3_matching_view(request):
 @login_required
 def step_4_timeline_view(request):
     """
-    Step 4: Dual-Track Study Plan Engine.
-    Captures timeline (1-8 months) and test date, generates and activates
-    Dual-Track Study Plan (Track A & Track B) and provisions daily tasks.
+    Step 4 is deprecated (no study plan questionnaire).
+    Redirects directly to dashboard if onboarding completed, otherwise to step 3.
     """
     student, _ = Student.objects.get_or_create(user=request.user)
-
-    if request.method == 'POST':
-        form = TimelineStepForm(request.POST)
-        if form.is_valid():
-            timeline_months = form.cleaned_data['plan_timeline_months']
-            planned_test_date = form.cleaned_data.get('planned_test_date')
-
-            # 1. Generate Dual-Track Study Plan payload
-            plan_payload = study_plan_service.generate_dual_track_study_plan(
-                student=student,
-                timeline_months=timeline_months,
-                planned_test_date=planned_test_date
-            )
-
-            # 2. Activate Dual-Track Study Plan
-            active_plan = study_plan_service.activate_dual_track_study_plan(student, plan_payload)
-
-            # 3. Generate daily tasks for Dual-Track
-            task_service.generate_daily_tasks_for_dual_track(student)
-
-            # 4. Mark student onboarding as completed
-            student.onboarding_completed = True
-            student.plan_timeline_months = timeline_months
-            if planned_test_date:
-                student.planned_test_date = planned_test_date
-            student.save()
-
-            messages.success(
-                request,
-                "Tabriklaymiz! Sizning shaxsiy Dual-Track o'quv rejangiz muvaffaqiyatli shakllantirildi va faollashtirildi."
-            )
-            return redirect('onboarding:results')
-    else:
-        initial_data = {
-            'plan_timeline_months': getattr(student, 'plan_timeline_months', 6) or 6,
-        }
-        if getattr(student, 'planned_test_date', None):
-            initial_data['planned_test_date'] = student.planned_test_date
-        form = TimelineStepForm(initial=initial_data)
-
-    target_selection = getattr(student, 'target_selection', None)
-
-    return render(request, 'onboarding/step_4_timeline.html', {
-        'form': form,
-        'student': student,
-        'target_selection': target_selection,
-        'step_number': 4,
-        'total_steps': 4,
-    })
+    if student.onboarding_completed:
+        return redirect('dashboard:index')
+    return redirect('onboarding:step_3_matching')
 
 
 @login_required
