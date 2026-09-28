@@ -21,6 +21,7 @@ from apps.services.study_plan_service import (
 from apps.dashboard.models import SkillScore, ProgressLog
 from apps.programs.models import Program, StudentProgram, StudentTargetSelection, University
 from apps.tasks.models import DailyTask
+from apps.documents.models import Document
 
 logger = logging.getLogger(__name__)
 
