@@ -8,11 +8,11 @@
       <span class="text-[10px] leading-tight">Asosiy</span>
     </a>
 
-    <!-- 2. Imtihon Tayyorgarligi -->
-    <a href="{% url 'tasks:exam_prep' %}" 
-       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}text-zinc-950 font-extrabold{% else %}text-zinc-400 hover:text-zinc-800 font-medium{% endif %}">
-      <i data-lucide="headphones" class="w-4 h-4 mb-1"></i>
-      <span class="text-[10px] leading-tight">Imtihon</span>
+    <!-- 2. Hujjatlarim va Insho -->
+    <a href="{% url 'documents:list' %}" 
+       class="flex flex-col items-center justify-center py-1 text-center transition {% if '/documents/' in request.path %}text-zinc-950 font-extrabold{% else %}text-zinc-400 hover:text-zinc-800 font-medium{% endif %}">
+      <i data-lucide="file-text" class="w-4 h-4 mb-1"></i>
+      <span class="text-[10px] leading-tight">Hujjatlar</span>
     </a>
 
     <!-- 3. AI Mentor (markazda) -->

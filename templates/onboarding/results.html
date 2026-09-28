@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Yakuniy Natijalar va Dual-Track O'quv Rejasi | UniMentor{% endblock %}
+{% block title %}Yakuniy Natijalar va Qabul Strategiyasi | UniMentor{% endblock %}
 
 {% block content %}
 <div class="max-w-5xl mx-auto py-6 px-4 sm:px-6">
@@ -17,7 +17,7 @@
           Tabriklaymiz, {{ student.user.first_name|default:"O'quvchi" }}!
         </h1>
         <p class="text-indigo-200 text-sm md:text-base mt-2 max-w-xl leading-relaxed">
-          Sizning dastlabki tayyorgarlik darajangiz aniqlandi, maqsadli dasturlaringiz belgilandi va Dual-Track shaxsiy o'quv rejangiz faollashtirildi.
+          Sizning dastlabki tayyorgarlik darajangiz aniqlandi, maqsadli oliygohlaringiz belgilandi va qabul hujjatlari monitoringi faollashtirildi.
         </p>
       </div>
 
@@ -47,7 +47,7 @@
           </div>
           <div>
             <h2 class="text-lg md:text-xl font-extrabold text-slate-900">Tanlangan Maqsadli Dastur</h2>
-            <p class="text-xs text-slate-500">Sizning o'quv rejangiz ushbu dastur talablariga moslashtirilgan</p>
+            <p class="text-xs text-slate-500">Arizangiz ushbu dastur talablariga mos ravishda kuzatib boriladi</p>
           </div>
         </div>
         <span class="px-3.5 py-1 bg-zinc-100 text-zinc-900 border border-zinc-300 rounded-full text-xs font-extrabold">
@@ -79,7 +79,7 @@
     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
       <div>
         <h2 class="text-xl font-extrabold text-slate-900">5 ta Asosiy Ko'nikma Bo'yicha Boshlang'ich Ballar</h2>
-        <p class="text-xs md:text-sm text-slate-500 mt-0.5">Xalqaro grantlar va universitetlarga kirish talablari asosida (0-100 shkalada)</p>
+        <p class="text-xs md:text-sm text-slate-500 mt-0.5">Xalqaro grantlar va universitetlarga kirish talablari asosida — 0-100 shkalada</p>
       </div>
       <div class="w-10 h-10 rounded-2xl bg-zinc-100 text-zinc-950 flex items-center justify-center">
         <i data-lucide="bar-chart-3" class="w-6 h-6 text-zinc-950"></i>
@@ -93,19 +93,19 @@
             <span class="text-sm font-bold text-slate-800 flex items-center space-x-2">
               {% if item.skill == 'reading' %}
                 <i data-lucide="book-open" class="w-4 h-4 text-blue-600"></i>
-                <span>O'qish (Reading)</span>
+                <span>O'qish ko'nikmasi</span>
               {% elif item.skill == 'grammar' %}
                 <i data-lucide="pen-tool" class="w-4 h-4 text-amber-600"></i>
-                <span>Grammatika (Grammar)</span>
+                <span>Grammatika</span>
               {% elif item.skill == 'writing' %}
                 <i data-lucide="file-text" class="w-4 h-4 text-zinc-950"></i>
-                <span>Yozish (Writing)</span>
+                <span>Yozish ko'nikmasi</span>
               {% elif item.skill == 'listening' %}
                 <i data-lucide="headphones" class="w-4 h-4 text-zinc-950"></i>
-                <span>Tinglab tushunish (Listening)</span>
+                <span>Tinglab tushunish</span>
               {% elif item.skill == 'speaking' %}
                 <i data-lucide="mic" class="w-4 h-4 text-rose-600"></i>
-                <span>Gapirish (Speaking)</span>
+                <span>Gapirish ko'nikmasi</span>
               {% else %}
                 <i data-lucide="target" class="w-4 h-4 text-zinc-950"></i>
                 <span>{{ item.get_skill_display }}</span>
@@ -135,22 +135,22 @@
           <i data-lucide="target" class="w-5 h-5 text-amber-600"></i>
         </div>
         <div class="text-xs md:text-sm text-amber-900 leading-relaxed">
-          <strong>Asosiy ustuvor ko'nikma:</strong> Sizning eng zaif ko'nikmangiz — <strong>{{ weakest_skill.get_skill_display }} ({{ weakest_skill.current_score }} ball)</strong>. Kunlik vazifalarda ushbu ko'nikmani oshirishga ko'proq mashqlar beriladi.
+          <strong>Asosiy ustuvor ko'nikma:</strong> Sizning rivojlantirish lozim bo'lgan yo'nalishingiz — <strong>{{ weakest_skill.get_skill_display }} — {{ weakest_skill.current_score }} ball</strong>. Hujjatlar va test topshirishda ushbu ko'nikmaga ko'proq e'tibor qaratiladi.
         </div>
       </div>
     {% endif %}
   </div>
 
-  <!-- Dual-Track Active Study Plan Card -->
+  <!-- Active Admission & Strategy Plan Card -->
   {% if active_plan %}
     <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200 mb-8">
       <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
         <div>
-          <span class="px-3 py-1 bg-indigo-100 text-zinc-900 text-xs font-bold rounded-full uppercase tracking-wider">
-            Faol Dual-Track O'quv Rejasi
+          <span class="px-3 py-1 bg-zinc-100 text-zinc-900 text-xs font-bold rounded-full uppercase tracking-wider">
+            Faol Qabul Strategiyasi
           </span>
           <h2 class="text-xl md:text-2xl font-extrabold text-slate-900 mt-2">
-            {{ active_plan.goal|default:"Dual-Track O'quv Rejasi" }}
+            {{ active_plan.goal|default:"Universitet Qabuli va Hujjatlar Nazorati" }}
           </h2>
           <p class="text-xs md:text-sm text-slate-500 mt-1">
             Davomiyligi: <strong>{{ active_plan.timeline_months|default:6 }} oy</strong> | 
@@ -172,8 +172,8 @@
               <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
             </div>
             <div>
-              <span class="block">Track A: Imtihon Tayyorgarligi</span>
-              <span class="text-xs font-normal text-zinc-900">IELTS / SAT / Til bilish</span>
+              <span class="block">1-yo'nalish: Imtihon va Til Sertifikati</span>
+              <span class="text-xs font-normal text-zinc-900">IELTS, SAT yoki CEFR tayyorgarligi</span>
             </div>
           </div>
 
@@ -181,13 +181,13 @@
             <div class="space-y-3">
               {% for m in milestones_a %}
                 <div class="p-3 bg-white rounded-xl border border-zinc-200 text-xs text-slate-800">
-                  <span class="font-bold text-zinc-900">{{ m.month }}-oy ({{ m.target_week }}-hafta):</span>
+                  <span class="font-bold text-zinc-900">{{ m.month }}-oy, {{ m.target_week }}-hafta:</span>
                   <p class="mt-0.5 text-slate-700 font-medium">{{ m.focus|default:m.goal }}</p>
                 </div>
               {% endfor %}
             </div>
           {% else %}
-            <p class="text-xs text-slate-600">Kunlik grammatika, o'qish va Mock testlar rejasi faollashtirildi.</p>
+            <p class="text-xs text-slate-600">Til sertifikati va zarur testlar bosqichlari belgilandi.</p>
           {% endif %}
         </div>
 
@@ -198,8 +198,8 @@
               <i data-lucide="file-check" class="w-5 h-5 text-white"></i>
             </div>
             <div>
-              <span class="block">Track B: Ariza va Hujjatlar</span>
-              <span class="text-xs font-normal text-zinc-900">Insho, LOR, Transkript & Ariza</span>
+              <span class="block">2-yo'nalish: Ariza va Hujjatlar Nazorati</span>
+              <span class="text-xs font-normal text-zinc-900">Insho, Tavsiyanoma, Transkript va Ariza</span>
             </div>
           </div>
 
@@ -207,26 +207,26 @@
             <div class="space-y-3">
               {% for m in milestones_b %}
                 <div class="p-3 bg-white rounded-xl border border-emerald-100 text-xs text-slate-800">
-                  <span class="font-bold text-zinc-900">{{ m.month }}-oy ({{ m.target_week }}-hafta):</span>
+                  <span class="font-bold text-zinc-900">{{ m.month }}-oy, {{ m.target_week }}-hafta:</span>
                   <p class="mt-0.5 text-slate-700 font-medium">{{ m.focus|default:m.goal }}</p>
                 </div>
               {% endfor %}
             </div>
           {% else %}
-            <p class="text-xs text-slate-600">Motivatsiya inshosi, tavsiyanoma va ariza topshirish rejasi faollashtirildi.</p>
+            <p class="text-xs text-slate-600">Motivatsiya inshosi, tavsiyanoma va rasmiy ariza topshirish bosqichlari belgilandi.</p>
           {% endif %}
         </div>
 
       </div>
 
-      <!-- Daily Routine Tips -->
+      <!-- Strategy Tips -->
       {% if plan_data.daily_routine_tips %}
-        <div class="p-5 bg-blue-50/60 border border-blue-100 rounded-2xl mb-4">
-          <h3 class="text-xs font-bold text-blue-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <i data-lucide="sparkles" class="w-4 h-4 text-blue-600"></i>
-            Kunlik Odatlar va Tavsiyalar
+        <div class="p-5 bg-zinc-50 border border-zinc-200 rounded-2xl mb-4">
+          <h3 class="text-xs font-bold text-zinc-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-zinc-950"></i>
+            Qabul Uchun Tavsiyalar
           </h3>
-          <ul class="list-disc list-inside text-xs md:text-sm text-blue-800 space-y-1">
+          <ul class="list-disc list-inside text-xs md:text-sm text-zinc-700 space-y-1">
             {% for tip in plan_data.daily_routine_tips %}
               <li>{{ tip }}</li>
             {% endfor %}
@@ -246,14 +246,14 @@
       Tayyorgarlikni boshlashga tayyormisiz?
     </h3>
     <p class="text-slate-600 text-sm max-w-md mx-auto mb-6 leading-relaxed">
-      Boshqaruv paneliga o'ting va bugungi kunlik Track A hamda Track B vazifalarini bajarish orqali Ready Score balingizni oshiring.
+      Boshqaruv paneliga o'ting va maqsadli oliygohlaringiz dedlaynlari hamda qabul hujjatlarini nazorat qilishni boshlang.
     </p>
 
     <a
       href="{% url 'dashboard:index' %}"
       class="inline-flex items-center justify-center px-10 py-4 bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold rounded-2xl shadow-lg transition-all duration-200 text-base space-x-2"
     >
-      <span>Boshqaruv paneliga o'tish (Dashboard)</span>
+      <span>Boshqaruv paneliga o'tish</span>
       <i data-lucide="arrow-right" class="w-5 h-5"></i>
     </a>
   </div>

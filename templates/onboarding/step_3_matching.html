@@ -209,7 +209,7 @@
       AI mos oliygohlarni saralamoqda...
     </h2>
     <p class="text-xs sm:text-sm text-zinc-500 mt-2 font-medium">
-      Profilingiz va ko'rsatkichlaringizga 100% mos keladigan universitet va grant dasturlari tahlil qilinmoqda
+      Profilingiz va qiziqishlaringizga mos keladigan oliygoh hamda grant dasturlari tahlil qilinmoqda
     </p>
   </div>
 </div>
@@ -222,13 +222,13 @@
     <div>
       <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-100 border border-zinc-200 rounded-full text-zinc-900 text-xs font-bold mb-2">
         <i data-lucide="sparkles" class="w-3.5 h-3.5 text-zinc-950"></i>
-        <span>600+ OTM ichidan moslari saralandi (Jami: {{ recommendations|length }} ta oliygoh)</span>
+        <span>600+ OTM ichidan moslari saralandi — Jami: {{ recommendations|length }} ta oliygoh</span>
       </div>
       <h1 class="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight">
         Siz uchun saralangan oliygohlar va grantlar
       </h1>
       <p class="text-zinc-500 text-xs sm:text-sm mt-1.5">
-        Profilingizga mos barcha dasturlar (har bir sahifada 3 tadan). O'zingizga ma'qul bo'lgan bir nechta oliygohni tanlashingiz mumkin.
+        Profilingizga mos barcha dasturlar, har bir sahifada 3 tadan. O'zingizga ma'qul bo'lgan bir nechta oliygohni tanlashingiz mumkin.
       </p>
     </div>
 
@@ -461,10 +461,10 @@
         <div class="flex items-center justify-between mb-2">
           <span class="font-extrabold text-zinc-950 flex items-center gap-1.5">
             <i data-lucide="sparkles" class="w-4 h-4 text-zinc-950"></i>
-            Nima uchun sizga 100% mos keladi?
+            Nima uchun sizga tavsiya etiladi?
           </span>
-          <span class="px-2.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-black">
-            100% Mos
+          <span class="px-2.5 py-0.5 bg-zinc-100 text-zinc-900 border border-zinc-200 rounded-full text-xs font-bold">
+            Tavsiya etilgan
           </span>
         </div>
         <p id="modalRationale" class="text-zinc-600 leading-relaxed"></p>
@@ -656,7 +656,7 @@
     const namesPreview = document.getElementById('selectedNamesPreview');
     if (namesPreview) {
       if (count === 0) {
-        namesPreview.textContent = "Hali oliygoh tanlanmadi (kamida bittasini tanlang)";
+        namesPreview.textContent = "Hali oliygoh tanlanmadi — kamida bittasini tanlang";
       } else {
         namesPreview.textContent = selectedPrograms.map(p => p.name).join(' • ');
       }
@@ -785,7 +785,7 @@
       modalSelectBtn.className = 'px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-2';
       if (iconPlus) iconPlus.classList.add('hidden');
       if (iconCheck) iconCheck.classList.remove('hidden');
-      if (label) label.textContent = 'Tanlangan (O\'chirish uchun bosing)';
+      if (label) label.textContent = 'Tanlangan — O\'chirish uchun bosing';
     } else {
       modalSelectBtn.className = 'px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs rounded-xl shadow transition flex items-center gap-2';
       if (iconPlus) iconPlus.classList.remove('hidden');

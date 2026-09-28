@@ -20,37 +20,44 @@
     <nav class="p-3 space-y-1.5 flex-1 overflow-y-auto">
       <!-- 1. Bosh sahifa -->
       <a href="{% url 'dashboard:index' %}"
-         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/dashboard/' in request.path or request.path == '/' %}bg-orange-50 text-zinc-950 font-semibold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
+         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/dashboard/' in request.path or request.path == '/' %}bg-zinc-100 text-zinc-950 font-bold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
         <i data-lucide="home" class="w-5 h-5 {% if '/dashboard/' in request.path or request.path == '/' %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
         <span>Bosh sahifa</span>
       </a>
 
-      <!-- 2. Vazifalar -->
-      <a href="{% url 'tasks:list' %}"
-         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/tasks/' in request.path %}bg-orange-50 text-zinc-950 font-semibold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-        <i data-lucide="clipboard-check" class="w-5 h-5 {% if '/tasks/' in request.path %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
-        <span>Vazifalar</span>
+      <!-- 2. Oliygohlar va Grantlar -->
+      <a href="{% url 'programs:catalog' %}"
+         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/programs/' in request.path %}bg-zinc-100 text-zinc-950 font-bold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
+        <i data-lucide="graduation-cap" class="w-5 h-5 {% if '/programs/' in request.path %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
+        <span>Oliygohlar va Grantlar</span>
       </a>
 
-      <!-- 3. AI Mentor -->
+      <!-- 3. Hujjatlarim va Insho -->
+      <a href="{% url 'documents:list' %}"
+         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/documents/' in request.path %}bg-zinc-100 text-zinc-950 font-bold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
+        <i data-lucide="file-text" class="w-5 h-5 {% if '/documents/' in request.path %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
+        <span>Hujjatlarim va Insho</span>
+      </a>
+
+      <!-- 4. AI Mentor -->
       <a href="{% url 'mentor:chat' %}"
-         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/mentor/' in request.path %}bg-orange-50 text-zinc-950 font-semibold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
+         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/mentor/' in request.path %}bg-zinc-100 text-zinc-950 font-bold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
         <i data-lucide="message-circle" class="w-5 h-5 {% if '/mentor/' in request.path %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
         <span>AI Mentor Chat</span>
       </a>
 
-      <!-- 3.5 AI Strategiya / Counselor -->
-      <a href="{% url 'dashboard:strategy' %}"
-         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/strategy/' in request.path %}bg-orange-50 text-zinc-950 font-semibold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-        <i data-lucide="compass" class="w-5 h-5 {% if '/strategy/' in request.path %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
-        <span>Mening Strategiyam</span>
+      <!-- 5. Dedlaynlar taqvimi -->
+      <a href="{% url 'dashboard:calendar' %}"
+         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/calendar/' in request.path %}bg-zinc-100 text-zinc-950 font-bold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
+        <i data-lucide="calendar" class="w-5 h-5 {% if '/calendar/' in request.path %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
+        <span>Dedlaynlar taqvimi</span>
       </a>
 
-      <!-- 4. Dasturlar -->
-      <a href="{% url 'programs:list' %}"
-         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/programs/' in request.path %}bg-orange-50 text-zinc-950 font-semibold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
-        <i data-lucide="graduation-cap" class="w-5 h-5 {% if '/programs/' in request.path %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
-        <span>Dasturlar</span>
+      <!-- 6. Qabul statistikasi -->
+      <a href="{% url 'dashboard:stats' %}"
+         class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition duration-150 {% if '/stats/' in request.path %}bg-zinc-100 text-zinc-950 font-bold border-l-4 border-zinc-950 rounded-r-lg{% else %}text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium{% endif %}">
+        <i data-lucide="bar-chart-3" class="w-5 h-5 {% if '/stats/' in request.path %}text-zinc-950{% else %}text-slate-500{% endif %}"></i>
+        <span>Qabul statistikasi</span>
       </a>
     </nav>
   </div>

@@ -429,7 +429,8 @@ def dashboard_view(request):
         'nearest_deadline': nearest_deadline,
         'weekly_consistency': weekly_consistency,
         
-        # Active Applications Summary
+        # Active Applications & Tracked Programs
+        'all_tracked_programs': list(StudentProgram.objects.filter(student=student).select_related('program__university').order_by('-created_at')),
         'applications_summary': {
             'total': StudentProgram.objects.filter(student=student).count(),
             'tracking': StudentProgram.objects.filter(student=student, status='tracking').count(),
@@ -439,8 +440,14 @@ def dashboard_view(request):
             'accepted': StudentProgram.objects.filter(student=student, status='accepted').count(),
             'rejected': StudentProgram.objects.filter(student=student, status='rejected').count(),
             'waitlisted': StudentProgram.objects.filter(student=student, status='waitlisted').count(),
-            'items': StudentProgram.objects.filter(student=student).select_related('program')[:4],
+            'items': StudentProgram.objects.filter(student=student).select_related('program')[:6],
         },
+        
+        # Student Documents & Essay Hub
+        'user_documents': list(Document.objects.filter(student=student).select_related('linked_program').order_by('-created_at')),
+        'sop_document': Document.objects.filter(student=student, doc_type='motivation_letter').first(),
+        'docs_ready_count': Document.objects.filter(student=student, status='final').count(),
+        'docs_total_count': Document.objects.filter(student=student).count(),
     }
     return render(request, 'dashboard/index.html', context)
 

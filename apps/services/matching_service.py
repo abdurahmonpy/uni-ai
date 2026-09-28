@@ -69,7 +69,7 @@ FIELD_CLUSTERS = {
 
 # Human-readable field names in Uzbek Latin
 FIELD_DISPLAY_UZ = {
-    'cs_it': "Dasturlash va Axborot Texnologiyalari (CS & IT)",
+    'cs_it': "Dasturlash va Axborot Texnologiyalari",
     'ai_ds': "Sun'iy Intellekt va Data Science",
     'ai_data': "Sun'iy Intellekt va Ma'lumotlar Ilmi",
     'medicine': "Tibbiyot va Sog'liqni Saqlash",
@@ -78,7 +78,7 @@ FIELD_DISPLAY_UZ = {
     'international_law': "Xalqaro Munosabatlar va Huquq",
     'law_ir': "Xalqaro Huquq va Diplomatiya",
     'economics': "Iqtisodiyot va Ekonometrika",
-    'natural_sciences': "Aniq va Tabiiy Fanlar (STEM)",
+    'natural_sciences': "Aniq va Tabiiy Fanlar",
     'humanities_arts': "Gumanitar Fanlar va San'at",
     'education': "Pedagogika va Ta'lim",
     'education_humanities': "Pedagogika va Gumanitar Fanlar",
@@ -401,24 +401,24 @@ def _generate_match_rationale(
 
     if tier == 'safety':
         rationale = (
-            f"Ushbu dastur sizning profilingizga eng yuqori darajada mos keladi ({match_score}%). "
-            f"{country_name} davlatida {field_name} bo'yicha ta'lim olish maqsadlaringiz va "
-            f"akademik tayyorgarlik darajangiz dasturning barcha saralash mezonlariga to'liq javob beradi. "
-            f"Sizda mazkur grantni yutish va qabul qilinish imkoniyati juda yuqori (Safety / Kafolatlangan daraja)."
+            f"Ushbu dastur sizning profilingizga eng yuqori darajada mos keladi. "
+            f"{country_name} davlatida {field_name} bo'yicha ta'lim olish rejalaringiz va "
+            f"akademik tayyorgarlik darajangiz dasturning saralash mezonlariga to'liq javob beradi. "
+            f"Barcha hujjatlarni sifatli topshirsangiz, nomzodingiz raqobatbardosh bo'ladi. "
+            f"Eslatma: Yakuniy qabul qarori har doim oliygoh komissiyasi tomonidan qabul qilinadi."
         )
     elif tier == 'target':
         rationale = (
-            f"Ushbu dastur sizning maqsadlaringizga juda yaxshi mos keladi ({match_score}%). "
+            f"Ushbu dastur sizning maqsadlaringizga juda yaxshi mos keladi. "
             f"{country_name} davlati va {field_name} yo'nalishi rejalaringizga to'g'ri keladi. "
-            f"Tayyorgarlik ko'rsatkichlaringiz dastur talablariga mos. Tavsiya etilgan o'quv rejasidagi "
-            f"mashqlarni muntazam bajarib borsangiz, ushbu dasturga muvaffaqiyatli qabul qilinish imkoniyatingiz yuqori (Target)."
+            f"Ko'rsatkichlaringiz dastur talablariga mos. Motivatsiya inshosi "
+            f"va tavsiyanomalarni puxta tayyorlash orqali arizangizni yanada kuchaytirishingiz mumkin."
         )
     else:  # reach
         rationale = (
-            f"Ushbu dastur siz uchun nufuzli va yuqori marrali tanlov hisoblanadi ({match_score}%). "
-            f"{country_name} oliygohlarida raqobat yuqori bo'lganligi sababli, til va akademik ko'rsatkichlarni "
-            f"yanada mustahkamlash talab etiladi. Dual-track o'quv rejasi orqali tayyorgarlikni kuchaytirib, "
-            f"ushbu yuqori marrani (Reach) zabt etishingiz mumkin."
+            f"Ushbu dastur siz uchun nufuzli va yuqori marrali tanlov hisoblanadi. "
+            f"{country_name} oliygohlarida xalqaro raqobat juda yuqori bo'lganligi sababli, "
+            f"hujjatlar va yutuqlar portfolyosini maksimal darajada mustahkamlash talab etiladi."
         )
 
     return rationale
@@ -562,17 +562,17 @@ def calculate_program_match(
     if s_country == 100 and s_field >= 70 and s_readiness >= 70:
         match_percentage = 100
         tier = 'safety'
-        tier_display = "100% Mos keldi"
+        tier_display = "Yuqori moslik"
         tier_badge = "bg-emerald-50 text-emerald-700 border-emerald-200"
     elif raw_match >= 80:
         match_percentage = min(98, max(85, round(raw_match)))
         tier = 'target'
-        tier_display = f"{match_percentage}% Mos (Maqsadli)"
+        tier_display = f"{match_percentage}% Mos keladi"
         tier_badge = "bg-blue-50 text-blue-700 border-blue-200"
     else:
         match_percentage = max(15, min(80, round(raw_match)))
         tier = 'reach'
-        tier_display = f"{match_percentage}% Mos (Yuqori marra)"
+        tier_display = f"{match_percentage}% Mos keladi"
         tier_badge = "bg-amber-50 text-amber-700 border-amber-200"
 
     # 3. Uzbek Latin Rationale and Checklist

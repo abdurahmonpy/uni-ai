@@ -327,56 +327,42 @@
             <span>Bosh sahifa</span>
           </a>
 
-          <!-- 2. Imtihon Tayyorgarligi (Track A) -->
-          <a href="{% url 'tasks:exam_prep' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
-            <i data-lucide="headphones" class="w-4 h-4 {% if '/tasks/exam-prep/' in request.path or '/mock-exams/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
-            <span>Imtihon Tayyorgarligi</span>
+          <!-- 2. Oliygohlar va Grantlar -->
+          <a href="{% url 'programs:catalog' %}"
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/programs/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="graduation-cap" class="w-4 h-4 {% if '/programs/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
+            <span>Oliygohlar va Grantlar</span>
           </a>
 
-          <!-- 3. Universitet Arizasi (Track B) -->
-          <a href="{% url 'tasks:application_prep' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/tasks/application-prep/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
-            <i data-lucide="clipboard-check" class="w-4 h-4 {% if '/tasks/application-prep/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
-            <span>Universitet Arizasi</span>
+          <!-- 3. Hujjatlarim va Insho -->
+          <a href="{% url 'documents:list' %}"
+             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/documents/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
+            <i data-lucide="file-text" class="w-4 h-4 {% if '/documents/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
+            <span>Hujjatlarim va Insho</span>
           </a>
 
-          <!-- 3. AI Mentor -->
+          <!-- 4. AI Mentor -->
           <a href="{% url 'mentor:chat' %}"
              class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/mentor/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
             <i data-lucide="message-circle" class="w-4 h-4 {% if '/mentor/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
             <span>AI Mentor</span>
           </a>
 
-          <!-- 4. Universitetlar -->
-          <a href="{% url 'programs:catalog' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/programs/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
-            <i data-lucide="graduation-cap" class="w-4 h-4 {% if '/programs/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
-            <span>Universitetlar</span>
-          </a>
-
-          <!-- 5. Hujjatlarim -->
-          <a href="{% url 'documents:list' %}"
-             class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/documents/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
-            <i data-lucide="file-text" class="w-4 h-4 {% if '/documents/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
-            <span>Hujjatlarim</span>
-          </a>
-
-          <!-- 6. Kalendar -->
+          <!-- 5. Dedlaynlar taqvimi -->
           <a href="{% url 'dashboard:calendar' %}"
              class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/calendar/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
             <i data-lucide="calendar" class="w-4 h-4 {% if '/calendar/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
-            <span>Kalendar</span>
+            <span>Dedlaynlar taqvimi</span>
           </a>
 
-          <!-- 7. Statistika -->
+          <!-- 6. Statistika -->
           <a href="{% url 'dashboard:stats' %}"
              class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/stats/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
             <i data-lucide="bar-chart-3" class="w-4 h-4 {% if '/stats/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>
-            <span>Statistika</span>
+            <span>Qabul statistikasi</span>
           </a>
 
-          <!-- 8. Resurslar -->
+          <!-- 7. Resurslar -->
           <a href="{% url 'resources:list' %}"
              class="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs transition duration-150 {% if '/resources/' in request.path %}bg-zinc-900 text-white font-bold shadow-xs{% else %}text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950 font-medium{% endif %}">
             <i data-lucide="book-open" class="w-4 h-4 {% if '/resources/' in request.path %}text-white{% else %}text-zinc-500{% endif %}"></i>

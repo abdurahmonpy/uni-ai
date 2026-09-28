@@ -1,26 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %}Bosh sahifa — Dual-Track Dashboard | UniMentor{% endblock %}
+{% block title %}Bosh sahifa — Qabul va Hujjatlar Markazi | UniMentor AI{% endblock %}
 
 {% block content %}
 <div class="space-y-6">
 
-  <!-- Header & Welcome Banner — Phenomenon Studio Style -->
+  <!-- Header & Welcome Banner -->
   <div class="flex flex-col md:flex-row md:items-center justify-between bg-zinc-950 text-white gap-6 p-6 md:p-8 rounded-[28px] border border-zinc-800 shadow-2xl shadow-zinc-900/10">
-    <div class="space-y-3.5">
-      <!-- Demographic Badges Strip -->
+    <div class="space-y-3">
+      <!-- Demographic Badges Strip (No parentheses) -->
       <div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
         {% if demographics.grade_display %}
           <span class="inline-flex items-center space-x-1.5 bg-zinc-900 border border-zinc-700 px-3 py-1 rounded-full text-zinc-300">
             <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-zinc-300"></i>
             <span>{{ demographics.grade_display }}</span>
-          </span>
-        {% endif %}
-
-        {% if demographics.region_display %}
-          <span class="inline-flex items-center space-x-1.5 bg-zinc-900 border border-zinc-700 px-3 py-1 rounded-full text-zinc-300">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-zinc-300"></i>
-            <span>{{ demographics.region_display }}</span>
           </span>
         {% endif %}
 
@@ -50,103 +43,63 @@
         Xush kelibsiz, {{ student.user.first_name|default:student.user.phone_number }}!
       </h1>
       <p class="text-zinc-300 text-sm md:text-base max-w-2xl font-normal leading-relaxed">
-        Bugungi Dual-Track rejangiz bo'yicha Imtihon tayyorgarligi (Track A) va Universitet arizasi (Track B) vazifalarini bajaring.
+        Tanlagan oliygohlaringizga ariza topshirish, talablarni bajarish va hujjatlaringizni xatosiz tayyorlash markazi.
       </p>
     </div>
     
-    <!-- Streak & Ready Score Pill -->
+    <!-- Target Selection Count Pill -->
     <div class="mt-2 md:mt-0 flex flex-wrap md:flex-col items-start md:items-end gap-3 self-start md:self-auto">
       <div class="flex items-center px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-lg">
         <div class="w-10 h-10 rounded-xl bg-zinc-800 text-zinc-300 flex items-center justify-center mr-3">
-          <i data-lucide="flame" class="w-5 h-5 text-zinc-300"></i>
+          <i data-lucide="bookmark-check" class="w-5 h-5 text-emerald-400"></i>
         </div>
         <div>
-          <div class="text-xl font-extrabold text-white tracking-tight">{{ streak_count }} kun</div>
-          <div class="text-[11px] text-zinc-400 font-medium">Ketma-ketlik (Streak)</div>
+          <div class="text-xl font-extrabold text-white tracking-tight">{{ applications_summary.total }} ta OTM</div>
+          <div class="text-[11px] text-zinc-400 font-medium">Tanlangan oliygohlar</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Mandatory Trust & Safety Disclaimer -->
-  {% include 'includes/disclaimer.html' %}
+  <div class="p-4 bg-zinc-50 border border-zinc-200 rounded-2xl flex items-start space-x-3 text-xs text-zinc-600">
+    <i data-lucide="shield-alert" class="w-5 h-5 text-zinc-900 shrink-0 mt-0.5"></i>
+    <div>
+      <span class="font-bold text-zinc-900">Muhim eslatma:</span>
+      <span>
+        UniMentor AI qabulni kafolatlovchi agentlik emas. Yakuniy qabul qarori har doim oliygoh qabul komissiyasi tomonidan qabul qilinadi. Biz sizning arizangiz va hujjatlaringizni xatosiz hamda mustaqil topshirishingizga yordam beramiz.
+      </span>
+    </div>
+  </div>
 
-  <!-- Top Metric Cards: Dual Countdowns & Overall Ready Score -->
+  <!-- Top 3 Metric Cards: Deadlines, Documents, and Profile Readiness -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
     
-    <!-- Widget 1: Track A Exam Countdown -->
-    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
+    <!-- Card 1: Nearest Deadline Countdown -->
+    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-zinc-200 shadow-xs flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
       <div>
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-zinc-950 truncate pr-2">
             <span class="w-6 h-6 rounded-lg bg-zinc-100 text-zinc-950 flex items-center justify-center shrink-0">
-              <i data-lucide="calendar-check" class="w-3.5 h-3.5"></i>
+              <i data-lucide="calendar-clock" class="w-3.5 h-3.5"></i>
             </span>
-            <span class="truncate">Imtihon Sanasi</span>
+            <span class="truncate">Eng yaqin qabul muddati</span>
           </div>
           <span class="text-[11px] px-2.5 py-0.5 bg-zinc-100 text-zinc-950 font-bold rounded-full shrink-0">
-            Track A
+            Dedlayn
           </span>
         </div>
 
         <div class="my-2">
           <div class="flex items-baseline space-x-2 flex-wrap">
-            <span class="text-4xl xl:text-5xl font-black text-zinc-950">{{ exam_days_left }}</span>
-            <span class="text-sm xl:text-base font-bold text-slate-500">kun qoldi</span>
+            <span class="text-4xl xl:text-5xl font-black text-zinc-950">{{ admission_days_left }}</span>
+            <span class="text-sm xl:text-base font-bold text-zinc-500">kun qoldi</span>
           </div>
-          <div class="text-sm font-bold text-slate-800 mt-2 flex items-center space-x-1.5 min-w-0">
-            <i data-lucide="target" class="w-4 h-4 text-zinc-900 shrink-0"></i>
-            <span class="truncate">{{ exam_target_score }}</span>
-          </div>
-          <div class="text-xs text-slate-500 mt-1 truncate">
-            Sana: <strong>{{ exam_target_date|date:"d-F, Y" }}</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-2 gap-2">
-        <span class="text-[11px] xl:text-xs text-slate-500 font-medium truncate">Standardized Test Prep</span>
-        <a href="{% url 'tasks:list' %}?track=track_a" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-950 hover:text-zinc-950 group shrink-0">
-          <span>Mashqlar</span>
-          <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition group-hover:translate-x-0.5"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- Widget 2: Track B Admission Deadline Countdown -->
-    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
-      <div>
-        <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-zinc-900 truncate pr-2">
-            <span class="w-6 h-6 rounded-lg bg-zinc-100 text-zinc-900 flex items-center justify-center shrink-0">
-              <i data-lucide="send" class="w-3.5 h-3.5"></i>
-            </span>
-            <span class="truncate">Universitet Arizasi</span>
-          </div>
-          {% if has_primary_target %}
-            <span class="text-[11px] px-2.5 py-0.5 bg-zinc-100 text-zinc-950 font-bold rounded-full flex items-center space-x-1 shrink-0">
-              <i data-lucide="bookmark" class="w-3 h-3"></i>
-              <span class="hidden xl:inline">Maqsad</span>
-            </span>
-          {% else %}
-            <span class="text-[11px] px-2.5 py-0.5 bg-slate-100 text-slate-600 font-bold rounded-full shrink-0">
-              Yaqin
-            </span>
-          {% endif %}
-        </div>
-
-        <div class="my-2">
-          <div class="flex items-baseline space-x-2 flex-wrap">
-            <span class="text-4xl xl:text-5xl font-black text-zinc-900">{{ admission_days_left }}</span>
-            <span class="text-sm xl:text-base font-bold text-slate-500">kun qoldi</span>
-          </div>
-          <div class="text-sm font-bold text-slate-800 mt-2 truncate" title="{{ primary_program_name }}">
+          <div class="text-sm font-bold text-zinc-900 mt-2 truncate" title="{{ primary_program_name }}">
             {{ primary_program_name }}
           </div>
-          <div class="text-xs text-slate-500 mt-1 truncate">
-            {% if primary_university %}
-              {{ primary_university.name }} ({{ primary_country }})
-            {% elif primary_deadline_text %}
+          <div class="text-xs text-zinc-500 mt-1 truncate">
+            {% if primary_deadline_text %}
               Muddat: {{ primary_deadline_text }}
             {% else %}
               Qabul muddati yaqinlashmoqda
@@ -155,65 +108,441 @@
         </div>
       </div>
 
-      <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-2 gap-2">
-        <span class="text-[11px] xl:text-xs text-slate-500 font-medium truncate">Arizalar & Hujjatlar</span>
-        <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-900 hover:text-zinc-700 group shrink-0">
-          <span>Ko'rish</span>
+      <div class="pt-4 border-t border-zinc-100 flex items-center justify-between mt-2 gap-2">
+        <span class="text-[11px] xl:text-xs text-zinc-500 font-medium truncate">Arizalar nazorati</span>
+        <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-950 hover:text-zinc-700 group shrink-0">
+          <span>Oliygohlar</span>
           <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition group-hover:translate-x-0.5"></i>
         </a>
       </div>
     </div>
 
-    <!-- Widget 3: Overall Ready Score Card -->
-    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
+    <!-- Card 2: Application Documents Progress -->
+    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-zinc-200 shadow-xs flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-zinc-950 truncate pr-2">
+            <span class="w-6 h-6 rounded-lg bg-zinc-100 text-zinc-950 flex items-center justify-center shrink-0">
+              <i data-lucide="file-check-2" class="w-3.5 h-3.5"></i>
+            </span>
+            <span class="truncate">Qabul hujjatlari holati</span>
+          </div>
+          <span class="text-[11px] px-2.5 py-0.5 bg-zinc-100 text-zinc-950 font-bold rounded-full shrink-0">
+            Hujjatlar
+          </span>
+        </div>
+
+        <div class="my-2">
+          <div class="flex items-baseline space-x-2 flex-wrap">
+            <span class="text-4xl xl:text-5xl font-black text-zinc-950">{{ docs_ready_count }}</span>
+            <span class="text-base xl:text-lg text-zinc-400 font-bold">/ {{ docs_total_count|default:5 }} tayyor</span>
+          </div>
+          
+          <div class="w-full bg-zinc-100 rounded-full h-2.5 my-2.5 overflow-hidden">
+            <div class="bg-zinc-950 h-2.5 rounded-full transition-all duration-500" style="width: {% if docs_total_count %}{{ docs_ready_count|default:0|floatformat:0 }}0%{% else %}20%{% endif %}"></div>
+          </div>
+          
+          <div class="text-xs text-zinc-600 mt-1 truncate">
+            {% if sop_document %}
+              Insho holati: <strong class="text-zinc-950">{{ sop_document.get_status_display }}</strong>
+            {% else %}
+              Motivatsiya inshosi hali yaratilmagan
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-zinc-100 flex items-center justify-between mt-2 gap-2">
+        <span class="text-[11px] xl:text-xs text-zinc-500 font-medium truncate">Insho va tavsiyanomalar</span>
+        <a href="{% url 'documents:list' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-950 hover:text-zinc-700 group shrink-0">
+          <span>Hujjatlarim</span>
+          <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition group-hover:translate-x-0.5"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 3: Profile Readiness -->
+    <div class="bg-white rounded-3xl p-5 xl:p-6 border border-zinc-200 shadow-xs flex flex-col justify-between hover:border-zinc-400 transition min-w-0">
       <div>
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-zinc-950 truncate pr-2">
             <span class="w-6 h-6 rounded-lg bg-zinc-100 text-zinc-950 flex items-center justify-center shrink-0">
               <i data-lucide="target" class="w-3.5 h-3.5"></i>
             </span>
-            <span class="truncate">Tayyorgarlik</span>
+            <span class="truncate">Profil tayyorgarligi</span>
           </div>
           <span class="text-[11px] px-2.5 py-0.5 bg-zinc-100 text-zinc-950 font-bold rounded-full shrink-0">
-            Score
+            Ko'rsatkich
           </span>
         </div>
 
         <div class="my-2">
           <div class="flex items-baseline space-x-2 flex-wrap">
-            <span class="text-4xl xl:text-5xl font-black text-slate-900">{{ overall_ready_score }}</span>
-            <span class="text-base xl:text-lg text-slate-400 font-bold">/ 100</span>
+            <span class="text-4xl xl:text-5xl font-black text-zinc-950">{{ overall_ready_score }}</span>
+            <span class="text-base xl:text-lg text-zinc-400 font-bold">/ 100</span>
           </div>
           
-          <!-- Score Progress Bar -->
-          <div class="w-full bg-slate-100 rounded-full h-3 my-2 overflow-hidden">
-            <div class="bg-gradient-to-r from-zinc-900 to-zinc-950 h-3 rounded-full transition-all duration-500" style="width: {{ overall_ready_score }}%"></div>
+          <div class="w-full bg-zinc-100 rounded-full h-2.5 my-2.5 overflow-hidden">
+            <div class="bg-zinc-950 h-2.5 rounded-full transition-all duration-500" style="width: {{ overall_ready_score }}%"></div>
           </div>
           
-          <p class="text-[11px] xl:text-xs text-slate-600 mt-1 line-clamp-2">
+          <p class="text-[11px] xl:text-xs text-zinc-600 mt-1 line-clamp-2">
             {% if overall_ready_score >= 80 %}
-              <span class="text-zinc-900 font-semibold">Yuqori tayyorgarlik!</span>
+              <span class="text-zinc-950 font-semibold">Kuchli profil darajasi</span> — hujjatlarni to'liq topshiring.
             {% elif overall_ready_score >= 60 %}
-              <span class="text-zinc-950 font-semibold">Yaxshi daraja!</span>
+              <span class="text-zinc-950 font-semibold">O'rtacha daraja</span> — insho va tavsiyalarni mustahkamlang.
             {% else %}
-              <span class="text-zinc-900 font-semibold">Boshlang'ich bosqich.</span>
+              <span class="text-zinc-950 font-semibold">Boshlang'ich daraja</span> — til sertifikati va baholarni ko'taring.
             {% endif %}
           </p>
         </div>
       </div>
 
-      <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-2 gap-2">
-        <span class="text-[11px] xl:text-xs text-slate-500 font-medium truncate">Ko'nikma Tahlili</span>
-        <a href="{% url 'dashboard:stats' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-900 hover:text-zinc-950 group shrink-0">
-          <span>Tafsilot</span>
+      <div class="pt-4 border-t border-zinc-100 flex items-center justify-between mt-2 gap-2">
+        <span class="text-[11px] xl:text-xs text-zinc-500 font-medium truncate">Ko'nikmalar tahlili</span>
+        <a href="{% url 'dashboard:stats' %}" class="inline-flex items-center text-[11px] xl:text-xs font-bold text-zinc-950 hover:text-zinc-700 group shrink-0">
+          <span>Batafsil</span>
           <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition group-hover:translate-x-0.5"></i>
         </a>
       </div>
     </div>
+
+  </div>
+
+  <!-- ================= MENING MAQSADLI OLIYGOHLARIM VA ARIZALARIM ================= -->
+  <div class="bg-white rounded-[28px] p-6 md:p-8 border border-zinc-200 shadow-xs space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-100 pb-4 gap-3">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-11 h-11 rounded-2xl bg-zinc-100 text-zinc-950 flex items-center justify-center shadow-xs">
+          <i data-lucide="send" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h2 class="text-xl md:text-2xl font-extrabold text-zinc-900 tracking-tight">Mening maqsadli oliygohlarim va arizalarim</h2>
+            <span class="px-2.5 py-0.5 bg-zinc-100 text-zinc-950 text-xs font-bold rounded-full">{{ all_tracked_programs|length }} ta</span>
+          </div>
+          <p class="text-xs sm:text-sm text-zinc-500 font-normal">Ariza topshirish jarayoni, qabul muddati va rasmiy portallar nazorati</p>
+        </div>
+      </div>
+
+      <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-xs font-bold text-zinc-950 bg-zinc-100 hover:bg-zinc-200 px-4 py-2.5 rounded-xl transition space-x-1.5 self-start sm:self-auto shadow-2xs">
+        <span>Katalogdan qo'shish</span>
+        <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+
+    <!-- Status Breakdown Strip -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-xl bg-zinc-200 text-zinc-950 flex items-center justify-center font-black text-xs">
+          {{ applications_summary.preparing }}
+        </div>
+        <div>
+          <span class="text-xs font-bold text-zinc-900 block">Tayyorlanmoqda</span>
+          <span class="text-[10px] text-zinc-500">Hujjatlar yig'ish</span>
+        </div>
+      </div>
+
+      <div class="p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-900 flex items-center justify-center font-black text-xs">
+          {{ applications_summary.submitted }}
+        </div>
+        <div>
+          <span class="text-xs font-bold text-zinc-900 block">Topshirildi</span>
+          <span class="text-[10px] text-zinc-500">Arizalar yuborilgan</span>
+        </div>
+      </div>
+
+      <div class="p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center font-black text-xs">
+          {{ applications_summary.interview }}
+        </div>
+        <div>
+          <span class="text-xs font-bold text-zinc-900 block">Suhbat</span>
+          <span class="text-[10px] text-zinc-500">Intervyu bosqichi</span>
+        </div>
+      </div>
+
+      <div class="p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-900 flex items-center justify-center font-black text-xs">
+          {{ applications_summary.accepted }}
+        </div>
+        <div>
+          <span class="text-xs font-bold text-zinc-900 block">Qabul qilindi</span>
+          <span class="text-[10px] text-emerald-700 font-bold">Muvaffaqiyat</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Target Universities Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {% for sp in all_tracked_programs %}
+        <div class="p-5 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400 hover:shadow-md transition duration-200 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-zinc-100 text-zinc-950">
+                {{ sp.get_status_display }}
+              </span>
+              <span class="text-xs font-medium text-zinc-500 flex items-center space-x-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-zinc-400"></i>
+                <span>{{ sp.program.country }}</span>
+              </span>
+            </div>
+
+            <div>
+              <h3 class="font-bold text-zinc-950 text-base leading-snug">
+                <a href="{% url 'programs:detail' sp.program.id %}" class="hover:underline">
+                  {{ sp.program.name }}
+                </a>
+              </h3>
+              {% if sp.program.university %}
+                <p class="text-xs text-zinc-500 mt-1 flex items-center space-x-2">
+                  <span>{{ sp.program.university.name }}</span>
+                  {% if sp.program.university.world_ranking %}
+                    <span class="px-2 py-0.5 bg-zinc-100 rounded text-zinc-800 text-[10px] font-bold">QS #{{ sp.program.university.world_ranking }}</span>
+                  {% endif %}
+                </p>
+              {% endif %}
+            </div>
+
+            <div class="p-3 bg-zinc-50 rounded-xl space-y-1.5 text-xs text-zinc-600">
+              <div class="flex items-center justify-between">
+                <span class="text-zinc-500">Qabul muddati:</span>
+                <span class="font-bold text-zinc-950">{{ sp.program.deadline|default:"Ochiq" }}</span>
+              </div>
+              {% if sp.program.grant_coverage %}
+                <div class="flex items-center justify-between">
+                  <span class="text-zinc-500">Grant turi:</span>
+                  <span class="font-medium text-zinc-800">{{ sp.program.grant_coverage }}</span>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-zinc-100 flex items-center justify-between gap-2">
+            <!-- Program details link -->
+            <a href="{% url 'programs:detail' sp.program.id %}" class="px-3.5 py-2 text-xs font-bold text-zinc-800 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 rounded-xl transition">
+              Talablar
+            </a>
+
+            <!-- Official Application Portal External Link -->
+            {% if sp.program.source_url %}
+              <a href="{{ sp.program.source_url }}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-xs font-bold text-white bg-zinc-950 hover:bg-zinc-800 rounded-xl transition inline-flex items-center space-x-1.5 shadow-2xs">
+                <span>Rasmiy ariza portali</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            {% else %}
+              <a href="{% url 'programs:detail' sp.program.id %}" class="px-4 py-2 text-xs font-bold text-white bg-zinc-950 hover:bg-zinc-800 rounded-xl transition inline-flex items-center space-x-1.5 shadow-2xs">
+                <span>Ariza ma'lumoti</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-span-2 p-8 text-center bg-zinc-50 border border-zinc-200 rounded-2xl text-zinc-500 text-sm space-y-3">
+          <i data-lucide="compass" class="w-10 h-10 text-zinc-400 mx-auto"></i>
+          <p class="font-medium text-zinc-700">Hozircha maqsadli oliygoh tanlamadingiz.</p>
+          <p class="text-xs text-zinc-500">600+ ta tasdiqlangan oliygohlar orasidan profilingizga mos keladiganlarini tanlang.</p>
+          <a href="{% url 'programs:catalog' %}" class="inline-flex items-center px-4 py-2 bg-zinc-950 text-white text-xs font-bold rounded-xl transition shadow-xs">
+            <span>Oliygohlarni ko'rish</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1.5"></i>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- ================= QABUL HUJJATLARI VA INSHO (SOP) NAZORATI ================= -->
+  <div class="bg-white rounded-[28px] p-6 md:p-8 border border-zinc-200 shadow-xs space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-100 pb-4 gap-3">
+      <div class="flex items-center space-x-3.5">
+        <div class="w-11 h-11 rounded-2xl bg-zinc-100 text-zinc-950 flex items-center justify-center shadow-xs">
+          <i data-lucide="folder-check" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h2 class="text-xl md:text-2xl font-extrabold text-zinc-900 tracking-tight">Qabul hujjatlari va insho nazorati</h2>
+          <p class="text-xs sm:text-sm text-zinc-500 font-normal">Xorijiy universitetlarga qabul uchun zarur bo'lgan asosiy hujjatlar ro'yxati</p>
+        </div>
+      </div>
+
+      <a href="{% url 'documents:create' %}" class="inline-flex items-center text-xs font-bold text-white bg-zinc-950 hover:bg-zinc-800 px-4 py-2.5 rounded-xl transition space-x-1.5 self-start sm:self-auto shadow-2xs">
+        <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+        <span>Yangi hujjat yozish</span>
+      </a>
+    </div>
+
+    <!-- 5 Core Admission Documents Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+      <!-- Doc 1: Motivation Letter / SOP -->
+      <div class="p-5 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400 transition flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
+              <i data-lucide="pen-tool" class="w-4 h-4"></i>
+            </span>
+            {% if sop_document %}
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-100 text-zinc-900">
+                {{ sop_document.get_status_display }}
+              </span>
+            {% else %}
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700">
+                Kutilmoqda
+              </span>
+            {% endif %}
+          </div>
+
+          <h3 class="font-bold text-zinc-950 text-sm">Motivatsiya inshosi</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">
+            Nega aynan shu universitet va sohani tanlaganingiz, shaxsiy maqsadingiz va liderlik tajribangiz haqida bayon.
+          </p>
+        </div>
+
+        <div class="pt-3 border-t border-zinc-100">
+          {% if sop_document %}
+            <a href="{% url 'documents:detail' sop_document.id %}" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-950 bg-zinc-100 hover:bg-zinc-200 rounded-xl transition flex items-center justify-center space-x-1.5">
+              <span>AI bilan tekshirish</span>
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            </a>
+          {% else %}
+            <a href="{% url 'documents:create' %}?type=motivation_letter" class="w-full py-2 px-3 text-center text-xs font-bold text-white bg-zinc-950 hover:bg-zinc-800 rounded-xl transition flex items-center justify-center space-x-1.5">
+              <span>Insho yozishni boshlash</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Doc 2: Language Certificate -->
+      <div class="p-5 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400 transition flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+              <i data-lucide="award" class="w-4 h-4"></i>
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-100 text-zinc-900">
+              Til bilish
+            </span>
+          </div>
+
+          <h3 class="font-bold text-zinc-950 text-sm">Xalqaro til sertifikati</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">
+            IELTS, TOEFL yoki Duolingo rasmiy imtihon natijalari. Ko'rsatkichingiz: {{ student.get_english_level_display|default:"O'rtacha" }}.
+          </p>
+        </div>
+
+        <div class="pt-3 border-t border-zinc-100">
+          <a href="{% url 'accounts:profile' %}" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-800 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 rounded-xl transition flex items-center justify-center space-x-1.5">
+            <span>Sertifikatni yangilash</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Doc 3: Recommendation Letters -->
+      <div class="p-5 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400 transition flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+              <i data-lucide="user-check" class="w-4 h-4"></i>
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-100 text-zinc-900">
+              2 ta tavsiya
+            </span>
+          </div>
+
+          <h3 class="font-bold text-zinc-950 text-sm">O'qituvchilar tavsiyanomasi</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">
+            Fan o'qituvchilari yoki maktab ma'muriyatidan o'quvchining akademik qobiliyati va xulq-atvori haqidagi rasmiy xat.
+          </p>
+        </div>
+
+        <div class="pt-3 border-t border-zinc-100">
+          <a href="{% url 'documents:create' %}?type=recommendation" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-800 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 rounded-xl transition flex items-center justify-center space-x-1.5">
+            <span>Tavsiyanoma namunasi</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Doc 4: Academic Transcript -->
+      <div class="p-5 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400 transition flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
+              <i data-lucide="scroll" class="w-4 h-4"></i>
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-100 text-zinc-900">
+              Baholar tabeli
+            </span>
+          </div>
+
+          <h3 class="font-bold text-zinc-950 text-sm">Akademik transkript</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">
+            Maktab baholar tabeli va shahodatnomani ingliz tiliga rasmiy tarjima qilib notarial tasdiqlash.
+          </p>
+        </div>
+
+        <div class="pt-3 border-t border-zinc-100">
+          <a href="{% url 'documents:list' %}" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-800 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 rounded-xl transition flex items-center justify-center space-x-1.5">
+            <span>Transkript holati</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Doc 5: CV & Extracurriculars -->
+      <div class="p-5 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400 transition flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-zinc-100 text-zinc-900">
+              Rezyume
+            </span>
+          </div>
+
+          <h3 class="font-bold text-zinc-950 text-sm">Rezyume va yutuqlar</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">
+            Olimpiadalar, ko'ngillilik faoliyati, sport yutuqlari va to'garaklardagi faollik ro'yxati.
+          </p>
+        </div>
+
+        <div class="pt-3 border-t border-zinc-100">
+          <a href="{% url 'documents:create' %}?type=cv" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-800 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 rounded-xl transition flex items-center justify-center space-x-1.5">
+            <span>CV shakllantirish</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Doc 6: AI Essay Review Action Card -->
+      <div class="p-5 rounded-2xl border border-zinc-900 bg-zinc-950 text-white flex flex-col justify-between space-y-4 shadow-sm">
+        <div class="space-y-2">
+          <div class="w-8 h-8 rounded-xl bg-zinc-800 text-amber-400 flex items-center justify-center">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </div>
+          <h3 class="font-bold text-white text-sm">Inshoni AI bilan tekshirtiring</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Inshoingizni qabul talablariga mosligini, mantiqiy tuzilishi va grammatikasini AI orqali xolis tahlil qiling.
+          </p>
+        </div>
+
+        <div class="pt-3 border-t border-zinc-800">
+          <a href="{% url 'documents:list' %}" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-950 bg-white hover:bg-zinc-100 rounded-xl transition flex items-center justify-center space-x-1.5">
+            <span>Hujjatlarim bo'limiga o'tish</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- ================= TAVSIYA ETILGAN UNIVERSITETLAR ================= -->
-  <div class="bg-white rounded-[28px] p-6 md:p-8 border border-zinc-200 shadow-xl shadow-zinc-900/5 space-y-5">
+  <div class="bg-white rounded-[28px] p-6 md:p-8 border border-zinc-200 shadow-xs space-y-5">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-200 pb-4 gap-2">
       <div class="flex items-center space-x-3.5">
         <div class="w-11 h-11 rounded-2xl bg-zinc-100 text-zinc-950 flex items-center justify-center shadow-xs">
@@ -221,15 +550,15 @@
         </div>
         <div>
           <div class="flex items-center space-x-2">
-            <h2 class="text-xl md:text-2xl font-extrabold text-zinc-900 tracking-tight">Tavsiya etilgan universitetlar</h2>
-            <span class="pill-badge bg-zinc-100 text-zinc-950 text-[10px] font-bold">AI Moslashuv</span>
+            <h2 class="text-xl md:text-2xl font-extrabold text-zinc-900 tracking-tight">Tavsiya etilgan oliygohlar</h2>
+            <span class="px-2.5 py-0.5 bg-zinc-100 text-zinc-950 text-xs font-bold rounded-full">AI saralash</span>
           </div>
-          <p class="text-xs sm:text-sm text-zinc-500 font-normal">Sizning ko'rsatkichlaringiz, yo'nalishingiz va byudjetingiz asosida saralangan OTMlar</p>
+          <p class="text-xs sm:text-sm text-zinc-500 font-normal">Sizning yo'nalishingiz va byudjetingiz asosida saralangan OTMlar</p>
         </div>
       </div>
 
-      <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-xs font-bold text-zinc-950 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-100/70 px-4 py-2 rounded-xl transition space-x-1.5 self-start sm:self-auto">
-        <span>Barchasini ko'rish</span>
+      <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-xs font-bold text-zinc-950 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 px-4 py-2.5 rounded-xl transition space-x-1.5 self-start sm:self-auto shadow-2xs">
+        <span>Barcha 600+ OTMni ko'rish</span>
         <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
       </a>
     </div>
@@ -237,13 +566,13 @@
     <!-- Universities Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {% for prog in recommended_programs %}
-        <div class="p-5 rounded-2xl border border-zinc-200 bg-zinc-50 hover:bg-white hover:border-zinc-400 hover:shadow-lg transition duration-200 flex flex-col justify-between space-y-4">
+        <div class="p-5 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400 hover:shadow-md transition duration-200 flex flex-col justify-between space-y-4">
           <div class="space-y-2.5">
             <div class="flex items-center justify-between">
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-zinc-100 text-zinc-950">
-                {% if forloop.first %}96% Mos{% elif forloop.counter == 2 %}92% Mos{% elif forloop.counter == 3 %}88% Mos{% else %}85% Mos{% endif %}
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-zinc-100 text-zinc-950">
+                {% if forloop.first %}Yuqori moslik{% else %}Mos keladi{% endif %}
               </span>
-              <span class="text-[11px] font-semibold text-zinc-500 flex items-center space-x-1">
+              <span class="text-xs font-semibold text-zinc-500 flex items-center space-x-1">
                 <i data-lucide="map-pin" class="w-3 h-3 text-zinc-400"></i>
                 <span>{{ prog.country }}</span>
               </span>
@@ -272,8 +601,8 @@
             </div>
           </div>
 
-          <a href="{% url 'programs:detail' prog.id %}" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-800 hover:text-white bg-white hover:bg-zinc-950 rounded-xl border border-zinc-200 hover:border-zinc-950 transition duration-150 flex items-center justify-center space-x-1.5 shadow-2xs">
-            <span>Tavsiyani ko'rish</span>
+          <a href="{% url 'programs:detail' prog.id %}" class="w-full py-2 px-3 text-center text-xs font-bold text-zinc-800 hover:text-white bg-zinc-50 hover:bg-zinc-950 rounded-xl border border-zinc-200 hover:border-zinc-950 transition duration-150 flex items-center justify-center space-x-1.5 shadow-2xs">
+            <span>Tafsilot</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </a>
         </div>
@@ -285,537 +614,24 @@
     </div>
   </div>
 
-  <!-- Faol Arizalarim (My Active Applications Status Card) -->
-  <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-xs space-y-4">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-2">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-2xl bg-zinc-100 text-zinc-900 flex items-center justify-center">
-          <i data-lucide="send" class="w-5 h-5"></i>
-        </div>
-        <div>
-          <h2 class="text-lg font-black text-slate-900">Faol arizalarim</h2>
-          <p class="text-xs text-slate-500">Universitet va grant dasturlariga topshirilgan arizalaringiz holati</p>
-        </div>
+  <!-- AI Mentor Consultation Card -->
+  <div class="p-6 md:p-8 bg-zinc-950 rounded-[28px] text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-zinc-800 shadow-xl">
+    <div class="space-y-2 max-w-xl">
+      <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-amber-400 text-xs font-bold">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        <span>AI Qabul Mentori</span>
       </div>
-
-      <a href="{% url 'programs:catalog' %}" class="inline-flex items-center text-xs font-bold text-zinc-900 hover:text-zinc-950">
-        <span>Barcha dasturlarni ko'rish</span>
-        <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>
-      </a>
-    </div>
-
-    <!-- Status Breakdown Badges -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-bold text-xs">
-          {{ applications_summary.submitted }}
-        </div>
-        <div>
-          <span class="text-[11px] font-bold text-slate-700 block">Topshirildi</span>
-          <span class="text-[10px] text-slate-400">Jarayonda</span>
-        </div>
-      </div>
-
-      <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-bold text-xs">
-          {{ applications_summary.interview }}
-        </div>
-        <div>
-          <span class="text-[11px] font-bold text-slate-700 block">Suhbat</span>
-          <span class="text-[10px] text-slate-400">Taklif etilgan</span>
-        </div>
-      </div>
-
-      <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-bold text-xs">
-          {{ applications_summary.accepted }}
-        </div>
-        <div>
-          <span class="text-[11px] font-bold text-slate-700 block">Qabul qilindi</span>
-          <span class="text-[10px] text-zinc-900 font-bold">Muvaffaqiyat</span>
-        </div>
-      </div>
-
-      <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center font-bold text-xs">
-          {{ applications_summary.preparing }}
-        </div>
-        <div>
-          <span class="text-[11px] font-bold text-slate-700 block">Tayyorlanmoqda</span>
-          <span class="text-[10px] text-slate-400">Hujjatlar</span>
-        </div>
-      </div>
-    </div>
-
-    {% if applications_summary.items %}
-      <!-- Applications Mini Table / List -->
-      <div class="divide-y divide-slate-100 border border-slate-100 rounded-2xl overflow-hidden mt-3">
-        {% for app in applications_summary.items %}
-          <div class="p-4 bg-white hover:bg-slate-50/50 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="space-y-0.5">
-              <div class="flex items-center space-x-2">
-                <a href="{% url 'programs:detail' app.program.id %}" class="text-xs sm:text-sm font-bold text-slate-900 hover:text-zinc-900">
-                  {{ app.program.name }}
-                </a>
-                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold {% if app.status == 'accepted' %}bg-zinc-100 text-zinc-950{% elif app.status == 'submitted' %}bg-zinc-100 text-zinc-950{% elif app.status == 'interview' %}bg-zinc-100 text-zinc-950{% elif app.status == 'rejected' %}bg-rose-100 text-rose-800{% else %}bg-zinc-100 text-zinc-950{% endif %}">
-                  {{ app.get_status_display }}
-                </span>
-              </div>
-              <p class="text-[11px] text-slate-400">
-                {{ app.program.country }} • Muddat: {{ app.program.deadline|default:"Belgilanmagan" }}
-                {% if app.notes %} • <span class="text-slate-600 italic">"{{ app.notes }}"</span>{% endif %}
-              </p>
-            </div>
-
-            <a href="{% url 'programs:detail' app.program.id %}" class="text-xs font-bold text-zinc-900 hover:text-zinc-950 flex items-center space-x-1">
-              <span>Holatni o'zgartirish</span>
-              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        {% endfor %}
-      </div>
-    {% else %}
-      <div class="p-6 bg-slate-50 rounded-2xl text-center text-xs text-slate-500 border border-dashed border-slate-200">
-        Hozircha kuzatuvga olingan yoki topshirilgan arizalar yo'q. <a href="{% url 'programs:catalog' %}" class="text-zinc-900 font-bold underline">Dasturlar katalogidan</a> mos grantni tanlang!
-      </div>
-    {% endif %}
-  </div>
-
-  <!-- Dual-Track Study Plan Overview Card -->
-  {% if active_plan %}
-    <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
-      
-      <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-5 gap-3">
-        <div>
-          <div class="inline-flex items-center space-x-2 text-xs font-bold text-zinc-950 uppercase tracking-wider">
-            <i data-lucide="layers" class="w-4 h-4"></i>
-            <span>Sinxronlashtirilgan Dual-Track O'quv Rejasi</span>
-            <span>•</span>
-            <span>{{ active_plan.timeline_months }} Oylik Jadval</span>
-          </div>
-          <h2 class="text-xl md:text-2xl font-black text-slate-900 mt-1">
-            {{ active_plan.generated_by_ai.title|default:active_plan.goal }}
-          </h2>
-          <p class="text-xs text-slate-500 mt-0.5">
-            Muddati: {{ active_plan.start_date|date:"d-M-Y" }} dan {{ active_plan.target_date|date:"d-M-Y" }} gacha
-          </p>
-        </div>
-
-        <div class="flex items-center space-x-2">
-          <span class="text-xs bg-zinc-100 text-zinc-950 border border-indigo-200 font-bold px-3 py-1.5 rounded-full flex items-center space-x-1.5">
-            <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-            <span>Haftalik: {{ active_plan.generated_by_ai.weekly_hours|default:12 }} soat</span>
-          </span>
-          <span class="text-xs bg-zinc-100 text-zinc-950 font-bold px-3 py-1.5 rounded-full">
-            Faol Reja
-          </span>
-        </div>
-      </div>
-
-      <p class="text-sm text-slate-600 leading-relaxed">
-        {{ active_plan.generated_by_ai.summary|default:active_plan.goal }}
-      </p>
-
-      <!-- Dual-Track Visual Cards Grid: Track A (Test Prep) and Track B (Admissions & Documents) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        <!-- Track A Card (Imtihon Tayyorgarligi) -->
-        <div class="p-5 md:p-6 bg-gradient-to-b from-purple-50/70 to-purple-50/20 rounded-2xl border border-purple-200 space-y-4">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2.5">
-              <div class="w-9 h-9 rounded-xl bg-zinc-950 text-white flex items-center justify-center shadow-xs">
-                <i data-lucide="book-open" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h3 class="text-base font-bold text-slate-900">Track A: Imtihon Tayyorgarligi</h3>
-                <p class="text-xs text-zinc-950 font-medium">IELTS / SAT / Duolingo / CEFR</p>
-              </div>
-            </div>
-            <span class="text-xs font-black text-zinc-950 bg-zinc-100 px-2.5 py-1 rounded-full">
-              {{ track_a_progress_pct }}% Bajarildi
-            </span>
-          </div>
-
-          <!-- Progress Bar -->
-          <div class="space-y-1">
-            <div class="w-full bg-zinc-100 rounded-full h-2 overflow-hidden">
-              <div class="bg-zinc-950 h-2 rounded-full transition-all duration-500" style="width: {{ track_a_progress_pct }}%"></div>
-            </div>
-            <div class="flex justify-between text-[11px] text-slate-500">
-              <span>Haftasiga: <strong>{{ track_a_data.weekly_hours|default:8 }} soat</strong></span>
-              <span>Maqsad: <strong>{{ exam_target_score }}</strong></span>
-            </div>
-          </div>
-
-          <!-- Track A Milestones List -->
-          <div class="space-y-2 pt-2">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center space-x-1.5">
-              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-zinc-900"></i>
-              <span>Oylik Asosiy Bosqichlar:</span>
-            </h4>
-            <div class="space-y-2 max-h-56 overflow-y-auto pr-1">
-              {% for m in track_a_milestones %}
-                <div class="p-3 bg-white border border-purple-100 rounded-xl text-xs space-y-1 shadow-2xs">
-                  <div class="flex items-center justify-between">
-                    <span class="font-bold text-zinc-950">{{ m.month }}-Oy ({{ m.target_week }}-hafta)</span>
-                    <span class="text-[10px] text-slate-500 font-medium">{{ m.drills_target|default:"20+" }} ta mashq</span>
-                  </div>
-                  <p class="text-slate-800 font-medium">{{ m.focus }}</p>
-                  <p class="text-slate-500 text-[11px]">Maqsad: {{ m.goal }}</p>
-                </div>
-              {% empty %}
-                <div class="p-3 bg-white rounded-xl text-xs text-slate-500">Milestonelar shakllantirilmoqda.</div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-
-        <!-- Track B Card (Universitet Arizasi va Hujjatlar) -->
-        <div class="p-5 md:p-6 bg-gradient-to-b from-emerald-50/70 to-emerald-50/20 rounded-2xl border border-emerald-200 space-y-4">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2.5">
-              <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shadow-xs">
-                <i data-lucide="file-text" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h3 class="text-base font-bold text-slate-900">Track B: Universitet Arizasi va Hujjatlar</h3>
-                <p class="text-xs text-zinc-900 font-medium">SOP, LOR, Portfolio, Deadline</p>
-              </div>
-            </div>
-            <span class="text-xs font-black text-zinc-950 bg-zinc-100 px-2.5 py-1 rounded-full">
-              {{ track_b_progress_pct }}% Bajarildi
-            </span>
-          </div>
-
-          <!-- Progress Bar -->
-          <div class="space-y-1">
-            <div class="w-full bg-zinc-100 rounded-full h-2 overflow-hidden">
-              <div class="bg-emerald-600 h-2 rounded-full transition-all duration-500" style="width: {{ track_b_progress_pct }}%"></div>
-            </div>
-            <div class="flex justify-between text-[11px] text-slate-500">
-              <span>Haftasiga: <strong>{{ track_b_data.weekly_hours|default:4 }} soat</strong></span>
-              <span>Yo'nalish: <strong>Xalqaro Grantlar</strong></span>
-            </div>
-          </div>
-
-          <!-- Track B Milestones List -->
-          <div class="space-y-2 pt-2">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center space-x-1.5">
-              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-zinc-900"></i>
-              <span>Oylik Hujjat Bosqichlari:</span>
-            </h4>
-            <div class="space-y-2 max-h-56 overflow-y-auto pr-1">
-              {% for m in track_b_milestones %}
-                <div class="p-3 bg-white border border-emerald-100 rounded-xl text-xs space-y-1 shadow-2xs">
-                  <div class="flex items-center justify-between">
-                    <span class="font-bold text-zinc-950">{{ m.month }}-Oy ({{ m.target_week }}-hafta)</span>
-                    <span class="text-[10px] text-zinc-900 font-medium">Deadline Nazorati</span>
-                  </div>
-                  <p class="text-slate-800 font-medium">{{ m.focus }}</p>
-                  <p class="text-slate-500 text-[11px]">Maqsad: {{ m.goal }}</p>
-                </div>
-              {% empty %}
-                <div class="p-3 bg-white rounded-xl text-xs text-slate-500">Milestonelar shakllantirilmoqda.</div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Synchronized Weekly Schedule Preview -->
-      {% if weekly_schedule %}
-        <div class="pt-2 border-t border-slate-100">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center space-x-1.5">
-              <i data-lucide="calendar-range" class="w-4 h-4 text-zinc-900"></i>
-              <span>Sinxronlashtirilgan Haftalik Taqsimot (Track A & Track B Kunlari)</span>
-            </h3>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {% for w in weekly_schedule|slice:":4" %}
-              <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs space-y-2">
-                <div class="flex items-center justify-between font-bold text-slate-900 border-b border-slate-200 pb-1.5">
-                  <span class="text-zinc-950">{{ w.week }}-Hafta</span>
-                  <span class="text-[10px] text-slate-500">{{ w.daily_hours }} soat/kun</span>
-                </div>
-                <div class="space-y-1">
-                  <div class="text-[11px] font-bold text-zinc-950 flex items-center space-x-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-zinc-950"></span>
-                    <span>Track A (Du, Chor, Ju):</span>
-                  </div>
-                  <p class="text-slate-600 text-[11px] line-clamp-2">{{ w.track_a_focus }}</p>
-                </div>
-                <div class="space-y-1 pt-1 border-t border-slate-200/60">
-                  <div class="text-[11px] font-bold text-zinc-950 flex items-center space-x-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-                    <span>Track B (Se, Pay, Sha):</span>
-                  </div>
-                  <p class="text-slate-600 text-[11px] line-clamp-2">{{ w.track_b_focus }}</p>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-
-    </div>
-  {% endif %}
-
-  <!-- Today's Daily Tasks Section with Track A & Track B Filter Tabs -->
-  <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
-    
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-3">
-      <div>
-        <h2 class="text-lg md:text-xl font-bold text-slate-900 flex items-center space-x-2">
-          <i data-lucide="zap" class="w-5 h-5 text-zinc-900"></i>
-          <span>Bugungi Amaliy Mashg'ulotlar (Dual-Track Tasks)</span>
-        </h2>
-        <p class="text-xs md:text-sm text-slate-500">Har bir yo'nalish bo'yicha vazifalarni bajaring va AI tahlilini o'rganing.</p>
-      </div>
-
-      <!-- Task Track Filter Tabs -->
-      <div class="flex items-center space-x-1.5 bg-slate-100 p-1.5 rounded-2xl text-xs font-semibold self-start sm:self-auto" id="task-filter-tabs">
-        <button type="button" onclick="filterDashboardTasks('all')" id="tab-btn-all" class="px-3 py-1.5 rounded-xl bg-zinc-950 text-white shadow-xs transition">
-          Barchasi ({{ total_tasks_count }})
-        </button>
-        <button type="button" onclick="filterDashboardTasks('track_a')" id="tab-btn-track_a" class="px-3 py-1.5 rounded-xl text-slate-600 hover:bg-slate-200 transition">
-          Track A ({{ today_tasks_track_a|length }})
-        </button>
-        <button type="button" onclick="filterDashboardTasks('track_b')" id="tab-btn-track_b" class="px-3 py-1.5 rounded-xl text-slate-600 hover:bg-slate-200 transition">
-          Track B ({{ today_tasks_track_b|length }})
-        </button>
-      </div>
-    </div>
-
-    <!-- Tasks Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="dashboard-tasks-container">
-      {% for task in today_tasks %}
-        <div class="task-item-card p-5 rounded-2xl border flex flex-col justify-between transition
-          {% if task.track == 'track_a' %}border-purple-200 bg-zinc-100/20{% else %}border-emerald-200 bg-zinc-100/20{% endif %}
-          {% if task.completed %}ring-1 ring-indigo-200{% endif %}"
-          data-track="{{ task.track }}">
-          
-          <div>
-            <!-- Top Card Badges -->
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center space-x-1.5 flex-wrap gap-1">
-                <!-- Track Badge -->
-                {% if task.track == 'track_a' %}
-                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-zinc-100 text-zinc-950 border border-purple-200 rounded-full flex items-center space-x-1">
-                    <i data-lucide="book-open" class="w-3 h-3"></i>
-                    <span>Track A: Imtihon</span>
-                  </span>
-                {% else %}
-                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-zinc-100 text-zinc-950 border border-emerald-200 rounded-full flex items-center space-x-1">
-                    <i data-lucide="file-text" class="w-3 h-3"></i>
-                    <span>Track B: Ariza</span>
-                  </span>
-                {% endif %}
-
-                <!-- Task Type Badge -->
-                <span class="text-[10px] font-semibold text-slate-600 bg-white px-2 py-0.5 border border-slate-200 rounded-full">
-                  {{ task.get_task_type_display }}
-                </span>
-              </div>
-
-              {% if task.completed %}
-                <span class="text-xs font-bold text-zinc-950 bg-zinc-100 px-2.5 py-0.5 rounded-full flex items-center space-x-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-zinc-950"></i>
-                  <span>{{ task.score }} ball</span>
-                </span>
-              {% else %}
-                <span class="text-xs font-bold text-zinc-900 bg-zinc-100 px-2.5 py-0.5 rounded-full">
-                  Kutilmoqda
-                </span>
-              {% endif %}
-            </div>
-
-            <h3 class="text-base font-bold text-slate-900 mt-1">
-              {{ task.content.title|default:task.get_task_type_display }}
-            </h3>
-            <p class="text-xs text-slate-600 mt-1 line-clamp-2">
-              {% if task.content.question %}{{ task.content.question }}{% elif task.content.instruction %}{{ task.content.instruction }}{% else %}Mashqni yechish uchun bosing.{% endif %}
-            </p>
-          </div>
-
-          <div class="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between">
-            {% if task.completed %}
-              <span class="text-xs text-slate-500">Bajarildi: {{ task.completed_at|date:"H:i" }}</span>
-              <a href="{% url 'tasks:result' task.id %}" class="text-xs font-bold text-zinc-900 hover:text-zinc-950 inline-flex items-center space-x-1">
-                <span>AI Tahlilini ko'rish</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-              </a>
-            {% else %}
-              <span class="text-xs text-slate-500 font-medium">Ball: 100 gacha</span>
-              <a href="{% url 'tasks:detail' task.id %}" class="px-4 py-2 {% if task.track == 'track_a' %}bg-zinc-950 hover:bg-purple-700{% else %}bg-emerald-600 hover:bg-emerald-700{% endif %} text-white text-xs font-bold rounded-xl shadow-xs transition inline-flex items-center space-x-1">
-                <span>Bajarish</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-              </a>
-            {% endif %}
-          </div>
-        </div>
-      {% empty %}
-        <div class="col-span-2 text-center py-8 text-slate-500">
-          <p>Bugun uchun vazifalar kutilmoqda. Sahifani yangilang.</p>
-        </div>
-      {% endfor %}
-    </div>
-
-  </div>
-
-  <!-- 5 Skills Breakdown Section -->
-  <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
-    <div class="border-b border-slate-100 pb-4">
-      <h2 class="text-lg md:text-xl font-bold text-slate-900 flex items-center space-x-2">
-        <i data-lucide="bar-chart-3" class="w-5 h-5 text-zinc-900"></i>
-        <span>5 Asosiy Ko'nikma Bo'yicha Natijalar (SkillScores)</span>
-      </h2>
-      <p class="text-xs md:text-sm text-slate-500">Har bir ko'nikma 0 dan 100 gacha shkala bo'yicha baholanadi.</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-      {% for item in skills_display %}
-        <div class="p-4 rounded-2xl border {% if item.is_weakest %}bg-rose-50/40 border-rose-200 ring-2 ring-rose-200/50{% else %}bg-slate-50 border-slate-200{% endif %}">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-bold text-slate-700 truncate">{{ item.label }}</span>
-            {% if item.is_weakest %}
-              <span class="text-[10px] bg-rose-600 text-white font-bold px-1.5 py-0.5 rounded">Fokus</span>
-            {% endif %}
-          </div>
-          <div class="flex items-baseline space-x-1 my-2">
-            <span class="text-2xl font-extrabold text-slate-900">{{ item.score }}</span>
-            <span class="text-xs font-bold text-slate-400">/ 100</span>
-          </div>
-          <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
-            <div class="{% if item.is_weakest %}bg-rose-500{% else %}bg-zinc-950{% endif %} h-2 rounded-full transition-all duration-500" style="width: {{ item.score }}%"></div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- Weekly Consistency Strip & History -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-    
-    <!-- 7-Day Consistency Strip -->
-    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 lg:col-span-1">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-slate-500">
-            <i data-lucide="calendar" class="w-4 h-4 text-zinc-900"></i>
-            <span>Haftalik Intizom</span>
-          </div>
-          <span class="text-xs px-2.5 py-0.5 bg-zinc-100 text-zinc-900 border border-amber-200 font-semibold rounded-full flex items-center space-x-1">
-            <i data-lucide="flame" class="w-3 h-3 text-zinc-900"></i>
-            <span>{{ streak_count }} kun</span>
-          </span>
-        </div>
-
-        <div class="my-3">
-          <div class="grid grid-cols-7 gap-1.5 text-center">
-            {% for day in weekly_consistency %}
-              <div class="flex flex-col items-center">
-                <span class="text-[10px] font-bold {% if day.is_today %}text-zinc-900 font-black{% else %}text-slate-500{% endif %} mb-1">
-                  {{ day.day_name }}
-                </span>
-                <div class="w-8 h-8 rounded-xl flex items-center justify-center text-xs transition-all duration-150
-                  {% if day.is_completed %}
-                    bg-zinc-950 text-white font-bold shadow-xs
-                  {% elif day.is_today %}
-                    bg-zinc-100 text-zinc-950 border-2 border-indigo-500 font-bold
-                  {% else %}
-                    bg-slate-100 text-slate-400 border border-slate-200
-                  {% endif %}
-                  {% if day.is_today %}ring-2 ring-indigo-400 ring-offset-1{% endif %}"
-                  title="{{ day.day_full_name }}: {% if day.is_completed %}Bajarilgan{% elif day.is_today %}Bugun{% else %}Bajarilmagan{% endif %}">
-                  {% if day.is_completed %}
-                    <i data-lucide="check" class="w-4 h-4"></i>
-                  {% else %}
-                    <span>{{ day.day_number }}</span>
-                  {% endif %}
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-      <p class="text-xs text-slate-500">
-        Har kuni kamida 1 ta vazifani yakunlab ketma-ketlikni oshiring.
+      <h3 class="text-xl font-bold tracking-tight">Oliygohlar bo'yicha savollaringiz bormi?</h3>
+      <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+        Tanlagan universitetingiz talablari, motivatsiya inshosi sirlari yoki grant intervyusi bo'yicha shaxsiy AI mentoridan maslahat oling.
       </p>
     </div>
 
-    <!-- Recent Activity History Log -->
-    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3 lg:col-span-2">
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h2 class="text-base font-bold text-slate-900 flex items-center space-x-2">
-          <i data-lucide="trending-up" class="w-4 h-4 text-zinc-900"></i>
-          <span>So'nggi Rivojlanish Tarixi</span>
-        </h2>
-        <a href="{% url 'dashboard:stats' %}" class="text-xs font-bold text-zinc-900 hover:text-zinc-950">
-          Barchasini ko'rish
-        </a>
-      </div>
-
-      <div class="divide-y divide-slate-100 text-sm">
-        {% for log in recent_logs %}
-          <div class="py-2.5 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <span class="text-xs text-slate-400 font-medium">{{ log.date|date:"d-M" }}</span>
-              <span class="font-bold text-slate-800 text-xs sm:text-sm">{{ log.delta }}</span>
-            </div>
-            <div class="flex items-center space-x-3 text-xs">
-              <span class="text-slate-500">Ready: <strong>{{ log.overall_ready_score }}%</strong></span>
-              <span class="text-zinc-900 font-bold flex items-center space-x-1">
-                <i data-lucide="flame" class="w-3.5 h-3.5 text-zinc-900"></i>
-                <span>{{ log.streak_count }}</span>
-              </span>
-            </div>
-          </div>
-        {% empty %}
-          <div class="py-4 text-xs text-slate-500 text-center">
-            Hozircha o'sish jurnallari mavjud emas.
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-
+    <a href="{% url 'mentor:chat' %}" class="px-5 py-3 bg-white hover:bg-zinc-100 text-zinc-950 text-xs font-extrabold rounded-xl transition shrink-0 flex items-center space-x-2 shadow-sm">
+      <i data-lucide="message-circle" class="w-4 h-4"></i>
+      <span>AI Mentor bilan suhbat</span>
+    </a>
   </div>
 
 </div>
-
-<!-- Client-side tab filter script for Dashboard Tasks -->
-<script>
-function filterDashboardTasks(track) {
-  const cards = document.querySelectorAll('.task-item-card');
-  const btnAll = document.getElementById('tab-btn-all');
-  const btnTrackA = document.getElementById('tab-btn-track_a');
-  const btnTrackB = document.getElementById('tab-btn-track_b');
-
-  // Reset all buttons
-  [btnAll, btnTrackA, btnTrackB].forEach(btn => {
-    if (btn) {
-      btn.className = "px-3 py-1.5 rounded-xl text-slate-600 hover:bg-slate-200 transition";
-    }
-  });
-
-  // Highlight active button
-  const activeBtn = document.getElementById('tab-btn-' + track);
-  if (activeBtn) {
-    activeBtn.className = "px-3 py-1.5 rounded-xl bg-zinc-950 text-white shadow-xs transition font-bold";
-  }
-
-  // Show / Hide cards
-  cards.forEach(card => {
-    const cardTrack = card.getAttribute('data-track');
-    if (track === 'all' || cardTrack === track) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-</script>
 {% endblock %}
